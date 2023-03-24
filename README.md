@@ -40,6 +40,10 @@ windows系统建议将命令添加到批处理程序运行。
     "exlude_protocol":"ssr"
 }
 ```
+订阅 url 支持设置本地文件路径，比如txt文件，文件中每行一个单节点分享链接，比如ss://abcdefg（非订阅链接）。
+
+订阅 tag 会使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
+
 node_server_dns：必需。
   - 将其设置为 config 模板文件中存在的一个 dns server 的 tag，此 dns server 的 detour 必须为direct。
   - 脚本会将所有订阅中的节点服务器域名地址添加到 config 中的 dns 规则中，使用此 dns server 进行解析，避免解析死循环。
