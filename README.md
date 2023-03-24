@@ -4,7 +4,7 @@
 
 请查看：[https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration)。
 
-不支持转换 clash 配置订阅，暂时只写了 vmess、trojan、ss、ssr 协议的分享链接的解析，因为自己用的机场只有这几个协议，vless等其他没有。
+不支持转换 clash 配置订阅，暂时只写了 vmess、trojan、ss、ssr 协议的分享链接的解析，因为自己用的机场只有这几个协议，vless等其他没有。添加新的协议解析有能力可以自己写，比如 vless.py（文件名称必需为协议名称），写好后将其放入到 parsers 目录即可,vless.py 中必须包含 parse 函数。
 
 **脚本为自用，本人使用 [yacd](https://github.com/haishanh/yacd) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中出现任何错误请自行解决**。
 # 环境
@@ -237,7 +237,7 @@ auto_set_outbounds_dns：非必需。
   }
 }
 ```
-模板文件基本等同于 sing-box config，不过有一些新的参数，比如 {all}、{机场tag}、filter，所有参数仅在clash_mode的出站方式下才会生效，比如出站类型为 urltest、selector。
+模板文件基本等同于 sing-box config，不过有一些新的参数，比如 {all}、{机场tag}、filter，所有参数仅在clash_mode的出站方式下才会生效，出站类型为 urltest、selector。
 ```json
 {
   "tag":"proxy",
@@ -267,7 +267,7 @@ auto_set_outbounds_dns：非必需。
 
 - {机场tag}：在 providers.json 中设置的机场 tag 可以用于此处，代表此订阅中的所有节点。
 
-- filter：非必需。节点过滤，为一个数组对象，格式为:
+- filter：非必需。节点过滤，为一个数组对象，可以添加任意条规则，格式为:
 ```json
 "filter":[
     {"action":"include","keywords":["保留关键字1","保留关键字2"]},
@@ -281,3 +281,24 @@ auto_set_outbounds_dns：非必需。
 - for：非必需。设置机场tag，可以多个，表示此规则只对指定的机场起作用，其他机场会忽略这个规则。
 
 多个规则会按顺序执行过滤。
+
+<details><summary><b>效果参考</b></summary>
+
+<p>
+
+具体效果根据个人的出站及规则设置决定。
+</p>
+<p>
+
+![Snipaste_2023-03-24_23-54-45](https://user-images.githubusercontent.com/21310130/227577941-01c80cfc-1cd9-4f95-a709-f5442a2a2058.png)
+
+![Snipaste_2023-03-24_23-55-24](https://user-images.githubusercontent.com/21310130/227577968-6747c7aa-db61-4f6c-b7cc-e3802e34cc3d.png)    
+</p>
+</details>
+
+# 感谢
+- [sing-box](https://github.com/SagerNet/sing-box)
+- [yacd](https://github.com/haishanh/yacd)
+- [clash](https://github.com/Dreamacro/clash)
+
+部分协议解析参考了[convert2clash](https://github.com/waited33/convert2clash)
