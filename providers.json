@@ -1,0 +1,17 @@
+{
+    "subscribes":[
+        {
+            "url": "订阅地址",
+            "tag": "名称"
+        },
+        {
+            "url": "订阅地址",
+            "tag": "名称"
+            
+        }
+    ],
+    "node_server_dns":"nodedns",
+    "auto_set_outbounds_dns":"remote_cf",
+    "save_config_path": "D:/Tools/sing-box/profile/config.json",
+    "exlude_protocol":"ssr"
+}
