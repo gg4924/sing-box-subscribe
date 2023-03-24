@@ -42,7 +42,7 @@ windows系统建议将命令添加到批处理程序运行。
 ```
 订阅 url 支持设置机场订阅链接以及本地文件路径。本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如ss://abcdefg（非订阅链接）。
 
-订阅 tag 会使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
+订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
 
 node_server_dns：必需。
   - 将其设置为 config 模板文件中存在的一个 dns server 的 tag，此 dns server 的 detour 必须为direct。
