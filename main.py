@@ -317,9 +317,9 @@ def select_config_template(tl):
             return select_config_template(tl)
         else:
             return uip-1
-    except:
-        select_config_template(tl)
+    except:        
         print('输入了错误信息！重新输入')
+        return select_config_template(tl)
 
 if __name__ == '__main__':
     init_parsers()
