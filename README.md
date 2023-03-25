@@ -275,7 +275,7 @@ auto_set_outbounds_dns：非必需。
 ```json
 "filter":[
     {"action":"include","keywords":["保留关键字1","保留关键字2"]},
-    {"action":"exlude","keywords":["排除关键字1","保留关键字2"],"for":["机场tag"]}
+    {"action":"exlude","keywords":["排除关键字1","排除关键字2"],"for":["机场1tag","机场2tag"]}
   ]
 ```
 - include：后面添加要保留的关键字，名称中包含这些关键字的节点都将被保留，其他节点会被删除。
