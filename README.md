@@ -26,11 +26,11 @@ windows系统建议将命令添加到批处理程序运行。
     "subscribes":[
         {
             "url": "订阅地址1",
-            "tag": "名称2"
+            "tag": "机场1"
         },
         {
             "url": "订阅地址2",
-            "tag": "名称2"
+            "tag": "机场2"
             
         }
     ],
@@ -95,7 +95,7 @@ auto_set_outbounds_dns：非必需。
       },
       {
         "tag": "local",
-        "address": "建议设置为本地上游路由器地址",
+        "address": "114.114.114.114",//这里建议设置为本地上游路由器地址
         "detour": "direct"
       },
       {
@@ -133,19 +133,23 @@ auto_set_outbounds_dns：非必需。
       "type":"selector",
       "outbounds":[
         "auto",
-        "{all}"
+        "{all}"//所有订阅所有节点添加到此标记所在位置
       ]
     },
     {
       "tag":"netflix",
       "type":"selector",
       "outbounds":[
-        "{机场 1 tag}",
-        "{机场 2 tag}"
+        "{机场1}",//订阅tag为 机场1 的节点将添加到此标记所在位置
+        "{机场2}"//订阅tag为 机场2 的节点将添加到此标记所在位置
       ],
-      "filter":[
+      "filter":[//过滤节点，按顺序执行
+        //如果机场1有节点 美国、台湾ˣ²，机场2有节点 sg高速、新加坡ˣ²，他们共同组成 netflix 组
         {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场tag"]}
+        //执行完第一个规则后 netflix 组将剩下 台湾ˣ²、sg高速、新加坡ˣ²
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        //for里面设置为机场1，代表词条规则只对机场1起作用
+        //执行完第二个规则后 netflix 组将剩下 sg高速、新加坡ˣ²
       ]
     },
     {
@@ -248,22 +252,27 @@ auto_set_outbounds_dns：非必需。
   "type":"selector",
   "outbounds":[
     "auto",
-    "{all}"
+    "{all}"//所有订阅所有节点添加到此标记所在位置
   ],
   "filter":[
-    {"action":"exlude","keywords":["ˣ²"],"for":["机场tag"]}
+    //此条过滤将会删除 机场1 中包含 ˣ² 的节点
+    {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
   ]
 },
 {
   "tag":"netflix",
   "type":"selector",
   "outbounds":[
-    "{机场 1 tag}",
-    "{机场 2 tag}"
+    "{机场1}",//订阅tag为 机场1 的节点将添加到此标记所在位置
+    "{机场2}"//订阅tag为 机场2 的节点将添加到此标记所在位置
   ],
   "filter":[
+    //如果机场1有节点 美国、台湾ˣ²，机场2有节点 sg高速、新加坡ˣ²，他们共同组成 netflix 组
     {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
-    {"action":"exlude","keywords":["ˣ²"],"for":["机场tag"]}
+    //执行完第一个规则后 netflix 组将剩下 台湾ˣ²、sg高速、新加坡ˣ²
+    {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+    //for里面设置为机场1，代表词条规则只对机场1起作用
+    //执行完第二个规则后 netflix 组将剩下 sg高速、新加坡ˣ²
   ]
 }
 ```
