@@ -23,7 +23,7 @@
       },
       {
         "tag": "local",
-        "address": "建议设置为本地上游路由器地址",
+        "address": "114.114.114.114",
         "detour": "direct"
       },
       {
