@@ -10,8 +10,10 @@
             
         }
     ],
-    "outbound_direct_dns": "local",
-    "auto_set_outbounds_dns":"remote_cf",
+    "auto_set_outbounds_dns":{
+        "proxy": "remote_cf",
+        "direct": "local"
+    },
     "save_config_path": "D:/Tools/sing-box/profile/config.json",
     "exlude_protocol":"ssr"
 }
