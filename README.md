@@ -34,6 +34,10 @@ windows系统建议将命令添加到批处理程序运行。
             
         }
     ],
+    "auto_set_outbounds_dns":{
+        "proxy": "remote_cf",
+        "direct": "local"
+    },
     "save_config_path": "D:/Tools/sing-box/profile/config.json",
     "exlude_protocol":"ssr"
 }
@@ -41,7 +45,13 @@ windows系统建议将命令添加到批处理程序运行。
 订阅 url 支持设置机场订阅链接以及本地文件路径。本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如ss://abcdefg（非订阅链接）。
 
 订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
-
+ auto_set_outbounds_dns：非必需。
+ - 包含 proxy 和 direct 设置项。
+ - proxy 和 direct 应该设置为 config 模板文件中存在的 dns server 的 tag。
+ - 设置此项后，脚本会自动适配 路由规则 到 dns规则。
+ - 将路由规则中 direct 出站 的 dns server 设置为选项中指定的 direct 出站。
+ - 将路由规则中需要代理的 出站 设置为对应的 proxy 出站，脚本会自动创建对应出站的 dns server，以 proxy 设置项指定的出站为模板。
+ 
  save_config_path：必需。设置生成的配置文件路径。
  
  exlude_protocol：非必需。
