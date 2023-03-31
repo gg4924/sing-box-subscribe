@@ -33,6 +33,12 @@
     ],
     "rules": [
       {
+        "outbound":[
+          "any"
+        ],
+        "server": "nodedns"
+      },
+      {
         "geosite": "cn",
         "domain_suffix": [
           "msftconnecttest.com"
