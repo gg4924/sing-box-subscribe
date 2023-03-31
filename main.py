@@ -287,7 +287,7 @@ def combin_to_config(config,data):
         temp_outbounds.extend(gn['nodes'])
     config['outbounds'] = config_outbounds+temp_outbounds
     # 将节点服务器地址添加到dns直连出站规则
-    set_proxy_server_dns(config,data)
+    # set_proxy_server_dns(config,data)
     # 自动配置路由规则到dns规则，避免dns泄露
     if providers.get("auto_set_outbounds_dns") and providers['auto_set_outbounds_dns'] in [server.get('tag') for server in config['dns']['servers']]:
         set_proxy_rule_dns(config)
