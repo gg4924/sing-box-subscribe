@@ -164,19 +164,6 @@ def get_content_form_file(url):
 def save_config(path,nodes):
     tool.saveFile(path,json.dumps(nodes))
 
-def set_proxy_server_dns(config,data):
-    dns = providers['node_server_dns']
-    dns_rule_obj = {'domain':[],'server':dns}
-    server_list = []
-    for group in data:
-        gn = data[group]
-        for node in gn['nodes']:
-            server = node['server']
-            if not tool.is_ip(server) and server not in server_list:
-                server_list.append(server)
-    dns_rule_obj['domain'].extend(server_list)
-    config['dns']['rules'].append(dns_rule_obj)
-
 def set_proxy_rule_dns(config):
     # dns_template = {
     #     "tag": "remote",
@@ -200,7 +187,7 @@ def set_proxy_rule_dns(config):
                     'type':'logical',
                     'mode':rule['mode'],
                     'rules':[],
-                    'server':rule['outbound']+'_dns' if rule['outbound'] != 'direct' else providers["node_server_dns"]
+                    'server':rule['outbound']+'_dns' if rule['outbound'] != 'direct' else providers["outbound_direct_dns"]
                 }
                 for _rule in rule['rules']:
                     child_rule = pro_dns_from_route_rules(_rule)
@@ -229,7 +216,7 @@ def pro_dns_from_route_rules(route_rule):
     if len(dns_rule_obj) == 0:
         return None
     if route_rule.get('outbound'):
-        dns_rule_obj['server'] = route_rule['outbound']+'_dns' if route_rule['outbound'] != 'direct' else providers["node_server_dns"]
+        dns_rule_obj['server'] = route_rule['outbound']+'_dns' if route_rule['outbound'] != 'direct' else providers["outbound_direct_dns"]
     return dns_rule_obj
 
 def pro_node_template(data_nodes,config_outbound,group):
@@ -286,18 +273,17 @@ def combin_to_config(config,data):
         gn = data[group]
         temp_outbounds.extend(gn['nodes'])
     config['outbounds'] = config_outbounds+temp_outbounds
-    # 将节点服务器地址添加到dns直连出站规则
-    # set_proxy_server_dns(config,data)
     # 自动配置路由规则到dns规则，避免dns泄露
-    if providers.get("auto_set_outbounds_dns") and providers['auto_set_outbounds_dns'] in [server.get('tag') for server in config['dns']['servers']]:
+    dns_tags = [server.get('tag') for server in config['dns']['servers']]
+    if providers.get('outbound_direct_dns') and providers['outbound_direct_dns'] in dns_tags and providers.get("auto_set_outbounds_dns") and providers['auto_set_outbounds_dns'] in dns_tags:
         set_proxy_rule_dns(config)
     return config
 
-def updateLocalConfig(local_host):
+def updateLocalConfig(local_host,path):
     header = {
         'Content-Type':'application/json'
     }
-    r = requests.put(local_host+'/configs?force=false',json={},headers=header)
+    r = requests.put(local_host+'/configs?force=false',json={"path":path},headers=header)
     print(r.text)
 
 def display_template(tl):
@@ -317,7 +303,7 @@ def select_config_template(tl):
             return select_config_template(tl)
         else:
             return uip-1
-    except:        
+    except:
         print('输入了错误信息！重新输入')
         return select_config_template(tl)
 
@@ -335,4 +321,4 @@ if __name__ == '__main__':
     nodes = process_subscribes(providers["subscribes"])
     final_config = combin_to_config(config,nodes)
     save_config(providers["save_config_path"],final_config)
-    # updateLocalConfig('http://127.0.0.1:9090')
+    # updateLocalConfig('http://127.0.0.1:9090',providers['save_config_path'])
