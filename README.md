@@ -45,6 +45,7 @@ windows系统建议将命令添加到批处理程序运行。
 订阅 url 支持设置机场订阅链接以及本地文件路径。本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如ss://abcdefg（非订阅链接）。
 
 订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
+ 
  auto_set_outbounds_dns：非必需。
  - 包含 proxy 和 direct 设置项。
  - proxy 和 direct 应该设置为 config 模板文件中存在的 dns server 的 tag。
