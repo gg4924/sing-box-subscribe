@@ -10,7 +10,6 @@
             
         }
     ],
-    "node_server_dns":"nodedns",
     "auto_set_outbounds_dns":"remote_cf",
     "save_config_path": "D:/Tools/sing-box/profile/config.json",
     "exlude_protocol":"ssr"
