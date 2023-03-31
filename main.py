@@ -173,10 +173,11 @@ def set_proxy_rule_dns(config):
     config_rules = config['route']['rules']
     outbound_dns = []
     dns_rules = config['dns']['rules']
+    asod = providers["auto_set_outbounds_dns"]
     for rule in config_rules:
         if rule['outbound'] not in ['block','dns-out']:
             if rule['outbound'] != 'direct':
-                outbounds_dns_template = list(filter(lambda server:server['tag']==providers["auto_set_outbounds_dns"],config['dns']['servers']))[0]
+                outbounds_dns_template = list(filter(lambda server:server['tag']==asod["proxy"],config['dns']['servers']))[0]
                 dns_obj = outbounds_dns_template.copy()
                 dns_obj['tag'] = rule['outbound']+'_dns'
                 dns_obj['detour'] = rule['outbound']
@@ -187,7 +188,7 @@ def set_proxy_rule_dns(config):
                     'type':'logical',
                     'mode':rule['mode'],
                     'rules':[],
-                    'server':rule['outbound']+'_dns' if rule['outbound'] != 'direct' else providers["outbound_direct_dns"]
+                    'server':rule['outbound']+'_dns' if rule['outbound'] != 'direct' else asod["direct"]
                 }
                 for _rule in rule['rules']:
                     child_rule = pro_dns_from_route_rules(_rule)
@@ -216,7 +217,7 @@ def pro_dns_from_route_rules(route_rule):
     if len(dns_rule_obj) == 0:
         return None
     if route_rule.get('outbound'):
-        dns_rule_obj['server'] = route_rule['outbound']+'_dns' if route_rule['outbound'] != 'direct' else providers["outbound_direct_dns"]
+        dns_rule_obj['server'] = route_rule['outbound']+'_dns' if route_rule['outbound'] != 'direct' else providers["auto_set_outbounds_dns"]['direct']
     return dns_rule_obj
 
 def pro_node_template(data_nodes,config_outbound,group):
@@ -273,9 +274,11 @@ def combin_to_config(config,data):
         gn = data[group]
         temp_outbounds.extend(gn['nodes'])
     config['outbounds'] = config_outbounds+temp_outbounds
-    # dns_tags = [server.get('tag') for server in config['dns']['servers']]
-    # if providers.get('outbound_direct_dns') and providers['outbound_direct_dns'] in dns_tags and providers.get("auto_set_outbounds_dns") and providers['auto_set_outbounds_dns'] in dns_tags:
-    #     set_proxy_rule_dns(config)
+    # 自动配置路由规则到dns规则，避免dns泄露
+    dns_tags = [server.get('tag') for server in config['dns']['servers']]
+    asod = providers.get("auto_set_outbounds_dns")
+    if asod and asod.get('proxy') and asod.get('direct') and asod['proxy'] in dns_tags and asod['direct'] in dns_tags:
+        set_proxy_rule_dns(config)
     return config
 
 def updateLocalConfig(local_host,path):
