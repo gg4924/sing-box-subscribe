@@ -34,8 +34,6 @@ windows系统建议将命令添加到批处理程序运行。
             
         }
     ],
-    "outbound_direct_dns":"local",
-    "auto_set_outbounds_dns":"remote_cf",
     "save_config_path": "D:/Tools/sing-box/profile/config.json",
     "exlude_protocol":"ssr"
 }
@@ -44,17 +42,6 @@ windows系统建议将命令添加到批处理程序运行。
 
 订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
 
-outbound_direct_dns：非必需。
-  - 需要与 auto_set_outbounds_dns 同时设置
-  - 将其设置为 config 模板文件中存在的一个 dns server 的 tag，此 dns server 的 detour 必须为direct。
-  - 脚本会将路由规则中 direct 出站的规则适配到 dns 规则，使用此 dns server 进行解析。
-
-auto_set_outbounds_dns：非必需。
-  - 需要与 outbound_direct_dns 同时设置
-  - 将其设置为 config 模板文件中存在的一个 dns server 的 tag，dns server 建议为国外提供的 doh、dot 等服务。
-  - 此设置主要为解决 路由出站 和 dns 出站 不一致的问题，比如访问 netflix.com，路由出站为新加坡节点 a ，但使用的 dns server 出站可能为美国节点 b。
-  - 设置此项后，脚本会将 路由规则 自动适配到 dns 规则，保证其出站一致。
-  
  save_config_path：必需。设置生成的配置文件路径。
  
  exlude_protocol：非必需。
