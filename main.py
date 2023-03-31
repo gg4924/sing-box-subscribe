@@ -273,10 +273,9 @@ def combin_to_config(config,data):
         gn = data[group]
         temp_outbounds.extend(gn['nodes'])
     config['outbounds'] = config_outbounds+temp_outbounds
-    # 自动配置路由规则到dns规则，避免dns泄露
-    dns_tags = [server.get('tag') for server in config['dns']['servers']]
-    if providers.get('outbound_direct_dns') and providers['outbound_direct_dns'] in dns_tags and providers.get("auto_set_outbounds_dns") and providers['auto_set_outbounds_dns'] in dns_tags:
-        set_proxy_rule_dns(config)
+    # dns_tags = [server.get('tag') for server in config['dns']['servers']]
+    # if providers.get('outbound_direct_dns') and providers['outbound_direct_dns'] in dns_tags and providers.get("auto_set_outbounds_dns") and providers['auto_set_outbounds_dns'] in dns_tags:
+    #     set_proxy_rule_dns(config)
     return config
 
 def updateLocalConfig(local_host,path):
