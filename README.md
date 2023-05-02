@@ -82,13 +82,6 @@ prefix：非必需。设置自定义前缀，前缀会添加到对应节点名�
   "dns": {
     "servers": [
       {
-        "tag": "remote_gg",
-        "address": "tls://dns.google",
-        "address_resolver": "local",
-        "address_strategy": "prefer_ipv4",
-        "strategy": "prefer_ipv4"
-      },
-      {
         "tag": "remote_cf",
         "address": "https://1.0.0.1/dns-query",
         "strategy": "prefer_ipv4"
@@ -210,10 +203,6 @@ prefix：非必需。设置自定义前缀，前缀会添加到对应节点名�
       {
         "clash_mode": "direct",
         "outbound": "direct"
-      },
-      {
-        "protocol": "quic",
-        "outbound": "block"
       },
       {
         "geoip": [
