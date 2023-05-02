@@ -8,7 +8,8 @@
         {
             "url": "订阅地址",
             "tag": "机场2",
-            "enabled": false
+            "enabled": false,
+            "prefix": "❤️机场前缀 - "
         }
     ],
     "auto_set_outbounds_dns":{
