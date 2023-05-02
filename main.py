@@ -36,8 +36,11 @@ def process_subscribes(subscribes):
             continue
         _nodes = get_nodes(subscribe['url'])
         if _nodes and len(_nodes) > 0:
-            item = pack_group(_nodes,subscribe['tag'])
-            nodes[subscribe['tag']] = item
+            _nodes = tool.proDuplicateNodeName(_nodes)
+            add_prefix(_nodes,subscribe)
+            if not nodes.get(subscribe['tag']):
+                nodes[subscribe['tag']] = []
+            nodes[subscribe['tag']] += _nodes
         else:
             print('没有在此订阅下找到节点，跳过')
     return nodes
@@ -78,15 +81,10 @@ def action_keywords(nodes,action,keywords):
             temp_nodes.append(node)
     return temp_nodes
 
-def pack_group(nodes,group):
-    pack_struct = {
-        'nodes':None,
-        'group':group
-    }
+def add_prefix(nodes,subscribe):
+    prefix = subscribe['prefix'] if subscribe.get('prefix') else '[{}]'.format(subscribe['tag'])
     for node in nodes:
-        node['tag'] = '['+group+']'+node['tag']
-    pack_struct['nodes'] = nodes
-    return pack_struct
+        node['tag'] = prefix+node['tag']
 
 def get_nodes(url):
     urlstr = urllib.parse.urlparse(url)
@@ -257,12 +255,12 @@ def combin_to_config(config,data):
                     if oo.startswith('{') and oo.endswith('}'):
                         oo = oo[1:-1]
                         if data.get(oo):
-                            nodes = data[oo]['nodes']
+                            nodes = data[oo]
                             t_o.extend(pro_node_template(nodes,po,oo))
                         else:
                             if oo == 'all':
                                 for group in data:
-                                    nodes = data[group]['nodes']
+                                    nodes = data[group]
                                     t_o.extend(pro_node_template(nodes,po,group))
                     else:
                         t_o.append(oo)
@@ -273,8 +271,7 @@ def combin_to_config(config,data):
                 if po.get('filter'):
                     del po['filter']
     for group in data:
-        gn = data[group]
-        temp_outbounds.extend(gn['nodes'])
+        temp_outbounds.extend(data[group])
     config['outbounds'] = config_outbounds+temp_outbounds
     # 自动配置路由规则到dns规则，避免dns泄露
     dns_tags = [server.get('tag') for server in config['dns']['servers']]
