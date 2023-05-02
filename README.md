@@ -46,11 +46,11 @@ windows系统建议将命令添加到批处理程序运行。
 ```
 订阅 url 支持设置机场订阅链接以及本地文件路径。本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如ss://abcdefg（非订阅链接）。
 
-订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
+订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。
 
 enabled：非必需。将其设置为false时，此订阅会被忽略。
 
-prefix：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，默认使用 [机场tag] 作为前缀。
+prefix：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，默认使用 [订阅tag] 作为前缀。
 
 ![Snipaste_2023-05-02_12-53-27](https://user-images.githubusercontent.com/21310130/235582317-6bb3d0a6-916f-445f-999b-f17b3db41eea.png)
  
@@ -59,7 +59,7 @@ prefix：非必需。设置自定义前缀，前缀会添加到对应节点名�
  - proxy 和 direct 应该设置为 config 模板文件中存在的 dns server 的 tag。
  - 设置此项后，脚本会自动适配 路由规则 到 dns规则。
  - 将路由规则中 direct 出站 的 dns server 设置为选项中指定的 direct 出站。
- - 将路由规则中需要代理的 出站 设置为对应的 proxy 出站，脚本会自动创建对应出站的 dns server，以 proxy 设置项指定的出站为模板。
+ - 将路由规则中需要代理的 出站 设置为对应的 proxy 出站，脚本会自动创建对应出站的 dns server，以 proxy 设置项指定的 dns server 为模板。
  
  save_config_path：必需。设置生成的配置文件路径。
  
@@ -285,7 +285,7 @@ prefix：非必需。设置自定义前缀，前缀会添加到对应节点名�
     {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
     //执行完第一个规则后 netflix 组将剩下 台湾ˣ²、sg高速、新加坡ˣ²
     {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
-    //for里面设置为机场1，代表词条规则只对机场1起作用
+    //for里面设置为机场1，代表此条规则只对机场1起作用
     //执行完第二个规则后 netflix 组将剩下 sg高速、新加坡ˣ²
   ]
 }
