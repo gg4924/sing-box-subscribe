@@ -98,16 +98,17 @@ def replaceStr(nodelist,keywords):
     return nodelist
 
 
-def proDuplicateNodeName(nodelist):
+def proDuplicateNodeName(nodes):
     names = []
-    for node in nodelist:
-        index = 0
-        s = node['tag']
-        while node['tag'] in names:
-            node['tag'] = s+str(index)
-            index += 1
-        names.append(node['tag'])
-    return nodelist
+    for key in nodes.keys():
+        nodelist = nodes[key]
+        for node in nodelist:
+            index = 0
+            s = node['tag']
+            while node['tag'] in names:
+                node['tag'] = s+str(index)
+                index += 1
+            names.append(node['tag'])
 
 
 def removeNodes(nodelist):
