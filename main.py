@@ -82,9 +82,9 @@ def action_keywords(nodes,action,keywords):
     return temp_nodes
 
 def add_prefix(nodes,subscribe):
-    prefix = subscribe['prefix'] if subscribe.get('prefix') else '[{}]'.format(subscribe['tag'])
-    for node in nodes:
-        node['tag'] = prefix+node['tag']
+    if subscribe.get('prefix'):
+        for node in nodes:
+            node['tag'] = subscribe['prefix']+node['tag']
 
 def get_nodes(url):
     urlstr = urllib.parse.urlparse(url)
