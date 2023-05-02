@@ -32,6 +32,8 @@ def load_json(path):
 def process_subscribes(subscribes):
     nodes = {}
     for subscribe in subscribes:
+        if 'enabled' in subscribe and not subscribe['enabled']:
+            continue
         _nodes = get_nodes(subscribe['url'])
         if _nodes and len(_nodes) > 0:
             item = pack_group(_nodes,subscribe['tag'])
