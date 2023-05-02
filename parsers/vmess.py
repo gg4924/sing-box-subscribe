@@ -47,6 +47,9 @@ def parse(data):
             node['transport'] = {
                 'type':'quic'
             }
+            node['tls']={
+                'enabled': True
+            }
         if item['net'] == 'grpc' and item.get('serverName'):
             node['transport'] = {
                 'type':'grpc',
