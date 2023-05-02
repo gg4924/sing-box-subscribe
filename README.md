@@ -32,7 +32,8 @@ windows系统建议将命令添加到批处理程序运行。
         {
             "url": "订阅地址2",
             "tag": "机场2",
-            "enabled": false
+            "enabled": false,
+            "prefix": "❤️机场前缀 - "
         }
     ],
     "auto_set_outbounds_dns":{
@@ -48,6 +49,10 @@ windows系统建议将命令添加到批处理程序运行。
 订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
 
 enabled：非必需。将其设置为false时，此订阅会被忽略。
+
+prefix：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，默认使用 [机场tag] 作为前缀。
+
+![Snipaste_2023-05-02_12-53-27](https://user-images.githubusercontent.com/21310130/235582317-6bb3d0a6-916f-445f-999b-f17b3db41eea.png)
  
  auto_set_outbounds_dns：非必需。
  - 包含 proxy 和 direct 设置项。
