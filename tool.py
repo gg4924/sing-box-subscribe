@@ -102,11 +102,11 @@ def proDuplicateNodeName(nodelist):
     names = []
     for node in nodelist:
         index = 0
-        s = node['name']
-        while node['name'] in names:
-            node['name'] = s+str(index)
+        s = node['tag']
+        while node['tag'] in names:
+            node['tag'] = s+str(index)
             index += 1
-        names.append(node['name'])
+        names.append(node['tag'])
     return nodelist
 
 
