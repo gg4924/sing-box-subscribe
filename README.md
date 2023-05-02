@@ -50,7 +50,7 @@ windows系统建议将命令添加到批处理程序运行。
 
 enabled：非必需。将其设置为false时，此订阅会被忽略。
 
-prefix：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，默认使用 [订阅tag] 作为前缀。
+prefix：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，则不添加前缀。
 
 ![Snipaste_2023-05-02_12-53-27](https://user-images.githubusercontent.com/21310130/235582317-6bb3d0a6-916f-445f-999b-f17b3db41eea.png)
  
