@@ -26,12 +26,13 @@ windows系统建议将命令添加到批处理程序运行。
     "subscribes":[
         {
             "url": "订阅地址1",
-            "tag": "机场1"
+            "tag": "机场1",
+            "enabled": true
         },
         {
             "url": "订阅地址2",
-            "tag": "机场2"
-            
+            "tag": "机场2",
+            "enabled": false
         }
     ],
     "auto_set_outbounds_dns":{
@@ -45,6 +46,8 @@ windows系统建议将命令添加到批处理程序运行。
 订阅 url 支持设置机场订阅链接以及本地文件路径。本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如ss://abcdefg（非订阅链接）。
 
 订阅 tag 会被使用在 config模板文件 中，具体使用方法可以查看下方的 config模板 部分。节点名称也会添加 [订阅tag] 前缀，比如 [订阅tag]美国节点1。
+
+enabled：非必需。将其设置为false时，此订阅会被忽略。
  
  auto_set_outbounds_dns：非必需。
  - 包含 proxy 和 direct 设置项。
