@@ -36,13 +36,13 @@ def process_subscribes(subscribes):
             continue
         _nodes = get_nodes(subscribe['url'])
         if _nodes and len(_nodes) > 0:
-            _nodes = tool.proDuplicateNodeName(_nodes)
             add_prefix(_nodes,subscribe)
             if not nodes.get(subscribe['tag']):
                 nodes[subscribe['tag']] = []
             nodes[subscribe['tag']] += _nodes
         else:
             print('没有在此订阅下找到节点，跳过')
+    tool.proDuplicateNodeName(nodes)
     return nodes
 
 def nodes_filter(nodes,filter,group):
