@@ -2,12 +2,13 @@
     "subscribes":[
         {
             "url": "订阅地址",
-            "tag": "机场1"
+            "tag": "机场1",
+            "enabled": true
         },
         {
             "url": "订阅地址",
-            "tag": "机场2"
-            
+            "tag": "机场2",
+            "enabled": false
         }
     ],
     "auto_set_outbounds_dns":{
