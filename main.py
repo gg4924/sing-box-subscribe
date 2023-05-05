@@ -265,7 +265,7 @@ def combin_to_config(config,data):
                     else:
                         t_o.append(oo)
                 if len(t_o)==0:
-                    print('经过关键字过滤后 {} 出站下的节点数量为 0 ，会导致sing-box无法运行，程序停止'.format(po['tag']))
+                    print('发现 {} 出站下的节点数量为 0 ，会导致sing-box无法运行，请检查config模板是否正确。'.format(po['tag']))
                     sys.exit()
                 po['outbounds'] = t_o
                 if po.get('filter'):
