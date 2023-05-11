@@ -41,6 +41,7 @@ windows系统建议将命令添加到批处理程序运行。
         "direct": "local"
     },
     "save_config_path": "D:/Tools/sing-box/profile/config.json",
+    "auto_backup": false,
     "exlude_protocol":"ssr"
 }
 ```
@@ -62,6 +63,8 @@ prefix：非必需。设置自定义前缀，前缀会添加到对应节点名�
  - 将路由规则中需要代理的 出站 设置为对应的 proxy 出站，脚本会自动创建对应出站的 dns server，以 proxy 设置项指定的 dns server 为模板。
  
  save_config_path：必需。设置生成的配置文件路径。
+ 
+ auto_backup：非必需。设置为true时，脚本会将当前使用的sing-box配置文件更名为 原文件名称.当前时间.bak 进行备份，避免生成错误的配置文件后无法挽回。
  
  exlude_protocol：非必需。
   - 设置不解析的协议，多个使用英文逗号分隔，比如ssr,vmess。
