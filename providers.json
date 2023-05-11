@@ -17,5 +17,6 @@
         "direct": "local"
     },
     "save_config_path": "D:/Tools/sing-box/profile/config.json",
+    "auto_backup": false,
     "exlude_protocol":"ssr"
 }
