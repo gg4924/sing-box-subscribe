@@ -163,9 +163,10 @@ def get_content_form_file(url):
     return data
 
 def save_config(path,nodes):
-    now = datetime.now().strftime('%Y%m%d%H%M%S')
-    if os.path.exists(path):
-        os.rename(path,'{p}.{time}.bak'.format(p=path,time=now))
+    if 'auto_backup' in providers and providers['auto_backup']:
+        now = datetime.now().strftime('%Y%m%d%H%M%S')
+        if os.path.exists(path):
+            os.rename(path,'{p}.{time}.bak'.format(p=path,time=now))
     tool.saveFile(path,json.dumps(nodes))
 
 def set_proxy_rule_dns(config):
