@@ -1,4 +1,5 @@
 import json,os,tool,time,requests,sys,urllib,re,importlib
+from datetime import datetime
 parsers_mod = {}
 providers = None
 color_code = [31,32,33,34,35,36,91,92,93,94,95,96]
@@ -162,6 +163,9 @@ def get_content_form_file(url):
     return data
 
 def save_config(path,nodes):
+    now = datetime.now().strftime('%Y%m%d%H%M%S')
+    if os.path.exists(path):
+        os.rename(path,'{p}.{time}.bak'.format(p=path,time=now))
     tool.saveFile(path,json.dumps(nodes))
 
 def set_proxy_rule_dns(config):
