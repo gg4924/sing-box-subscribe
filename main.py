@@ -167,7 +167,8 @@ def save_config(path,nodes):
         now = datetime.now().strftime('%Y%m%d%H%M%S')
         if os.path.exists(path):
             os.rename(path,'{p}.{time}.bak'.format(p=path,time=now))
-    tool.saveFile(path,json.dumps(nodes, indent=2, ensure_ascii=False))
+    with open(path,mode='w',encoding='utf-8') as f:
+        f.write(json.dumps(nodes, indent=2, ensure_ascii=False))
 
 def set_proxy_rule_dns(config):
     # dns_template = {
