@@ -10,8 +10,9 @@ def parse(data):
         print(info)
         return None
     item = json.loads(proxy_str)
+    content = tool.rename(item.get('ps').strip() if item.get('ps') else tool.genName())
     node = {
-        'tag': item.get('ps').strip() if item.get('ps') else tool.genName(),
+        'tag': content,
         'type': 'vmess',
         'server': item.get('add'),
         'server_port': int(item.get('port')),
