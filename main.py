@@ -148,7 +148,7 @@ def get_content_from_url(url,n=3):
         return None
     try:
         response_text = tool.b64Decode(response_text)
-        #response_text = response_text.decode(response_encoding)
+        #response_text = response_text.decode(encoding="utf-8")
         response_text = bytes.decode(response_text,encoding=response_encoding)
     except:
         pass
@@ -167,8 +167,7 @@ def save_config(path,nodes):
         now = datetime.now().strftime('%Y%m%d%H%M%S')
         if os.path.exists(path):
             os.rename(path,'{p}.{time}.bak'.format(p=path,time=now))
-    with open(path,mode='w',encoding='utf-8') as f:
-        f.write(json.dumps(nodes, indent=2, ensure_ascii=False))
+    tool.saveFile(path,json.dumps(nodes, indent=2, ensure_ascii=False))
 
 def set_proxy_rule_dns(config):
     # dns_template = {
