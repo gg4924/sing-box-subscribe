@@ -56,6 +56,6 @@ def parse(data):
         name = urllib.parse.unquote(data[data.find('#')+1:])
         name = name.strip()
     else:
-        name = tool.genName()
+        name = tool.rename(tool.genName())
     node['tag'] = name
     return node
