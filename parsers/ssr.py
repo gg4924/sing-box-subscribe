@@ -26,5 +26,5 @@ def parse(data):
         if keyname in pdict.keys():
             keyname = pdict[keyname]
             node[keyname] = tool.urlDecode(key_value[1]).decode('utf-8')
-    node['tag'] = node['tag'] if node.get('tag') else tool.genName()
+    node['tag'] = tool.rename(node['tag']) if node.get('tag') else tool.rename(tool.genName())
     return node
