@@ -13,7 +13,7 @@ def parse(data):
     }
     if param.find('#') > -1:
         remark = urllib.parse.unquote(param[param.find('#') + 1:])
-        node['tag'] = remark
+        node['tag'] = tool.rename(remark)
         param = param[:param.find('#')]
     if param.find('/?') > -1:
         plugin = urllib.parse.unquote(param[param.find('/?') + 2:])
