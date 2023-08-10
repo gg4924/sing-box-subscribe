@@ -1,0 +1,400 @@
+{
+  "log": {
+    "level": "debug",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "proxyDns",
+        "address": "8.8.8.8",
+        "detour": "proxy"
+      },
+      {
+        "tag": "localDns",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
+      },
+      {
+        "tag": "remote",
+        "address": "fakeip"
+      }
+    ],
+    "rules": [
+      {
+        "geosite": "category-ads-all",
+        "server": "block",
+        "disable_cache": true
+      },
+      {
+        "outbound": "any",
+        "server": "localDns"
+      },
+      {
+        "geosite": [
+          "private",
+          "cn"
+        ],
+        "server": "localDns"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "remote"
+      }
+    ],
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "final": "proxyDns",
+    "independent_cache": true,
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 7890,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "domain_strategy": "ipv4_only"
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true,
+      "endpoint_independent_nat": false,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag":"proxy",
+      "type":"selector",
+      "outbounds":[
+        "auto",
+        "{all}"
+      ]
+    },
+    {
+      "tag":"🤖 OpenAI",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🌌 谷歌服务",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"📟 电报消息",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🐦 推特消息",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"👤 Facebook",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🛍️ 亚马逊",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🍎 苹果服务",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🧩 微软服务",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🎮 游戏平台",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"📺 哔哩哔哩",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🎬 国际媒体",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🌏 国外网站",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ]
+    },
+    {
+      "tag":"speedtest",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "proxy"
+      ]
+    },
+    {
+      "tag":"auto",
+      "type":"urltest",
+      "outbounds":[
+        "{all}"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "geoip": {
+      "download_url": "https://github.com/soffchen/sing-geoip/releases/latest/download/geoip.db",
+      "download_detour": "auto"
+    },
+    "geosite": {
+      "download_url": "https://github.com/soffchen/sing-geosite/releases/latest/download/geosite.db",
+      "download_detour": "auto"
+    },
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "geosite": [
+          "private",
+          "cn"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "geoip": [
+          "private",
+          "cn"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.haishan.me"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "domain_keyword":[
+          "speedtest"
+        ],
+        "domain_suffix":[
+          "cdnst.net",
+          "ziffstatic.com"
+        ],
+        "outbound": "speedtest"
+      },
+      {
+        "geosite":"openai",
+        "outbound":"🤖 OpenAI"
+      },
+      {
+        "geoip":"google",
+        "geosite":"google",
+        "outbound":"🌌 谷歌服务"
+      },
+      {
+        "geoip":"telegram",
+        "geosite":"telegram",
+        "outbound":"📟 电报消息"
+      },
+      {
+        "geoip":"twitter",
+        "geosite":"twitter",
+        "outbound":"🐦 推特消息"
+      },
+      {
+        "geoip":"facebook",
+        "geosite":["facebook","instagram"],
+        "outbound":"👤 Facebook"
+      },
+      {
+        "geosite":"amazon",
+        "outbound":"🛍️ 亚马逊"
+      },
+      {
+        "geosite":"apple",
+        "outbound":"🍎 苹果服务"
+      },
+      {
+        "geosite":"microsoft",
+        "outbound":"🧩 微软服务"
+      },
+      {
+        "geosite":"category-games",
+        "outbound":"🎮 游戏平台"
+      },
+      {
+        "geosite":"bilibili",
+        "outbound":"📺 哔哩哔哩"
+      },
+      {
+        "geoip":"netflix",
+        "geosite":["youtube","netflix","hbo","disney","primevideo"],
+        "outbound":"🎬 国际媒体"
+      },
+      {
+        "geosite":"geolocation-!cn",
+        "outbound":"🌏 国外网站"
+      }
+    ],
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "default_mode": "rule",
+      "store_selected": true
+    }
+  }
+}
