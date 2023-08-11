@@ -30,7 +30,7 @@ def rename(str):
         str = '🇷🇺'+ str
     elif re.search('印度|孟买|IN|IND|India|INDIA|Mumbai', str):
         str = '🇮🇳'+ str
-    elif re.search('英国|伦敦|英|UK|GB|England|United Kingdom|Britain', str):
+    elif re.search('英国|伦敦|英|UK|England|United Kingdom|Britain', str):
         str = '🇬🇧'+ str
     elif re.search('马来西亚|马来|馬來|MY|Malaysia|MALAYSIA', str):
         str = '🇲🇾'+ str
