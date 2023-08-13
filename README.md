@@ -20,7 +20,7 @@ windows系统建议将命令添加到批处理程序运行。
 
 使用前先编辑 `providers.json` 文件以及 config_template 目录下的 json 模板文件。
 
-已内置懒人 `config_template_groups_tun` 文件
+已内置懒人 `config_template_groups_tun` 文件，请在模板里修改筛选节点
 * 实现 `Openai` 分流
 * 实现 `Google` 分流
 * 实现 `Telegram` 分流
