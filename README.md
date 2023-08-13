@@ -4,7 +4,7 @@
 
 请查看：[https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration)。
 
-不支持转换 clash 配置订阅，暂时只写了 vmess、trojan、ss、ssr、vless 协议的分享链接的解析，因为自己用的机场只有这几个协议，~~~vless等~~~其他没有。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 parse 函数。
+不支持转换 clash 配置订阅，暂时只写了 vmess、trojan、ss、ssr、vless 协议的分享链接的解析，因为自己用的机场只有这几个协议，~~vless等~~其他没有。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 parse 函数。
 
 **脚本为自用，本人使用 [yacd](http://yacd.haishan.me) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中有新的功能需求或者出现任何错误请自行解决**。
 # 环境
