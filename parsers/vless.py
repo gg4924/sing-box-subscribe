@@ -34,7 +34,7 @@ def parse(data):
                 'short_id': netquery.get('sid')
             }
     if netquery.get('type'):
-        if netquery['type'] in ['tcp','hs']:
+        if netquery['type'] in ['tcp','http']:
             node['transport'] = {
                 'type':'http'
             }
