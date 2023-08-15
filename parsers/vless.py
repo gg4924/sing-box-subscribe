@@ -42,9 +42,9 @@ def parse(data):
             node['transport'] = {
                 'type':'quic'
             }
-        if netquery['type'] in ['grpc','ws'] and netquery.get('serverName'):
+        if netquery['type'] in ['grpc','ws']:
             node['transport'] = {
                 'type':netquery['type'],
-                'service_name':netquery['serverName']
+                'service_name':netquery.get('serverName', '')
             }
     return node
