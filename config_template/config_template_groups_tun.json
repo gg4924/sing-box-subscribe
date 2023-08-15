@@ -280,7 +280,6 @@
     }
   ],
   "route": {
-    "final": "proxy",
     "geoip": {
       "download_url": "https://github.com/soffchen/sing-geoip/releases/latest/download/geoip.db",
       "download_detour": "auto"
@@ -348,7 +347,7 @@
       },
       {
         "geoip":"google",
-        "geosite":"google",
+        "geosite":["google","github"],
         "outbound":"🌌 Google"
       },
       {
@@ -396,6 +395,7 @@
         "outbound":"🌏 !cn"
       }
     ],
+    "final": "proxy",
     "auto_detect_interface": true
   },
   "experimental": {
