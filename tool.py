@@ -12,31 +12,31 @@ def saveFile(path,content):
     file.close()
 
 def rename(str):
-    if re.search('香港|深港|沪港|呼港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|港|HK|Hongkong|Hong Kong|HongKong|HONG KONG', str):
+    if re.search('香港|深港|沪港|呼港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|港|HK|Hongkong|Hong Kong|HongKong|HONG KONG', str) and not (str.startswith('🇭🇰')):
         str = '🇭🇰' + ' ' + str
-    elif re.search('台湾|台北|台中|新北|彰化|台|CHT|HINET|TW|Taiwan|TAIWAN', str):
+    elif re.search('台湾|台北|台中|新北|彰化|台|CHT|HINET|TW|Taiwan|TAIWAN', str) and not (str.startswith('🇹🇼')):
         str = '🇹🇼' + ' ' + str
-    elif re.search('中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|回国|back|CN|China', str):
+    elif re.search('中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|回国|back|CN|China', str) and not (str.startswith('🇨🇳')):
         str = '🇨🇳' + ' ' + str
-    elif re.search('新加坡|狮城|獅城|沪新|京新|泉新|穗新|深新|杭新|广新|廣新|滬新|SG|Singapore|SINGAPORE', str):
+    elif re.search('新加坡|狮城|獅城|沪新|京新|泉新|穗新|深新|杭新|广新|廣新|滬新|SG|Singapore|SINGAPORE', str) and not (str.startswith('🇸🇬')):
         str = '🇸🇬' + ' ' + str
-    elif re.search('日本|东京|大阪|埼玉|京日|苏日|沪日|上日|穗日|川日|中日|泉日|杭日|深日|辽日|广日|JP|Japan|JAPAN', str):
+    elif re.search('日本|东京|大阪|埼玉|京日|苏日|沪日|上日|穗日|川日|中日|泉日|杭日|深日|辽日|广日|JP|Japan|JAPAN', str) and not (str.startswith('🇯🇵')):
         str = '🇯🇵' + ' ' + str
-    elif re.search('美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|芝加哥|哥伦布|纽约|America|United States|USA|US', str):
+    elif re.search('美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|芝加哥|哥伦布|纽约|America|United States|USA|US', str) and not (str.startswith('🇺🇸')):
         str = '🇺🇸' + ' ' + str
-    elif re.search('韩国|首尔|韩|韓|春川|KOR|KR|Korea', str):
+    elif re.search('韩国|首尔|韩|韓|春川|KOR|KR|Korea', str) and not (str.startswith('🇰🇷')):
         str = '🇰🇷' + ' ' + str
-    elif re.search('俄罗斯|毛子|俄国|RU|RUS|Russia', str):
+    elif re.search('俄罗斯|毛子|俄国|RU|RUS|Russia', str) and not (str.startswith('🇷🇺')):
         str = '🇷🇺' + ' ' + str
-    elif re.search('印度|孟买|IN|IND|India|INDIA|Mumbai', str):
+    elif re.search('印度|孟买|IN|IND|India|INDIA|Mumbai', str) and not (str.startswith('🇮🇳')):
         str = '🇮🇳' + ' ' + str
-    elif re.search('英国|伦敦|英|UK|England|United Kingdom|Britain', str):
+    elif re.search('英国|伦敦|英|UK|England|United Kingdom|Britain', str) and not (str.startswith('🇬🇧')):
         str = '🇬🇧' + ' ' + str
-    elif re.search('马来西亚|马来|馬來|MY|Malaysia|MALAYSIA', str):
+    elif re.search('马来西亚|马来|馬來|MY|Malaysia|MALAYSIA', str) and not (str.startswith('🇲🇾')):
         str = '🇲🇾' + ' ' + str
-    elif re.search('土耳其|伊斯坦布尔|TR|TR-|TR_|TUR|Turkey', str):
+    elif re.search('土耳其|伊斯坦布尔|TR|TR-|TR_|TUR|Turkey', str) and not (str.startswith('🇹🇷')):
         str = '🇹🇷' + ' ' + str
-    elif re.search('阿根廷|AR|Argentina', str):
+    elif re.search('阿根廷|AR|Argentina', str) and not (str.startswith('🇦🇷')):
         str = '🇦🇷' + ' ' + str
     else:
         str = str
