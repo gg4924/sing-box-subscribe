@@ -12,7 +12,7 @@
       },
       {
         "tag": "localDns",
-        "address": "local",
+        "address": "https://223.5.5.5/dns-query",
         "detour": "direct"
       },
       {
@@ -21,7 +21,8 @@
       },
       {
         "tag": "remote",
-        "address": "fakeip"
+        "address": "fakeip",
+        "detour": "proxy"
       }
     ],
     "rules": [
@@ -60,19 +61,8 @@
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 7890,
-      "sniff": true,
-      "sniff_override_destination": false,
-      "domain_strategy": "ipv4_only"
-    },
-    {
       "type": "tun",
-      "tag": "tun-in",
       "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
       "mtu": 9000,
       "auto_route": true,
       "strict_route": true,
@@ -83,9 +73,16 @@
         "http_proxy": {
           "enabled": true,
           "server": "127.0.0.1",
-          "server_port": 7890
+          "server_port": 2080
         }
       }
+    },
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true,
+      "users": []
     }
   ],
   "outbounds": [
