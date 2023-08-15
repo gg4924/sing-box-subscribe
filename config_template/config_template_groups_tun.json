@@ -43,6 +43,14 @@
         "server": "localDns"
       },
       {
+        "clash_mode": "global",
+        "server": "remote"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "localDns"
+      },
+      {
         "query_type": [
           "A",
           "AAAA"
@@ -55,7 +63,6 @@
       "inet4_range": "198.18.0.0/15",
       "inet6_range": "fc00::/18"
     },
-    "final": "proxyDns",
     "independent_cache": true,
     "strategy": "ipv4_only"
   },
@@ -273,6 +280,7 @@
     }
   ],
   "route": {
+    "final": "proxy",
     "geoip": {
       "download_url": "https://github.com/soffchen/sing-geoip/releases/latest/download/geoip.db",
       "download_detour": "auto"
@@ -312,6 +320,10 @@
       {
         "clash_mode": "direct",
         "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "proxy"
       },
       {
         "domain": [
