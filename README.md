@@ -19,17 +19,37 @@
 
 **脚本为自用，本人使用 [yacd](http://yacd.haishan.me) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中有新的功能需求或者出现任何错误请自行解决**。
 # 环境
-需要安装最新版本 python，并安装下面的依赖：
+
+### 安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f387322b-a602-40df-b3b6-95561329f2f8" alt="install" width="60%" />
+</div>
+
+### 在终端输入下面指令安装依赖：
+
 ```
 pip install requests paramiko scp
 ```
-使用下面的命令运行脚本：
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0fc03b49-4c57-4ef3-a4fc-044c1a108d75" alt="install" width="60%" />
+</div>
+
+### 下载这个`sing-box-subscribe`项目，打开终端进入当前项目路径（可以直接在文件路径输入cmd）
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/73f05ba8-105c-4f10-8e6c-16e27f26c084" alt="run" width="60%" />
+</div>
+
+### 使用下面的命令运行脚本：
+
 ```
 python main.py
 ```
 windows系统建议将命令添加到批处理程序运行。
 
-使用前先编辑 `providers.json` 文件以及 config_template 目录下的 json 模板文件。
+使用前先编辑 `providers.json` 文件以及 config_template 目录下的 `.json` 模板文件。
 
 已内置懒人 `config_template_groups_tun` 文件，请在模板里修改筛选节点
 * 实现 `Openai` 分流
