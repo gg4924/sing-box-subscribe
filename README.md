@@ -36,7 +36,7 @@ pip install requests paramiko scp
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0fc03b49-4c57-4ef3-a4fc-044c1a108d75" alt="install" width="60%" />
 </div>
 
-### 下载这个`sing-box-subscribe`项目，打开终端进入当前项目路径（可以直接在文件路径输入cmd）
+### 下载这个`sing-box-subscribe`项目，打开终端进入当前项目路径（可以直接在文件路径输入`cmd`）
 
 <div align="left">
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/73f05ba8-105c-4f10-8e6c-16e27f26c084" alt="run" width="60%" />
