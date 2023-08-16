@@ -27,6 +27,13 @@
     ],
     "rules": [
       {
+        "domain": [
+          "ghproxy.com",
+          "cdn.jsdelivr.net"
+        ],
+        "server": "localDns"
+      },
+      {
         "geosite": "category-ads-all",
         "server": "block",
         "disable_cache": true
@@ -98,67 +105,62 @@
       "type":"selector",
       "outbounds":[
         "auto",
-        "{all}"
+        "{1}"
       ]
     },
     {
       "tag":"🤖 OpenAI",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
       "tag":"🌌 Google",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
       "tag":"📟 Telegram",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
       "tag":"🐦 Twitter",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
       "tag":"👤 Facebook",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -166,12 +168,11 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -179,12 +180,11 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -192,12 +192,11 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -205,12 +204,11 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -218,12 +216,11 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -231,12 +228,11 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","🇰🇷","kr","KR","韩国"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        {"action":"exlude","keywords":["ˣ²"],"for":["1"]}
       ]
     },
     {
@@ -244,8 +240,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{1}"
       ]
     },
     {
@@ -280,13 +275,15 @@
     }
   ],
   "route": {
+    "auto_detect_interface": true,
+    "final": "proxy",
     "geoip": {
-      "download_url": "https://github.com/soffchen/sing-geoip/releases/latest/download/geoip.db",
-      "download_detour": "auto"
+      "download_url": "https://ghproxy.com/github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      "download_detour": "direct"
     },
     "geosite": {
-      "download_url": "https://github.com/soffchen/sing-geosite/releases/latest/download/geosite.db",
-      "download_detour": "auto"
+      "download_url": "https://ghproxy.com/github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      "download_detour": "direct"
     },
     "rules": [
       {
@@ -394,9 +391,7 @@
         "geosite":"geolocation-!cn",
         "outbound":"🌏 !cn"
       }
-    ],
-    "final": "proxy",
-    "auto_detect_interface": true
+    ]
   },
   "experimental": {
     "clash_api": {
