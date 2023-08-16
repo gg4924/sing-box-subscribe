@@ -133,7 +133,7 @@ def proDuplicateNodeName(nodes):
     for key in nodes.keys():
         nodelist = nodes[key]
         for node in nodelist:
-            index = 0
+            index = 1
             s = node['tag']
             while node['tag'] in names:
                 node['tag'] = s+str(index)
