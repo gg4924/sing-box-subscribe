@@ -156,6 +156,7 @@ def get_content_from_url(url,n=3):
     return response_text
 
 def get_content_form_file(url):
+    print('处理'+url)
     encoding = tool.get_encoding(url)
     data = tool.readFile(url)
     data = bytes.decode(data,encoding=encoding)
