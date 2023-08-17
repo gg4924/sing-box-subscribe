@@ -47,6 +47,16 @@ pip install requests paramiko scp
 ```
 python main.py
 ```
+
+### 使用过程中提示python没有模块就安装对应的模块，例如下面提示就输入指令（Mac把pip改为pip3）：
+
+```
+pip install chardet
+```
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1762db84-23f5-4cbd-a9d1-df3ca253396c" alt="install" width="60%" />
+</div>
+
 windows系统建议将命令添加到批处理程序运行。
 
 使用前先编辑 `providers.json` 文件以及 config_template 目录下的 `.json` 模板文件。
