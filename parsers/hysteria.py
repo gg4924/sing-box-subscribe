@@ -23,4 +23,6 @@ def parse(data):
             'alpn': [netquery.get('alpn')]
         }
     }
+    if netquery.get('insecure') and netquery['insecure'] == '1' :
+        node['tls']['insecure'] = True
     return node
