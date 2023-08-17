@@ -15,7 +15,7 @@ def parse(data):
         'server_port': int(_netloc[1].split(":")[1]),
         'uuid': _netloc[0],
         'flow': netquery.get('flow', ''),
-        'packet_encoding': netquery.get('packetEncoding', '')
+        'packet_encoding': netquery.get('packetEncoding', 'xudp')
     }
     if netquery.get('security'):
         node['tls']={
@@ -38,13 +38,17 @@ def parse(data):
             node['transport'] = {
                 'type':'http'
             }
-        if netquery['type'] == 'quic':
+        if netquery['type'] == 'ws':
             node['transport'] = {
-                'type':'quic'
+                'type':'ws',
+                "path": netquery['path'].rsplit("?")[0],
+                "headers": {
+                "Host": netquery.get('sni')
+                }
             }
-        if netquery['type'] in ['grpc','ws']:
+        if netquery['type'] == 'grpc':
             node['transport'] = {
-                'type':netquery['type'],
+                'type':'grpc',
                 'service_name':netquery.get('serverName', '')
             }
     return node
