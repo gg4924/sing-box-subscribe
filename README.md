@@ -26,7 +26,7 @@
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f387322b-a602-40df-b3b6-95561329f2f8" alt="install" width="60%" />
 </div>
 
-### 在终端输入下面指令安装依赖：
+### 在终端输入下面指令安装依赖（Mac把pip改为pip3）：
 
 ```
 pip install requests paramiko scp
