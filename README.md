@@ -407,13 +407,18 @@ windows系统建议将命令添加到批处理程序运行。
 
 多个规则会按顺序执行过滤。
 
-<details><summary><b>效果参考</b></summary>
+# Windows sing-box 使用方法
 
-<p>
+1. 下载Windows客户端程序[sing-box-windows-amd64.zip](https://github.com/SagerNet/sing-box/releases)。
+2. 新建一个批处理文件，内容为 `start /min sing-box.exe run`。
+3. 参考[客户端配置](https://github.com/chika0801/sing-box-examples/blob/main/Tun/config_client_windows.json)示例，按需修改后将文件名改为 **config.json**，与 **sing-box.exe**，批处理文件放在同一文件夹里。
+4. 右键点击 **sing-box.exe** 选择属性，选择兼容性，选择以管理员身份运行此程序，确定。
+5. 运行批处理文件，在弹出的用户账户控制对话框中，选择是。
+
+<details>
+      <summary><b>效果参考</b></summary>
 
 具体效果根据个人的出站及规则设置决定。
-</p>
-<p>
 
 <div align="left">
   <img src="https://user-images.githubusercontent.com/21310130/227577941-01c80cfc-1cd9-4f95-a709-f5442a2a2058.png" alt="download" width="50%" />
@@ -422,14 +427,12 @@ windows系统建议将命令添加到批处理程序运行。
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9e7c35ff-c6c4-46c4-a74b-624ff72c17ea" alt="download" width="50%" />
 </div>
 
-
-
-</p>
 </details>
 
 # 感谢
 - [sing-box](https://github.com/SagerNet/sing-box)
 - [yacd](https://github.com/haishanh/yacd)
 - [clash](https://github.com/Dreamacro/clash)
+- [sing-box-examples@chika0801](https://github.com/chika0801/sing-box-examples)
 
 部分协议解析参考了[convert2clash](https://github.com/waited33/convert2clash)
