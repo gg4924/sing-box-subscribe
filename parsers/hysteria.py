@@ -25,4 +25,6 @@ def parse(data):
     }
     if netquery.get('insecure') and netquery['insecure'] == '1' :
         node['tls']['insecure'] = True
+    if netquery.get('obfs'):
+        node['obfs'] = netquery.get('obfs')
     return node
