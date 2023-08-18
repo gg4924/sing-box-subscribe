@@ -16,12 +16,12 @@
 - [x] tuic
 - [x] wireguard
       
-支持的协议解析不支持转换 clash 配置订阅，暂时只写了以上打勾协议的分享链接的解析，因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
+**不支持转换 clash 订阅**的解析，暂时只写了以上打勾协议的分享链接的解析（**v2订阅格式**），因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
 
 **脚本为自用，本人使用 [yacd](http://yacd.haishan.me) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中有新的功能需求或者出现任何错误请自行解决**。
-# 环境
 
-### 安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
+# 环境
+### PC安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
 
 <div align="left">
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f387322b-a602-40df-b3b6-95561329f2f8" alt="install" width="60%" />
@@ -133,6 +133,7 @@ windows系统建议将命令添加到批处理程序运行。
   - 设置不解析的协议，多个使用英文逗号分隔，比如ssr,vmess。
   - 使用此设置中的协议的分享链接会被忽略。
   - ~~sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。~~
+
 # config模板文件
 脚本会在 config_template 目录下查找 json 模板文件，脚本运行时可以选择使用的模板文件。
 
