@@ -14,7 +14,7 @@
 - [x] http
 - [x] hysteria
 - [x] tuic
-- [ ] wireguard
+- [x] wireguard
       
 支持的协议解析不支持转换 clash 配置订阅，暂时只写了以上打勾协议的分享链接的解析，因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
 
