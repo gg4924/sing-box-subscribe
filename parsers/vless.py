@@ -31,7 +31,7 @@ def parse(data):
             node['tls']['reality'] = {
                 'enabled': True,
                 'public_key': netquery.get('pbk'),
-                'short_id': netquery.get('sid')
+                'short_id': netquery.get('sid', '')
             }
     if netquery.get('type'):
         if netquery['type'] in ['tcp','http']:
