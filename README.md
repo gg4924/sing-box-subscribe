@@ -1,5 +1,9 @@
 # sing-box-subscribe
+
+[中文](https://github.com/Toperlock/sing-box-subscribe/blob/main/README.md)|[EN](https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md)
+
 根据配置模板生成 sing-box 使用的 `config.json`，主要用于将机场订阅节点添加到 config，对使用 `clash_mode` 的配置才有意义。
+
 不适合完全不了解 sing-box 配置文件的人使用，最少要知道什么是出站、dns server、dns规则、路由规则。最好了解 clash 的分组方式。
 
 请查看：[https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration)。
@@ -248,12 +252,11 @@ windows系统建议将命令添加到批处理程序运行。
         "{机场2}"//订阅tag为 机场2 的节点将添加到此标记所在位置
       ],
       "filter":[//过滤节点，按顺序执行
-        //如果机场1有节点 美国、台湾ˣ²，机场2有节点 sg高速、新加坡ˣ²，他们共同组成 netflix 组
+        //如果机场1，机场2有节点 sg、新加坡、tw、台湾，他们共同组成 netflix 组
         {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
-        //执行完第一个规则后 netflix 组将剩下 台湾ˣ²、sg高速、新加坡ˣ²
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
         //for里面设置为机场1，代表此条规则只对机场1起作用
-        //执行完第二个规则后 netflix 组将剩下 sg高速、新加坡ˣ²
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        //执行完第二个规则后 netflix 组将机场1 中包含 ˣ² 的节点
       ]
     },
     {
@@ -377,12 +380,11 @@ windows系统建议将命令添加到批处理程序运行。
     "{机场2}"//订阅tag为 机场2 的节点将添加到此标记所在位置
   ],
   "filter":[
-    //如果机场1有节点 美国、台湾ˣ²，机场2有节点 sg高速、新加坡ˣ²，他们共同组成 netflix 组
+    //如果机场1，机场2有节点 sg、新加坡、tw、台湾，他们共同组成 netflix 组
     {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
-    //执行完第一个规则后 netflix 组将剩下 台湾ˣ²、sg高速、新加坡ˣ²
-    {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
     //for里面设置为机场1，代表此条规则只对机场1起作用
-    //执行完第二个规则后 netflix 组将剩下 sg高速、新加坡ˣ²
+    {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+    //执行完第二个规则后 netflix 组将机场1 中包含 ˣ² 的节点
   ]
 }
 ```
