@@ -1,5 +1,6 @@
 # sing-box-subscribe
 Generate the `config.json` used by sing-box based on the configuration template. This is mainly used to add subscription nodes to the config for those using the `clash_mode` configuration.
+
 It is not suitable for people who are completely unfamiliar with the sing-box configuration file. At the very least, you should know about outbound, DNS server, DNS rules, and routing rules. It's best to understand clash's grouping method.
 
 Please refer to: [https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration).
