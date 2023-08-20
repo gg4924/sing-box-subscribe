@@ -44,7 +44,7 @@ pip install requests paramiko scp
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/73f05ba8-105c-4f10-8e6c-16e27f26c084" alt="run" width="60%" />
 </div>
 
-### Put your subscription links in `providers.json`, and use the following command to run the script after editing the template:
+### Put your subscription links in `providers.json`, edit `config_template_groups_tun` file and use the following command to run the script after editing the template:
 
 ```
 python main.py
@@ -110,7 +110,11 @@ The subscription `url` supports both regular v2 subscription links (**content in
 
 Local files need to be saved on the same drive. Local path formats: `/Desktop/sing-box-subscribe/xx.txt` or relative path formats in the same folder as `main.py`: `./xx.txt`
 
-The `tag` in the subscription will be used in the config template file. You can see the usage in the config template section below.
+The `tag` in the subscription will be used in the config template file. Here `"airport1_tag"` corresponds to `"{机场1}"` in the config template. You can see the usage in the config template section below.
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
+</div>
 
 `enabled`: Optional. Set it to false, and the subscription will be ignored.
 
