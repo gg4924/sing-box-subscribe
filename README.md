@@ -47,7 +47,7 @@ pip install requests paramiko scp
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/73f05ba8-105c-4f10-8e6c-16e27f26c084" alt="run" width="60%" />
 </div>
 
-### 把订阅链接放到 `providers.json` ，编辑好模板使用下面的命令运行脚本：
+### 把订阅链接放到 `providers.json` ，编辑好 `config_template_groups_tun` 模板使用下面的命令运行脚本：
 
 ```
 python main.py
@@ -113,7 +113,12 @@ windows系统建议将命令添加到批处理程序运行。
 
 本地文件需要保存到相同盘符，本地路径格式： `/Desktop/sing-box-subscribe/xx.txt` 或者是与 `main.py` 相同文件夹里相对路径格式： `./xx.txt`
 
-订阅 `tag` 会被使用在 config 模板文件 中，具体使用方法可以查看下方的 config 模板部分。
+订阅 `tag` 会被使用在 config 模板文件 中，此处的 `"机场1"` 对应 config 模板中的 `"{机场1}"` 具体使用方法可以查看下方的 config 模板部分。
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
+</div>
+
 
 `enabled`：非必需。将其设置为 false 时，此订阅会被忽略。
 
