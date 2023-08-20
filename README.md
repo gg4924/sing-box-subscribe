@@ -119,7 +119,6 @@ windows系统建议将命令添加到批处理程序运行。
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
 </div>
 
-
 `enabled`：非必需。将其设置为 false 时，此订阅会被忽略。
 
 `prefix`：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，则不添加前缀。
