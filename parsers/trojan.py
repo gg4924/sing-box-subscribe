@@ -1,61 +1,45 @@
 import tool,json,re,urllib,sys
 def parse(data):
+    info = data[:]
+    server_info = urlparse(info)
+    _netloc = server_info.netloc.split("@")
+    netquery = dict(
+        (k, v if len(v) > 1 else v[0])
+        for k, v in parse_qs(server_info.query).items()
+    )
     node = {
-        'tag':None,
-        'type':'trojan',
-        'server':None,
-        'server_port':None,
-        'password':None
+        'tag': tool.rename(unquote(server_info.fragment)),
+        'type': 'trojan',
+        'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
+        'server_port': int(_netloc[1].rsplit(":", 1)[1]),
+        'password': _netloc[0],
+        'tls': {
+            'enabled': True,
+            'alpn': [netquery.get('alpn')]
+        }
     }
-    if isinstance(data,bytes):
-        data = bytes.decode(data)
-    m = re.search(r'://(.+?)@(.+?):(\d+)',data)
-    if m:
-        node['password'] = urllib.parse.unquote(m.group(1))
-        node['server'] =m.group(2)
-        node['server_port'] =int(m.group(3))
-    else:
-        return None
-    m = re.search(r'/?\?(.+?)#',data)
-    if m:
-        params = m.group(1)
-        palist = params.split('&')
-        opts = {}
-        for kv in palist:
-            k = kv.split('=')[0]
-            v = urllib.parse.unquote(kv.split('=')[1])
-            opts[k] = v
-        node['tls']={}
-        if opts.get('allowInsecure'):
-            node['tls']={
-                'enabled' : True,
-                'insecure' : False
+    if netquery.get('allowInsecure') and netquery['allowInsecure'] == '1' :
+        node['tls']['insecure'] = True
+    if netquery.get('sni'):
+        node['tls']['server_name'] = netquery.get('sni')
+    if netquery.get('fp'):
+        node['tls']['utls'] = {
+            'enabled': True,
+            'fingerprint': netquery.get('fp')
+        }
+    if netquery.get('type'):
+        if netquery['type'] == 'h2':
+            node['transport'] = {
+                'type':'http',
+                'host':netquery.get('host', node['server']),
+                'path':netquery.get('path', '/')
+            }
+        if netquery['type'] == 'ws':
+            node['transport'] = {
+                'type':'ws',
+                'path':netquery.get('path', '/'),
+                'headers': {
+                    'Host': netquery.get('host', node['server'])
                 }
-            if(opts['allowInsecure']=='0'):
-                node['tls']['insecure']=False
-            else:
-                node['tls']['insecure']=True
-        if opts.get('sni'):
-            node['tls']['enabled'] = True
-            node['tls']['disable_sni'] = False
-            node['tls']['server_name'] = opts['sni']
-        if opts.get('type'):
-            if opts['type'] == 'h2':
-                node['transport']={
-                    'type':'http',
-                    'host':opts['host'] if opts.get['host'] else node['server'],
-                    'path':opts['path'] if opts.get('path') else '/'
-                }
-            if opts['type'] == 'ws':
-                node['transport']={
-                    'type':'ws',
-                    'path':opts['path'] if opts.get('path') else '/'
-                }
-
-    if data.find('#')>-1:
-        name = urllib.parse.unquote(data[data.find('#')+1:])
-        name = name.strip()
-    else:
-        name = tool.rename(tool.genName())
-    node['tag'] = name
+            }
     return node
