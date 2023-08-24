@@ -22,7 +22,7 @@ def rename(str):
         str = '🇸🇬' + ' ' + str
     elif re.search('日本|东京|大阪|埼玉|京日|苏日|沪日|上日|穗日|川日|中日|泉日|杭日|深日|辽日|广日|JP|Japan|JAPAN', str) and not (str.startswith('🇯🇵')):
         str = '🇯🇵' + ' ' + str
-    elif re.search('美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|芝加哥|哥伦布|纽约|America|United States|USA|US', str) and not (str.startswith('🇺🇸')):
+    elif re.search('美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|芝加哥|哥伦布|纽约|(?<=[\s-])US(?=[\s-])|USA|America|United States', str) and not (str.startswith('🇺🇸')):
         str = '🇺🇸' + ' ' + str
     elif re.search('韩国|首尔|韩|韓|春川|KOR|KR|Korea', str) and not (str.startswith('🇰🇷')):
         str = '🇰🇷' + ' ' + str
@@ -36,7 +36,7 @@ def rename(str):
         str = '🇲🇾' + ' ' + str
     elif re.search('土耳其|伊斯坦布尔|TR|TR-|TR_|TUR|Turkey', str) and not (str.startswith('🇹🇷')):
         str = '🇹🇷' + ' ' + str
-    elif re.search('阿根廷|AR|Argentina', str) and not (str.startswith('🇦🇷')):
+    elif re.search('阿根廷|(?<=[\s-])AR(?=[\s-])|Argentina', str) and not (str.startswith('🇦🇷')):
         str = '🇦🇷' + ' ' + str
     else:
         str = str
