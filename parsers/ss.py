@@ -54,18 +54,17 @@ def parse(data):
                 'server':plugin['address'],
                 'server_port':int(plugin['port']),
                 'version':int(plugin.get('version', '1')),
-                'password':plugin.get('password', '')
-            }
-            if plugin.get('host'):
-                node_tls['tls']={
+                'password':plugin.get('password', ''),
+                'tls':{
                     'enabled': True,
-                    'server_name': plugin.get('host')
+                    'server_name': plugin.get('host', '')
                 }
-                if plugin.get('fp'):
-                    node_tls['tls']['utls']={
-                        'enabled': True,
-                        'fingerprint': plugin.get('fp')
-                    }
+            }
+            if plugin.get('fp'):
+                node_tls['tls']['utls']={
+                    'enabled': True,
+                    'fingerprint': plugin.get('fp')
+                }
     if param.find('@') > -1:
         matcher = re.match(r'(.*?)@(.*):(.*)', param)
         if matcher:
