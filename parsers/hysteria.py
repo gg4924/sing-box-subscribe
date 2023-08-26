@@ -19,12 +19,12 @@ def parse(data):
         'tls': {
             'enabled': True,
             'insecure': netquery.get('insecure').isdigit(),
-            'server_name': netquery.get('peer'),
+            'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0])),
             'alpn': [netquery.get('alpn')]
         }
     }
     if netquery.get('insecure') and netquery['insecure'] == '1' :
         node['tls']['insecure'] = True
-    if netquery.get('obfs'):
+    if netquery.get('obfs') and netquery['obfs'] != 'none':
         node['obfs'] = netquery.get('obfs')
     return node
