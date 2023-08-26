@@ -32,12 +32,22 @@ def rename(str):
         str = '🇮🇳' + ' ' + str
     elif re.search('英国|伦敦|英|UK|England|United Kingdom|Britain', str) and not (str.startswith('🇬🇧')):
         str = '🇬🇧' + ' ' + str
+    elif re.search('德国|德國|法兰克福|(?<=[\s-])DE(?=[\s-])|German|GERMAN', str) and not (str.startswith('🇩🇪')):
+        str = '🇩🇪' + ' ' + str
+    elif re.search('澳大利亚|澳洲|墨尔本|悉尼|(?<=[\s-])AU(?=[\s-])|Australia|Sydney', str) and not (str.startswith('🇦🇺')):
+        str = '🇦🇺' + ' ' + str
     elif re.search('马来西亚|马来|馬來|MY|Malaysia|MALAYSIA', str) and not (str.startswith('🇲🇾')):
         str = '🇲🇾' + ' ' + str
     elif re.search('土耳其|伊斯坦布尔|TR|TR-|TR_|TUR|Turkey', str) and not (str.startswith('🇹🇷')):
         str = '🇹🇷' + ' ' + str
+    elif re.search('越南|胡志明市|(?<=[\s-])VN(?=[\s-])|Vietnam', str) and not (str.startswith('🇻🇳')):
+        str = '🇻🇳' + ' ' + str
+    elif re.search('瑞士|苏黎世|(?<=[\s-])CH (?=[\s-])|Switzerland', str) and not (str.startswith('🇨🇭')):
+        str = '🇨🇭' + ' ' + str
     elif re.search('阿根廷|(?<=[\s-])AR(?=[\s-])|Argentina', str) and not (str.startswith('🇦🇷')):
         str = '🇦🇷' + ' ' + str
+    elif re.search('以色列|(?<=[\s-])IL(?=[\s-])|Israel', str) and not (str.startswith('🇮🇱')):
+        str = '🇮🇱' + ' ' + str
     else:
         str = str
     return str
