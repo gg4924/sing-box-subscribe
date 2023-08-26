@@ -18,7 +18,7 @@ def parse(data):
         'auth_str': netquery.get('auth'),
         'tls': {
             'enabled': True,
-            'insecure': netquery.get('insecure').isdigit(),
+            'insecure': netquery.get('insecure').isdigit() if netquery.get('insecure') else netquery.get('allowInsecure').isdigit(),
             'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0])),
             'alpn': [netquery.get('alpn')]
         }
