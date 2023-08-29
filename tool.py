@@ -48,6 +48,8 @@ def rename(str):
         str = '🇦🇷' + ' ' + str
     elif re.search('以色列|(?<=[\s-])IL(?=[\s-])|Israel', str) and not (str.startswith('🇮🇱')):
         str = '🇮🇱' + ' ' + str
+    elif re.search('蒙古|(?<=[\s-])MN(?=[\s-])|Mongolia', str) and not (str.startswith('🇲🇳')):
+        str = '🇲🇳' + ' ' + str
     else:
         str = str
     return str
