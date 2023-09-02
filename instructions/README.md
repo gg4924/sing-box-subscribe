@@ -44,7 +44,7 @@ pip install requests paramiko scp
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/73f05ba8-105c-4f10-8e6c-16e27f26c084" alt="run" width="60%" />
 </div>
 
-### Put your subscription links in `providers.json`, edit `config_template_groups_tun` file and use the following command to run the script after editing the template:
+### Put your subscription links in `providers.json`, edit `config_template_groups_tun.json` file and use the following command to run the script after editing the template:
 
 ```
 python main.py
@@ -88,12 +88,15 @@ In this file, you can add subscription links and basic settings.
         {
             "url": "subscribe1_link",
             "tag": "airport1_tag",
-            "enabled": true
+            "enabled": true,
+            "emoji": 1,
+            "prefix": ""
         },
         {
             "url": "subscribe2_link",
             "tag": "airport2_tag",
             "enabled": false,
+            "emoji": 0,
             "prefix": "❤️node_name prefix - "
         }
     ],
@@ -103,41 +106,67 @@ In this file, you can add subscription links and basic settings.
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol":"ssr"
+    "exlude_protocol":""
 }
 ```
-The subscription `url` supports both regular v2 subscription links (**content in base64 encoding**) and local file paths (**content as URI links**). For local files, such as txt files, each line should contain a single node sharing link, starting with `ss://` (non-subscription link).
+- `url`: Required.
 
-Local files need to be saved on the same drive. Local path formats: `/Desktop/sing-box-subscribe/xx.txt` or relative path formats in the same folder as `main.py`: `./xx.txt`
+> Supports setting up a regular V2 subscription link (**content in base64 encoding**)
 
-The `tag` in the subscription will be used in the config template file. Here `"airport1_tag"` corresponds to `"{机场1}"` in the config template. You can see the usage in the config template section below.
+>  Supports setting up a local file paths (**content as URI links**)
 
+    For local files, such as txt files, each line should contain a single node sharing link, starting with `ss://` (non-subscription link).
+
+    Local files need to be saved on the same drive. Local path formats: `/Desktop/sing-box-subscribe/xx.txt` or relative path formats in the same folder as `main.py`: `./xx.txt`.
+
+- `tag`: Required.
+
+> Fill in this tag in the config template to add this subscription. The "airport1_tag" here corresponds to "{机场1}" in the config template. Specific usage can be found in the config template section below.
+
+<details>
+      <summary>tag screenshot reference</summary>
+  
 <div align="left">
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
 </div>
 
-`enabled`: Optional. Set it to false, and the subscription will be ignored.
+</details>
 
-`prefix`: Optional. Set a custom prefix that will be added to the beginning of the node names. If not set, no prefix will be added.
+- `enabled`: Optional. **Set it to false, and the subscription will be ignored**.
 
+- `emoji`: Optional. **Set it to false or 0, and the node name will not have a country flag emoji**.
+
+- `prefix`: Optional. Set a custom prefix that will be added to the beginning of the node names. If not set, no prefix will be added.
+
+<details>
+      <summary>prefix effect reference</summary>
+  
 ![Snipaste_2023-05-02_12-53-27](https://user-images.githubusercontent.com/21310130/235582317-6bb3d0a6-916f-445f-999b-f17b3db41eea.png)
 
-`auto_set_outbounds_dns`: Optional.
-- Includes `proxy` and `direct` settings.
-- `proxy` and `direct` should be set to the `tag` of the `dns server` in the config template file.
-- With this option set, the script will automatically adapt routing rules to DNS rules.
-- DNS servers for outbound rules with `direct` setting in the routing rules will be set to the specified `direct` outbound.
-- Outbound rules that need to be proxied in the routing rules will be set to the corresponding `proxy` outbound, and the script will automatically create a corresponding `dns server` for the proxy outbound, using the `dns server` specified in the `proxy` setting.
+</details>
 
-`save_config_path`: Required. Set the path for the generated configuration file.
+- `auto_set_outbounds_dns`: Optional.
+> Includes `proxy` and `direct` settings.
 
-`auto_backup`: Optional.
-- When set to true, the script will rename the currently used sing-box configuration file to `original_filename.current_time.bak` for backup purposes, in case an incorrect configuration file is generated and needs to be restored.
+> `proxy` and `direct` should be set to the `tag` of the `dns server` in the config template file.
 
-`exlude_protocol`: Optional.
-  - Set the protocols to exclude, separated by commas, e.g., ssr, vmess.
-  - Sharing links using protocols in this setting will be ignored.
-  - ~~The sing-box release program does not support ssr (needs additional parameters to build), so this setting might be useful.~~
+> With this option set, the script will automatically adapt routing rules to DNS rules.
+
+> DNS servers for outbound rules with `direct` setting in the routing rules will be set to the specified `direct` outbound.
+
+> Outbound rules that need to be proxied in the routing rules will be set to the corresponding `proxy` outbound, and the script will automatically create a corresponding `dns server` for the proxy outbound, using the `dns server` specified in the `proxy` setting.
+
+- `save_config_path`: Required. Set the path for the generated configuration file.
+
+- `auto_backup`: Optional.
+> When set to true, the script will rename the currently used sing-box configuration file to `original_filename.current_time.bak` for backup purposes, in case an incorrect configuration file is generated and needs to be restored.
+
+- `exlude_protocol`: Optional.
+> Set the protocols to exclude, separated by commas, e.g., ssr, vmess.
+
+> Sharing links using protocols in this setting will be ignored.
+
+> ~~The sing-box release program does not support ssr (needs additional parameters to build), so this setting might be useful.~~
 
 # config Template Files
 The script will search for JSON template files in the `config_template` directory, and you can select which template file to use when the script runs.
