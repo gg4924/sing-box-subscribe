@@ -47,7 +47,7 @@ pip install requests paramiko scp
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/73f05ba8-105c-4f10-8e6c-16e27f26c084" alt="run" width="60%" />
 </div>
 
-### 把订阅链接放到 `providers.json` ，编辑好 `config_template_groups_tun` 模板使用下面的命令运行脚本：
+### 把订阅链接放到 `providers.json` ，编辑好 `config_template_groups_tun.json` 模板使用下面的命令运行脚本：
 
 ```
 python main.py
@@ -89,14 +89,17 @@ windows系统建议将命令添加到批处理程序运行。
 {
     "subscribes":[
         {
-            "url": "订阅地址1",
+            "url": "订阅地址",
             "tag": "机场1",
-            "enabled": true
+            "enabled": true,
+            "emoji": 1,
+            "prefix": ""
         },
         {
-            "url": "订阅地址2",
+            "url": "订阅地址",
             "tag": "机场2",
             "enabled": false,
+            "emoji": 0,
             "prefix": "❤️机场前缀 - "
         }
     ],
@@ -106,41 +109,67 @@ windows系统建议将命令添加到批处理程序运行。
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol":"ssr"
+    "exlude_protocol":""
 }
 ```
-订阅 `url` 支持设置机场普通的v2订阅链接（**内容为base64编码**）以及本地文件路径（**内容为URI的链接**）。本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如 `ss://` 开头（非订阅链接）。
+- `url`：必须。
 
-本地文件需要保存到相同盘符，本地路径格式： `/Desktop/sing-box-subscribe/xx.txt` 或者是与 `main.py` 相同文件夹里相对路径格式： `./xx.txt`
+> 支持设置机场普通的v2订阅链接（**内容为base64编码**）
 
-订阅 `tag` 会被使用在 config 模板文件 中，此处的 `"机场1"` 对应 config 模板中的 `"{机场1}"` 具体使用方法可以查看下方的 config 模板部分。
+> 本地文件路径（**内容为URI的链接**）。
+       
+      本地文件比如txt文件，需要在文件中每行一个添加单节点分享链接，比如 `ss://` 开头（非订阅链接）。
 
+      本地文件需要保存到相同盘符，本地路径格式： `/Desktop/sing-box-subscribe/xx.txt` 或者是与 `main.py` 相同文件夹里相对路径格式： `./xx.txt`
+
+- `tag`：必须。
+
+> config 模板里填上此处写的tag才能添加此订阅。此处的 `"机场1"` 对应 config 模板中的 `"{机场1}"` 具体使用方法可以查看下方的 config 模板部分。
+
+<details>
+      <summary>tag截图参考</summary>
+      
 <div align="left">
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
+<img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
 </div>
 
-`enabled`：非必需。将其设置为 false 时，此订阅会被忽略。
+</details>
+      
+- `enabled`：非必需。**将其设置为 false 时，此订阅会被忽略**。
 
-`prefix`：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，则不添加前缀。
+- `emoji`：非必需。**将其设置为 false 或 0 时，节点名称不会添加国旗emoji**。
 
+- `prefix`：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，则不添加前缀。
+
+<details>
+      <summary>prefix效果参考</summary>
+      
 ![Snipaste_2023-05-02_12-53-27](https://user-images.githubusercontent.com/21310130/235582317-6bb3d0a6-916f-445f-999b-f17b3db41eea.png)
+
+</details>
+
+-  `auto_set_outbounds_dns`：非必需。
+> 包含 `proxy` 和 `direct` 设置项。
+
+> `proxy` 和 `direct` 应该设置为 config 模板文件中存在的 `dns server` 的 `tag`。
+
+> 设置此项后，脚本会自动适配 路由规则 到 dns 规则。
+
+> 将路由规则中 `direct` 出站 的 `dns server` 设置为选项中指定的 `direct` 出站。
+
+> 将路由规则中需要代理的 出站 设置为对应的 `proxy` 出站，脚本会自动创建对应出站的 `dns server`，以 `proxy` 设置项指定的 `dns server` 为模板。
  
- `auto_set_outbounds_dns`：非必需。
- - 包含 `proxy` 和 `direct` 设置项。
- - `proxy` 和 `direct` 应该设置为 config 模板文件中存在的 `dns server` 的 `tag`。
- - 设置此项后，脚本会自动适配 路由规则 到 dns 规则。
- - 将路由规则中 `direct` 出站 的 `dns server` 设置为选项中指定的 `direct` 出站。
- - 将路由规则中需要代理的 出站 设置为对应的 `proxy` 出站，脚本会自动创建对应出站的 `dns server`，以 `proxy` 设置项指定的 `dns server` 为模板。
+-  `save_config_path`：必需。设置生成的配置文件路径。
  
- `save_config_path`：必需。设置生成的配置文件路径。
+-  `auto_backup`：非必需。
+> 设置为 true 时，脚本会将当前使用的sing-box配置文件更名为 `原文件名称.当前时间.bak` 进行备份，避免生成错误的配置文件后无法挽回。
  
- `auto_backup`：非必需。
- - 设置为 true 时，脚本会将当前使用的sing-box配置文件更名为 `原文件名称.当前时间.bak` 进行备份，避免生成错误的配置文件后无法挽回。
- 
- `exlude_protocol`：非必需。
-  - 设置不解析的协议，多个使用英文逗号分隔，比如ssr,vmess。
-  - 使用此设置中的协议的分享链接会被忽略。
-  - ~~sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。~~
+-  `exlude_protocol`：非必需。
+>  设置不解析的协议，多个使用英文逗号分隔，比如ssr,vmess。
+
+> 使用此设置中的协议的分享链接会被忽略。
+
+>  ~~sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。~~
 
 # config模板文件
 脚本会在 config_template 目录下查找 json 模板文件，脚本运行时可以选择使用的模板文件。
