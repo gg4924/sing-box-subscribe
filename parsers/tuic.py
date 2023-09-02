@@ -10,7 +10,7 @@ def parse(data):
         for k, v in parse_qs(server_info.query).items()
     )
     node = {
-        'tag': tool.rename(server_info.fragment),
+        'tag': server_info.fragment,
         'type': 'tuic',
         'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
         'server_port': int(_netloc[1].rsplit(":", 1)[1]),
