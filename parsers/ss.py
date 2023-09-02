@@ -14,7 +14,7 @@ def parse(data):
     if param.find('#') > -1:
         flag = 0
         remark = urllib.parse.unquote(param[param.find('#') + 1:])
-        node['tag'] = tool.rename(remark)
+        node['tag'] = remark
         param = param[:param.find('#')]
     if param.find('/?') > -1:
         plugin_opts={}
