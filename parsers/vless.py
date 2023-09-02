@@ -9,7 +9,7 @@ def parse(data):
         for k, v in parse_qs(server_info.query).items()
     )
     node = {
-        'tag': tool.rename(unquote(server_info.fragment)),
+        'tag': unquote(server_info.fragment),
         'type': 'vless',
         'server': _netloc[1].split(":")[0],
         'server_port': int(_netloc[1].split(":")[1]),
