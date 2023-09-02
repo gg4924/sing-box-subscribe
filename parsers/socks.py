@@ -9,7 +9,7 @@ def parse(data):
         for k, v in parse_qs(server_info.query).items()
     )
     node = {
-        'tag': tool.rename(netquery.get('remarks')),
+        'tag': netquery.get('remarks'),
         'type': 'socks',
         'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
         'server_port': int(_netloc[1].rsplit(":", 1)[1]),
