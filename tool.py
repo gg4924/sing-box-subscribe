@@ -14,7 +14,6 @@ def saveFile(path,content):
 regex_patterns = {
     '🇭🇰': re.compile(r'香港|深港|沪港|呼港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|港|HK|Hongkong|Hong Kong|HongKong|HONG KONG'),
     '🇹🇼': re.compile(r'台湾|台北|台中|新北|彰化|台|CHT|HINET|TW|Taiwan|TAIWAN'),
-    '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|回国|back|CN|China'),
     '🇸🇬': re.compile(r'新加坡|狮城|獅城|沪新|京新|泉新|穗新|深新|杭新|广新|廣新|滬新|SG|Singapore|SINGAPORE'),
     '🇯🇵': re.compile(r'日本|东京|大阪|埼玉|京日|苏日|沪日|上日|穗日|川日|中日|泉日|杭日|深日|辽日|广日|JP|Japan|JAPAN'),
     '🇺🇸': re.compile(r'美国|美|京美|硅谷|凤凰城|洛杉矶|西雅图|芝加哥|哥伦布|纽约|(?<=[\s-])US(?=[\s-])|USA|America|United States'),
@@ -42,6 +41,7 @@ regex_patterns = {
     '🇲🇽': re.compile(r'墨西哥|MX|MEX|MEX|MEXICO'),
     '🇳🇱': re.compile(r'荷兰|荷蘭|尼德蘭|阿姆斯特丹|NL|Netherlands'),
     '🇿🇦': re.compile(r'南非|约翰内斯堡|South Africa|Johannesburg'),
+    '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|回国|back|CN|China'),
 }
 
 def rename(input_str):
