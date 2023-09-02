@@ -38,6 +38,7 @@ def process_subscribes(subscribes):
         _nodes = get_nodes(subscribe['url'])
         if _nodes and len(_nodes) > 0:
             add_prefix(_nodes,subscribe)
+            add_emoji(_nodes,subscribe)
             if not nodes.get(subscribe['tag']):
                 nodes[subscribe['tag']] = []
             nodes[subscribe['tag']] += _nodes
@@ -87,6 +88,11 @@ def add_prefix(nodes,subscribe):
         for node in nodes:
             node['tag'] = subscribe['prefix']+node['tag']
 
+def add_emoji(nodes,subscribe):
+    if subscribe.get('emoji'):
+        for node in nodes:
+            node['tag'] = tool.rename(node['tag'])
+            
 def get_nodes(url):
     urlstr = urllib.parse.urlparse(url)
     if not urlstr.scheme:
