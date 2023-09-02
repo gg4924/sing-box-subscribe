@@ -9,7 +9,7 @@ def parse(data):
     )
     _reserved = netquery.get('reserved').split(",")
     node = {
-        'tag': tool.rename(unquote(server_info.fragment)),
+        'tag': unquote(server_info.fragment),
         'type': 'wireguard',
         'server': re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1]),
