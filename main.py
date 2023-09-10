@@ -295,6 +295,12 @@ def combin_to_config(config,data):
                         t_o.append(oo)
                 if len(t_o)==0:
                     print('发现 {} 出站下的节点数量为 0 ，会导致sing-box无法运行，请检查config模板是否正确。'.format(po['tag']))
+                    config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
+                    CONFIG_FILE_NAME = config_path
+                    config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
+                    if os.path.exists(config_file_path):
+                        os.remove(config_file_path)
+                        print(f"已删除文件：{config_file_path}")
                     sys.exit()
                 po['outbounds'] = t_o
                 if po.get('filter'):
