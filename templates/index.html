@@ -95,17 +95,17 @@
             });
         }
         */
-        // 启动定时器，在3秒后还原 TEMP_JSON_DATA
+        // 启动定时器，在5秒后还原 TEMP_JSON_DATA
         let resetTempJsonDataTimer;
         document.querySelector('#generate-config-button').addEventListener('click', () => {
             tempJsonData = JSON.parse(tempJsonData);
-            // 启动定时器，在10秒后还原 TEMP_JSON_DATA
+            // 启动定时器，在5秒后还原 TEMP_JSON_DATA
             resetTempJsonDataTimer = setTimeout(() => {
                 tempJsonData = initialTempJsonData;
                 document.querySelector('#temp-json-data').value = tempJsonData;
                 alert('TEMP_JSON_DATA 已还原为原始状态');
                 location.reload();  // 刷新页面
-            }, 30000);  // 3秒后执行还原操作
+            }, 5000);  // 5秒后执行还原操作
         });
 
     </script>
