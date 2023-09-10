@@ -24,7 +24,33 @@
 
 **脚本为自用，本人使用 [yacd](https://yacd.metacubex.one) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中有新的功能需求或者出现任何错误请自行解决**。
 
-# 环境
+# 一、服务器部署
+
+## 开始使用
+
+1. 点击此项目右上角的 fork 按钮，fork 本项目到自己仓库；
+2. 点击右侧按钮开始部署：
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYidadaa%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web)，直接使用 Github 账号登录即可；[请查看详细教程](./docs/vercel-cn.md#如何新建项目)。
+3. 部署完毕后，即可开始使用；
+4. （可选）[绑定自定义域名](https://vercel.com/docs/concepts/projects/domains/add-a-domain)：Vercel 分配的域名 DNS 在某些区域被污染了，绑定自定义域名即可直连。
+
+### 打开自动更新
+
+> 如果你遇到了 Upstream Sync 执行错误，请手动 Sync Fork 一次！
+
+当你 fork 项目之后，由于 Github 的限制，需要手动去你 fork 后的项目的 Actions 页面启用 Workflows，并启用 Upstream Sync Action，启用之后即可开启每小时定时自动更新：
+
+![自动更新](https://github.com/Toperlock/ChatGPT-Next-Web/raw/main/docs/images/enable-actions.jpg)
+
+![启用自动更新](https://github.com/Toperlock/ChatGPT-Next-Web/raw/main/docs/images/enable-actions-sync.jpg)
+
+### 手动更新代码
+
+如果你想让手动立即更新，可以查看 [Github 的文档](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) 了解如何让 fork 的项目与上游代码同步。
+
+你可以 star/watch 本项目或者 follow 作者来及时获得新功能更新通知。
+
+# 二、本地安装
 ### PC安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
 
 <div align="left">
