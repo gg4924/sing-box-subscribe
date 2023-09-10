@@ -98,7 +98,7 @@
         // 启动定时器，在3秒后还原 TEMP_JSON_DATA
         let resetTempJsonDataTimer;
         document.querySelector('#generate-config-button').addEventListener('click', () => {
-            tempJsonData = JSON.parse(document.querySelector('#temp-json-data').value);
+            tempJsonData = JSON.parse(tempJsonData);
             // 启动定时器，在10秒后还原 TEMP_JSON_DATA
             resetTempJsonDataTimer = setTimeout(() => {
                 tempJsonData = initialTempJsonData;
