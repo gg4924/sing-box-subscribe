@@ -98,6 +98,7 @@ def edit_temp_json():
         except Exception as e:
             flash(f'更新 TEMP_JSON_DATA 时出错：{str(e)}', 'error')
             return jsonify({'status': 'error', 'message': str(e)})  # 返回错误状态和消息
+
 @app.route('/generate_config', methods=['POST'])
 def generate_config():
     try:
@@ -113,7 +114,7 @@ def generate_config():
             CONFIG_FILE_NAME = CONFIG_FILE_NAME[2:]
         # 设置配置文件的完整路径
         config_file_path = os.path.join('/tmp/', CONFIG_FILE_NAME) 
-        if not os.path.exists(config_file_path):     
+        if not os.path.exists(config_file_path):
             config_file_path = CONFIG_FILE_NAME  # 使用相对于当前工作目录的路径 
         flash('配置文件生成成功', 'success')
         os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":""}'), indent=4, ensure_ascii=False)
