@@ -1,5 +1,8 @@
-import json,os,tool,time,requests,sys,urllib,re,importlib
+import json,os,tool,time,requests,sys,urllib,re,importlib,argparse
 from datetime import datetime
+import tempfile
+from api.app import TEMP_DIR
+
 parsers_mod = {}
 providers = None
 color_code = [31,32,33,34,35,36,91,92,93,94,95,96]
@@ -17,14 +20,11 @@ def init_parsers():
             if f[1] == '.py':
                 parsers_mod[f[0]] = importlib.import_module('parsers.'+f[0])
 
-def get_template(dir):
-    b = os.walk(dir)
-    template_list = []
-    for path,dirs,files in b:
-        for file in files:
-            f = os.path.splitext(file)
-            if f[1] == '.json':
-                template_list.append(f[0])
+def get_template():
+    template_dir = 'config_template'  # 配置模板文件夹路径
+    template_files = os.listdir(template_dir)  # 获取文件夹中的所有文件
+    template_list = [os.path.splitext(file)[0] for file in template_files if file.endswith('.json')]  # 移除扩展名并过滤出以.json结尾的文件
+    template_list.sort()  # 对文件名进行排序
     return template_list
 
 def load_json(path):
@@ -170,11 +170,23 @@ def get_content_form_file(url):
     return data
 
 def save_config(path,nodes):
-    if 'auto_backup' in providers and providers['auto_backup']:
-        now = datetime.now().strftime('%Y%m%d%H%M%S')
-        if os.path.exists(path):
-            os.rename(path,'{p}.{time}.bak'.format(p=path,time=now))
-    tool.saveFile(path,json.dumps(nodes, indent=2, ensure_ascii=False))
+    try:
+        if 'auto_backup' in providers and providers['auto_backup']:
+            now = datetime.now().strftime('%Y%m%d%H%M%S')
+            if os.path.exists(path):
+                os.rename(path, f'{path}.{now}.bak')
+        tool.saveFile(path, json.dumps(nodes, indent=2, ensure_ascii=False))
+    except Exception as e:
+        print(f"保存配置文件时出错：{str(e)}")
+        # 如果保存出错，尝试使用 config_file_path 再次保存
+        try:
+            config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
+            CONFIG_FILE_NAME = config_path
+            config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
+            tool.saveFile(config_file_path, json.dumps(nodes, indent=2, ensure_ascii=False))
+            print(f"配置文件已保存到 {config_file_path}")
+        except Exception as e:
+            print(f"再次保存配置文件时出错：{str(e)}")
 
 def set_proxy_rule_dns(config):
     # dns_template = {
@@ -305,30 +317,51 @@ def display_template(tl):
         print_str += loop_color('{index}、{name} '.format(index=i+1,name=tl[i]))
     print(print_str)
 
-def select_config_template(tl):
-    uip = input('输入序号，载入对应config模板（直接回车默认选第一个配置模板）：')
-    try:
-        if uip == '':
-            return 0
-        uip = int(uip)
-        if uip < 1 or uip > len(tl):
+def select_config_template(tl, selected_template_index=None):
+    if args.template_index is not None:
+        uip = args.template_index
+    else:
+        uip = input('输入序号，载入对应config模板（直接回车默认选第一个配置模板）：')
+        try:
+            if uip == '':
+                return 0
+            uip = int(uip)
+            if uip < 1 or uip > len(tl):
+                print('输入了错误信息！重新输入')
+                return select_config_template(tl)
+            else:
+                uip -= 1
+        except:
             print('输入了错误信息！重新输入')
             return select_config_template(tl)
-        else:
-            return uip-1
-    except:
-        print('输入了错误信息！重新输入')
-        return select_config_template(tl)
+
+    return uip
+
+# 自定义函数，用于解析参数为 JSON 格式
+def parse_json(value):
+    try:
+        return json.loads(value)
+    except json.JSONDecodeError:
+        raise argparse.ArgumentTypeError(f"Invalid JSON: {value}")
 
 if __name__ == '__main__':
     init_parsers()
-    providers = load_json('providers.json')
-    template_list = get_template('config_template')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--temp_json_data', type=parse_json, help='临时内容')
+    parser.add_argument('--template_index', type=int, help='模板序号')
+    args = parser.parse_args()
+    temp_json_data = args.temp_json_data
+    if temp_json_data and temp_json_data != '{}':
+        providers = json.loads(temp_json_data)
+    else:
+        providers = load_json('providers.json')  # 加载本地 providers.json
+    template_list = get_template()
     if len(template_list) < 1:
         print('没有找到模板文件')
         sys.exit()
     display_template(template_list)
-    uip = select_config_template(template_list)
+
+    uip = select_config_template(template_list, selected_template_index=args.template_index)
     config_template_path = 'config_template/'+template_list[uip]+'.json'
     config = load_json(config_template_path)
     nodes = process_subscribes(providers["subscribes"])
