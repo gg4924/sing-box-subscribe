@@ -61,8 +61,6 @@
                 body: formData,
             });
             if (response.ok) {
-                // 清除定时器
-                clearTimeout(resetTempJsonDataTimer);
                 const responseData = await response.text();
                 const configContent = document.querySelector('#config-text');
                 configContent.textContent = responseData
@@ -79,6 +77,8 @@
                     alert('保存时出现错误，请稍后再试。');
                 }
                 */
+                // 清除定时器
+                clearTimeout(resetTempJsonDataTimer);
             }
         });
     
@@ -95,7 +95,7 @@
             });
         }
         */
-        // 启动定时器，在10秒后还原 TEMP_JSON_DATA
+        // 启动定时器，在3秒后还原 TEMP_JSON_DATA
         let resetTempJsonDataTimer;
         document.querySelector('#generate-config-button').addEventListener('click', () => {
             tempJsonData = JSON.parse(document.querySelector('#temp-json-data').value);
@@ -105,7 +105,7 @@
                 document.querySelector('#temp-json-data').value = tempJsonData;
                 alert('TEMP_JSON_DATA 已还原为原始状态');
                 location.reload();  // 刷新页面
-            }, 5s);  // 5秒后执行还原操作
+            }, 30000);  // 3秒后执行还原操作
         });
 
     </script>
