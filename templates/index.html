@@ -54,6 +54,8 @@
         let tempJsonData = initialTempJsonData;
         document.querySelector('#temp-json-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+            // 清除定时器
+            clearTimeout(resetTempJsonDataTimer);
             const form = e.target;
             const formData = new FormData(form);
             const response = await fetch(form.action, {
@@ -61,8 +63,6 @@
                 body: formData,
             });
             if (response.ok) {
-                // 清除定时器
-                clearTimeout(resetTempJsonDataTimer);
                 const responseData = await response.text();
                 const configContent = document.querySelector('#config-text');
                 configContent.textContent = responseData
