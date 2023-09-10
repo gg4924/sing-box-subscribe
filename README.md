@@ -50,6 +50,19 @@
 
 你可以 star/watch 本项目或者 follow 作者来及时获得新功能更新通知。
 
+## 页面操作步骤
+
+编辑右侧`编辑服务器 TEMP_JSON_DATA`方框内容，点击`保存`，左上角选择配置模板，点击`生成配置文件`。
+
+**注意点击保存后，尽快去生成配置文件，不然你填的内容会一直保留在网页上，别人打开网站也可以浏览到。目前想不到解决办法**
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c3c39033-079e-497c-86ef-532337d0262b" alt="how-to-use" width="70%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/86334052-29ad-4677-bb65-b24bcc01030e" alt="fill-in" width="70%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
+</div>
+
+
 # 二、本地安装
 ### PC安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
 
