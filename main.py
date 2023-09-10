@@ -183,6 +183,11 @@ def save_config(path,nodes):
             config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
             CONFIG_FILE_NAME = config_path
             config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
+            if os.path.exists(config_file_path):
+                os.remove(config_file_path)
+                print(f"已删除文件：{config_file_path}")
+            else:
+                print(f"文件不存在：{config_file_path}")
             tool.saveFile(config_file_path, json.dumps(nodes, indent=2, ensure_ascii=False))
             print(f"配置文件已保存到 {config_file_path}")
         except Exception as e:
