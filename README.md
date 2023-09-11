@@ -54,7 +54,9 @@
 
 [示例网站](https://sing-box-subscribe.vercel.app/)。打开自己部署的网站，编辑右侧`编辑服务器 TEMP_JSON_DATA`方框内容，点击`保存`，左上角选择配置模板，点击`生成配置文件`。 [参数填写查看](https://github.com/Toperlock/sing-box-subscribe#providersjson%E6%96%87%E4%BB%B6)
 
-ios配合快捷指令复制网页内容，或者内容太多选择下载文稿。👉🏻[快捷指令安装](https://www.icloud.com/shortcuts/75fd371e0aa8438a89f715238a21ee68)
+ios配合快捷指令复制网页内容，或者内容太多选择下载文稿后自行解决文稿后缀问题。👉🏻[快捷指令安装](https://www.icloud.com/shortcuts/75fd371e0aa8438a89f715238a21ee68)
+
+Android使用chrome浏览器打开网页生成配置文件，长按内容，全选，分享到代码编辑器里，检查编辑器是否显示显示完整。👉🏻[编辑器安装](https://play.google.com/store/apps/details?id=com.rhmsoft.edit)(注:有广告，请自己选择是否下载)
 
 **注意点击保存后，尽快去生成配置文件，不然你填的内容会一直保留在网页上，别人打开网站也可以浏览到。目前想不到解决办法**
 
