@@ -134,7 +134,7 @@ def get_parser(node):
         return None
     return parsers_mod[proto].parse
 
-def get_content_from_url(url,n=3):
+def get_content_from_url(url,n=6):
     print('处理'+url)
     response = tool.getResponse(url)
     concount = 1
