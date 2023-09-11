@@ -116,11 +116,12 @@ def generate_config():
         config_file_path = os.path.join('/tmp/', CONFIG_FILE_NAME) 
         if not os.path.exists(config_file_path):
             config_file_path = CONFIG_FILE_NAME  # 使用相对于当前工作目录的路径 
-        flash('配置文件生成成功', 'success')
         os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":""}'), indent=4, ensure_ascii=False)
         # 读取配置文件内容
         with open(config_file_path, 'r', encoding='utf-8') as config_file:
             config_content = config_file.read()
+            if config_content:
+                flash('配置文件生成成功', 'success')
         config_data = json.loads(config_content)
         return Response(config_content, content_type='text/plain; charset=utf-8')
 
