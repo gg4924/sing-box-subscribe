@@ -126,7 +126,7 @@ def generate_config():
         return Response(config_content, content_type='text/plain; charset=utf-8')
 
     except Exception as e:
-        flash(f'生成配置文件时出错：{str(e)}', 'error')
+        flash(f'生成配置文件时出错：{str(e)} 订阅解析失败（可能不是v2格式）', 'error')
 
     return redirect(url_for('index'))
 
