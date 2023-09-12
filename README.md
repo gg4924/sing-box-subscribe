@@ -24,6 +24,8 @@
 
 **脚本为自用，本人使用 [yacd](https://yacd.metacubex.one) (ios请用http://yacd.metacubex.one) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中有新的功能需求或者出现任何错误请自行解决**。
 
+**脚本可以用vercel服务器部署在网页运行，也可以下载项目源码在本地运行。请使用自己部署的网站生成sing-box配置**
+
 # 一、服务器部署
 
 ## 开始使用
