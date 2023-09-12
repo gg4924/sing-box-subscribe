@@ -126,7 +126,7 @@ def generate_config():
         return Response(config_content, content_type='text/plain; charset=utf-8')
 
     except Exception as e:
-        flash(f'生成配置文件时出错：{str(e)} 订阅解析失败（请填入正确的v2格式订阅）', 'error')
+        flash(f'生成配置文件时出错：{str(e)} 订阅解析失败（请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败）', 'error')
 
     return redirect(url_for('index'))
 
