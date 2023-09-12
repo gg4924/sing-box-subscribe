@@ -515,3 +515,5 @@ windows系统建议将命令添加到批处理程序运行。
 - [sing-box-examples@chika0801](https://github.com/chika0801/sing-box-examples)
 
 部分协议解析参考了[convert2clash](https://github.com/waited33/convert2clash)
+
+同步代码参考了[ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web)
