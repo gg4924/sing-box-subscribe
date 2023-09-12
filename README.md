@@ -508,6 +508,7 @@ windows系统建议将命令添加到批处理程序运行。
 </details>
 
 # 感谢
+- [一佬](https://github.com/xream)
 - [sing-box](https://github.com/SagerNet/sing-box)
 - [yacd](https://github.com/haishanh/yacd)
 - [clash](https://github.com/Dreamacro/clash)
