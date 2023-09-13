@@ -15,12 +15,13 @@ def parse(data):
         'server_port': int(_netloc[1].rsplit(":", 1)[1]),
         'password': _netloc[0],
         'tls': {
-            'enabled': True,
-            'alpn': [netquery.get('alpn')]
+            'enabled': True
         }
     }
     if netquery.get('allowInsecure') and netquery['allowInsecure'] == '1' :
         node['tls']['insecure'] = True
+    if netquery.get('alpn'):
+        node['tls']['alpn'] = [netquery.get('alpn')]
     if netquery.get('sni'):
         node['tls']['server_name'] = netquery.get('sni')
     if netquery.get('fp'):
