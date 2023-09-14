@@ -19,7 +19,7 @@ def parse(data):
         'tls': {
             'enabled': True,
             'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0])),
-            'alpn': [netquery.get('alpn')]
+            'alpn': [netquery.get('alpn', 'h3')]
         }
     }
     if netquery.get('insecure') and netquery['insecure'] == '1' or netquery.get('allowInsecure') and netquery['allowInsecure'] == '1':
