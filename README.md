@@ -17,6 +17,7 @@
 - [x] socks5
 - [x] http
 - [x] hysteria
+- [x] hysteria2
 - [x] tuic
 - [x] wireguard
       
