@@ -9,7 +9,7 @@
 3. 选择 Project。
 
 ![vercel-create-2](https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c1a4d627-d69f-41aa-9651-cbbce83a942e)
-1. 选中新 fork 的项目，点击 Import。也可以使用搜索；
+1. 选中新 fork 的项目，点击 Import。也可以使用搜索。
 
 ![vercel-create-3](https://github.com/Toperlock/sing-box-subscribe/assets/86833913/e9412ae2-214f-4502-845e-82d8cba2fcb9)
 1. 点击 Deploy，创建完成，耐心等待 5 分钟左右部署完成。
