@@ -127,6 +127,7 @@ def generate_config():
 
     except Exception as e:
         flash(f'生成配置文件时出错：{str(e)} 订阅解析失败（请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败）', 'error')
+        flash('Error occurred while generating the configuration file: ' + str(e) + ' Subscription parsing failed (please enter a valid 'v2' format subscription or switch to the 'no_groups_template' - note that if no nodes are filtered in the 'groups_template', it will fail)', 'error')
 
     return redirect(url_for('index'))
 
