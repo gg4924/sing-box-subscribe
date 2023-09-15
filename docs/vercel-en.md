@@ -5,7 +5,7 @@ After you fork this project from Github, you need to create a brand new Vercel p
 
 ![vercel-create-1](https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c94d1301-8d49-431d-8ca7-f27814d12483)
 1. Go to the Vercel console home page.
-2. Click Add New;
+2. Click Add New.
 3. Select Project.
 
 ![vercel-create-2](https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c1a4d627-d69f-41aa-9651-cbbce83a942e)
