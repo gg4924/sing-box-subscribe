@@ -55,7 +55,7 @@
 
 ## 页面操作步骤
 
-[示例网站](https://sing-box-subscribe.vercel.app/)。打开自己部署的网站，编辑右侧`编辑服务器 TEMP_JSON_DATA`方框内容，点击`保存`，左上角选择配置模板，点击`生成配置文件`。 👉🏻[参数填写查看](https://github.com/Toperlock/sing-box-subscribe#providersjson%E6%96%87%E4%BB%B6)
+[示例网站](https://sing-box-subscribe.vercel.app/)。打开自己部署的网站，编辑右侧`编辑服务器 TEMP_JSON_DATA`方框内容，点击`保存`，左上角选择配置模板，点击`生成配置文件`。👉🏻[参数填写查看](https://github.com/Toperlock/sing-box-subscribe#providersjson%E6%96%87%E4%BB%B6)
 
 ios配合快捷指令复制网页内容，或者内容太多选择下载文稿后自行解决文稿后缀问题。👉🏻[快捷指令安装](https://www.icloud.com/shortcuts/75fd371e0aa8438a89f715238a21ee68)
 
@@ -68,7 +68,6 @@ Android使用chrome浏览器打开网页生成配置文件，长按内容，全�
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/86334052-29ad-4677-bb65-b24bcc01030e" alt="fill-in" width="70%" />
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
 </div>
-
 
 # 二、本地安装
 ### PC安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
