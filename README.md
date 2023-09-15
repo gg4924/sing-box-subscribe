@@ -69,7 +69,13 @@ Android使用chrome浏览器打开网页生成配置文件，长按内容，全�
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
 </div>
 
+## 🎬 功能演示视频
+
+<div align="center">
+      
 https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46e4-b1a8-a655109628e9
+
+</div>
 
 # 二、本地安装
 ### PC安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
