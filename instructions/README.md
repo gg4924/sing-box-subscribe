@@ -1,9 +1,10 @@
 # sing-box-subscribe
+
 Generate the `config.json` used by sing-box based on the configuration template. This is mainly used to add subscription nodes to the config for those using the `clash_mode` configuration.
 
 It is not suitable for people who are completely unfamiliar with the sing-box configuration file. At the very least, you should know about outbound, DNS server, DNS rules, and routing rules. It's best to understand clash's grouping method.
 
-Please refer to: [https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration).
+Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sagernet.org/configuration/).
 
 ## Supported Protocols
 - [x] shadowsocks
@@ -14,14 +15,59 @@ Please refer to: [https://sing-box.sagernet.org/zh/configuration](https://sing-b
 - [x] socks5
 - [x] http
 - [x] hysteria
+- [x] hysteria2
 - [x] tuic
 - [x] wireguard
 
 **Parsing of clash subscriptions is not supported**. Only parsing of the checked protocol sharing links in( **v2 subscription format**) has been implemented for now. You can write your own protocol parsers, for example, `vless.py` (the filename must match the protocol name), and place it in the `parsers` directory. The `vless.py` file must include a `parse` function.
 
-**This script is for personal use. I use [yacd](https://yacd.metacubex.one) to manage node switching (outbound types `urltest` and `selector`) and distribute traffic like in clash, which is very convenient. If you have similar needs, you can try it, but if you encounter new feature requirements or any errors while using the script, please resolve them on your own**.
+**This script is for personal use. I use [yacd](https://yacd.metacubex.one) (For ios please use http://yacd.metacubex.one) to manage node switching (outbound types `urltest` and `selector`) and distribute traffic like in clash, which is very convenient. If you have similar needs, you can try it, but if you encounter new feature requirements or any errors while using the script, please resolve them on your own**.
 
-# Environment
+**Scripts can be deployed to run on a web page using a vercel server, or you can download the project source code and run it locally. Please use your own deployed website to generate the sing-box configuration.**
+
+# I. Server deployment
+
+## Getting Started
+
+1. Click the fork button on the top right corner of this project to fork this project to your own repository;
+2. Click the button on the right to start deployment:
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new), and log in directly with your Github account; [Please see the detailed tutorial](../docs/vercel-en.md#how-to-create-a-new-project).
+3. Once deployed, you can start using it;
+4. (Optional) [Bind a custom domain name](https://vercel.com/docs/concepts/projects/domains/add-a-domain): Vercel's assigned domain DNS is polluted in some zones, bind a custom domain name to connect directly.
+
+### Turn on automatic updates
+
+> If you encounter an Upstream Sync execution error, please manually click Sync Fork once!
+
+After you have forked the project, due to Github's limitations, you need to manually go to the Actions page of the project you have forked to enable Workflows and enable Upstream Sync Action, which will turn on the hourly auto-updates:
+
+![AutoUpdate](https://github.com/Toperlock/ChatGPT-Next-Web/raw/main/docs/images/enable-actions.jpg)
+
+![Enable Automatic Updates](https://github.com/Toperlock/ChatGPT-Next-Web/raw/main/docs/images/enable-actions-sync.jpg)
+
+### Manual update code
+
+If you want to enable manual updates right away, check out [Github's documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) for information on how to synchronize a forked project with your upstream code.
+
+You can star/watch the project or follow the author to be notified of new features.
+
+## Steps for page manipulation
+
+[Sample website](https://sing-box-subscribe.vercel.app/). Open your deployed website, edit the contents of the `编辑服务器 TEMP_JSON_DATA` box on the right side, click `保存`, select the configuration template in the upper left corner, and click `生成配置文件`. 👉🏻[Parameter Fill View](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#providersjson-file)
+
+ios with the shortcut command to copy the content of the web page, or too much content to choose to download the file to solve the problem of the file suffix by yourself. 👉🏻[Shortcut Install](https://www.icloud.com/shortcuts/75fd371e0aa8438a89f715238a21ee68)
+
+Android use chrome browser to open the webpage to generate the configuration file, long press the content, select it in full, share it to the code editor, check whether the editor shows the content is complete. 👉🏻[Editor Install](https://mt2.cn/download/)
+
+**Note that after clicking Save, go to Generate Configuration File as soon as possible, otherwise the content you fill in will remain on the webpage, and other people can browse to it when they open the website. Can't think of a solution at the moment**
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c3c39033-079e-497c-86ef-532337d0262b" alt="how-to-use" width="70%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/86334052-29ad-4677-bb65-b24bcc01030e" alt="fill-in" width="70%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
+</div>
+
+# II. Local installation
 ### Install [Python](https://www.python.org/) version 3.10 or above on your PC. Make sure to add Python to your system environment variables (follow Google's installation steps).
 
 <div align="left">
@@ -462,9 +508,12 @@ The specific effects depend on individual outbound and rule settings.
 </details>
 
 # Thanks
+- [xream](https://github.com/xream)
 - [sing-box](https://github.com/SagerNet/sing-box)
 - [yacd](https://github.com/haishanh/yacd)
 - [clash](https://github.com/Dreamacro/clash)
 - [sing-box-examples@chika0801](https://github.com/chika0801/sing-box-examples)
 
-Some protocol parsing references were made to [convert2clash](https://github.com/waited33/convert2clash).
+Some protocol parsing referenced from [convert2clash](https://github.com/waited33/convert2clash).
+
+Some synchronization code referenced from [ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web).
