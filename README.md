@@ -183,7 +183,7 @@ windows系统建议将命令添加到批处理程序运行。
       <summary>tag截图参考</summary>
       
 <div align="left">
-<img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
+<img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="65%" />
 </div>
 
 </details>
