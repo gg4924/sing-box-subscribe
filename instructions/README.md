@@ -173,7 +173,7 @@ In this file, you can add subscription links and basic settings.
       <summary>tag screenshot reference</summary>
   
 <div align="left">
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="50%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="65%" />
 </div>
 
 </details>
