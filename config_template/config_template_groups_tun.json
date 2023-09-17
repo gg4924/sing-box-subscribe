@@ -40,7 +40,7 @@
       },
       {
         "outbound": "any",
-        "server": "localDns";
+        "server": "localDns",
         "disable_cache": true
       },
       {
