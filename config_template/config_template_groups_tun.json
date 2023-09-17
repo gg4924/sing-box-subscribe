@@ -40,7 +40,8 @@
       },
       {
         "outbound": "any",
-        "server": "localDns"
+        "server": "localDns";
+        "disable_cache": true
       },
       {
         "geosite": [
@@ -48,14 +49,18 @@
           "cn"
         ],
         "server": "localDns"
+      },   
+      {
+        "clash_mode": "direct",
+        "server": "localDns"
       },
       {
         "clash_mode": "global",
         "server": "remote"
       },
       {
-        "clash_mode": "direct",
-        "server": "localDns"
+        "geosite": "geolocation-!cn",
+        "server": "proxyDns"
       },
       {
         "query_type": [
