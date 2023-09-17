@@ -35,8 +35,7 @@
       },
       {
         "geosite": "category-ads-all",
-        "server": "block",
-        "disable_cache": true
+        "server": "block"
       },
       {
         "outbound": "any",
