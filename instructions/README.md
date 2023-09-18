@@ -19,7 +19,7 @@ Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sa
 - [x] tuic
 - [x] wireguard
 
-**Parsing of clash subscriptions is not supported**. Only parsing of the checked protocol sharing links in( **v2 subscription format**) has been implemented for now. You can write your own protocol parsers, for example, `vless.py` (the filename must match the protocol name), and place it in the `parsers` directory. The `vless.py` file must include a `parse` function.
+~Parsing of clash subscriptions is not supported~ Only parsing of the checked protocol sharing links in( **v2 or clash subscription format**) has been implemented for now. You can write your own protocol parsers, for example, `vless.py` (the filename must match the protocol name), and place it in the `parsers` directory. The `vless.py` file must include a `parse` function.
 
 **This script is for personal use. I use [yacd](https://yacd.metacubex.one) (For ios please use http://yacd.metacubex.one) to manage node switching (outbound types `urltest` and `selector`) and distribute traffic like in clash, which is very convenient. If you have similar needs, you can try it, but if you encounter new feature requirements or any errors while using the script, please resolve them on your own**.
 
@@ -159,7 +159,9 @@ In this file, you can add subscription links and basic settings.
 
 > Supports setting up a regular V2 subscription link (**content in base64 encoding**)
 
->  Supports setting up a local file paths (**content as URI links**)
+> Supports setting up a clash subscription link
+
+> Supports setting up a local file paths (**content as URI links**)
 
     For local files, such as txt files, each line should contain a single node sharing link, starting with `ss://` (non-subscription link).
 
@@ -515,5 +517,7 @@ The specific effects depend on individual outbound and rule settings.
 - [sing-box-examples@chika0801](https://github.com/chika0801/sing-box-examples)
 
 Some protocol parsing referenced from [convert2clash](https://github.com/waited33/convert2clash).
+
+Some clash2v2ray parsing referenced from [clash2base64](https://github.com/yuanyiwei/toys/blob/master/DEPRECATED/clash/clash2base64.py).
 
 Some synchronization code referenced from [ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web).
