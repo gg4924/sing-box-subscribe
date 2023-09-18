@@ -1,3 +1,5 @@
 requests
 paramiko
 scp
+chardet
+Flask==2.3.2

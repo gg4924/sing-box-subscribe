@@ -10,22 +10,27 @@ def parse(data):
         print(info)
         return None
     item = json.loads(proxy_str)
+    content = item.get('ps').strip() if item.get('ps') else tool.genName()
     node = {
-        'tag': item.get('ps').strip() if item.get('ps') else tool.genName(),
+        'tag': content,
         'type': 'vmess',
         'server': item.get('add'),
         'server_port': int(item.get('port')),
         'uuid': item.get('id'),
         'security': item.get('scy') if item.get('scy') else 'auto',
-        'alter_Id': int(item.get('aid'))
+        'alter_Id': int(item.get('aid')),
+        'packet_encoding': 'xudp'
     }
     if item.get('tls'):
         node['tls']={
             'enabled': True
         }
         if item.get('sni'):
-            node['tls']['disable_sni'] = False
             node['tls']['server_name'] = item['sni']
+            node['tls']['utls'] = {
+                'enabled': True,
+                'fingerprint': item.get('fp', '')
+            }
     if item.get("net"):
         if item['net']=='tcp':
             node['network'] = 'tcp'
@@ -36,19 +41,18 @@ def parse(data):
             if item.get('host'):
                 node['transport']['host'] = item['host'].split(',')
             if item.get('path'):
-                node['transport']['path'] = item['path']
+                node['transport']['path'] = item['path'].rsplit("?")[0]
         if item['net'] == 'ws':
             node['transport'] = {
-                'type':'ws'
+                'type':'ws',
+                'path':item.get('path', '').rsplit("?")[0],
+                'headers': {
+                'Host': item.get('host', '')
+                }
             }
-            if item.get('path'):
-                node['transport']['path'] = item['path']
         if item['net'] == 'quic':
             node['transport'] = {
                 'type':'quic'
-            }
-            node['tls']={
-                'enabled': True
             }
         if item['net'] == 'grpc' and item.get('serverName'):
             node['transport'] = {

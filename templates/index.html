@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://raw.githubusercontent.com/Toperlock/sing-box-subscribe/main/public/favicon.ico" type="image/x-icon">
+    <title>生成sing-box配置</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .left-box {
+            flex: 1;
+            padding: 10px;
+        }
+        .right-box {
+            flex: 1;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>请选择配置模板</h1>
+    <form method="POST" action="/generate_config">
+        <select name="template_index">
+            {% for option in template_options %}
+            <option value="{{ loop.index - 1 }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="生成配置文件">
+    </form>
+
+    <div class="container">
+        <div class="left-box">
+            <h1>Providers JSON 模板</h1>
+            <form id="providers-form" method="POST" action="/update_providers">
+                <textarea name="providers_data" rows="10" cols="40" style="width: 400px; height: 400px;">{{ providers_data | safe }}</textarea>
+                <br>
+            </form>
+        </div>
+        <div class="right-box">
+            <h1>编辑服务器 TEMP_JSON_DATA</h1>
+            <form id="temp-json-form" method="POST" action="/edit_temp_json">
+                <textarea name="temp_json_data" rows="10" cols="40" style="width: 400px; height: 400px;">{{ temp_json_data | default('') }}</textarea>
+                <br>
+                <input type="submit" value="保存">
+            </form>
+        </div>
+    </div>
+    <div id="config-content">
+        <h1><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">操作说明</a> 
+            <span style="font-weight: bold; color: red;">提醒: 点击保存后请立即生成配置文件！！！不然别人也会看到你保存的TEMP_JSON_DATA内容</span>
+        </h1>
+        <pre id="config-text"></pre>
+    </div>
+    <script>
+        const initialTempJsonData = '{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":""}';
+        let tempJsonData = initialTempJsonData;
+        document.querySelector('#temp-json-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+            });
+            if (response.ok) {
+                const responseData = await response.text();
+                const configContent = document.querySelector('#config-text');
+                configContent.textContent = responseData
+                /*
+                if (responseData.status === 'success') {
+                        alert('TEMP_JSON_DATA 已保存');
+                        if (configContent) {
+                            // 如果已存在，则直接更新文本内容
+                            configContent.textContent = JSON.stringify(responseData, null, 4)
+                        } else {
+                            alert('保存失败: ' + responseData.message);
+                        }
+                } else {
+                    alert('保存时出现错误，请稍后再试。');
+                }
+                */
+                // 清除定时器
+                clearTimeout(resetTempJsonDataTimer);
+            }
+        });
+    
+        /*
+            // 监听页面刷新事件
+        window.onbeforeunload = function () {
+            // 发送POST请求以清空TEMP_JSON_DATA
+            fetch('/clear_temp_json_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({}),
+            });
+        }
+        */
+        // 启动定时器，在5秒后还原 TEMP_JSON_DATA
+        let resetTempJsonDataTimer;
+        document.querySelector('#generate-config-button').addEventListener('click', () => {
+            tempJsonData = JSON.parse(tempJsonData);
+            // 启动定时器，在5秒后还原 TEMP_JSON_DATA
+            resetTempJsonDataTimer = setTimeout(() => {
+                tempJsonData = initialTempJsonData;
+                document.querySelector('#temp-json-data').value = tempJsonData;
+                alert('TEMP_JSON_DATA 已还原为原始状态');
+                location.reload();  // 刷新页面
+            }, 5000);  // 5秒后执行还原操作
+        });
+
+    </script>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

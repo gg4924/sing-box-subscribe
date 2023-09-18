@@ -1,0 +1,237 @@
+{
+  "log": {
+    "level": "debug",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "proxyDns",
+        "address": "8.8.8.8",
+        "detour": "proxy"
+      },
+      {
+        "tag": "localDns",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "block",
+        "address": "rcode://success"
+      },
+      {
+        "tag": "remote",
+        "address": "fakeip",
+        "detour": "proxy"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "ghproxy.com",
+          "cdn.jsdelivr.net"
+        ],
+        "server": "localDns"
+      },
+      {
+        "geosite": "category-ads-all",
+        "server": "block"
+      },
+      {
+        "outbound": "any",
+        "server": "localDns",
+        "disable_cache": true
+      },
+      {
+        "geosite": [
+          "private",
+          "cn"
+        ],
+        "server": "localDns"
+      },   
+      {
+        "clash_mode": "direct",
+        "server": "localDns"
+      },
+      {
+        "clash_mode": "global",
+        "server": "proxyDns"
+      },
+      {
+        "geosite": "geolocation-!cn",
+        "server": "proxyDns"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "remote"
+      }
+    ],
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "independent_cache": true,
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true,
+      "endpoint_independent_nat": false,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true,
+      "sniff_override_destination": false,
+      "domain_strategy": "ipv4_only"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag":"proxy",
+      "type":"selector",
+      "outbounds":[
+        "auto",
+        "{all}"
+      ]
+    },
+    {
+      "tag":"🌏 !cn",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ]
+    },
+    {
+      "tag":"Speedtest",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "proxy"
+      ]
+    },
+    {
+      "tag":"auto",
+      "type":"urltest",
+      "outbounds":[
+        "{all}"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "final": "proxy",
+    "geoip": {
+      "download_url": "https://ghproxy.com/github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      "download_detour": "direct"
+    },
+    "geosite": {
+      "download_url": "https://ghproxy.com/github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      "download_detour": "direct"
+    },
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "proxy"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "domain_keyword":[
+          "speedtest"
+        ],
+        "domain_suffix":[
+          "cdnst.net",
+          "ziffstatic.com"
+        ],
+        "outbound": "Speedtest"
+      },
+      {
+        "geosite":"geolocation-!cn",
+        "outbound":"🌏 !cn"
+      },
+      {
+        "geosite": [
+          "private",
+          "cn"
+        ],
+        "geoip": [
+          "private",
+          "cn"
+        ],
+        "outbound": "direct"
+      }
+    ]
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "",
+      "external_ui": "ui",
+      "secret": "",
+      "default_mode": "rule",
+      "store_selected": true,
+      "cache_file": "",
+      "cache_id": ""
+    }
+  }
+}
