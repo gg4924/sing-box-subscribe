@@ -2,4 +2,5 @@ requests
 paramiko
 scp
 chardet
+PyYAML
 Flask==2.3.2
