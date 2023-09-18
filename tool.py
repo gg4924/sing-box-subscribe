@@ -166,20 +166,17 @@ def urlDecode(str):
     str += (len(str)%4)*'='
     return base64.urlsafe_b64decode(str)
 
-
 def b64Decode(str):
     str = str.strip()
     str += (len(str)%4)*'='
     #print(str)
     return base64.b64decode(str)
 
-
 def readFile(path):
     file = open(path,'rb')
     content = file.read()
     file.close()
     return content
-
 
 def noblankLine(data):
     lines = data.splitlines()
@@ -193,14 +190,12 @@ def noblankLine(data):
                 newdata += '\n'
     return newdata
 
-
 def firstLine(data):
     lines = data.splitlines()
     for line in lines:
         line = line.strip()
         if line:
             return line
-
 
 def genName(length=8):
     name = ''
@@ -225,7 +220,6 @@ def checkKeywords(keywords,str):
             return True
     return False
 
-
 def filterNodes(nodelist,keywords):
     newlist = []
     if not keywords:
@@ -237,7 +231,6 @@ def filterNodes(nodelist,keywords):
             print('过滤节点名称 '+node['name'])
     return newlist
 
-
 def replaceStr(nodelist,keywords):
     if not keywords:
         return nodelist
@@ -245,7 +238,6 @@ def replaceStr(nodelist,keywords):
         for k in keywords:
             node['name'] = node['name'].replace(k,'').strip()
     return nodelist
-
 
 def proDuplicateNodeName(nodes):
     names = []
@@ -258,7 +250,6 @@ def proDuplicateNodeName(nodes):
                 node['tag'] = s+str(index)
                 index += 1
             names.append(node['tag'])
-
 
 def removeNodes(nodelist):
     newlist = []
@@ -275,18 +266,15 @@ def removeNodes(nodelist):
     print('实际获取 '+str(len(newlist))+' 个节点')
     return newlist
 
-
 def prefixStr(nodelist,prestr):
     for node in nodelist:
         node['name'] = prestr+node['name'].strip()
     return nodelist
 
-
-
 def getResponse(url):
     response = None
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Mobile Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.1 Mobile/15E148 Safari/605.1.15'
     }
     try:
         response = requests.get(url,headers=headers,timeout=5000)
