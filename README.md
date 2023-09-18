@@ -21,7 +21,7 @@
 - [x] tuic
 - [x] wireguard
       
-**不支持转换 clash 订阅**的解析，暂时只写了以上打勾协议的分享链接的解析（**v2订阅格式**），因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
+~不支持转换 clash 订阅的解析~ 暂时只写了以上打勾协议的分享链接的解析（**v2订阅格式/clash订阅格式**），因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
 
 **脚本为自用，本人使用 [yacd](https://yacd.metacubex.one) (ios请用http://yacd.metacubex.one) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，但使用脚本过程中有新的功能需求或者出现任何错误请自行解决。**
 
@@ -168,6 +168,8 @@ windows系统建议将命令添加到批处理程序运行。
 - `url`：必须。
 
 > 支持设置机场普通的v2订阅链接（**内容为base64编码**）
+
+> 支持设置机场clash订阅链接
 
 > 本地文件路径（**内容为URI的链接**）
        
@@ -525,5 +527,7 @@ windows系统建议将命令添加到批处理程序运行。
 - [sing-box-examples@chika0801](https://github.com/chika0801/sing-box-examples)
 
 部分协议解析参考了[convert2clash](https://github.com/waited33/convert2clash)
+
+部分clash2v2ray参考了[clash2base64](https://github.com/yuanyiwei/toys/blob/master/DEPRECATED/clash/clash2base64.py)
 
 同步代码参考了[ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web)
