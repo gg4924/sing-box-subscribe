@@ -1,7 +1,8 @@
-import json,os,tool,time,requests,sys,urllib,re,importlib,argparse
+import json,os,tool,time,requests,sys,urllib,re,importlib,argparse,tempfile,yaml
 from datetime import datetime
-import tempfile
+from urllib.parse import quote
 from api.app import TEMP_DIR
+from parsers.clash2base64 import clash2v2ray
 
 parsers_mod = {}
 providers = None
@@ -99,10 +100,16 @@ def get_nodes(url):
         content = get_content_form_file(url)
     else:
         content = get_content_from_url(url)
-    if content:
+    if type(content) == dict:
+        share_links = []
+        for proxy in content['proxies']:
+            share_links.append(clash2v2ray(proxy))
+        data = '\n'.join(share_links)
+        data = parse_content(data)
+        return data
+    else:
         data = parse_content(content)
         return data
-    return None
 
 def parse_content(content):
     # firstline = tool.firstLine(content)
@@ -157,7 +164,7 @@ def get_content_from_url(url,n=6):
         #response_text = response_text.decode(encoding="utf-8")
         response_text = bytes.decode(response_text,encoding=response_encoding)
     except:
-        pass
+        response_text = yaml.safe_load(response.text)
         # traceback.print_exc()
     return response_text
 
@@ -345,7 +352,6 @@ def select_config_template(tl, selected_template_index=None):
         except:
             print('输入了错误信息！重新输入')
             return select_config_template(tl)
-
     return uip
 
 # 自定义函数，用于解析参数为 JSON 格式
