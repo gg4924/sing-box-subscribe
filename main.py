@@ -159,6 +159,9 @@ def get_content_from_url(url,n=6):
     if response_text.isspace():
         print('没有从订阅链接获取到任何内容')
         return None
+    if any(substring in response_text for substring in ["vmess", "vless", "ss", "ssr", "trojan", "tuic", "hysteria"]):
+        response_text = tool.noblankLine(response_text)
+        return response_text
     try:
         response_text = tool.b64Decode(response_text)
         #response_text = response_text.decode(encoding="utf-8")
