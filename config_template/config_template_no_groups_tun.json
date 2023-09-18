@@ -55,7 +55,7 @@
       },
       {
         "clash_mode": "global",
-        "server": "remote"
+        "server": "proxyDns"
       },
       {
         "geosite": "geolocation-!cn",
