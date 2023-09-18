@@ -21,7 +21,7 @@ def parse(data):
         'alter_Id': int(item.get('aid')),
         'packet_encoding': 'xudp'
     }
-    if item.get('tls'):
+    if item.get('tls') and item['tls'] != 'none':
         node['tls']={
             'enabled': True
         }
