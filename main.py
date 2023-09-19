@@ -1,4 +1,4 @@
-import json,os,tool,time,requests,sys,urllib,re,importlib,argparse,tempfile,yaml
+import json,os,tool,time,requests,sys,urllib,re,importlib,argparse,tempfile,yaml,ruamel.yaml
 from datetime import datetime
 from urllib.parse import quote
 from api.app import TEMP_DIR
@@ -163,8 +163,9 @@ def get_content_from_url(url,n=6):
         response_text = tool.noblankLine(response_text)
         return response_text
     elif 'proxies' in response_text:
+        yaml = ruamel.yaml.YAML()
         try:
-            response_text = yaml.safe_load(response.text)
+            response_text = dict(yaml.load(response.text))
         except:
             pass
     else:
