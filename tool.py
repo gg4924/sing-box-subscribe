@@ -26,7 +26,7 @@ regex_patterns = {
     '🇬🇧': re.compile(r'英国|伦敦|UK|England|United Kingdom|Britain'),
     '🇩🇪': re.compile(r'德国|德國|法兰克福|(\s|-)?DE\d*|German|GERMAN'),
     '🇫🇷': re.compile(r'法国|法國|巴黎|FR|France'),
-    '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|沈阳|济南|回国|back|CN|China'),
+    '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|沈阳|济南|回国|back|(\s|-)?CN(?!2GIA)\d*|China'),
     '🇩🇰': re.compile(r'丹麦|丹麥|DK|DNK|Denmark'),
     '🇳🇴': re.compile(r'挪威|(\s|-)?NO\d*|Norway'),
     '🇮🇹': re.compile(r'意大利|義大利|米兰|(\s|-)?IT\d*|Italy|Nachash'),
@@ -81,7 +81,7 @@ regex_patterns = {
     '🇧🇷': re.compile(r'巴西|圣保罗|维涅杜|BR|Brazil'),
     '🇨🇱': re.compile(r'智利|(\s|-)?CL\d*|Chile|CHILE'),
     '🇵🇪': re.compile(r'秘鲁|祕魯|(\s|-)?PE\d*|Peru'),
-    '🇨🇺': re.compile(r'古巴|(\s|-)?CU\d*|Cuba'),
+    '🇨🇺': re.compile(r'古巴|Cuba'),
     '🇧🇹': re.compile(r'不丹|(\s|-)?BT\d*|Bhutan'),
     '🇦🇩': re.compile(r'安道尔|(\s|-)?AD\d*|Andorra'),
     '🇲🇹': re.compile(r'马耳他|(\s|-)?MT\d*|Malta'),
@@ -102,7 +102,7 @@ regex_patterns = {
     '🇫🇯': re.compile(r'斐济|斐濟|(\s|-)?FJ\d*|Fiji'),
     '🇯🇴': re.compile(r'约旦|約旦|(\s|-)?JO\d*|Jordan'),
     '🇬🇪': re.compile(r'格鲁吉亚|格魯吉亞|(\s|-)?GE\d*|Georgia'),
-    '🇬🇮': re.compile(r'直布罗陀|直布羅陀|(\s|-)?GI\d*|Gibraltar'),
+    '🇬🇮': re.compile(r'直布罗陀|直布羅陀|(\s|-)(?<!CN2)?GI(?!A)\d*|Gibraltar'),
     '🇸🇲': re.compile(r'圣马力诺|聖馬利諾|(\s|-)?SM\d*|San Marino'),
     '🇳🇵': re.compile(r'尼泊尔|(\s|-)?NP\d*|Nepal'),
     '🇫🇴': re.compile(r'法罗群岛|法羅群島|(\s|-)?FO\d*|Faroe Islands'),
@@ -155,7 +155,6 @@ regex_patterns = {
     '🇳🇮': re.compile(r'尼加拉瓜|(\s|-)?NI\d*|Nicaragua'),
     '🇦🇶': re.compile(r'南极|南極|(\s|-)?AQ\d*|Antarctica'),
 }
-
 def rename(input_str):
     for country_code, pattern in regex_patterns.items():
         if pattern.search(input_str) and not input_str.startswith(country_code):
