@@ -21,7 +21,8 @@ def parse(data):
         plugin = urllib.parse.unquote(param[param.find('/?') + 2:])
         param = param[:param.find('/?')]
         if plugin.startswith('plugin'):
-            node['plugin'] = plugin.split(';',1)[0].split('=')[1]
+            if 'obfs' in plugin.split(';',1)[0].split('=')[1]:
+                node['plugin'] = 'obfs-local'
             for p in plugin.split(';'):
                 key_value = p.split('=')
                 kname = key_value[0]
