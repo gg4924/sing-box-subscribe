@@ -185,6 +185,11 @@ def save_config(path,nodes):
             now = datetime.now().strftime('%Y%m%d%H%M%S')
             if os.path.exists(path):
                 os.rename(path, f'{path}.{now}.bak')
+        if os.path.exists(path):
+            os.remove(path)
+            print(f"已删除文件：{path}")
+        else:
+            print(f"文件不存在：{path}")
         tool.saveFile(path, json.dumps(nodes, indent=2, ensure_ascii=False))
     except Exception as e:
         print(f"保存配置文件时出错：{str(e)}")
