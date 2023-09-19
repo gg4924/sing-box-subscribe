@@ -162,13 +162,19 @@ def get_content_from_url(url,n=6):
     if any(substring in response_text for substring in ["vmess", "vless", "ss", "ssr", "trojan", "tuic", "hysteria"]) and 'proxies' not in response_text:
         response_text = tool.noblankLine(response_text)
         return response_text
-    try:
-        response_text = tool.b64Decode(response_text)
-        #response_text = response_text.decode(encoding="utf-8")
-        response_text = bytes.decode(response_text,encoding=response_encoding)
-    except:
-        response_text = yaml.safe_load(response.text)
-        # traceback.print_exc()
+    elif 'proxies' in response_text:
+        try:
+            response_text = yaml.safe_load(response.text)
+        except:
+            pass
+    else:
+        try:
+            response_text = tool.b64Decode(response_text)
+            #response_text = response_text.decode(encoding="utf-8")
+            response_text = bytes.decode(response_text,encoding=response_encoding)
+        except:
+            pass
+            # traceback.print_exc()
     return response_text
 
 def get_content_form_file(url):
