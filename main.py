@@ -194,10 +194,10 @@ def save_config(path,nodes):
     except Exception as e:
         print(f"保存配置文件时出错：{str(e)}")
         # 如果保存出错，尝试使用 config_file_path 再次保存
+        config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
+        CONFIG_FILE_NAME = config_path
+        config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
         try:
-            config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
-            CONFIG_FILE_NAME = config_path
-            config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
             if os.path.exists(config_file_path):
                 os.remove(config_file_path)
                 print(f"已删除文件：{config_file_path}")
@@ -206,6 +206,8 @@ def save_config(path,nodes):
             tool.saveFile(config_file_path, json.dumps(nodes, indent=2, ensure_ascii=False))
             print(f"配置文件已保存到 {config_file_path}")
         except Exception as e:
+            os.remove(config_file_path)
+            print(f"已删除文件：{config_file_path}")
             print(f"再次保存配置文件时出错：{str(e)}")
 
 def set_proxy_rule_dns(config):
