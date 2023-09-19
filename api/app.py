@@ -78,7 +78,6 @@ def update_providers():
         flash('Providers.json文件已更新', 'success')
     except Exception as e:
         flash(f'更新Providers.json文件时出错；{str(e)}', 'error')
-
     return redirect(url_for('index'))
 
 @app.route('/edit_temp_json', methods=['GET', 'POST'])
@@ -94,7 +93,6 @@ def edit_temp_json():
             else:
                 flash('TEMP_JSON_DATA 不能为空', 'error')
                 return jsonify({'status': 'error', 'message': 'TEMP_JSON_DATA 不能为空'})  # 返回错误状态和消息
-
         except Exception as e:
             flash(f'更新 TEMP_JSON_DATA 时出错：{str(e)}', 'error')
             return jsonify({'status': 'error', 'message': str(e)})  # 返回错误状态和消息
@@ -126,9 +124,12 @@ def generate_config():
         return Response(config_content, content_type='text/plain; charset=utf-8')
 
     except Exception as e:
-        flash(f'生成配置文件时出错：{str(e)} 订阅解析失败（请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败）', 'error')
-        flash(f'Error occurred while generating the configuration file: {str(e)} Subscription parsing failed (please enter a valid "v2" format subscription or switch to the "no_groups_template" - note that if no nodes are filtered in the "groups_template", it will fail)', 'error')
-    
+        flash(f'生成配置文件时出错：{str(e)}', 'error')
+        flash(f'订阅解析失败: 请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败')
+        flash(f'请不要修改tag值，除非你明白它是干什么的')
+        flash(f'Error occurred while generating the configuration file: {str(e)}', 'error')
+        flash(f'Subscription parsing failed: please enter a valid "v2" format subscription or switch to the "no_groups_template" - note that if no nodes are filtered in the "groups_template", it will fail.')
+        flash(f'Please do not modify the tag value unless you understand what it does.')
     return redirect(url_for('index'))
 
 @app.route('/clear_temp_json_data', methods=['POST'])
@@ -138,7 +139,6 @@ def clear_temp_json_data():
         flash('TEMP_JSON_DATA 已清空', 'success')
     except Exception as e:
         flash(f'清空 TEMP_JSON_DATA 时出错：{str(e)}', 'error')
-
     return jsonify({'status': 'success'})
 
 """
