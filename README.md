@@ -87,7 +87,7 @@ https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46
 ### 在终端输入下面指令安装依赖（Mac把pip改为pip3）：
 
 ```
-pip install requests paramiko scp PyYAML
+pip install requests paramiko scp PyYAML ruamel.yaml
 ```
 
 <div align="left">
