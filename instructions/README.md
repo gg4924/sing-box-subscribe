@@ -77,7 +77,7 @@ Android use chrome browser to open the webpage to generate the configuration fil
 ### In the terminal, input the following command to install dependencies (on Mac, replace `pip` with `pip3`):
 
 ```
-pip install requests paramiko scp PyYAML
+pip install requests paramiko scp PyYAML ruamel.yaml
 ```
 
 <div align="left">
