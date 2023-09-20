@@ -1,4 +1,8 @@
 # sing-box-subscribe
+对不起，可能不会更新了，最近也没有关注sing-box的更新，在使用别的工具。sing-box是很好的工具，没有继续使用sing-box的原因是它不能像clash一样热更新配置（不重启工具以及不断开活动连接的情况下更新规则以及节点等配置信息），不知道是我没找到方法还是什么，也不知道现在更新了没有。另sing-box也和我现在使用的某些工具有冲突。
+
+有想继续使用脚本的小伙伴可以移步到[https://github.com/Toperlock/sing-box-subscribe](https://github.com/Toperlock/sing-box-subscribe)，这个项目完善了很多功能，也在跟进更新。
+
 根据配置模板生成 sing-box 使用的 config.json，主要用于将机场订阅节点添加到 config，对使用 clash_mode 的配置才有意义。
 不适合完全不了解 sing-box 配置文件的人使用，最少要知道什么是出站、dns server、dns规则、路由规则。最好了解 clash 的分组方式。
 
