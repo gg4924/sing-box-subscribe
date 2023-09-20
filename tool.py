@@ -12,12 +12,12 @@ def saveFile(path,content):
     file.close()
 
 regex_patterns = {
-    '🇭🇰': re.compile(r'香港|深港|沪港|呼港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|港|HK|Hongkong|Hong Kong|HongKong|HONG KONG'),
+    '🇭🇰': re.compile(r'香港|沪港|呼港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|HK|Hongkong|Hong Kong|HongKong|HONG KONG'),
     '🇹🇼': re.compile(r'台湾|台北|台中|新北|彰化|台|CHT|HINET|TW|Taiwan|TAIWAN'),
     '🇲🇴': re.compile(r'澳门|澳門|(\s|-)?MO\d*|CTM|MAC|Macao|Macau'),
     '🇸🇬': re.compile(r'新加坡|狮城|獅城|沪新|京新|泉新|穗新|深新|杭新|广新|廣新|滬新|SG|Singapore|SINGAPORE'),
     '🇯🇵': re.compile(r'日本|东京|大阪|埼玉|京日|苏日|沪日|上日|穗日|川日|中日|泉日|杭日|深日|辽日|广日|JP|Japan|JAPAN'),
-    '🇺🇸': re.compile(r'美国|京美|硅谷|凤凰城|洛杉矶|西雅图|芝加哥|哥伦布|纽约|(\s|-)?US\d*|USA|America|United States'),
+    '🇺🇸': re.compile(r'美国|京美|硅谷|凤凰城|洛杉矶|西雅图|圣何塞|芝加哥|哥伦布|纽约|(\s|-)?US\d*|USA|America|United States'),
     '🇰🇷': re.compile(r'韩国|首尔|韩|韓|春川|KOR|KR|Korea'),
     '🇰🇵': re.compile(r'朝鲜|KP|North Korea'),
     '🇷🇺': re.compile(r'俄罗斯|毛子|俄国|RU|RUS|Russia'),
@@ -68,7 +68,7 @@ regex_patterns = {
     '🇨🇴': re.compile(r'哥伦比亚|(\s|-)?CO\d*|Colombia'),
     '🇪🇨': re.compile(r'厄瓜多尔|(\s|-)?EC\d*|Ecuador'),
     '🇪🇸': re.compile(r'西班牙|(\s|-)?ES\d*|Spain'),
-    '🇵🇹': re.compile(r'葡萄牙|(\s|-)?PT\d*|Portugal'),
+    '🇵🇹': re.compile(r'葡萄牙|Portugal'),
     '🇮🇱': re.compile(r'以色列|(\s|-)?IL\d*|Israel'),
     '🇸🇦': re.compile(r'沙特|利雅得|吉达|Saudi|Saudi Arabia'),
     '🇲🇳': re.compile(r'蒙古|(\s|-)?MN\d*|Mongolia'),
@@ -82,7 +82,7 @@ regex_patterns = {
     '🇨🇱': re.compile(r'智利|(\s|-)?CL\d*|Chile|CHILE'),
     '🇵🇪': re.compile(r'秘鲁|祕魯|(\s|-)?PE\d*|Peru'),
     '🇨🇺': re.compile(r'古巴|Cuba'),
-    '🇧🇹': re.compile(r'不丹|(\s|-)?BT\d*|Bhutan'),
+    '🇧🇹': re.compile(r'不丹|Bhutan'),
     '🇦🇩': re.compile(r'安道尔|(\s|-)?AD\d*|Andorra'),
     '🇲🇹': re.compile(r'马耳他|(\s|-)?MT\d*|Malta'),
     '🇲🇨': re.compile(r'摩纳哥|摩納哥|(\s|-)?MC\d*|Monaco'),
@@ -118,7 +118,7 @@ regex_patterns = {
     '🇻🇮': re.compile(r'美属维尔京|(\s|-)?VI\d*|United States Virgin Islands'),
     '🇲🇽': re.compile(r'墨西哥|MX|MEX|MEX|MEXICO'),
     '🇲🇪': re.compile(r'黑山|(\s|-)?ME\d*|Montenegro'),
-    '🇳🇱': re.compile(r'荷兰|荷蘭|尼德蘭|阿姆斯特丹|NL|Netherlands'),
+    '🇳🇱': re.compile(r'荷兰|荷蘭|尼德蘭|阿姆斯特丹|NL|Netherlands|Amsterdam'),
     '🇵🇱': re.compile(r'波兰|波蘭|(?<!I)(?<!IE)(\s|-)?PL\d*|POL|Poland'),
     '🇩🇿': re.compile(r'阿尔及利亚|(\s|-)?DZ\d*|Algeria'),
     '🇧🇦': re.compile(r'波黑共和国|波黑|(\s|-)?BA\d*|Bosnia and Herzegovina'),
@@ -157,8 +157,11 @@ regex_patterns = {
 }
 def rename(input_str):
     for country_code, pattern in regex_patterns.items():
-        if pattern.search(input_str) and not input_str.startswith(country_code):
-            input_str = country_code + ' ' + input_str
+        if pattern.search(input_str):
+            if input_str.startswith(country_code):
+                input_str = country_code + ' ' + input_str[len(country_code):].strip()
+            else:
+                input_str = country_code + ' ' + input_str
             break
     return input_str
 
