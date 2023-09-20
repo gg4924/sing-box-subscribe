@@ -29,8 +29,16 @@ def clash2v2ray(share_link):
             "port": share_link['port'],
             "name": quote(share_link['name'], 'utf-8')
         }
-        base_link = base64.b64encode("{cipher}:{password}@{server}:{port}".format(**ss_info).encode('utf-8')).decode('utf-8')
-        link = "ss://{base_link}#{name}".format(base_link=base_link, **ss_info)
+        base_link = base64.b64encode("{cipher}:{password}".format(**ss_info).encode('utf-8')).decode('utf-8')
+        if share_link.get('plugin'):
+            ss_info["plugin"] = share_link['plugin']
+            ss_info["mode"] = share_link['plugin-opts']['mode']
+            ss_info["host"] = share_link['plugin-opts']['host']
+            url_link = '/?plugin={plugin}%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
+            link = "ss://{base_link}@{server}:{port}{url_link}#{name}".format(base_link=base_link, url_link=url_link, **ss_info)
+        else:
+            link = "ss://{base_link}@{server}:{port}#{name}".format(base_link=base_link, **ss_info)
+        # TODO
     elif share_link['type'] == 'trojan':
         link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&peer={sni}sni={sni}{skip_cert_verify}#{name}".format(
         password=share_link['password'],
