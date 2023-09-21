@@ -14,11 +14,12 @@ def parse(data):
         'server': _netloc[1].split(":")[0],
         'server_port': int(_netloc[1].split(":")[1]),
         'uuid': _netloc[0],
-        'flow': netquery.get('flow', ''),
         'packet_encoding': netquery.get('packetEncoding', 'xudp')
     }
+    if netquery.get('flow'):
+        node['flow'] = netquery['flow']
     if netquery.get('security'):
-        node['tls']={
+        node['tls'] = {
             'enabled': True
         }
         if netquery.get('sni'):
@@ -34,7 +35,7 @@ def parse(data):
                 'short_id': netquery.get('sid', '')
             }
     if netquery.get('type'):
-        if netquery['type'] in ['tcp','http']:
+        if netquery['type'] == 'http':
             node['transport'] = {
                 'type':'http'
             }
