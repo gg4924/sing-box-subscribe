@@ -39,15 +39,31 @@ def clash2v2ray(share_link):
         else:
             link = "ss://{base_link}@{server}:{port}#{name}".format(base_link=base_link, **ss_info)
         # TODO
+    elif share_link['type'] == 'ssr':
+        ssr_info = {
+            "server": share_link['server'],
+            "port": share_link['port'],
+            "protocol": share_link['protocol'],
+            "cipher": share_link['cipher'],
+            "obfs": share_link['obfs'],
+            "password": base64.b64encode(share_link.get('password', '').encode('utf-8')).decode('utf-8'),
+            "obfsparam": base64.b64encode(share_link.get('obfs-param', '').encode('utf-8')).decode('utf-8'),
+            "protoparam": base64.b64encode(share_link.get('protocol-param', '').encode('utf-8')).decode('utf-8'),
+            "remarks": base64.b64encode(share_link.get('name', '').encode('utf-8')).decode('utf-8'),
+            "group": base64.b64encode(share_link.get('group', '').encode('utf-8')).decode('utf-8')
+        }
+        base_link = base64.b64encode("{server}:{port}:{protocol}:{cipher}:{obfs}:{password}/?obfsparam={obfsparam}&protoparam={protoparam}&remarks={remarks}&group={group}".format(**ssr_info).encode('utf-8')).decode('utf-8')
+        link = f"ssr://{base_link}"
+        # TODO
     elif share_link['type'] == 'trojan':
         link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&peer={sni}sni={sni}{skip_cert_verify}#{name}".format(
-        password=share_link['password'],
-        server=share_link['server'],
-        port=share_link['port'],
-        allowInsecure=share_link['allowInsecure'] if share_link.get('allowInsecure') else "0",
-        sni=share_link['sni'],
-        skip_cert_verify="&skip-cert-verify=1" if share_link.get('skip-cert-verify') else "",
-        name=quote(share_link['name'], 'utf-8')
+        password = share_link['password'],
+        server = share_link['server'],
+        port = share_link['port'],
+        allowInsecure = share_link['allowInsecure'] if share_link.get('allowInsecure') else "0",
+        sni = share_link['sni'],
+        skip_cert_verify = "&skip-cert-verify=1" if share_link.get('skip-cert-verify') else "",
+        name = quote(share_link['name'], 'utf-8')
     )
     elif share_link['type'] == 'vless':
         pass
