@@ -1,5 +1,5 @@
 import base64,json
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 def clash2v2ray(share_link):
     link = ''
@@ -64,8 +64,44 @@ def clash2v2ray(share_link):
         sni = share_link['sni'],
         skip_cert_verify = "&skip-cert-verify=1" if share_link.get('skip-cert-verify') else "",
         name = quote(share_link['name'], 'utf-8')
-    )
+        )
     elif share_link['type'] == 'vless':
-        pass
+        vless_info = {
+            "uuid": share_link['uuid'],
+            "server": share_link['server'],
+            "port": share_link['port'],
+            "sni": share_link.get('servername', ''),
+            "fp": share_link.get('client-fingerprint', ''),
+            "type": share_link.get('network', 'tcp'),
+            "flow": share_link.get('flow', ''),
+            "name": quote(share_link['name'], 'utf-8')
+        }   
+        if vless_info['type'] == 'ws':
+            vless_info["security"] = 'tls'
+            vless_info["path"] = quote(share_link['ws-opts']['path'], 'utf-8')
+            vless_info["host"] = share_link['ws-opts']['headers']['Host']
+            link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}#{name}".format(**vless_info)
+        if vless_info['type'] == 'grpc':
+            if share_link.get('grpc-opts').get('grpc-service-name') != '/' :
+                vless_info["serviceName"] = unquote(share_link.get('grpc-opts').get('grpc-service-name'))
+            else:
+                vless_info["serviceName"] = ''
+            if share_link.get('reality-opts'):
+                vless_info["security"] = 'reality'
+                vless_info["pbk"] = share_link['reality-opts']['public-key']
+                vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}#{name}".format(**vless_info)
+            else:
+                vless_info["security"] = 'tls'
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}#{name}".format(**vless_info)
+        if vless_info['type'] == 'tcp':
+            if share_link.get('reality-opts'):
+                vless_info["security"] = 'reality'
+                vless_info["pbk"] = share_link['reality-opts']['public-key']
+                vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}#{name}".format(**vless_info)
+            else:
+                vless_info["security"] = 'tls'
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}#{name}".format(**vless_info)
         # TODO
     return link
