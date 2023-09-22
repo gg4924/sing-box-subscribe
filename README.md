@@ -28,7 +28,7 @@
 | shadowsocksR  | ✅ | ✅ | ✅ |
 | vmess  | ✅ | ✅ | ✅ |
 | trojan  | ✅ | ✅ | ✅ |
-| vless  | ✅ |  | ✅ |
+| vless  | ✅ | ✅ | ✅ |
 | tuic  | ✅ |  | ✅ |
 | hysteria  | ✅ |  | ✅ |
 | hysteria2  | ✅ |  | ✅ |
