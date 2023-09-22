@@ -26,7 +26,7 @@ def parse(data):
             node['tls']['server_name'] = netquery['sni']
             node['tls']['utls'] = {
                 'enabled': True,
-                'fingerprint': netquery.get('fp', '')
+                'fingerprint': netquery.get('fp', 'chrome')
             }
         if netquery['security'] == 'reality':
             node['tls']['reality'] = {
@@ -50,6 +50,6 @@ def parse(data):
         if netquery['type'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
-                'service_name':netquery.get('serverName', '')
+                'service_name':netquery.get('serviceName', '')
             }
     return node
