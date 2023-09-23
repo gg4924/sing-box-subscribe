@@ -8,7 +8,7 @@ Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sa
 
 ## Catalog
 
-[Operation video](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions/README.md#-demonstration-video)
+[Operation video](https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md#-demonstration-video)
 
 [Parameter meaning](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#providersjson-file)
 
