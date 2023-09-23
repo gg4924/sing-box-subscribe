@@ -21,7 +21,7 @@ def parse(data):
         'alter_Id': int(item.get('aid')),
         'packet_encoding': 'xudp'
     }
-    if item.get('tls') and item['tls'] != 'none':
+    if item.get('tls') and item['tls'] != '':
         node['tls']={
             'enabled': True
         }
@@ -54,9 +54,9 @@ def parse(data):
             node['transport'] = {
                 'type':'quic'
             }
-        if item['net'] == 'grpc' and item.get('serverName'):
+        if item['net'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
-                'service_name':item['serverName']
+                'service_name':item.get('path', '')
             }
     return node
