@@ -157,10 +157,61 @@ def clash2v2ray(share_link):
         alpn = quote(','.join(share_link['alpn']), 'utf-8'),
         allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
         sni = share_link.get('sni', ''),
-        upmbps = share_link['up'],
-        downmbps = share_link['down'],
+        upmbps = share_link.get('up', ''),
+        downmbps = share_link.get('down', ''),
         obfs = share_link.get('obfs', ''),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
         )
+        # TODO
+    elif share_link['type'] == 'hysteria2':
+        link = "hysteria2://{auth}@{server}:{port}?insecure={allowInsecure}&obfs={obfs}&obfs-password={obfspassword}&pinSHA256={fingerprint}&sni={sni}&alpn={alpn}&upmbps={upmbps}&downmbps={downmbps}#{name}".format(
+        auth = share_link['password'],
+        server = share_link['server'],
+        port = share_link['port'],
+        allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
+        obfs = share_link.get('obfs', ''),
+        obfspassword = share_link.get('obfs-password', ''),
+        fingerprint = share_link.get('fingerprint', ''),
+        sni = share_link.get('sni', ''),
+        alpn = quote(','.join(share_link['alpn']), 'utf-8'),
+        upmbps = share_link.get('up', ''),
+        downmbps = share_link.get('down', ''),
+        name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
+        )
+        # TODO
+    elif share_link['type'] == 'wireguard':
+        link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey=={presharedKey}&ip={ip}&ipv6={ipv6}&mtu={mtu}&keepalive={keepalive}&udp=1&reserved={reserved}#{name}".format(
+        server = share_link['server'],
+        port = share_link['port'],
+        publicKey = share_link['publicKey'],
+        privateKey = share_link['privateKey'],
+        presharedKey = share_link['pre-shared-key'],
+        ip = share_link['ip'],
+        ipv6 = share_link.get('ipv6', ''),
+        mtu = share_link.get('mtu', '1280'),
+        keepalive = share_link.get('keepalive', '30'),
+        reserved = quote(','.join(share_link['reserved']), 'utf-8'),
+        name = quote(share_link['name'], 'utf-8')
+        )
+        # TODO
+    elif share_link['type'] == 'http':
+        http_info = {
+            "user": share_link['username'],
+            "password": share_link['password'],
+            "server": share_link['server'],
+            "port": share_link['port'],
+        }
+        base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**http_info).encode('utf-8')).decode('utf-8')
+        link = f"http://{base_link}"
+        # TODO
+    elif share_link['type'] == 'socks5':
+        socks5_info = {
+            "user": share_link['username'],
+            "password": share_link['password'],
+            "server": share_link['server'],
+            "port": share_link['port'],
+        }
+        base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**socks5_info).encode('utf-8')).decode('utf-8')
+        link = f"socks5://{base_link}"
         # TODO
     return link
