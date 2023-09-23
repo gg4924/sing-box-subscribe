@@ -182,7 +182,7 @@ def get_content_form_file(url):
     print('处理'+url)
     encoding = tool.get_encoding(url)
     data = tool.readFile(url)
-    data = bytes.decode(data,encoding=encoding)
+    data = bytes.decode(data, encoding='utf-8')
     data = tool.noblankLine(data)
     return data
 
