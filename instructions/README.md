@@ -6,18 +6,31 @@ It is not suitable for people who are completely unfamiliar with the sing-box co
 
 Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sagernet.org/configuration/).
 
+## Catalog
+
+[Operation video](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions/README.md#-demonstration-video)
+
+[Parameter meaning](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#providersjson-file)
+
+[Detailed template explanation](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#config-template-files)
+
+[Run sing-box on Windows](https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#windows-sing-box-usage)
+
 ## Supported Protocols
-- [x] shadowsocks
-- [x] shadowsocksR
-- [x] vmess
-- [x] trojan
-- [x] vless
-- [x] socks5
-- [x] http
-- [x] hysteria
-- [x] hysteria2
-- [x] tuic
-- [x] wireguard
+
+|  Protocol | V2 Sub | Clash Sub | URI Format |
+|  :----  | :----: | :----: | :----: |
+| http  | ✅ | ✅ | ✅ |
+| socks5  | ✅ | ✅ | ✅ |
+| shadowsocks  | ✅ | ✅ | ✅ |
+| shadowsocksR  | ✅ | ✅ | ✅ |
+| vmess  | ✅ | ✅ | ✅ |
+| trojan  | ✅ | ✅ | ✅ |
+| vless  | ✅ | ✅ | ✅ |
+| tuic  | ✅ | ✅ | ✅ |
+| hysteria  | ✅ | ✅ | ✅ |
+| hysteria2  | ✅ | ✅ | ✅ |
+| wireguard  | ✅ | ✅ | ✅ |
 
 ~Parsing of clash subscriptions is not supported~ Only parsing of the checked protocol sharing links in( **v2 or clash subscription format**) has been implemented for now. You can write your own protocol parsers, for example, `vless.py` (the filename must match the protocol name), and place it in the `parsers` directory. The `vless.py` file must include a `parse` function.
 
@@ -65,6 +78,14 @@ Android use chrome browser to open the webpage to generate the configuration fil
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c3c39033-079e-497c-86ef-532337d0262b" alt="how-to-use" width="70%" />
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/86334052-29ad-4677-bb65-b24bcc01030e" alt="fill-in" width="70%" />
   <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
+</div>
+
+## 🎬 Demonstration video
+
+<div align="center">
+      
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46e4-b1a8-a655109628e9
+
 </div>
 
 # II. Local installation
