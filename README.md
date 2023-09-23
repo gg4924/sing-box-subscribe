@@ -22,17 +22,17 @@
 
 |  协议 | V2格式 | Clash格式 | URI格式 |
 |  :----  | :----: | :----: | :----: |
-| http  | ✅ |  | ✅ |
-| socks5  | ✅ |  | ✅ |
+| http  | ✅ | ✅ | ✅ |
+| socks5  | ✅ | ✅ | ✅ |
 | shadowsocks  | ✅ | ✅ | ✅ |
 | shadowsocksR  | ✅ | ✅ | ✅ |
 | vmess  | ✅ | ✅ | ✅ |
 | trojan  | ✅ | ✅ | ✅ |
 | vless  | ✅ | ✅ | ✅ |
-| tuic  | ✅ |  | ✅ |
-| hysteria  | ✅ |  | ✅ |
-| hysteria2  | ✅ |  | ✅ |
-| wireguard  | ✅ |  | ✅ |
+| tuic  | ✅ | ✅ | ✅ |
+| hysteria  | ✅ | ✅ | ✅ |
+| hysteria2  | ✅ | ✅ | ✅ |
+| wireguard  | ✅ | ✅ | ✅ |
 
 
 ~不支持转换 clash 订阅的解析~ 暂时只写了以上打勾协议的**分享链接**的解析（**v2订阅格式/clash订阅格式**），因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
