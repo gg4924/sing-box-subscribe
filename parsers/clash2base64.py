@@ -93,6 +93,7 @@ def clash2v2ray(share_link):
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
         if trojan_info['type'] == 'tcp':
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
+        # TODO
     elif share_link['type'] == 'vless':
         vless_info = {
             "uuid": share_link['uuid'],
@@ -146,4 +147,20 @@ def clash2v2ray(share_link):
         control = share_link.get('congestion-controller', 'bbr'),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
         )
+        # TODO
+    elif share_link['type'] == 'hysteria':
+        link = "hysteria://{server}:{port}?protocol={protocol}&auth={auth}&alpn={alpn}&insecure={allowInsecure}&peer={sni}&upmbps={upmbps}&downmbps={downmbps}&obfs={obfs}#{name}".format(
+        server = share_link['server'],
+        port = share_link['port'],
+        protocol = share_link.get('port', 'udp'),
+        auth = share_link['auth-str'],
+        alpn = quote(','.join(share_link['alpn']), 'utf-8'),
+        allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
+        sni = share_link.get('sni', ''),
+        upmbps = share_link['up'],
+        downmbps = share_link['down'],
+        obfs = share_link.get('obfs', ''),
+        name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
+        )
+        # TODO
     return link
