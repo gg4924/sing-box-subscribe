@@ -16,7 +16,7 @@ def parse(data):
         'server_port': int(_netloc[1].rsplit(":", 1)[1]),
         'uuid': _netloc[0].split(":")[0],
         'password': _netloc[0].split(":")[1],
-        'congestion_control': netquery.get('congestion_control', 'cubic'),
+        'congestion_control': netquery.get('congestion_control', 'bbr'),
         'udp_relay_mode': netquery.get('udp_relay_mode'),
         'zero_rtt_handshake': False,
         'heartbeat': '10s',
