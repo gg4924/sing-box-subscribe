@@ -20,12 +20,12 @@
 
 ## 支持协议
 
-|  协议 | V2格式 | Clash格式 | URI格式 | SingBox格式 |
-|  :----  | :----: | :----: | :----: | :----: |
+|  协议 | V2格式 | Clash格式 | URI格式 | SingBox格式 | 备注 |
+|  :----  | :----: | :----: | :----: | :----: | :----: |
 | http  | ✅ | ✅ | ✅ | ✅ |
 | socks5  | ✅ | ✅ | ✅ | ✅ |
 | shadowsocks  | ✅ | ✅ | ✅ | ✅ |
-| shadowsocksR  | ✅ | ✅ | ✅ | ✅ |
+| shadowsocksR  | ✅ | ✅ | ✅ | ✅ | singbox不支持 |
 | vmess  | ✅ | ✅ | ✅ | ✅ |
 | trojan  | ✅ | ✅ | ✅ | ✅ |
 | vless  | ✅ | ✅ | ✅ | ✅ |
