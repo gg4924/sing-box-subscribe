@@ -123,7 +123,7 @@ def generate_config():
         config_data = json.loads(config_content)
         return Response(config_content, content_type='text/plain; charset=utf-8')
     except subprocess.CalledProcessError as e:
-        flash(f'执行子进程时出错：{str(e)}', 'error')
+        flash(f'执行子进程时出错，请填写订阅地址：{str(e)}', 'error')
     except Exception as e:
         flash(f'生成配置文件时出错：{str(e)}', 'error')
         flash(f'订阅解析失败: 请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败')
