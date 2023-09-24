@@ -100,13 +100,25 @@ def get_nodes(url):
         content = get_content_form_file(url)
     else:
         content = get_content_from_url(url)
+    #print (content)
     if type(content) == dict:
-        share_links = []
-        for proxy in content['proxies']:
-            share_links.append(clash2v2ray(proxy))
-        data = '\n'.join(share_links)
-        data = parse_content(data)
-        return data
+        if 'proxies' in content:
+            share_links = []
+            for proxy in content['proxies']:
+                share_links.append(clash2v2ray(proxy))
+            data = '\n'.join(share_links)
+            data = parse_content(data)
+            return data
+        elif 'outbounds' in content:
+            outbounds_0 = content['outbounds'][0]['outbounds']
+            outbounds_tags = [item["tag"] for item in content["outbounds"][1:]]
+            matching_tags = [tag for tag in outbounds_tags if tag in outbounds_0]
+            matching_indices = []
+            for i, outbound in enumerate(content["outbounds"][1:]):
+                if outbound["tag"] in matching_tags:
+                    matching_indices.append(i + 1)  # 添加1以补偿切片的偏移
+            data = [content["outbounds"][i] for i in matching_indices]
+            return data
     else:
         data = parse_content(content)
         return data
@@ -159,13 +171,18 @@ def get_content_from_url(url,n=6):
     if response_text.isspace():
         print('没有从订阅链接获取到任何内容')
         return None
-    if any(substring in response_text for substring in ["vmess", "vless", "ss", "ssr", "trojan", "tuic", "hysteria"]) and 'proxies' not in response_text:
+    if any(substring in response_text for substring in ["vmess", "vless", "ss", "ssr", "trojan", "tuic", "hysteria"]) and not ('proxies' or 'outbounds' in response_text):
         response_text = tool.noblankLine(response_text)
         return response_text
     elif 'proxies' in response_text:
         yaml = ruamel.yaml.YAML()
         try:
             response_text = dict(yaml.load(response.text))
+        except:
+            pass
+    elif 'outbounds' in response_text:
+        try:
+            response_text = json.loads(response.text)
         except:
             pass
     else:
