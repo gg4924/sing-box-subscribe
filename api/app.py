@@ -106,7 +106,7 @@ def generate_config():
             return redirect(url_for('index'))
         temp_json_data = json.dumps(os.environ['TEMP_JSON_DATA'], indent=4, ensure_ascii=False)
         # 修改这里：执行main.py并传递模板序号作为命令行参数，如果未指定，则传递空字符串
-        subprocess.call([sys.executable, 'main.py', '--template_index', selected_template_index, '--temp_json_data', temp_json_data])
+        subprocess.check_call([sys.executable, 'main.py', '--template_index', selected_template_index, '--temp_json_data', temp_json_data])
         CONFIG_FILE_NAME = json.loads(os.environ['TEMP_JSON_DATA']).get("save_config_path", "config.json")
         if CONFIG_FILE_NAME.startswith("./"):
             CONFIG_FILE_NAME = CONFIG_FILE_NAME[2:]
@@ -122,7 +122,8 @@ def generate_config():
                 flash('配置文件生成成功', 'success')
         config_data = json.loads(config_content)
         return Response(config_content, content_type='text/plain; charset=utf-8')
-
+    except subprocess.CalledProcessError as e:
+        flash(f'执行子进程时出错：{str(e)}', 'error')
     except Exception as e:
         flash(f'生成配置文件时出错：{str(e)}', 'error')
         flash(f'订阅解析失败: 请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败')
