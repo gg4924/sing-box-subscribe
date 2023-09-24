@@ -25,7 +25,7 @@
 | http  | ✅ | ✅ | ✅ | ✅ |
 | socks5  | ✅ | ✅ | ✅ | ✅ |
 | shadowsocks  | ✅ | ✅ | ✅ | ✅ |
-| shadowsocksR  | ✅ | ✅ | ✅ | singbox不支持此协议 |
+| shadowsocksR  | ✅ | ✅ | ✅ | singbox默认不支持此协议 |
 | vmess  | ✅ | ✅ | ✅ | ✅ |
 | trojan  | ✅ | ✅ | ✅ | ✅ |
 | vless  | ✅ | ✅ | ✅ | ✅ |
