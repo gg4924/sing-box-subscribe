@@ -17,8 +17,7 @@ regex_patterns = {
     '🇲🇴': re.compile(r'澳门|澳門|(\s|-)?MO\d*|CTM|MAC|Macao|Macau'),
     '🇸🇬': re.compile(r'新加坡|狮城|獅城|沪新|京新|泉新|穗新|深新|杭新|广新|廣新|滬新|SG|Singapore|SINGAPORE'),
     '🇯🇵': re.compile(r'日本|东京|大阪|埼玉|京日|苏日|沪日|上日|穗日|川日|中日|泉日|杭日|深日|辽日|广日|JP|Japan|JAPAN'),
-    '🇺🇸': re.compile(r'美国|京美|硅谷|凤凰城|洛杉矶|西雅图|圣何塞|芝加哥|哥伦布|纽约|(\s|-)?(?<![AR])US\d*
-|USA|America|United States'),
+    '🇺🇸': re.compile(r'美国|京美|硅谷|凤凰城|洛杉矶|西雅图|圣何塞|芝加哥|哥伦布|纽约|(\s|-)?(?<![AR])US\d*|USA|America|United States'),
     '🇰🇷': re.compile(r'韩国|首尔|韩|韓|春川|KOR|KR|Korea'),
     '🇰🇵': re.compile(r'朝鲜|KP|North Korea'),
     '🇷🇺': re.compile(r'俄罗斯|毛子|俄国|RU|RUS|Russia'),
