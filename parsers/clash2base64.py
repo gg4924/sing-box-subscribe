@@ -17,7 +17,7 @@ def clash2v2ray(share_link):
             "path": share_link.get('ws-path', {}) or share_link.get('ws-opts', {}).get('path'),
             "tls": ''
         }
-        if share_link.get('tls') != False:
+        if share_link.get('tls') and share_link['tls'] != False:
             vmess_info['tls'] = 'tls'
         if vmess_info['net'] == 'grpc':
             vmess_info["type"] = share_link.get('grpc-opts', {}).get('grpc-mode')
