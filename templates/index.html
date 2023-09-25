@@ -5,6 +5,16 @@
     <link rel="icon" href="https://raw.githubusercontent.com/Toperlock/sing-box-subscribe/main/public/favicon.ico" type="image/x-icon">
     <title>生成sing-box配置</title>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 使内容在垂直方向上居中 */
+            margin: 0; /* 去掉默认的页面边距 */
+            font-family: Arial, sans-serif; /* 可选的字体 */
+            background-color: #f2f2f2;
+        }
         .container {
             display: flex;
         }
@@ -38,7 +48,7 @@
             </form>
         </div>
         <div class="right-box">
-            <h1>编辑服务器 TEMP_JSON_DATA</h1>
+            <h1>编辑 TEMP_JSON_DATA</h1>
             <form id="temp-json-form" method="POST" action="/edit_temp_json">
                 <textarea name="temp_json_data" rows="10" cols="40" style="width: 400px; height: 400px;">{{ temp_json_data | default('') }}</textarea>
                 <br>
@@ -47,9 +57,9 @@
         </div>
     </div>
     <div id="config-content">
-        <h1><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">点击查看操作说明</a> 
+        <h3><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">点击查看操作说明</a> 
             <span style="font-weight: bold; color: red;">提醒: 点击保存后请立即生成配置文件！！！不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span>
-        </h1>
+        </h3>
         <pre id="config-text"></pre>
     </div>
     <script>
