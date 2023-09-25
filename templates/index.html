@@ -53,7 +53,7 @@
         <pre id="config-text"></pre>
     </div>
     <script>
-        const initialTempJsonData = '{"{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":"","UA":""}';
+        const initialTempJsonData = '{"{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":""}';
         let tempJsonData = initialTempJsonData;
         document.querySelector('#temp-json-form').addEventListener('submit', async (e) => {
             e.preventDefault();
