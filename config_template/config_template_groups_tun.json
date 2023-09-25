@@ -126,18 +126,6 @@
       ]
     },
     {
-      "tag":"📽️ Youtube",
-      "type":"selector",
-      "outbounds":[
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["🇭🇰","HK","hk","香港","🇹🇼","TW","tw","台湾","臺灣","🇸🇬","SG","sg","新加坡","狮","🇯🇵","jp","JP","日本","🇺🇸","us","US","美国","美國","🇰🇷","kr","KR","韩国","韓國"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
-      ]
-    },
-    {
       "tag":"🌌 Google",
       "type":"selector",
       "outbounds":[
@@ -361,7 +349,7 @@
       },
       {
         "geosite":"youtube",
-        "outbound":"📽️ Youtube"
+        "outbound":"🌌 Google"
       },
       {
         "geoip":"google",
