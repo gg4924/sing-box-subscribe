@@ -175,7 +175,8 @@ windows系统建议将命令添加到批处理程序运行。
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol":""
+    "exlude_protocol":"",
+    "UA":""
 }
 ```
 - `url`：必须。
@@ -237,7 +238,10 @@ windows系统建议将命令添加到批处理程序运行。
 
 > 使用此设置中的协议的分享链接会被忽略。
 
-> ~~sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。~~
+> sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。
+
+- `UA`：非必需。
+> 可以自定义UA，比如设置UA为"clash.meta"，或者"sing-box"
 
 # config模板文件
 脚本会在 config_template 目录下查找 json 模板文件，脚本运行时可以选择使用的模板文件。
