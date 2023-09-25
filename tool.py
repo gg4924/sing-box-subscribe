@@ -12,7 +12,7 @@ def saveFile(path,content):
     file.close()
 
 regex_patterns = {
-    '🇭🇰': re.compile(r'香港|沪港|呼港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|HK|Hongkong|Hong Kong|HongKong|HONG KONG'),
+    '🇭🇰': re.compile(r'香港|沪港|呼港|中港|HKT|HKBN|HGC|WTT|CMI|穗港|京港|HK|Hongkong|Hong Kong|HongKong|HONG KONG'),
     '🇹🇼': re.compile(r'台湾|台北|台中|新北|彰化|台|CHT|HINET|TW|Taiwan|TAIWAN'),
     '🇲🇴': re.compile(r'澳门|澳門|(\s|-)?MO\d*|CTM|MAC|Macao|Macau'),
     '🇸🇬': re.compile(r'新加坡|狮城|獅城|沪新|京新|泉新|穗新|深新|杭新|广新|廣新|滬新|SG|Singapore|SINGAPORE'),
@@ -26,7 +26,6 @@ regex_patterns = {
     '🇬🇧': re.compile(r'英国|伦敦|UK|England|United Kingdom|Britain'),
     '🇩🇪': re.compile(r'德国|德國|法兰克福|(\s|-)?DE\d*|German|GERMAN'),
     '🇫🇷': re.compile(r'法国|法國|巴黎|FR|France'),
-    '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|沈阳|济南|回国|back|(\s|-)?CN(?!2GIA)\d*|China'),
     '🇩🇰': re.compile(r'丹麦|丹麥|DK|DNK|Denmark'),
     '🇳🇴': re.compile(r'挪威|(\s|-)?NO\d*|Norway'),
     '🇮🇹': re.compile(r'意大利|義大利|米兰|(\s|-)?IT\d*|Italy|Nachash'),
@@ -154,6 +153,7 @@ regex_patterns = {
     '🇭🇳': re.compile(r'洪都拉斯|(\s|-)?HN\d*|Honduras'),
     '🇳🇮': re.compile(r'尼加拉瓜|(\s|-)?NI\d*|Nicaragua'),
     '🇦🇶': re.compile(r'南极|南極|(\s|-)?AQ\d*|Antarctica'),
+    '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|沈阳|济南|回国|back|(\s|-)?CN(?!2GIA)\d*|China'),
 }
 def rename(input_str):
     for country_code, pattern in regex_patterns.items():
