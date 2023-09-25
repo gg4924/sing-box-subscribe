@@ -17,14 +17,30 @@
         }
         .container {
             display: flex;
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 水平居中对齐 */
         }
+        /*
         .left-box {
             flex: 1;
             padding: 10px;
         }
+        */
         .right-box {
             flex: 1;
             padding: 10px;
+        }
+        /* 媒体查询：屏幕宽度小于768px时应用下面的样式 */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column; /* 垂直排列 */
+            }
+            .right-box {
+                width: 100%; /* 平分屏幕宽度 */
+            }
+            .config-content {
+                white-space: normal; /* 在小屏幕下允许内容换行 */
+            }
         }
     </style>
 </head>
@@ -40,6 +56,7 @@
     </form>
 
     <div class="container">
+        <!--
         <div class="left-box">
             <h1>Providers JSON 模板</h1>
             <form id="providers-form" method="POST" action="/update_providers">
@@ -47,6 +64,7 @@
                 <br>
             </form>
         </div>
+        -->
         <div class="right-box">
             <h1>编辑 TEMP_JSON_DATA</h1>
             <form id="temp-json-form" method="POST" action="/edit_temp_json">
@@ -55,12 +73,14 @@
                 <input type="submit" value="保存">
             </form>
         </div>
-    </div>
-    <div id="config-content">
-        <h3><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">点击查看操作说明</a> 
-            <span style="font-weight: bold; color: red;">提醒: 点击保存后请立即生成配置文件！！！不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span>
-        </h3>
-        <pre id="config-text"></pre>
+        <div class="config-content">
+            <h3><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">点击查看操作说明</a></h3>
+            <h3><span style="font-weight: bold; color: red;">提醒: 点击保存后请立即生成配置文件！！！</span>
+            </h3>
+            <h3><span style="font-weight: bold; color: red;">不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span>
+            </h3>
+            <pre id="config-text"></pre>
+        </div>
     </div>
     <script>
         const initialTempJsonData = '{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":"","UA":""}';
