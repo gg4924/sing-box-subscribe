@@ -21,6 +21,5 @@
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol":"",
-    "UA":""
+    "exlude_protocol":""
 }
