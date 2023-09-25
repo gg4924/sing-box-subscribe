@@ -77,9 +77,7 @@ Android使用chrome浏览器打开网页生成配置文件，长按内容，全�
 **注意点击保存后，尽快去生成配置文件，不然你填的内容会一直保留在网页上，别人打开网站也可以浏览到。目前想不到解决办法**
 
 <div align="left">
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c3c39033-079e-497c-86ef-532337d0262b" alt="how-to-use" width="70%" />
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/86334052-29ad-4677-bb65-b24bcc01030e" alt="fill-in" width="70%" />
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/5d85ba1a-d169-4b5e-af18-8844adb082c3" alt="how-to-use" width="60%" />
 </div>
 
 ## 🎬 功能演示视频
