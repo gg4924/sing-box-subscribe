@@ -153,7 +153,7 @@ def get_parser(node):
         return None
     return parsers_mod[proto].parse
 
-def get_content_from_url(url,n=6):
+def get_content_from_url(url,n=7):
     print('处理'+url)
     response = tool.getResponse(url, custom_user_agent=providers['UA'])
     concount = 1
