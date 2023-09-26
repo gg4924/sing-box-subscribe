@@ -20,10 +20,10 @@ def parse(data):
         "password": server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
         'tls': {
             'enabled': True,
-            'server_name': netquery.get('sni', re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0])),
-            'alpn': [netquery.get('alpn', 'h3')]
+            'server_name': netquery.get('sni', re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]))
         }
     }
+    node['tls']['alpn'] = [netquery.get('alpn', '').strip('{}').split(',')] if netquery.get('alpn') != '' else ["h3"]
     if netquery.get('upmbps'):
         node['tls']['up_mbps'] = int(netquery.get('upmbps'))
     if netquery.get('downmbps'):
