@@ -21,7 +21,7 @@ def parse(data):
     if netquery.get('allowInsecure') and netquery['allowInsecure'] == '1' :
         node['tls']['insecure'] = True
     if netquery.get('alpn'):
-        node['tls']['alpn'] = [netquery.get('alpn')]
+        node['tls']['alpn'] = [netquery.get('alpn').strip('{}').split(',')]
     if netquery.get('sni'):
         node['tls']['server_name'] = netquery.get('sni')
     if netquery.get('fp'):
