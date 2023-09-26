@@ -174,7 +174,7 @@ windows系统建议将命令添加到批处理程序运行。
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol":"",
-    "UA":""
+    "User-Agent":""
 }
 ```
 - `url`：必须。
@@ -240,7 +240,7 @@ windows系统建议将命令添加到批处理程序运行。
 
 > sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。
 
-- `UA`：非必需。
+- `User-Agent`：非必需。
 > 可以自定义UA，比如设置UA为"clash.meta"，或者"sing-box"
 
 # config模板文件
