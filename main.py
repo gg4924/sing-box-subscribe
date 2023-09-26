@@ -155,7 +155,7 @@ def get_parser(node):
 
 def get_content_from_url(url,n=6):
     print('处理'+url)
-    response = tool.getResponse(url, custom_user_agent=providers['User-Agent'])
+    response = tool.getResponse(url, custom_user_agent=providers.get('User-Agent', ''))
     concount = 1
     while concount <= n and not response:
         print('连接出错，正在进行第 '+str(concount)+' 次重试，最多重试 '+str(n)+' 次...')
