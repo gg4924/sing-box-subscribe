@@ -22,7 +22,7 @@ def parse(data):
         'heartbeat': '10s',
         'tls': {
             'enabled': True,
-            'alpn': [netquery.get('alpn').strip('{}').split(',')]
+            'alpn': netquery.get('alpn').strip('{}').split(',')
         }
     }
     if netquery.get('allow_insecure') and netquery['allow_insecure'] == '1' :
