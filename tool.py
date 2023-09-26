@@ -150,7 +150,7 @@ regex_patterns = {
     '🇵🇷': re.compile(r'波多黎各|(\s|-)?PR\d*|Puerto Rico'),
     '🇰🇾': re.compile(r'开曼群岛|開曼群島|盖曼群岛|凯门群岛|(\s|-)?KY\d*|Cayman Islands'),
     '🇸🇯': re.compile(r'斯瓦尔巴|扬马延|(\s|-)?SJ\d*|Svalbard|Mayen'),
-    '🇭🇳': re.compile(r'洪都拉斯|(\s|-)?HN\d*|Honduras'),
+    '🇭🇳': re.compile(r'洪都拉斯|Honduras'),
     '🇳🇮': re.compile(r'尼加拉瓜|(\s|-)?NI\d*|Nicaragua'),
     '🇦🇶': re.compile(r'南极|南極|(\s|-)?AQ\d*|Antarctica'),
     '🇨🇳': re.compile(r'中国|中國|江苏|北京|上海|广州|深圳|杭州|徐州|青岛|宁波|镇江|沈阳|济南|回国|back|(\s|-)?CN(?!2GIA)\d*|China'),
