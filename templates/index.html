@@ -45,15 +45,16 @@
     </style>
 </head>
 <body>
-    <h1>选择配置模板</h1>
-    <form method="POST" action="/generate_config">
-        <select name="template_index">
-            {% for option in template_options %}
-            <option value="{{ loop.index - 1 }}">{{ option }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="生成配置文件">
-    </form>
+    <div class="form-container" style="display: flex; align-items: center;">
+        <form method="POST" action="/generate_config" style="display: flex; align-items: center;">
+            <select name="template_index">
+                {% for option in template_options %}
+                <option value="{{ loop.index - 1 }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="选择此模板生成配置文件">
+        </form>
+    </div>
 
     <div class="container">
         <!--
