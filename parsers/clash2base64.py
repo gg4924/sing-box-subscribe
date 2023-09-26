@@ -99,7 +99,7 @@ def clash2v2ray(share_link):
             "uuid": share_link['uuid'],
             "server": share_link['server'],
             "port": share_link['port'],
-            "sni": share_link.get('servername', ''),
+            "sni": share_link.get('servername', share_link.get('sni')),
             "fp": share_link.get('client-fingerprint', ''),
             "type": share_link.get('network', 'tcp'),
             "flow": share_link.get('flow', ''),
@@ -107,8 +107,8 @@ def clash2v2ray(share_link):
         }
         if vless_info['type'] == 'ws':
             vless_info["security"] = 'tls'
-            vless_info["path"] = quote(share_link['ws-opts']['path'], 'utf-8')
-            vless_info["host"] = share_link['ws-opts']['headers']['Host']
+            vless_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
+            vless_info["host"] = share_link['ws-opts']['headers'].get('Host', '')
             link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}#{name}".format(**vless_info)
         if vless_info['type'] == 'grpc':
             if share_link.get('grpc-opts').get('grpc-service-name') != '/' :
