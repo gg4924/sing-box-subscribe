@@ -42,7 +42,7 @@ def parse(data):
         if netquery['type'] == 'ws':
             node['transport'] = {
                 'type':'ws',
-                "path": netquery['path'].rsplit("?")[0],
+                "path": netquery['path'],
                 "headers": {
                 "Host": netquery.get('sni')
                 }
