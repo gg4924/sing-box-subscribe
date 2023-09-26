@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <h1>请选择配置模板</h1>
+    <h1>选择配置模板</h1>
     <form method="POST" action="/generate_config">
         <select name="template_index">
             {% for option in template_options %}
@@ -74,13 +74,10 @@
             </form>
         </div>
         <div class="config-content">
-            <h3><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">点击查看操作说明</a></h3>
-            <h3><span style="font-weight: bold; color: red;">提醒: 点击保存后请立即生成配置文件！！！</span>
-            </h3>
-            <h3><span style="font-weight: bold; color: red;">不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span>
-            </h3>
-            <h3><span style="font-weight: bold; color: red;">解析失败请尝试更换 "UA"，还是不行请下载到本地运行脚本保证成功</span>
-            </h3>
+            <h3 style="margin: 5px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">点击查看操作说明</a></h3>
+            <h3 style="margin: 5px 0; font-size: 14px;"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">提醒: 点击保存后请立即生成配置文件！！！</span></h3>
+            <h3 style="margin: 5px 0; font-size: 14px;"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span></h3>
+            <h3 style="margin: 5px 0; font-size: 14px;"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">解析失败请尝试更换 "UA"，还是不行请下载到本地运行脚本保证成功</span></h3>
             <pre id="config-text"></pre>
         </div>
     </div>
