@@ -30,7 +30,7 @@ def parse(data):
                 if kname in pdict.keys():
                     #kname = pdict[kname]
                     plugin_opts[kname] = key_value[1]
-        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
+            node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
     if param.find('?') > -1 and param[param.find('?')-1] != '/':
         plugin_opts={}
         plugin = urllib.parse.unquote(param[param.find('?') + 1:])
