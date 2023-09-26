@@ -18,10 +18,10 @@ def parse(data):
         'auth_str': netquery.get('auth'),
         'tls': {
             'enabled': True,
-            'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0])),
-            'alpn': [netquery.get('alpn', 'h3')]
+            'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]))
         }
     }
+    node['tls']['alpn'] = [netquery.get('alpn', '').strip('{}').split(',')] if netquery.get('alpn') != '' else ["h3"]
     if netquery.get('insecure') and netquery['insecure'] == '1' or netquery.get('allowInsecure') and netquery['allowInsecure'] == '1':
         node['tls']['insecure'] = True
     if netquery.get('obfs') and netquery['obfs'] != 'none':
