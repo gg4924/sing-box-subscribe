@@ -37,12 +37,13 @@ def parse(data):
                 'path':netquery.get('path', '/')
             }
         if netquery['type'] == 'ws':
-            node['transport'] = {
-                'type':'ws',
-                'path':netquery.get('path', '/')
-            }
             if netquery.get('host'):
-                node['transport']['headers']['Host'] = netquery['host']
+                node['transport'] = {
+                     'type':'ws',
+                     'path':netquery.get('path', '/'),
+                     'headers': {
+                         'Host': netquery.get('host')
+                    }
         if netquery['type'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
