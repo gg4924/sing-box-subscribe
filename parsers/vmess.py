@@ -21,6 +21,7 @@ def parse(data):
         'alter_Id': int(item.get('aid')),
         'packet_encoding': 'xudp'
     }
+    if item.get
     if item.get('tls') and item['tls'] != '':
         node['tls']={
             'enabled': True,
@@ -36,7 +37,9 @@ def parse(data):
     if item.get("net"):
         if item['net']=='tcp':
             node['network'] = 'tcp'
-        if item['net'] in ['tcp','hs']:
+            if item.get("verify_cert") == True:
+                node['tls']['insecure'] = True
+        if item['net'] == 'hs':
             node['transport'] = {
                 'type':'http'
             }
