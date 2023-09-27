@@ -12,6 +12,7 @@ def clash2v2ray(share_link):
             "id": share_link['uuid'],
             "aid": share_link['alterId'],
             "net": share_link.get('network', 'tcp'),
+            "scy": share_link.get('cipher', 'auto'),
             "type": "none",
             "host": share_link.get('ws-opts', {}).get('headers', {}).get('Host', '') or share_link.get('ws-headers', {}).get('Host', ''),
             "path": share_link.get('ws-path', {}) or share_link.get('ws-opts', {}).get('path'),
