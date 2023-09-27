@@ -36,10 +36,6 @@ def parse(data):
     if item.get("net"):
         if item['net']=='tcp':
             node['network'] = 'tcp'
-            if item.get("verify_cert") == True:
-                node['tls']={
-                    'insecure': True
-                }
         if item['net'] == 'hs':
             node['transport'] = {
                 'type':'http'
