@@ -23,7 +23,9 @@ def parse(data):
     }
     if item.get('tls') and item['tls'] != '':
         node['tls']={
-            'enabled': True
+            'enabled': True,
+            'insecure': True,
+            'server_name': item.get('host', '')
         }
         if item.get('sni'):
             node['tls']['server_name'] = item['sni']
