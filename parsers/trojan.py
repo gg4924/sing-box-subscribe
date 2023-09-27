@@ -23,7 +23,7 @@ def parse(data):
     if netquery.get('alpn'):
         node['tls']['alpn'] = netquery.get('alpn').strip('{}').split(',')
     if netquery.get('sni'):
-        node['tls']['server_name'] = netquery.get('sni')
+        node['tls']['server_name'] = netquery.get('sni', '')
     if netquery.get('fp'):
         node['tls']['utls'] = {
             'enabled': True,
@@ -39,11 +39,10 @@ def parse(data):
         if netquery['type'] == 'ws':
             node['transport'] = {
                 'type':'ws',
-                'path':netquery.get('path', '/'),
-                'headers': {
-                    'Host': netquery.get('host', node['server'])
-                }
+                'path':netquery.get('path', '/')
             }
+            if netquery.get('host'):
+                node['transport']['headers']['Host'] = netquery['host']
         if netquery['type'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
