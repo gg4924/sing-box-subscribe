@@ -74,7 +74,7 @@ def clash2v2ray(share_link):
             "skip_cert_verify": '1' if share_link.get('skip-cert-verify') else "",
             "type": share_link.get('network', 'tcp'),
             "fp": share_link.get('client-fingerprint', ''),
-            "alpn": quote(','.join(share_link['alpn']), 'utf-8'),
+            "alpn": quote(','.join(share_link.get('alpn', '')), 'utf-8'),
             "name": quote(share_link['name'], 'utf-8')
         }
         if trojan_info['type'] == 'grpc':
@@ -86,7 +86,7 @@ def clash2v2ray(share_link):
         if trojan_info['type'] == 'ws':
             if share_link.get('ws-opts'):
                 trojan_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
-                trojan_info["host"] = share_link['ws-opts']['headers'].get('Host', '')
+                trojan_info["host"] = share_link.get('ws-opts', {}).get('headers', {}).get('Host', '')
             else:
                 trojan_info["path"] = ''
                 trojan_info["host"] = trojan_info["sni"]
@@ -139,7 +139,7 @@ def clash2v2ray(share_link):
         password = share_link['password'],
         server = share_link['server'],
         port = share_link['port'],
-        alpn = quote(','.join(share_link['alpn']), 'utf-8'),
+        alpn = quote(','.join(share_link.get('alpn', '')), 'utf-8'),
         allowInsecure = share_link.get('allowInsecure', '1'),
         disable_sni = '0' if share_link.get('disable-sni', '') == False else '1',
         sni = share_link.get('sni', ''),
@@ -154,7 +154,7 @@ def clash2v2ray(share_link):
         port = share_link['port'],
         protocol = share_link.get('port', 'udp'),
         auth = share_link['auth-str'],
-        alpn = quote(','.join(share_link['alpn']), 'utf-8'),
+        alpn = quote(','.join(share_link.get('alpn', '')), 'utf-8'),
         allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
         sni = share_link.get('sni', ''),
         upmbps = share_link.get('up', ''),
@@ -173,7 +173,7 @@ def clash2v2ray(share_link):
         obfspassword = share_link.get('obfs-password', ''),
         fingerprint = share_link.get('fingerprint', ''),
         sni = share_link.get('sni', ''),
-        alpn = quote(','.join(share_link['alpn']), 'utf-8'),
+        alpn = quote(','.join(share_link.get('alpn', '')), 'utf-8'),
         upmbps = share_link.get('up', ''),
         downmbps = share_link.get('down', ''),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
