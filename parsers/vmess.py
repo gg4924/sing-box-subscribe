@@ -41,7 +41,7 @@ def parse(data):
                 'type':'http'
             }
             if item.get('host'):
-                node['transport']['host'] = item['host'].split(',')
+                node['transport']['host'] = item['host'].split(',')[0]
             if item.get('path'):
                 node['transport']['path'] = item['path'].rsplit("?")[0]
         if item['net'] == 'ws':
