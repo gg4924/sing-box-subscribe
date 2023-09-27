@@ -44,6 +44,7 @@ def parse(data):
                      'headers': {
                          'Host': netquery.get('host')
                     }
+                }
         if netquery['type'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
