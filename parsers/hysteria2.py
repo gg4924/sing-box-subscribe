@@ -14,6 +14,8 @@ def parse(data):
         'server': re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1].split(",")[0]),
         "password": server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
+        'up_mbps': int(netquery.get('upmbps', '10')),
+        'down_mbps': int(netquery.get('downmbps', '50')),
         'tls': {
             'enabled': True,
             'server_name': netquery.get('sni', re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]))
@@ -27,8 +29,4 @@ def parse(data):
             'type': netquery['obfs'],
             'password': netquery['obfs-password'],
         }
-    if netquery.get('upmbps'):
-        node['tls']['up_mbps'] = int(netquery.get('upmbps'))
-    if netquery.get('downmbps'):
-        node['tls']['down_mbps'] = int(netquery.get('downmbps'))
     return (node)
