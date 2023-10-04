@@ -158,6 +158,8 @@ regex_patterns = {
 def rename(input_str):
     for country_code, pattern in regex_patterns.items():
         if pattern.search(input_str):
+            if input_str.startswith('🇺🇲'):
+                input_str = country_code + ' ' + input_str[len('🇺🇲'):].strip()
             if input_str.startswith(country_code):
                 input_str = country_code + ' ' + input_str[len(country_code):].strip()
             else:
