@@ -34,8 +34,6 @@ def parse(data):
                 'fingerprint': item.get('fp', '')
             }
     if item.get("net"):
-        if item['net']=='tcp':
-            node['network'] = 'tcp'
         if item['net'] == 'hs':
             node['transport'] = {
                 'type':'http'
