@@ -21,8 +21,7 @@
       },
       {
         "tag": "remote",
-        "address": "fakeip",
-        "detour": "proxy"
+        "address": "fakeip"
       }
     ],
     "rules": [
