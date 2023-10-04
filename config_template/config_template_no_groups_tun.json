@@ -69,6 +69,7 @@
         "server": "remote"
       }
     ],
+    "final": "localDns",
     "fakeip": {
       "enabled": true,
       "inet4_range": "198.18.0.0/15",
@@ -145,7 +146,7 @@
     },
     {
       "type": "dns",
-      "tag": "dns"
+      "tag": "dns-out"
     },
     {
       "type": "block",
@@ -166,7 +167,7 @@
     "rules": [
       {
         "protocol": "dns",
-        "outbound": "dns"
+        "outbound": "dns-out"
       },
       {
         "network": "udp",
