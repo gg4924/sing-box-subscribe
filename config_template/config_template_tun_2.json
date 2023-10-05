@@ -80,6 +80,7 @@
       "tag":"proxy",
       "type":"selector",
       "outbounds":[
+	"direct",
         "auto",
         "{all}"
       ]
