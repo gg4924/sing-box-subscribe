@@ -261,14 +261,6 @@
       ]
     },
     {
-      "tag":"Speedtest",
-      "type":"selector",
-      "outbounds":[
-        "direct",
-        "proxy"
-      ]
-    },
-    {
       "tag":"auto",
       "type":"urltest",
       "outbounds":[
@@ -332,16 +324,6 @@
           "d.metacubex.one"
         ],
         "outbound": "direct"
-      },
-      {
-        "domain_keyword":[
-          "speedtest"
-        ],
-        "domain_suffix":[
-          "cdnst.net",
-          "ziffstatic.com"
-        ],
-        "outbound": "Speedtest"
       },
       {
         "geosite":"openai",
