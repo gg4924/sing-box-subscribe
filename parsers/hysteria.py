@@ -15,7 +15,7 @@ def parse(data):
         'server_port': int(server_info.netloc.rsplit(":", 1)[1]),
         'up_mbps': int(netquery.get('upmbps', '10')),
         'down_mbps': int(netquery.get('downmbps', '100')),
-        'auth_str': netquery.get('auth'),
+        'auth_str': netquery.get('auth', ''),
         'tls': {
             'enabled': True,
             'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]))
