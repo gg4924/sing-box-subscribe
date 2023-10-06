@@ -9,12 +9,12 @@ def parse(data):
         for k, v in parse_qs(server_info.query).items()
     )
     node = {
-        'tag': unquote(server_info.fragment),
+        'tag': unquote(server_info.fragment) or tool.genName()+'_hysteria',
         'type': 'hysteria',
         'server': re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1]),
-        'up_mbps': int(netquery.get('upmbps')),
-        'down_mbps': int(netquery.get('downmbps')),
+        'up_mbps': int(netquery.get('upmbps', '10')),
+        'down_mbps': int(netquery.get('downmbps', '100')),
         'auth_str': netquery.get('auth'),
         'tls': {
             'enabled': True,
