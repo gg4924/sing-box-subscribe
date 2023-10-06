@@ -4,15 +4,15 @@ def parse(data):
     if not param or param.isspace():
         return None
     node = {
-        'tag':tool.genName(),
+        'tag':tool.genName()+'_shadowsocks',
         'type':'shadowsocks',
         'server':None,
         'server_port':0,
         'method':None,
         'password':None
     }
-    if param.find('#') > -1:
-        flag = 0
+    flag = 0
+    if param.find('#') > -1 and param[param.find('#') + 1:] != '':
         remark = urllib.parse.unquote(param[param.find('#') + 1:])
         node['tag'] = remark
         param = param[:param.find('#')]
