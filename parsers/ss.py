@@ -48,7 +48,7 @@ def parse(data):
         elif plugin.startswith('shadow-tls'):
             flag = 1
             plugin = eval(str(tool.b64Decode(plugin.split('=')[1]),'utf-8'))
-            node['detour'] = tool.genName()
+            node['detour'] = tool.genName()+'_shadowtls'
             node_tls = {
                 'tag':node['detour'],
                 'type':'shadowtls',
