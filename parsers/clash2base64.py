@@ -1,4 +1,4 @@
-import base64,json
+import base64,json,re
 from urllib.parse import quote, unquote
 
 def clash2v2ray(share_link):
@@ -156,12 +156,12 @@ def clash2v2ray(share_link):
         server = share_link['server'],
         port = share_link['port'],
         protocol = share_link.get('port', 'udp'),
-        auth = share_link['auth-str'],
+        auth = share_link.get('auth-str', ''),
         alpn = quote(','.join(share_link.get('alpn', '')), 'utf-8'),
         allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
         sni = share_link.get('sni', ''),
-        upmbps = share_link.get('up', ''),
-        downmbps = share_link.get('down', ''),
+        upmbps = int(re.search(r'\d+', str(share_link.get('up', '')))[0]),
+        downmbps = int(re.search(r'\d+', str(share_link.get('down', '')))[0]),
         obfs = share_link.get('obfs', ''),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
         )
