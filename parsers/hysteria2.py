@@ -9,7 +9,7 @@ def parse(data):
         for k, v in parse_qs(server_info.query).items()
     )
     node = {
-        'tag': unquote(server_info.fragment),
+        'tag': unquote(server_info.fragment) or tool.genName()+'_hysteria2',
         'type': 'hysteria2',
         'server': re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1].split(",")[0]),
