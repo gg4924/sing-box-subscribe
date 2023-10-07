@@ -47,13 +47,11 @@ def parse(data):
             node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';'))
         elif plugin.startswith('shadow-tls'):
             flag = 1
-            plugin = eval(str(tool.b64Decode(plugin.split('=')[1]),'utf-8'))
-            node['detour'] = tool.genName()+'_shadowtls'
+            plugin = json.loads(tool.b64Decode(plugin.split("=", 1)[1]))
+            node['detour'] = node['tag']+'_shadowtls'
             node_tls = {
                 'tag':node['detour'],
                 'type':'shadowtls',
-                'server':plugin['address'],
-                'server_port':int(plugin['port']),
                 'version':int(plugin.get('version', '1')),
                 'password':plugin.get('password', ''),
                 'tls':{
@@ -61,6 +59,10 @@ def parse(data):
                     'server_name': plugin.get('host', '')
                 }
             }
+            if plugin.get('address'):
+                node_tls['server'] = plugin['address']
+            if plugin.get('port'):
+                node_tls['server_port'] = int(plugin['port'])
             if plugin.get('fp'):
                 node_tls['tls']['utls']={
                     'enabled': True,
@@ -91,6 +93,6 @@ def parse(data):
             return None
     node['server_port'] = int(node['server_port'])
     if flag:
-        return (node,node_tls)
+        return node,node_tls
     else:
         return node
