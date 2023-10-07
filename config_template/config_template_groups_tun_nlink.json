@@ -32,7 +32,7 @@
       },
       {
         "outbound": "any",
-        "server": "国外DNS",
+        "server": "国内DNS",
         "disable_cache": true
       },
       {
