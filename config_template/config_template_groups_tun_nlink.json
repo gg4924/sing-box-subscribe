@@ -1,0 +1,384 @@
+{
+  "dns": {
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15"
+    },
+    "rules": [
+      {
+        "domain": [
+          "shcmwdhuiqwnfwq.fucat.top",
+          "gzcmasdhjioqwnfgqw.dfcloud.xyz",
+          "gzdxxnfqwnio.fucat.top",
+          "anycast-hk.nlink.wiki",
+          "smrt4-hk18002-1.nlink.wiki",
+          "smrt4-hk18002-2.nlink.wiki",
+          "smrt4-hk18001-1.nlink.wiki",
+          "tw1.dynamic-ip.hinet.net.nlink.wiki",
+          "anycast-jp.nlink.wiki",
+          "smrt4-jp18002-1.nlink.wiki",
+          "anycast-us.nlink.wiki",
+          "anycast6.nlink.wiki",
+          "tw1.hinet-ip6.hinet.net.nlink.wiki"
+        ],
+        "server": "国内DNS"
+      },
+      {
+        "domain": [
+          "ghproxy.com",
+          "cdn.jsdelivr.net"
+        ],
+        "server": "国内DNS"
+      },
+      {
+        "outbound": "any",
+        "server": "国外DNS",
+        "disable_cache": true
+      },
+      {
+        "clash_mode": "global",
+        "server": "国外DNS"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "国内DNS"
+      },
+      {
+        "geosite": "cn",
+        "server": "国内DNS"
+      }
+    ],
+    "servers": [
+      {
+        "address": "fakeip",
+        "tag": "国外DNS"
+      },
+      {
+        "address": "https://120.53.53.53/dns-query",
+        "detour": "direct",
+        "strategy": "prefer_ipv6",
+        "tag": "国内DNS"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "",
+      "external_ui": "ui",
+      "secret": "",
+      "default_mode": "rule",
+      "store_selected": true,
+      "cache_file": "",
+      "cache_id": ""
+    }
+  },
+  "inbounds": [
+    {
+      "auto_route": true,
+      "endpoint_independent_nat": true,
+      "inet4_address": "172.19.0.1/30",
+      "mtu": 9000,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      },
+      "sniff": true,
+      "strict_route": true,
+      "type": "tun"
+    },
+    {
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true,
+      "type": "mixed"
+    }
+  ],
+  "log": {
+    "level": "debug"
+  },
+  "outbounds": [
+    {
+      "tag":"proxy",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "auto",
+        "{all}"
+      ]
+    },
+    {
+      "tag":"🤖 OpenAI",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ]
+    },
+    {
+      "tag":"🌌 Google",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"📟 Telegram",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🐦 Twitter",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"👤 Facebook",
+      "type":"selector",
+      "outbounds":[
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🛍️ Amazon",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🍎 Apple",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🧩 Microsoft",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🎮 Game",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"📺 Bilibili",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰","HK","hk","香港","港","🇹🇼","TW","tw","台湾","臺灣","台"]},
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🎬 MediaVideo",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+      ]
+    },
+    {
+      "tag":"🌏 !cn",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "{机场1}",
+        "{机场2}"
+      ]
+    },
+    {
+      "tag":"auto",
+      "type":"urltest",
+      "outbounds":[
+        "{all}"
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "final": "proxy",
+    "geoip": {
+      "download_detour": "direct",
+      "download_url": "https://ghproxy.com/github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db"
+    },
+    "geosite": {
+      "download_detour": "direct",
+      "download_url": "https://ghproxy.com/github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db"
+    },
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "proxy"
+      },
+      {
+        "domain": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "geosite":"openai",
+        "outbound":"🤖 OpenAI"
+      },
+      {
+        "geosite":"youtube",
+        "outbound":"🌌 Google"
+      },
+      {
+        "geoip":"google",
+        "geosite":["google","github"],
+        "outbound":"🌌 Google"
+      },
+      {
+        "geoip":"telegram",
+        "geosite":"telegram",
+        "outbound":"📟 Telegram"
+      },
+      {
+        "geoip":"twitter",
+        "geosite":"twitter",
+        "outbound":"🐦 Twitter"
+      },
+      {
+        "geoip":"facebook",
+        "geosite":["facebook","instagram"],
+        "outbound":"👤 Facebook"
+      },
+      {
+        "geosite":"amazon",
+        "outbound":"🛍️ Amazon"
+      },
+      {
+        "geosite":"apple",
+        "outbound":"🍎 Apple"
+      },
+      {
+        "geosite":"microsoft",
+        "outbound":"🧩 Microsoft"
+      },
+      {
+        "geosite":"category-games",
+        "outbound":"🎮 Game"
+      },
+      {
+        "geosite":"bilibili",
+        "outbound":"📺 Bilibili"
+      },
+      {
+        "geoip":"netflix",
+        "geosite":["tiktok","netflix","hbo","disney","primevideo"],
+        "outbound":"🎬 MediaVideo"
+      },
+      {
+        "geosite":"geolocation-!cn",
+        "outbound":"🌏 !cn"
+      },
+      {
+        "geosite": [
+          "private",
+          "cn"
+        ],
+        "geoip": [
+          "private",
+          "cn"
+        ],
+        "outbound": "direct"
+      }
+    ]
+  }
+}
