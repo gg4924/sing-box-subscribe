@@ -108,7 +108,13 @@ def get_nodes(url):
                 share_links.append(clash2v2ray(proxy))
             data = '\n'.join(share_links)
             data = parse_content(data)
-            return data
+            processed_list = []
+            for item in data:
+                if isinstance(item, tuple):
+                    processed_list.extend([item[0], item[1]]) # 处理shadowtls
+                else:
+                    processed_list.append(item)
+            return processed_list
         elif 'outbounds' in content:
             outbounds_0 = content['outbounds'][0]['outbounds']
             outbounds_tags = [item["tag"] for item in content["outbounds"][1:]]
@@ -121,7 +127,13 @@ def get_nodes(url):
             return data
     else:
         data = parse_content(content)
-        return data
+        processed_list = []
+        for item in data:
+            if isinstance(item, tuple):
+                processed_list.extend([item[0], item[1]]) # 处理shadowtls
+            else:
+                processed_list.append(item)
+        return processed_list
 
 def parse_content(content):
     # firstline = tool.firstLine(content)
