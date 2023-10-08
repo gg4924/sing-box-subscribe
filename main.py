@@ -167,6 +167,10 @@ def get_parser(node):
 
 def get_content_from_url(url,n=6):
     print('处理'+url)
+    prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://"]
+    if any(url.startswith(prefix) for prefix in prefixes):
+        response_text = tool.noblankLine(url)
+        return response_text
     response = tool.getResponse(url, custom_user_agent=providers.get('User-Agent', ''))
     concount = 1
     while concount <= n and not response:
@@ -180,7 +184,6 @@ def get_content_from_url(url,n=6):
         return None
     response_text = response.text
     response_encoding = response.encoding
-    prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://"]
     if response_text.isspace():
         print('没有从订阅链接获取到任何内容')
         return None
