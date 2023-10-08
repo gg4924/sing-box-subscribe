@@ -192,14 +192,11 @@
         "outbound":"🌏 !cn"
       },
       {
-        "geosite": [
-          "private",
-          "cn"
-        ],
-        "geoip": [
-          "private",
-          "cn"
-        ],
+        "geoip": ["private","cn"],
+        "outbound": "direct"
+      },
+      {
+        "geosite": "cn",
         "outbound": "direct"
       }
     ]
