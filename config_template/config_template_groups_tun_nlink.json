@@ -321,21 +321,33 @@
       },
       {
         "geoip":"google",
+        "outbound":"🌌 Google"
+      },
+      {
         "geosite":["google","github"],
         "outbound":"🌌 Google"
       },
       {
         "geoip":"telegram",
+        "outbound":"📟 Telegram"
+      },
+      {
         "geosite":"telegram",
         "outbound":"📟 Telegram"
       },
       {
         "geoip":"twitter",
-        "geosite":"twitter",
+        "outbound":"🐦 Twitter"
+      },
+      {
+        "geoip":"twitter",
         "outbound":"🐦 Twitter"
       },
       {
         "geoip":"facebook",
+        "outbound":"👤 Facebook"
+      },
+      {
         "geosite":["facebook","instagram"],
         "outbound":"👤 Facebook"
       },
@@ -345,6 +357,10 @@
       },
       {
         "geosite":"apple",
+        "outbound":"🍎 Apple"
+      },
+      {
+        "geosite":"apple-cn",
         "outbound":"🍎 Apple"
       },
       {
@@ -361,6 +377,9 @@
       },
       {
         "geoip":"netflix",
+        "outbound":"🎬 MediaVideo"
+      },
+      {
         "geosite":["tiktok","netflix","hbo","disney","primevideo"],
         "outbound":"🎬 MediaVideo"
       },
@@ -369,14 +388,11 @@
         "outbound":"🌏 !cn"
       },
       {
-        "geosite": [
-          "private",
-          "cn"
-        ],
-        "geoip": [
-          "private",
-          "cn"
-        ],
+        "geoip": ["private","cn"],
+        "outbound": "direct"
+      },
+      {
+        "geosite": "cn",
         "outbound": "direct"
       }
     ]
