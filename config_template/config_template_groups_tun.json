@@ -42,10 +42,7 @@
         "disable_cache": true
       },
       {
-        "geosite": [
-          "private",
-          "cn"
-        ],
+        "geosite": "cn",
         "server": "localDns"
       },   
       {
@@ -68,7 +65,6 @@
         "server": "remote"
       }
     ],
-    "final": "localDns",
     "fakeip": {
       "enabled": true,
       "inet4_range": "198.18.0.0/15",
