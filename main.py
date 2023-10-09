@@ -191,9 +191,10 @@ def get_content_from_url(url,n=6):
         response_text = tool.noblankLine(response_text)
         return response_text
     elif 'proxies' in response_text:
+        yaml_content = response.content.decode('utf-8')
         yaml = ruamel.yaml.YAML()
         try:
-            response_text = dict(yaml.load(response.text))
+            response_text = dict(yaml.load(yaml_content))
         except:
             pass
     elif 'outbounds' in response_text:
