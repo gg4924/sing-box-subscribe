@@ -11,8 +11,8 @@ def parse(data):
     node = {
         'tag': unquote(server_info.fragment) or tool.genName()+'_vless',
         'type': 'vless',
-        'server': _netloc[1].split(":")[0],
-        'server_port': int(_netloc[1].split(":")[1]),
+        'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
+        'server_port': int(_netloc[1].rsplit(":", 1)[1]),
         'uuid': _netloc[0],
         'packet_encoding': netquery.get('packetEncoding', 'xudp')
     }
