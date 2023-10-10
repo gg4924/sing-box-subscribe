@@ -22,5 +22,6 @@
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol":"ssr",
-    "User-Agent":"clash"
+    "User-Agent":"clash",
+    "Only-nodes": false
 }
