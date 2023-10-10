@@ -173,8 +173,9 @@ windows系统建议将命令添加到批处理程序运行。
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol":"",
-    "User-Agent":""
+    "exlude_protocol": "ssr",
+    "User-Agent":"clash",
+    "Only-nodes": false
 }
 ```
 - `url`：必须。
@@ -242,6 +243,9 @@ windows系统建议将命令添加到批处理程序运行。
 
 - `User-Agent`：非必需。
 > 可以自定义UA，比如设置UA为"clash.meta"，或者"sing-box"
+
+- `Only-nodes`：非必需。
+> 将其设置为 true 或 1 时，只输出订阅链接 sing-box 格式的节点信息
 
 # config模板文件
 脚本会在 config_template 目录下查找 json 模板文件，脚本运行时可以选择使用的模板文件。
