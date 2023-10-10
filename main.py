@@ -433,6 +433,9 @@ if __name__ == '__main__':
     config_template_path = 'config_template/'+template_list[uip]+'.json'
     config = load_json(config_template_path)
     nodes = process_subscribes(providers["subscribes"])
-    final_config = combin_to_config(config,nodes)
+    if providers.get('Only-nodes'):
+        final_config = nodes #只返回节点信息，用来测试
+    else:
+        final_config = combin_to_config(config,nodes) #节点信息添加到模板
     save_config(providers["save_config_path"],final_config)
     # updateLocalConfig('http://127.0.0.1:9090',providers['save_config_path'])
