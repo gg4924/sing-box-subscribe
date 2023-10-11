@@ -13,15 +13,18 @@ def parse(data):
         'type': 'wireguard',
         'server': re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1]),
-        'local_address': [
-            netquery.get('ip').split(",", 1)[0]+"/32"
-        ],
         'private_key': netquery.get('privateKey'),
         'peer_public_key': netquery.get('publicKey'),
         'reserved': [int(_reserved[0]),int(_reserved[1]),int(_reserved[2])]
     }
-    if netquery.get('ip').split(",", 1)[1]:
-        node['local_address'].append(netquery.get('ip').split(",", 1)[1]+"/128")
+    ip_value = netquery.get('ip')
+    if ',' in ip_value:
+        ipv4_value = ip_value.split(",", 1)[0]+"/32"
+        ipv6_value = ip_value.split(",", 1)[1]+"/128"
+        node['local_address'] = [ipv4_value] + [ipv6_value]
+    else:
+        ipv4_value = ip_value+"/32"
+        node['local_address'] = [ipv4_value]
     if netquery.get('presharedKey'):
         node['pre_shared_key'] = netquery['presharedKey']
     return (node)
