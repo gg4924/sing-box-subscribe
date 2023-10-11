@@ -190,17 +190,15 @@ def clash2v2ray(share_link):
         )
         # TODO
     elif share_link['type'] == 'wireguard':
-        link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey=={presharedKey}&ip={ip}&ipv6={ipv6}&mtu={mtu}&keepalive={keepalive}&udp=1&reserved={reserved}#{name}".format(
+        link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip},{ipv6}&udp=1&reserved={reserved}#{name}".format(
         server = share_link['server'],
         port = share_link['port'],
-        publicKey = share_link['publicKey'],
-        privateKey = share_link['privateKey'],
-        presharedKey = share_link['pre-shared-key'],
+        publicKey = share_link['public-key'],
+        privateKey = share_link['private-key'],
+        presharedKey = share_link.get('pre-shared-key', ''),
         ip = share_link['ip'],
         ipv6 = share_link.get('ipv6', ''),
-        mtu = share_link.get('mtu', '1280'),
-        keepalive = share_link.get('keepalive', '30'),
-        reserved = quote(','.join(share_link['reserved']), 'utf-8'),
+        reserved = ','.join(str(item) for item in share_link['reserved']),
         name = quote(share_link['name'], 'utf-8')
         )
         # TODO
