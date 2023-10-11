@@ -58,7 +58,7 @@ regex_patterns = {
     '🇮🇲': re.compile(r'马恩岛|馬恩島|(\s|-)?IM\d*|Mannin|Isle of Man'),
     '🇱🇹': re.compile(r'立陶宛|(\s|-)?LT\d*|Lithuania'),
     '🇫🇮': re.compile(r'芬兰|芬蘭|赫尔辛基|(\s|-)?FI\d*|Finland'),
-    '🇦🇷': re.compile(r'阿根廷|(\s|-)?AR\d*|Argentina'),
+    '🇦🇷': re.compile(r'阿根廷|(\s|-)(?<!W)?AR(?!P)\d*|Argentina'),
     '🇺🇾': re.compile(r'乌拉圭|烏拉圭|(\s|-)?UY\d*|Uruguay'),
     '🇵🇾': re.compile(r'巴拉圭|(\s|-)?PY\d*|Paraguay'),
     '🇯🇲': re.compile(r'牙买加|牙買加|(\s|-)?JM\d*|Jamaica'),
