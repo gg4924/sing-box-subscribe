@@ -60,7 +60,7 @@ def parse(data):
         'alter_Id': int(item.get('aid')),
         'packet_encoding': 'xudp'
     }
-    if item.get('tls') and item['tls'] != '':
+    if 'tls' in item and (item['tls'] != '' and item['tls'] != 'none'):
         node['tls']={
             'enabled': True,
             'insecure': True,
