@@ -17,11 +17,10 @@ def parse(data):
         'password': _netloc[0].split(":")[1],
         'path': server_info.path
     }
-    if netquery.get('disable_sni') and netquery.get('disable_sni')!= '1':
+    if netquery.get('tls') == '1':
         node['tls'] = {
             'enabled': True
         }
-        node['tls']['server_name'] = netquery.get('sni')
     if netquery.get('insecure') and netquery['insecure'] == '1' :
         node['tls']['insecure'] = True
     return (node)
