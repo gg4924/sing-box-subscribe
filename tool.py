@@ -61,7 +61,7 @@ regex_patterns = {
     '🇦🇷': re.compile(r'阿根廷|(\s|-)(?<!W)?AR(?!P)\d*|Argentina'),
     '🇺🇾': re.compile(r'乌拉圭|烏拉圭|(\s|-)?UY\d*|Uruguay'),
     '🇵🇾': re.compile(r'巴拉圭|(\s|-)?PY\d*|Paraguay'),
-    '🇯🇲': re.compile(r'牙买加|牙買加|(\s|-)?JM\d*|Jamaica'),
+    '🇯🇲': re.compile(r'牙买加|牙買加|(\s|-)?JM(?!S)\d*|Jamaica'),
     '🇸🇷': re.compile(r'苏里南|蘇里南|(\s|-)?SR\d*|Suriname'),
     '🇨🇼': re.compile(r'库拉索|庫拉索|(\s|-)?CW\d*|Curaçao'),
     '🇨🇴': re.compile(r'哥伦比亚|(\s|-)?CO\d*|Colombia'),
