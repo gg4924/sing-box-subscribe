@@ -212,9 +212,12 @@ def genName(length=8):
 def is_ip(str):
     return re.search(r'^\d+\.\d+\.\d+\.\d+$',str)
 
-def get_protocol(str):
-    m = re.search(r'^(.+?)://',str)
+def get_protocol(s):
+    m = re.search(r'^(.+?)://', s)
     if m:
+        if m.group(1) == 'hy2':
+            s = re.sub(r'^(.+?)://', 'hysteria2://', s)
+            m = re.search(r'^(.+?)://', s)
         return m.group(1)
     return None
 
