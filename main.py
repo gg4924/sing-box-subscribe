@@ -167,7 +167,7 @@ def get_parser(node):
 
 def get_content_from_url(url,n=6):
     print('处理'+url)
-    prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://"]
+    prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://", "hy2://", "wg://"]
     if any(url.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(url)
         return response_text
