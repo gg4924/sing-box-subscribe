@@ -3,7 +3,7 @@ from urllib.parse import urlparse, parse_qs, unquote
 def parse(data):
     info = data[:]
     server_info = urlparse(info)
-    _netloc = (tool.b64Decode(server_info.netloc)).decode().split("@")
+    _netloc = (tool.b64Decode(server_info.netloc)).decode().rsplit("@", 1)
     netquery = dict(
         (k, v if len(v) > 1 else v[0])
         for k, v in parse_qs(server_info.query).items()
@@ -15,8 +15,7 @@ def parse(data):
         'server_port': int(_netloc[1].rsplit(":", 1)[1]),
         'username': _netloc[0].split(":")[0],
         'password': _netloc[0].split(":")[1],
-        'path': server_info.path,
-        'headers': {},
+        'path': server_info.path
     }
     if netquery.get('disable_sni') and netquery.get('disable_sni')!= '1':
         node['tls'] = {
