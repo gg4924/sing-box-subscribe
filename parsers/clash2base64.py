@@ -208,12 +208,10 @@ def clash2v2ray(share_link):
             "password": share_link['password'],
             "server": share_link['server'],
             "port": share_link['port'],
+            "name": quote(share_link.get('name', ''), 'utf-8')
         }
-        name = quote(share_link.get('name', ''), 'utf-8')
-        base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**http_info).encode('utf-8')).decode('utf-8')
-        link = f"http://{base_link}#{name}"
-        if share_link.get('tls') == True:
-            link = f"http://{base_link}?tls=1#{name}"
+        base_link = base64.b64encode("{user}:{password}@{server}:{port}/#{name}".format(**http_info).encode('utf-8')).decode('utf-8')
+        link = f"https://{base_link}"
         # TODO
     elif share_link['type'] == 'socks5':
         socks5_info = {
