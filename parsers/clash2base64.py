@@ -140,7 +140,10 @@ def clash2v2ray(share_link):
                 vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}#{name}".format(**vless_info)
             else:
-                vless_info["security"] = 'tls'
+                if share_link.get('tls') == False:
+                    vless_info["security"] = 'none'
+                else:
+                    vless_info["security"] = 'tls'
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}#{name}".format(**vless_info)
         # TODO
     elif share_link['type'] == 'tuic':
