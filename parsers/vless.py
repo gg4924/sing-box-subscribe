@@ -18,7 +18,7 @@ def parse(data):
     }
     if netquery.get('flow'):
         node['flow'] = netquery['flow']
-    if netquery.get('security'):
+    if netquery.get('security') != 'none':
         node['tls'] = {
             'enabled': True
         }
