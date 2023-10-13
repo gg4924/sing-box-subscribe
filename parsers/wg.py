@@ -7,16 +7,17 @@ def parse(data):
         (k, v.replace(' ', '+') if len(v) > 1 else v[0].replace(' ', '+'))
         for k, v in parse_qs(server_info.query).items()
     )
-    _reserved = netquery.get('reserved').split(",")
     node = {
         'tag': unquote(server_info.fragment) or tool.genName()+'_wireguard',
         'type': 'wireguard',
         'server': re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1]),
         'private_key': netquery.get('privateKey'),
-        'peer_public_key': netquery.get('publicKey'),
-        'reserved': [int(_reserved[0]),int(_reserved[1]),int(_reserved[2])]
+        'peer_public_key': netquery.get('publicKey')
     }
+    if netquery.get('reserved'):
+        _reserved = netquery.get('reserved').split(",")
+        node['reserved'] = [int(_reserved[0]),int(_reserved[1]),int(_reserved[2])]
     ip_value = netquery.get('ip')
     if ',' in ip_value:
         ipv4_value = ip_value.split(",", 1)[0]+"/32"
