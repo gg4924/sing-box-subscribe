@@ -17,7 +17,7 @@ def parse(data):
         'packet_encoding': netquery.get('packetEncoding', 'xudp')
     }
     if netquery.get('flow'):
-        node['flow'] = netquery['flow']
+        node['flow'] = 'xtls-rprx-vision'
     if netquery.get('security') != 'none':
         node['tls'] = {
             'enabled': True
