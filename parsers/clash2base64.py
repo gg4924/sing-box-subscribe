@@ -193,17 +193,21 @@ def clash2v2ray(share_link):
         )
         # TODO
     elif share_link['type'] == 'wireguard':
-        link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip},{ipv6}&udp=1&reserved={reserved}#{name}".format(
-        server = share_link['server'],
-        port = share_link['port'],
-        publicKey = share_link['public-key'],
-        privateKey = share_link['private-key'],
-        presharedKey = share_link.get('pre-shared-key', ''),
-        ip = share_link['ip'],
-        ipv6 = share_link.get('ipv6', ''),
-        reserved = ','.join(str(item) for item in share_link['reserved']),
-        name = quote(share_link['name'], 'utf-8')
-        )
+        warp_info = {
+            "server": share_link['server'],
+            "port": share_link['port'],
+            "publicKey": share_link['public-key'],
+            "privateKey": share_link['private-key'],
+            "presharedKey": share_link.get('pre-shared-key', ''),
+            "ip": share_link['ip'],
+            "reserved": ','.join(str(item) for item in share_link.get('reserved', '')),
+            "name": quote(share_link['name'], 'utf-8')
+        }
+        if share_link.get('ipv6'):
+            warp_info['ipv6'] = share_link['ipv6']
+            link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip},{ipv6}&udp=1&reserved={reserved}#{name}".format(**warp_info)
+        else:
+            link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip}&udp=1&reserved={reserved}#{name}".format(**warp_info)
         # TODO
     elif share_link['type'] == 'http':
         http_info = {
