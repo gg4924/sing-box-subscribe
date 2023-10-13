@@ -24,7 +24,7 @@ def parse(data):
     if netquery.get('insecure') and netquery['insecure'] == '1' or netquery.get('allowInsecure') and netquery['allowInsecure'] == '1':
         node['tls']['insecure'] = True
     node['tls']['alpn'] = (netquery.get('alpn') or "h3").strip('{}').split(',')
-    if netquery.get('obfs'):
+    if netquery.get('obfs') != 'none':
         node['obfs'] = {
             'type': netquery['obfs'],
             'password': netquery['obfs-password'],
