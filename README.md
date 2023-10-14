@@ -98,7 +98,7 @@ https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46
 ### 在终端输入下面指令安装依赖（Mac把pip改为pip3）：
 
 ```
-pip install requests paramiko scp Flask PyYAML ruamel.yaml
+pip install requests paramiko scp chardet Flask PyYAML ruamel.yaml
 ```
 
 <div align="left">
@@ -310,7 +310,7 @@ windows系统建议将命令添加到批处理程序运行。
 # Windows sing-box 使用方法
 
 1. 下载Windows客户端程序[sing-box-windows-amd64.zip](https://github.com/SagerNet/sing-box/releases)。
-2. 新建一个批处理文件，内容为 `start /min sing-box.exe run`。
+2. 新建一个 `bat` 批处理文件，内容为 `start /min sing-box.exe run`。
 3. 参考[客户端配置](https://github.com/chika0801/sing-box-examples/blob/main/Tun/config_client_windows.json)示例，按需修改后将文件名改为 **config.json**，与 **sing-box.exe**，批处理文件放在同一文件夹里。
 4. 右键点击 **sing-box.exe** 选择属性，选择兼容性，选择以管理员身份运行此程序，确定。
 5. 运行批处理文件，在弹出的用户账户控制对话框中，选择是。
@@ -330,6 +330,14 @@ windows系统建议将命令添加到批处理程序运行。
   <arguments>run</arguments>
 </service>
 ```
+<details>
+      <summary>Windows sing-box 文件夹内容</summary>
+ 
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c6a815bf-b542-43c6-aeb6-84020586a1f1" alt="download" width="50%" />
+</div>
+
+</details>
 
 <details>
       <summary><b>效果参考</b></summary>
