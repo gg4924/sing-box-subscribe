@@ -127,7 +127,7 @@ def generate_config():
         flash(f'执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist：{str(e)}', 'error')
     except Exception as e:
         flash(f'生成配置文件时出错：{str(e)}', 'error')
-        flash(f'订阅解析失败: 请填入正确的v2格式订阅 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败')
+        flash(f'订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 ps：groups模板里没筛选到节点会生成失败')
         flash(f'请不要修改tag值，除非你明白它是干什么的')
         flash(f'Error occurred while generating the configuration file: {str(e)}', 'error')
         flash(f'Subscription parsing failed: please enter a valid "v2" format subscription or switch to the "no_groups_template" - note that if no nodes are filtered in the "groups_template", it will fail.')
