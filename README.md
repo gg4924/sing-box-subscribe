@@ -315,6 +315,22 @@ windows系统建议将命令添加到批处理程序运行。
 4. 右键点击 **sing-box.exe** 选择属性，选择兼容性，选择以管理员身份运行此程序，确定。
 5. 运行批处理文件，在弹出的用户账户控制对话框中，选择是。
 
+## 隐藏Windows运行sing-box弹出的cmd窗口
+
+> 使用WinSW把sing-box.exe设置成Windows服务，[WinSW教程](https://blog.xuven.xyz/post/WinSW/)
+
+> XML配置文件修改
+```xml
+<service>
+  <id>sing-box</id>
+  <name>sing-box</name>
+  <description>sing-box Service</description>
+  <executable>./sing-box.exe</executable>
+  <log mode="reset"></log>
+  <arguments>run</arguments>
+</service>
+```
+
 <details>
       <summary><b>效果参考</b></summary>
 
