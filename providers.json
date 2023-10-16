@@ -22,6 +22,6 @@
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol":"ssr",
-    "User-Agent":"clash",
+    "User-Agent":"clashmeta",
     "Only-nodes": false
 }
