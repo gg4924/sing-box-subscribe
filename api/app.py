@@ -129,7 +129,7 @@ def generate_config():
         flash(f'执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist')
         flash(f'你的订阅链接可能需要使用 越南 ip才能打开，很抱歉vercel做不到，请你把订阅链接里的node内容保存到gist里再尝试解析它。或者请你在本地运行脚本')
         flash(f'Fetching the link content is timing out, please try running the script locally or putting the subscription link content into Github Gist')
-        flash(f'Your subscription link may need to use Vietnam ip to open, sorry Vercel can't do that, please save the node content in the subscription link to Github Gist before trying to parse it. Or please run the script locally')
+        flash(f'Your subscription link may need to use Vietnam ip to open, sorry Vercel can not do that, please save the node content in the subscription link to Github Gist before trying to parse it. Or please run the script locally')
     except Exception as e:
         flash(f'订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次')
         flash(f'请不要修改 tag 值，除非你明白它是干什么的')
