@@ -18,7 +18,7 @@ def parse(data):
     }
     if netquery.get('flow'):
         node['flow'] = 'xtls-rprx-vision'
-    if netquery.get('security') != 'none':
+    if netquery.get('security', '') not in ['none', '']:
         node['tls'] = {
             'enabled': True
         }
@@ -44,7 +44,7 @@ def parse(data):
                 'type':'ws',
                 "path": netquery['path'],
                 "headers": {
-                "Host": netquery.get('sni')
+                    "Host": netquery.get('sni', netquery.get('host', ''))
                 }
             }
         if netquery['type'] == 'grpc':
