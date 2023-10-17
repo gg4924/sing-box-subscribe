@@ -431,6 +431,7 @@ if __name__ == '__main__':
 
     uip = select_config_template(template_list, selected_template_index=args.template_index)
     config_template_path = 'config_template/'+template_list[uip]+'.json'
+    print ('选择'+template_list[uip]+'.json')
     config = load_json(config_template_path)
     nodes = process_subscribes(providers["subscribes"])
     if providers.get('Only-nodes'):
