@@ -18,23 +18,23 @@ Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sa
 
 ## Supported Protocols
 
-|  Protocol | V2 Sub | Clash Sub | URI Format |
-|  :----  | :----: | :----: | :----: |
-| http  | ✅ | ✅ | ✅ |
-| socks5  | ✅ | ✅ | ✅ |
-| shadowsocks  | ✅ | ✅ | ✅ |
-| shadowsocksR  | ✅ | ✅ | ✅ |
-| vmess  | ✅ | ✅ | ✅ |
-| trojan  | ✅ | ✅ | ✅ |
-| vless  | ✅ | ✅ | ✅ |
-| tuic  | ✅ | ✅ | ✅ |
-| hysteria  | ✅ | ✅ | ✅ |
-| hysteria2  | ✅ | ✅ | ✅ |
-| wireguard  | ✅ | ✅ | ✅ |
+|  Protocol | V2 Sub | Clash Sub | URI Format | SingBox Format |
+|  :----  | :----: | :----: | :----: | :----: |
+| http  | ✅ | ✅ | ✅ | ✅ |
+| socks5  | ✅ | ✅ | ✅ | ✅ |
+| shadowsocks  | ✅ | ✅ | ✅ | ✅ |
+| shadowsocksR  | ✅ | ✅ | ✅ | singbox doesn't support this by default |
+| vmess  | ✅ | ✅ | ✅ | ✅ |
+| trojan  | ✅ | ✅ | ✅ | ✅ |
+| vless  | ✅ | ✅ | ✅ | ✅ |
+| tuic  | ✅ | ✅ | ✅ | ✅ |
+| hysteria  | ✅ | ✅ | ✅ | ✅ |
+| hysteria2  | ✅ | ✅ | ✅ | ✅ |
+| wireguard  | ✅ | ✅ | ✅ | ✅ |
 
 ~Parsing of clash subscriptions is not supported~ Only parsing of the checked protocol sharing links in( **v2 or clash subscription format**) has been implemented for now. You can write your own protocol parsers, for example, `vless.py` (the filename must match the protocol name), and place it in the `parsers` directory. The `vless.py` file must include a `parse` function.
 
-**This script is for personal use. I use [yacd](https://yacd.metacubex.one) (For ios please use http://yacd.metacubex.one) to manage node switching (outbound types `urltest` and `selector`) and distribute traffic like in clash, which is very convenient. If you have similar needs, you can try it, but if you encounter new feature requirements or any errors while using the script, please resolve them on your own**.
+**This script is for personal use. I use [yacd](https://yacd.metacubex.one) (For ios please use http://yacd.metacubex.one) to manage node switching (outbound types `urltest` and `selector`) and distribute traffic like in clash, which is very convenient. If you have similar needs, you can try it. If you have any new functional requirements or any errors when using the script, please submit an issue and do not harass sing-box.**.
 
 **Scripts can be deployed to run on a web page using a vercel server, or you can download the project source code and run it locally. Please use your own deployed website to generate the sing-box configuration.**
 
@@ -75,9 +75,7 @@ Android use chrome browser to open the webpage to generate the configuration fil
 **Note that after clicking Save, go to Generate Configuration File as soon as possible, otherwise the content you fill in will remain on the webpage, and other people can browse to it when they open the website. Can't think of a solution at the moment**
 
 <div align="left">
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c3c39033-079e-497c-86ef-532337d0262b" alt="how-to-use" width="70%" />
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/86334052-29ad-4677-bb65-b24bcc01030e" alt="fill-in" width="70%" />
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/60b89287-8b4d-4032-b876-a8eed37de171" alt="result" width="70%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/95a79758-245b-4806-a483-b2993db7e62e" alt="how-to-use" width="50%" />
 </div>
 
 ## 🎬 Demonstration video
@@ -98,7 +96,7 @@ https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46
 ### In the terminal, input the following command to install dependencies (on Mac, replace `pip` with `pip3`):
 
 ```
-pip install requests paramiko scp Flask PyYAML ruamel.yaml
+pip install requests paramiko scp chardet Flask PyYAML ruamel.yaml
 ```
 
 <div align="left">
@@ -153,18 +151,18 @@ In this file, you can add subscription links and basic settings.
 {
     "subscribes":[
         {
-            "url": "subscribe1_link",
-            "tag": "airport1_tag",
+            "url": "https://4gviet.com/api/v1/client/subscribe?token=xx",
+            "tag": "airport1_tag", //You can keep the default without modification
             "enabled": true,
-            "emoji": 1,
-            "prefix": ""
+            "emoji": 1, //Add flag emoji
+            "prefix": "" //Do not add node name prefix
         },
         {
-            "url": "subscribe2_link",
-            "tag": "airport2_tag",
+            "url": "https://5gtocdocao.com/api/v1/client/subscribe?token=xx",
+            "tag": "airport2_tag", //You can keep the default without modification
             "enabled": false,
-            "emoji": 0,
-            "prefix": "❤️node_name prefix - "
+            "emoji": 0, //Do not add flag emoji
+            "prefix": "❤️node_name prefix - " //Add node name prefix
         }
     ],
     "auto_set_outbounds_dns":{
@@ -173,7 +171,9 @@ In this file, you can add subscription links and basic settings.
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol":""
+    "exlude_protocol": "ssr", //Not parsing ssr nodes
+    "User-Agent":"clash", //Set browser UA
+    "Only-nodes": false //Output the complete sing-box configuration
 }
 ```
 - `url`: Required.
@@ -182,13 +182,15 @@ In this file, you can add subscription links and basic settings.
 
 > Supports setting up a clash subscription link
 
+> SSupport setting up a sing-box subscription link
+
 > Supports setting up a local file paths (**content as URI links**)
 
     For local files, such as txt files, each line should contain a single node sharing link, starting with `ss://` (non-subscription link).
 
     Local files need to be saved on the same drive. Local path formats: `/Desktop/sing-box-subscribe/xx.txt` or relative path formats in the same folder as `main.py`: `./xx.txt`.
 
-- `tag`: Required.
+- `tag`: Required. Just keep the default.
 
 > Fill in this tag in the config template to add this subscription. The "airport1_tag" here corresponds to "{机场1}" in the config template. Specific usage can be found in the config template section below.
 
@@ -235,7 +237,13 @@ In this file, you can add subscription links and basic settings.
 
 > Sharing links using protocols in this setting will be ignored.
 
-> ~~The sing-box release program does not support ssr (needs additional parameters to build), so this setting might be useful.~~
+> The sing-box release program does not support ssr (needs additional parameters to build), so this setting might be useful.
+
+- `User-Agent`: Optional.
+> You can customize UA, such as setting UA to "clash.meta" or "sing-box"
+
+- `Only-nodes`: Optional.
+> When it is set to true or 1, only the node information in sing-box format of the subscription link is output.
 
 # config Template Files
 The script will search for JSON template files in the `config_template` directory, and you can select which template file to use when the script runs.
@@ -246,217 +254,6 @@ For example, if there are `tun.json` and `socks.json` template files in the dire
 
 The script does not validate the correctness of the template files. If the template file is incorrect, errors will occur, and the script won't run.
 
-A default template is included in the directory, which you can modify according to your needs.
-```json
-{
-  "dns": {
-    "servers": [
-      {
-        "tag": "proxyDns",
-        "address": "8.8.8.8",
-        "detour": "proxy"
-      },
-      {
-        "tag": "localDns",
-        "address": "local",
-        "detour": "direct"
-      },
-      {
-        "tag": "block",
-        "address": "rcode://success"
-      },
-      {
-        "tag": "remote",
-        "address": "fakeip"
-      }
-    ],
-    "rules": [
-      {
-        "geosite": "category-ads-all",
-        "server": "block",
-        "disable_cache": true
-      },
-      {
-        "outbound": "any",
-        "server": "localDns"
-      },
-      {
-        "geosite": [
-          "private",
-          "cn"
-        ],
-        "server": "localDns"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "remote"
-      }
-    ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "final": "proxyDns",
-    "independent_cache": true,
-    "strategy": "ipv4_only"
-  },
-  "inbounds": [
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "127.0.0.1",
-      "listen_port": 7890,
-      "sniff": true,
-      "sniff_override_destination": false,
-      "domain_strategy": "ipv4_only"
-    },
-    {
-      "type": "tun",
-      "tag": "tun-in",
-      "inet4_address": "172.19.0.1/30",
-      "inet6_address": "fdfe:dcba:9876::1/126",
-      "mtu": 9000,
-      "auto_route": true,
-      "strict_route": true,
-      "sniff": true,
-      "endpoint_independent_nat": false,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 7890
-        }
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "tag":"proxy",
-      "type":"selector",
-      "outbounds":[
-        "auto",
-        "{all}"//All nodes of all subscriptions are added to the location of this tag
-      ],
-    },
-    {
-      "tag":"netflix",
-      "type":"selector",
-      "outbounds":[
-        "{机场1}",//Tag with the airport1_tag will be added to this tagged location
-        "{机场2}"//Tag with the airport2_tag will be added to this tagged location
-      ],
-      "filter":[
-        //If airport1_tag and airport2_tag have nodes with these names 'sg','新加坡','tw','台湾' they collectively form the netflix group
-        {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
-        //The "for" is set to airport1_tag, which means that this rule only works on airport1_tag
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
-        //This filter will remove nodes containing ˣ² in airport1_tag
-      ]
-    },
-    {
-      "tag":"speedtest",
-      "type":"selector",
-      "outbounds":[
-        "direct",
-        "proxy"
-      ]
-    },
-    {
-      "tag":"auto",
-      "type":"urltest",
-      "outbounds":[
-        "{all}"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "dns",
-      "tag": "dns"
-    },
-    {
-      "type": "block",
-      "tag": "block"
-    }
-  ],
-  "route": {
-    "rules": [
-      {
-        "protocol": "dns",
-        "outbound": "dns"
-      },
-      {
-        "network": "udp",
-        "port": 443,
-        "outbound": "block"
-      },
-      {
-        "geosite": "category-ads-all",
-        "outbound": "block"
-      },
-      {
-        "geosite": [
-          "private",
-          "cn"
-        ],
-        "outbound": "direct"
-      },
-      {
-        "geoip": [
-          "private",
-          "cn"
-        ],
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "direct"
-      },
-      {
-        "domain": [
-          "clash.razord.top",
-          "yacd.haishan.me"
-        ],
-        "outbound": "direct"
-      },
-      {
-        "domain_keyword":[
-          "speedtest"
-        ],
-        "domain_suffix":[
-          "cdnst.net",
-          "ziffstatic.com"
-        ],
-        "outbound": "speedtest"
-      },
-      {
-        "geoip":"netflix",
-        "geosite":"netflix",
-        "outbound":"netflix"
-      }
-    ],
-    "auto_detect_interface": true
-  },
-  "experimental": {
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "ui",
-      "default_mode": "rule",
-      "store_selected": true
-    }
-  }
-}
-```
 The template files are similar to sing-box configs, but with some new parameters like `{all}`, `{机场tag}` (translated as `{airport_tag}`), `filter`, which only work with `clash_mode` in `urltest` and `selector` outbounds.
 ```json
 {
@@ -511,10 +308,34 @@ Multiple rules will be executed in order.
 # Windows sing-box Usage
 
 1. Download the Windows client program [sing-box-windows-amd64.zip](https://github.com/SagerNet/sing-box/releases).
-2. Create a batch file with the content `start /min sing-box.exe run`.
+2. Create a `.bat` batch file with the content `start /min sing-box.exe run`.
 3. Refer to the [client configuration](https://github.com/chika0801/sing-box-examples/blob/main/Tun/config_client_windows.json) example, modify as needed, and change the filename to **config.json**, then put the batch file in the same folder as **sing-box.exe**.
 4. Right-click **sing-box.exe**, select Properties, go to Compatibility, and choose to run the program as an administrator.
 5. Run the batch file, and in the User Account Control dialog that appears, choose Yes.
+
+## Hide the cmd window that pops up when Windows runs sing-box
+
+> Use WinSW to set sing-box.exe as a Windows service, [WinSW tutorial](https://blog.xuven.xyz/post/WinSW/)
+
+> XML configuration file modification
+```xml
+<service>
+  <id>sing-box</id>
+  <name>sing-box</name>
+  <description>sing-box Service</description>
+  <executable>./sing-box.exe</executable>
+  <log mode="reset"></log>
+  <arguments>run</arguments>
+</service>
+```
+<details>
+      <summary>Windows sing-box folder contents</summary>
+ 
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/c6a815bf-b542-43c6-aeb6-84020586a1f1" alt="download" width="50%" />
+</div>
+
+</details>
 
 <details>
       <summary><b>Effect Reference</b></summary>
