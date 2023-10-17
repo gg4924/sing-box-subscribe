@@ -85,6 +85,7 @@ def edit_temp_json():
     if request.method == 'POST':
         try:
             new_temp_json_data = request.form.get('temp_json_data')
+            print (new_temp_json_data)
             if new_temp_json_data:
                 temp_json_data = json.loads(new_temp_json_data)
                 os.environ['TEMP_JSON_DATA'] = json.dumps(temp_json_data, indent=4, ensure_ascii=False)
