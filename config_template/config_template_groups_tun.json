@@ -113,52 +113,35 @@
       "tag":"🤖 OpenAI",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
+        "{all}"
       ]
     },
     {
       "tag":"🌌 Google",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
       "tag":"📟 Telegram",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
       "tag":"🐦 Twitter",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
       "tag":"👤 Facebook",
       "type":"selector",
       "outbounds":[
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -166,11 +149,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -178,11 +157,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -190,11 +165,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -202,11 +173,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -214,12 +181,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"include","keywords":["🇭🇰","HK","hk","香港","港","🇹🇼","TW","tw","台湾","臺灣","台"]},
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -227,11 +189,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
-      ],
-      "filter":[
-        {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+        "{all}"
       ]
     },
     {
@@ -239,8 +197,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1}",
-        "{机场2}"
+        "{all}"
       ]
     },
     {
