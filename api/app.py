@@ -94,7 +94,7 @@ def edit_temp_json():
                 flash('TEMP_JSON_DATA 不能为空', 'error')
                 return jsonify({'status': 'error', 'message': 'TEMP_JSON_DATA 不能为空'})  # 返回错误状态和消息
         except Exception as e:
-            flash(f'更新 TEMP_JSON_DATA 时出错：{str(e)}', 'error')
+            flash(f'更新 TEMP_JSON_DATA 时出错：注意订阅链接末尾不要有换行，要在双引号""里面！！！')
             return jsonify({'status': 'error', 'message': str(e)})  # 返回错误状态和消息
 
 @app.route('/generate_config', methods=['POST'])
@@ -124,7 +124,7 @@ def generate_config():
         return Response(config_content, content_type='text/plain; charset=utf-8')
     except subprocess.CalledProcessError as e:
         os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":"ssr","User-Agent":"clashmeta","Only-nodes":false}'), indent=4, ensure_ascii=False)
-        flash(f'执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist：{str(e)}', 'error')
+        flash(f'执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist')
     except Exception as e:
         flash(f'订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次')
         flash(f'请不要修改tag值，除非你明白它是干什么的')
