@@ -130,10 +130,10 @@ def generate_config():
         flash(f'Fetching the link content is timing out, please try running the script locally or putting the subscription link content into Github Gist')
     except Exception as e:
         flash(f'订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次')
-        flash(f'请不要修改tag值，除非你明白它是干什么的')
+        flash(f'请不要修改 tag 值，除非你明白它是干什么的')
         flash(f'Error occurred while generating the configuration file: {str(e)}', 'error')
         flash(f'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again')
-        flash(f'Please do not modify the tag value unless you understand what it does.')
+        flash(f'Please do not modify the "tag" value unless you understand what it does.')
     return redirect(url_for('index'))
 
 @app.route('/clear_temp_json_data', methods=['POST'])
