@@ -70,12 +70,12 @@ You can star/watch the project or follow the author to be notified of new featur
 
 ios with the shortcut command to copy the content of the web page, or too much content to choose to download the file to solve the problem of the file suffix by yourself. 👉🏻[Shortcut Install](https://www.icloud.com/shortcuts/75fd371e0aa8438a89f715238a21ee68)
 
-Android use chrome browser to open the webpage to generate the configuration file, long press the content, select it in full, share it to the code editor, check whether the editor shows the content is complete. 👉🏻[Editor Install](https://mt2.cn/download/)
+Android use chrome browser to open the webpage to generate the configuration file (please go to the browser Settings - Accessibility to reduce the webpage), long press the content, select it in full, share it to the code editor, check whether the editor shows the content is complete. 👉🏻[Editor Install](https://mt2.cn/download/)
 
 **Note that after clicking Save, go to Generate Configuration File as soon as possible, otherwise the content you fill in will remain on the webpage, and other people can browse to it when they open the website. Can't think of a solution at the moment**
 
 <div align="left">
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/95a79758-245b-4806-a483-b2993db7e62e" alt="how-to-use" width="50%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f794806c-edfc-4951-a216-6e38646f3791" alt="how-to-use" width="50%" />
 </div>
 
 ## 🎬 Demonstration video
