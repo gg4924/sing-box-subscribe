@@ -245,6 +245,7 @@ def filterNodes(nodelist,keywords):
             newlist.append(node)
         else:
             print('过滤节点名称 '+node['name'])
+            print('Lọc tên proxy'+node['name'])
     return newlist
 
 def replaceStr(nodelist,keywords):
@@ -279,7 +280,9 @@ def removeNodes(nodelist):
             temp_list.append(_node)
             newlist.append(node)
     print('去除了 '+str(i)+' 个重复节点')
+    print('Đã xóa các proxy trùng lặp '+str(i))
     print('实际获取 '+str(len(newlist))+' 个节点')
+    print('Thực tế nhận được '+str(len(newlist))+' proxy')
     return newlist
 
 def prefixStr(nodelist,prestr):
