@@ -1,6 +1,6 @@
 # sing-box-subscribe
 
-[中文](https://github.com/Toperlock/sing-box-subscribe/blob/main/README.md)|[EN](https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md)
+[中文](https://github.com/Toperlock/sing-box-subscribe/blob/main/README.md) | [EN](https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md)
 
 根据配置模板生成 sing-box 使用的 `config.json`，主要用于将机场订阅节点添加到 config，对使用 `clash_mode` 的配置才有意义。
 
