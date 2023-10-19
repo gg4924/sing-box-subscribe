@@ -83,8 +83,26 @@ Android使用chrome浏览器打开网页生成配置文件（请在浏览器 设
 ## 🎬 功能演示视频
 
 <div align="center">
-      
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46e4-b1a8-a655109628e9
+   
+**网页解析通用订阅链接(v2/clash/sing-box)**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74
+
+**网页批量解析URI**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9
+
+**安卓谷歌浏览器页面缩小**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805
+
+**本地解析通用订阅链接(v2/clash/sing-box)**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337
+
+**本地批量解析URI**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0
 
 </div>
 
@@ -365,3 +383,5 @@ windows系统建议将命令添加到批处理程序运行。
 部分clash2v2ray参考了[clash2base64](https://github.com/yuanyiwei/toys/blob/master/DEPRECATED/clash/clash2base64.py)
 
 同步代码参考了[ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web)
+
+感谢@SayRad的越南翻译
