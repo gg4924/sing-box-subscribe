@@ -381,3 +381,5 @@ Some protocol parsing referenced from [convert2clash](https://github.com/waited3
 Some clash2v2ray parsing referenced from [clash2base64](https://github.com/yuanyiwei/toys/blob/master/DEPRECATED/clash/clash2base64.py).
 
 Some synchronization code referenced from [ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web).
+
+Thanks to @SayRad for the Vietnamese translation
