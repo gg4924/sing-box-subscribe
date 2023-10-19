@@ -5,14 +5,16 @@
             "tag": "机场1(Đánh dấu)",
             "enabled": true,
             "emoji": 1,
-            "prefix": ""
+            "prefix": "",
+            "User-Agent":"clashmeta"
         },
         {
             "url": "订阅地址(Link thuê bao 2)",
             "tag": "机场2(Đánh dấu 2)",
             "enabled": false,
             "emoji": 0,
-            "prefix": "❤️机场前缀 -(Tiền tố -)"
+            "prefix": "❤️机场前缀 -(Tiền tố -)",
+            "User-Agent":"clashmeta"
         }
     ],
     "auto_set_outbounds_dns":{
@@ -22,6 +24,5 @@
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol":"ssr",
-    "User-Agent":"clashmeta",
     "Only-nodes": false
 }
