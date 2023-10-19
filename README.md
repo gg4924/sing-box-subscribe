@@ -175,14 +175,16 @@ windows系统建议将命令添加到批处理程序运行。
             "tag": "机场1",
             "enabled": true,
             "emoji": 1,
-            "prefix": ""
+            "prefix": "",
+            "User-Agent":"clashmeta"
         },
         {
             "url": "订阅地址",
             "tag": "机场2",
             "enabled": false,
             "emoji": 0,
-            "prefix": "❤️机场前缀 - "
+            "prefix": "❤️机场前缀 - ",
+            "User-Agent":"clashmeta"
         }
     ],
     "auto_set_outbounds_dns":{
@@ -191,8 +193,7 @@ windows系统建议将命令添加到批处理程序运行。
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol": "ssr",
-    "User-Agent":"clash",
+    "exlude_protocol": "ssr"
     "Only-nodes": false
 }
 ```
@@ -229,6 +230,8 @@ windows系统建议将命令添加到批处理程序运行。
 
 - `prefix`：非必需。设置自定义前缀，前缀会添加到对应节点名称前。如果没有设置，则不添加前缀。
 
+- `User-Agent`：非必需。可以自定义UA，比如设置UA为"clash.meta"，或者"sing-box"
+
 <details>
       <summary>prefix效果参考</summary>
       
@@ -258,9 +261,6 @@ windows系统建议将命令添加到批处理程序运行。
 > 使用此设置中的协议的分享链接会被忽略。
 
 > sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。
-
-- `User-Agent`：非必需。
-> 可以自定义UA，比如设置UA为"clash.meta"，或者"sing-box"
 
 - `Only-nodes`：非必需。
 > 将其设置为 true 或 1 时，只输出订阅链接 sing-box 格式的节点信息
