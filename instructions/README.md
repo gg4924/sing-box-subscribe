@@ -82,7 +82,25 @@ Android use chrome browser to open the webpage to generate the configuration fil
 
 <div align="center">
       
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0d106dc0-e845-46e4-b1a8-a655109628e9
+**Web parsing subscription link(v2/clash/sing-box)**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74
+
+**Web page batch parsing URI**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9
+
+**Android Google Chrome page shrink**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805
+
+**Locally parse subscription link(v2/clash/sing-box)**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337
+
+**Local batch parsing URI**
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0
 
 </div>
 
