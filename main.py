@@ -167,13 +167,19 @@ def get_parser(node):
     return parsers_mod[proto].parse
 
 def get_content_from_url(url,n=6):
+    UA = ''
     print('处理: '+url)
     print('Đang tải link thuê bao: '+url)
     prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://", "hy2://", "wg://"]
     if any(url.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(url)
         return response_text
-    response = tool.getResponse(url, custom_user_agent=providers.get('User-Agent', ''))
+    for subscribe in providers["subscribes"]:
+        if 'enabled' in subscribe and not subscribe['enabled']:
+            continue
+        if subscribe['url'] == url:
+            UA = subscribe.get('User-Agent', '')
+    response = tool.getResponse(url, custom_user_agent=UA)
     concount = 1
     while concount <= n and not response:
         print('连接出错，正在进行第 '+str(concount)+' 次重试，最多重试 '+str(n)+' 次...')
