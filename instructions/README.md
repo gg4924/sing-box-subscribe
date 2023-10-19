@@ -173,14 +173,16 @@ In this file, you can add subscription links and basic settings.
             "tag": "airport1_tag", //You can keep the default without modification
             "enabled": true,
             "emoji": 1, //Add flag emoji
-            "prefix": "" //Do not add node name prefix
+            "prefix": "", //Do not add node name prefix
+            "User-Agent":"clashmeta", //Set browser UA
         },
         {
             "url": "https://5gtocdocao.com/api/v1/client/subscribe?token=xx",
             "tag": "airport2_tag", //You can keep the default without modification
             "enabled": false,
             "emoji": 0, //Do not add flag emoji
-            "prefix": "❤️node_name prefix - " //Add node name prefix
+            "prefix": "❤️node_name prefix - ", //Add node name prefix
+            "User-Agent":"clashmeta", //Set browser UA
         }
     ],
     "auto_set_outbounds_dns":{
@@ -190,7 +192,6 @@ In this file, you can add subscription links and basic settings.
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol": "ssr", //Not parsing ssr nodes
-    "User-Agent":"clash", //Set browser UA
     "Only-nodes": false //Output the complete sing-box configuration
 }
 ```
@@ -227,6 +228,8 @@ In this file, you can add subscription links and basic settings.
 
 - `prefix`: Optional. Set a custom prefix that will be added to the beginning of the node names. If not set, no prefix will be added.
 
+- `User-Agent`: Optional. You can customize UA, such as setting UA to "clash.meta" or "sing-box"
+
 <details>
       <summary>prefix effect reference</summary>
   
@@ -256,9 +259,6 @@ In this file, you can add subscription links and basic settings.
 > Sharing links using protocols in this setting will be ignored.
 
 > The sing-box release program does not support ssr (needs additional parameters to build), so this setting might be useful.
-
-- `User-Agent`: Optional.
-> You can customize UA, such as setting UA to "clash.meta" or "sing-box"
 
 - `Only-nodes`: Optional.
 > When it is set to true or 1, only the node information in sing-box format of the subscription link is output.
