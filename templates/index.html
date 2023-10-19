@@ -104,7 +104,7 @@
         </div>
     </div>
     <script>
-        const initialTempJsonData = '{"subscribes":[{"url":"订阅地址","tag":"机场1","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址","tag":"机场2","enabled":false,"emoji":0,"prefix":"❤️机场前缀 - "}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":"ssr","User-Agent":"clashmeta","Only-nodes":false}';
+        const initialTempJsonData = '{"subscribes":[{"url":"订阅地址(Điền link thuê bao vào đây)","tag":"机场1(Đánh dấu)","enabled":true,"emoji":1,"prefix":""},{"url":"订阅地址(Link thuê bao 2)","tag":"机场2(Đánh dấu 2)","enabled":false,"emoji":0,"prefix":"❤️机场前缀 -(Tiền tố -)"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":"ssr","User-Agent":"clashmeta","Only-nodes":false}';
         let tempJsonData = initialTempJsonData;
         document.querySelector('#temp-json-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -168,7 +168,7 @@
                         element.href = originalLink;
                     } else {
                     // 如果需要，可以添加其他语言的支持
-                    window.location.reload();
+                        window.location.reload();
                     }
                 }
             });
