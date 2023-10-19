@@ -240,11 +240,11 @@ def save_config(path,nodes):
                 os.rename(path, f'{path}.{now}.bak')
         if os.path.exists(path):
             os.remove(path)
-            print(f"已删除文件：{path}")
-            print(f"Các file đã bị xóa: {path}")
+            print(f"已删除文件，并重新保存：{path}")
+            print(f"Tệp đã bị xóa và được lưu lại: {path}")
         else:
-            print(f"文件不存在：{path}")
-            print(f"File không tồn tại: {path}")
+            print(f"文件不存在，正在保存：{path}")
+            print(f"File không tồn tại, đang lưu: {path}")
         tool.saveFile(path, json.dumps(nodes, indent=2, ensure_ascii=False))
     except Exception as e:
         print(f"保存配置文件时出错：{str(e)}")
@@ -256,14 +256,14 @@ def save_config(path,nodes):
         try:
             if os.path.exists(config_file_path):
                 os.remove(config_file_path)
-                print(f"已删除文件：{config_file_path}")
-                print(f"Các file đã bị xóa: {config_file_path}")
+                print(f"已删除文件，并重新保存：{config_file_path}")
+                print(f"Tệp đã bị xóa và được lưu lại: {config_file_path}")
             else:
-                print(f"文件不存在：{config_file_path}")
-                print(f"File không tồn tại: {config_file_path}")
+                print(f"文件不存在，正在保存：{config_file_path}")
+                print(f"File không tồn tại, đang lưu: {config_file_path}")
             tool.saveFile(config_file_path, json.dumps(nodes, indent=2, ensure_ascii=False))
-            print(f"配置文件已保存到 {config_file_path}")
-            print(f"Tập tin cấu hình đã được lưu vào {config_file_path}")
+            #print(f"配置文件已保存到 {config_file_path}")
+            #print(f"Tập tin cấu hình đã được lưu vào {config_file_path}")
         except Exception as e:
             os.remove(config_file_path)
             print(f"已删除文件：{config_file_path}")
