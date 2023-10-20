@@ -158,16 +158,14 @@ regex_patterns = {
 def rename(input_str):
     for country_code, pattern in regex_patterns.items():
         if input_str.startswith(country_code):
-            input_str = input_str
-        else:
-            if pattern.search(input_str):
-                if input_str.startswith('🇺🇲'):
-                    input_str = country_code + ' ' + input_str[len('🇺🇲'):].strip()
-                if input_str.startswith(country_code):
-                    input_str = country_code + ' ' + input_str[len(country_code):].strip()
-                else:
-                    input_str = country_code + ' ' + input_str
-            break
+            return input_str
+        if pattern.search(input_str):
+            if input_str.startswith('🇺🇲'):
+                return country_code + ' ' + input_str[len('🇺🇲'):].strip()
+            if input_str.startswith(country_code):
+                return country_code + ' ' + input_str[len(country_code):].strip()
+            else:
+                return country_code + ' ' + input_str
     return input_str
 
 def urlDecode(str):
