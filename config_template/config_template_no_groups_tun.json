@@ -114,8 +114,7 @@
       "type":"selector",
       "outbounds":[
         "direct",
-        "{机场1(Đánh dấu)}",
-        "{机场2(Đánh dấu 2)}"
+        "{all}"
       ]
     },
     {
