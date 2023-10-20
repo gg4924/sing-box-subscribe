@@ -183,7 +183,7 @@ def get_content_from_url(url,n=6):
     concount = 1
     while concount <= n and not response:
         print('连接出错，正在进行第 '+str(concount)+' 次重试，最多重试 '+str(n)+' 次...')
-        print('Lỗi kết nối, đang tiến hành lần thử lại thứ '+str(concount)+', tối đa '+str(n)+' lần...')
+        print('Lỗi kết nối, đang thử lại '+str(concount)+'/'+str(n)+'...')
         response = tool.getResponse(url)
         concount = concount+1
         time.sleep(1)
@@ -241,10 +241,10 @@ def save_config(path,nodes):
         if os.path.exists(path):
             os.remove(path)
             print(f"已删除文件，并重新保存：{path}")
-            print(f"Tệp đã bị xóa và được lưu lại: {path}")
+            print(f"File gốc đã bị xóa và lưu tại: {path}")
         else:
             print(f"文件不存在，正在保存：{path}")
-            print(f"File không tồn tại, đang lưu: {path}")
+            print(f"File không tồn tại, đang lưu tại: {path}")
         tool.saveFile(path, json.dumps(nodes, indent=2, ensure_ascii=False))
     except Exception as e:
         print(f"保存配置文件时出错：{str(e)}")
@@ -257,10 +257,10 @@ def save_config(path,nodes):
             if os.path.exists(config_file_path):
                 os.remove(config_file_path)
                 print(f"已删除文件，并重新保存：{config_file_path}")
-                print(f"Tệp đã bị xóa và được lưu lại: {config_file_path}")
+                print(f"File gốc đã bị xóa và lưu tại: {config_file_path}")
             else:
                 print(f"文件不存在，正在保存：{config_file_path}")
-                print(f"File không tồn tại, đang lưu: {config_file_path}")
+                print(f"File không tồn tại, đang lưu tại: {config_file_path}")
             tool.saveFile(config_file_path, json.dumps(nodes, indent=2, ensure_ascii=False))
             #print(f"配置文件已保存到 {config_file_path}")
             #print(f"Tập tin cấu hình đã được lưu vào {config_file_path}")
@@ -373,7 +373,7 @@ def combin_to_config(config,data):
                         t_o.append(oo)
                 if len(t_o)==0:
                     print('发现 {} 出站下的节点数量为 0 ，会导致sing-box无法运行，请检查config模板是否正确。'.format(po['tag']))
-                    print('Chúng tôi nhận thấy rằng số proxy trong {} outbound là 0, điều này sẽ khiến sing-box không chạy được. Vui lòng kiểm tra xem mẫu cấu hình có đúng không.'.format(po['tag']))
+                    print('Không có proxy trong outbound của {}, điều này sẽ khiến sing-box không chạy được. Vui lòng kiểm tra xem mẫu cấu hình có đúng không!!'.format(po['tag']))
                     config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
                     CONFIG_FILE_NAME = config_path
                     config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
@@ -412,7 +412,7 @@ def select_config_template(tl, selected_template_index=None):
     if args.template_index is not None:
         uip = args.template_index
     else:
-        print ('Nhập số để chọn mẫu cấu hình tương ứng (nhấn Enter để chọn mẫu cấu hình đầu tiên mặc định): ')
+        print ('Nhập số để chọn mẫu cấu hình tương ứng (nhấn Enter để chọn mẫu cấu hình đầu tiên theo mặc định): ')
         uip = input('输入序号，载入对应config模板（直接回车默认选第一个配置模板）：')
         try:
             if uip == '':
@@ -420,13 +420,13 @@ def select_config_template(tl, selected_template_index=None):
             uip = int(uip)
             if uip < 1 or uip > len(tl):
                 print('输入了错误信息！重新输入')
-                print('Nhập thông tin sai! Vui lòng nhập lại')
+                print('Nhập thông tin không chính xác! Vui lòng nhập lại')
                 return select_config_template(tl)
             else:
                 uip -= 1
         except:
             print('输入了错误信息！重新输入')
-            print('Nhập thông tin sai! Vui lòng nhập lại')
+            print('Nhập thông tin không chính xác! Vui lòng nhập lại')
             return select_config_template(tl)
     return uip
 
@@ -451,14 +451,14 @@ if __name__ == '__main__':
     template_list = get_template()
     if len(template_list) < 1:
         print('没有找到模板文件')
-        print('Không tìm thấy tệp mẫu')
+        print('Không tìm thấy file mẫu')
         sys.exit()
     display_template(template_list)
 
     uip = select_config_template(template_list, selected_template_index=args.template_index)
     config_template_path = 'config_template/'+template_list[uip]+'.json'
     print ('选择: '+template_list[uip]+'.json')
-    print ('Mẫu cấu hình được chọn: '+template_list[uip]+'.json')
+    print ('Mẫu cấu hình sử dụng: '+template_list[uip]+'.json')
     config = load_json(config_template_path)
     nodes = process_subscribes(providers["subscribes"])
     if providers.get('Only-nodes'):
