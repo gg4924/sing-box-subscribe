@@ -51,18 +51,6 @@
     </style>
 </head>
 <body>
-    <div class="form-container" style="display: flex; align-items: center;">
-        <form method="POST" action="/generate_config" style="display: flex; align-items: center;">
-            <select name="template_index">
-                {% for option in template_options %}
-                <option value="{{ loop.index - 1 }}">{{ option }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Select and Generate">
-        </form>
-        <button onclick="toggleLanguage()">Switch Language</button>
-    </div>
-
     <div class="container">
         <!--
         <div class="left-box">
@@ -80,6 +68,17 @@
                 <br>
                 <input type="submit" value="save">
             </form>
+            <div class="form-container" style="display: flex; align-items: center;">
+                <form method="POST" action="/generate_config" style="display: flex; align-items: center;">
+                    <select name="template_index">
+                        {% for option in template_options %}
+                        <option value="{{ loop.index - 1 }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Select and Generate">
+                </form>
+                <button onclick="toggleLanguage()">Switch Language</button>
+            </div>
         </div>
         <div class="config-content">
             <h3 style="margin: 8px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe#%E9%A1%B5%E9%9D%A2%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="noopener noreferrer">请务必：点击查看操作说明</a></h3>
