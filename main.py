@@ -168,8 +168,8 @@ def get_parser(node):
 
 def get_content_from_url(url,n=6):
     UA = ''
-    print('处理: '+url)
-    print('Đang tải link thuê bao: '+url)
+    print('处理: \033[31m' + url + '\033[0m')
+    print('Đang tải link thuê bao: \033[31m' + url + '\033[0m')
     prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://", "hy2://", "wg://"]
     if any(url.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(url)
@@ -224,8 +224,8 @@ def get_content_from_url(url,n=6):
     return response_text
 
 def get_content_form_file(url):
-    print('处理: '+url)
-    print('Đang tải link thuê bao: '+url)
+    print('处理: \033[31m' + url + '\033[0m')
+    print('Đang tải link thuê bao: \033[31m' + url + '\033[0m')
     encoding = tool.get_encoding(url)
     data = tool.readFile(url)
     data = bytes.decode(data, encoding='utf-8')
@@ -240,11 +240,11 @@ def save_config(path,nodes):
                 os.rename(path, f'{path}.{now}.bak')
         if os.path.exists(path):
             os.remove(path)
-            print(f"已删除文件，并重新保存：{path}")
-            print(f"File gốc đã bị xóa và lưu tại: {path}")
+            print(f"已删除文件，并重新保存：\033[33m{path}\033[0m")
+            print(f"File cấu hình đã được lưu vào: \033[33m{path}\033[0m")
         else:
-            print(f"文件不存在，正在保存：{path}")
-            print(f"File không tồn tại, đang lưu tại: {path}")
+            print(f"文件不存在，正在保存：\033[33m{path}\033[0m")
+            print(f"File không tồn tại, đang lưu tại: \033[33m{path}\033[0m")
         tool.saveFile(path, json.dumps(nodes, indent=2, ensure_ascii=False))
     except Exception as e:
         print(f"保存配置文件时出错：{str(e)}")
@@ -256,18 +256,18 @@ def save_config(path,nodes):
         try:
             if os.path.exists(config_file_path):
                 os.remove(config_file_path)
-                print(f"已删除文件，并重新保存：{config_file_path}")
-                print(f"File gốc đã bị xóa và lưu tại: {config_file_path}")
+                print(f"已删除文件，并重新保存：\033[33m{config_file_path}\033[0m")
+                print(f"File cấu hình đã được lưu vào: \033[33m{config_file_path}\033[0m")
             else:
-                print(f"文件不存在，正在保存：{config_file_path}")
-                print(f"File không tồn tại, đang lưu tại: {config_file_path}")
+                print(f"文件不存在，正在保存：\033[33m{config_file_path}\033[0m")
+                print(f"File không tồn tại, đang lưu tại: \033[33m{config_file_path}\033[0m")
             tool.saveFile(config_file_path, json.dumps(nodes, indent=2, ensure_ascii=False))
             #print(f"配置文件已保存到 {config_file_path}")
             #print(f"Tập tin cấu hình đã được lưu vào {config_file_path}")
         except Exception as e:
             os.remove(config_file_path)
-            print(f"已删除文件：{config_file_path}")
-            print(f"Các file đã bị xóa: {config_file_path}")
+            print(f"已删除文件：\033[33m{config_file_path}\033[0m")
+            print(f"Các file đã bị xóa: \033[33m{config_file_path}\033[0m")
             print(f"再次保存配置文件时出错：{str(e)}")
             print(f"Lỗi khi lưu lại file cấu hình: {str(e)}")
 
@@ -457,8 +457,8 @@ if __name__ == '__main__':
 
     uip = select_config_template(template_list, selected_template_index=args.template_index)
     config_template_path = 'config_template/'+template_list[uip]+'.json'
-    print ('选择: '+template_list[uip]+'.json')
-    print ('Mẫu cấu hình sử dụng: '+template_list[uip]+'.json')
+    print ('选择: \033[33m' + template_list[uip] + '.json\033[0m')
+    print ('Mẫu cấu hình sử dụng: \033[33m' + template_list[uip] + '.json\033[0m')
     config = load_json(config_template_path)
     nodes = process_subscribes(providers["subscribes"])
     if providers.get('Only-nodes'):
