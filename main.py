@@ -66,12 +66,15 @@ def action_keywords(nodes,action,keywords):
     flag = False
     if action == 'exlude':
         flag = True
+    '''
     # 空关键字过滤
     _keywords = []
     for k in keywords:
         if k != "":
             _keywords.append(k)
-    keywords = _keywords
+    '''
+    _keywords_list = keywords[0].split("|")
+    keywords = [k for k in _keywords_list if k]
     if len(keywords) == 0:
         return nodes
     for node in nodes:
