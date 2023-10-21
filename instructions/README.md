@@ -295,7 +295,7 @@ The template files are similar to sing-box configs, but with some new parameters
   ],
   "filter":[
     //If airport1_tag and airport2_tag have nodes with these names 'sg','新加坡','tw','台湾' they collectively form the netflix group
-    {"action":"include","keywords":["sg","新加坡","tw","台湾"]},
+    {"action":"include","keywords":["sg|新加坡|tw|台湾"]},
     //The "for" is set to airport1_tag, which means that this rule only works on airport1_tag
     {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
     //This filter will remove nodes containing ˣ² in airport1_tag
@@ -309,15 +309,15 @@ The template files are similar to sing-box configs, but with some new parameters
 - `filter`: Optional. Node filtering, an array object where you can add any number of rules, formatted as:
 ```json
 "filter": [
-    {"action": "include", "keywords": ["keyword1", "keyword2"]},
-    {"action": "exclude", "keywords": ["keyword1", "keyword2"], "for": ["airport1_tag", "airport2_tag"]}
+    {"action": "include", "keywords": ["keyword1|keyword2"]},
+    {"action": "exclude", "keywords": ["keyword1|keyword2"], "for": ["airport1_tag", "airport2_tag"]}
   ]
 ```
 - **Keyword case-sensitive**
 
-- `include`: Add the keywords to be retained. Nodes with names containing these keywords will be retained, and other nodes will be deleted.
+- `include`: Add the keywords to be retained, use '|' to connect multiple keywords. Nodes with names containing these keywords will be retained, and other nodes will be deleted.
 
-- `exclude`: Add the keywords to be excluded. Nodes with names containing these keywords will be deleted, and other nodes will be retained.
+- `exclude`: Add the keywords to be excluded, use '|' to connect multiple keywords. Nodes with names containing these keywords will be deleted, and other nodes will be retained.
 
 - `for`: Optional. Set the airport `tag`, can be multiple. This rule will only apply to the specified airports, and other airports will ignore this rule.
 
