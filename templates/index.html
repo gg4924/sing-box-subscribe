@@ -67,8 +67,8 @@
                 <textarea name="temp_json_data" rows="10" cols="40" style="width: 400px; height: 400px;">{{ temp_json_data | default('') }}</textarea>
                 <br>
                 <input type="submit" value="save">
-                <button onclick="toggleLanguage()">Switch Language</button>
             </form>
+            <button onclick="toggleLanguage()">Switch Language</button>
             <div class="form-container" style="display: flex; align-items: center;">
                 <form method="POST" action="/generate_config" style="display: flex; align-items: center;">
                     <select name="template_index">
