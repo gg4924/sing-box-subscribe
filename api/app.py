@@ -95,12 +95,13 @@ def edit_temp_json():
                 #flash('TEMP_JSON_DATA đã được cập nhật', 'Thành công^^')
                 return jsonify({'status': 'success'})  # 返回成功状态
             else:
-                flash('TEMP_JSON_DATA 不能为空', 'error')
-                flash('TEMP_JSON_DATA không thể trống', 'Lỗi!!!')
-                return jsonify({'status': 'error', 'message': 'TEMP_JSON_DATA 不能为空(không thể trống)'})  # 返回错误状态和消息
+                return jsonify({'status': 'error', 'message': 'TEMP_JSON_DATA 不能为空(không thể trống)'}, content_type='application/json; charset=utf-8')  # 返回错误状态和消息
         except Exception as e:
-            flash(f'更新 TEMP_JSON_DATA 时出错：注意订阅链接末尾不要有换行，要在双引号""里面！！！')
-            flash(f'Có lỗi khi cập nhật TEMP_JSON_DATA: lưu ý rằng liên kết đăng ký không được có ký tự xuống dòng ở cuối, mà phải nằm trong dấu ngoặc kép ""')
+            flash('TEMP_JSON_DATA 不能为空', 'error')
+            flash('TEMP_JSON_DATA 格式出错：注意订阅链接末尾不要有换行，要在双引号""里面！！！')
+            flash('TEMP_JSON_DATA không thể trống', 'Lỗi!!!')
+            flash('Lỗi định dạng TEMP_JSON_DATA: lưu ý rằng liên kết đăng ký không được có ký tự xuống dòng ở cuối, mà phải nằm trong dấu ngoặc kép ""')
+            flash('TEMP_JSON_DATA cannot be empty', 'error')
             flash(f'Error updating TEMP_JSON_DATA: note that the subscription link should not have a newline at the end, but should be inside double quotes ""')
             return jsonify({'status': 'error', 'message': str(e)})  # 返回错误状态和消息
 
@@ -133,20 +134,10 @@ def generate_config():
         return Response(config_content, content_type='text/plain; charset=utf-8')
     except subprocess.CalledProcessError as e:
         os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"URL LINK","tag":"tag_1","enabled":true,"emoji":1,"prefix":"","User-Agent":"clashmeta"},{"url":"URL LINK","tag":"tag_2","enabled":false,"emoji":0,"prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exlude_protocol":"ssr","Only-nodes":false}'), indent=4, ensure_ascii=False)
-        flash(f'执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist')
-        flash(f'Có lỗi khi thực hiện tiến trình con, vượt quá thời gian để lấy nội dung liên kết, vui lòng thử chạy kịch bản cục bộ hoặc đặt nội dung liên kết đăng ký vào Github Gist')
-        flash(f'Fetching the link content is timing out, please try running the script locally or putting the subscription link content into Github Gist')
-        flash(f'你的订阅链接可能需要使用 越南 ip才能打开，很抱歉vercel做不到，请你把订阅链接里的node内容保存到gist里再尝试解析它。或者请你在本地运行脚本')
-        flash(f'Liên kết đăng ký của bạn có thể cần sử dụng IP Việt Nam để mở, xin lỗi Vercel không thể làm điều đó, vui lòng lưu nội dung nút trong liên kết đăng ký vào Github Gist trước khi cố gắng phân tích nó. Hoặc vui lòng chạy kịch bản cục bộ')
-        flash(f'Your subscription link may need to use Vietnam ip to open, sorry Vercel can not do that, please save the node content in the subscription link to Github Gist before trying to parse it. Or please run the script locally')
+        return Response(json.dumps({'status': 'error', 'message_CN': '执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist; 你的订阅链接可能需要使用 越南 ip才能打开，很抱歉vercel做不到，请你把订阅链接里的node内容保存到gist里再尝试解析它。或者请你在本地运行脚本;', 'message_VN': 'Có lỗi khi thực hiện tiến trình con, vượt quá thời gian để lấy nội dung liên kết, vui lòng thử chạy kịch bản cục bộ hoặc đặt nội dung liên kết đăng ký vào Github Gist; Liên kết đăng ký của bạn có thể cần sử dụng IP Việt Nam để mở, xin lỗi Vercel không thể làm điều đó, vui lòng lưu nội dung nút trong liên kết đăng ký vào Github Gist trước khi cố gắng phân tích nó. Hoặc vui lòng chạy kịch bản cục bộ;', 'message_EN': 'Fetching the link content is timing out, please try running the script locally or putting the subscription link content into Github Gist; Your subscription link may need to use Vietnam ip to open, sorry Vercel can not do that, please save the node content in the subscription link to Github Gist before trying to parse it. Or please run the script locally;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
     except Exception as e:
-        flash(f'订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次')
-        flash(f'Quá thời gian phân tích đăng ký: Vui lòng kiểm tra xem liên kết đăng ký có chính xác không hoặc vui lòng chuyển sang "nogroupstemplate" và thử lại')
-        flash(f'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again')
-        flash(f'请不要修改 tag 值，除非你明白它是干什么的')
-        flash(f'Vui lòng không chỉnh sửa giá trị "tag", trừ khi bạn hiểu nó làm gì')
-        flash(f'Please do not modify the "tag" value unless you understand what it does.')
         #flash(f'Error occurred while generating the configuration file: {str(e)}', 'error')
+        return Response(json.dumps({'status': 'error', 'message_CN': '订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次; 请不要修改 tag 值，除非你明白它是干什么的;', 'message_VN': 'Quá thời gian phân tích đăng ký: Vui lòng kiểm tra xem liên kết đăng ký có chính xác không hoặc vui lòng chuyển sang "nogroupstemplate" và thử lại; Vui lòng không chỉnh sửa giá trị "tag", trừ khi bạn hiểu nó làm gì;', 'message_EN': 'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again; Please do not modify the "tag" value unless you understand what it does;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
     return redirect(url_for('index'))
 
 @app.route('/clear_temp_json_data', methods=['POST'])
