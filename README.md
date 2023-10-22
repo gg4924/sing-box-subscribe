@@ -172,16 +172,16 @@ windows系统建议将命令添加到批处理程序运行。
     "subscribes":[
         {
             "url": "订阅地址",
-            "tag": "机场1",
+            "tag": "机场1", //保持默认，除非你知道这是干什么的
             "enabled": true,
-            "emoji": 1,
-            "prefix": "",
-            "User-Agent":"clashmeta"
+            "emoji": 1, //节点名前添加国家emoji
+            "prefix": "", //节点名前加自定义前缀
+            "User-Agent":"clashmeta" //自定义获取订阅链接的UA，比如:"v2rayNG","Shadowrocket/1900 CFNetwork/1331.0.7 Darwin/21.4.0"
         },
         {
             "url": "订阅地址",
             "tag": "机场2",
-            "enabled": false,
+            "enabled": false, //不启用
             "emoji": 0,
             "prefix": "❤️机场前缀 - ",
             "User-Agent":"clashmeta"
@@ -193,8 +193,8 @@ windows系统建议将命令添加到批处理程序运行。
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol": "ssr"
-    "Only-nodes": false
+    "exlude_protocol": "ssr" //排除订阅链接里ssr协议节点
+    "Only-nodes": false //开启时，只输出节点内容(不是完整sing-box配置)
 }
 ```
 - `url`：必须。
