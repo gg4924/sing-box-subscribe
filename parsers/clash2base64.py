@@ -54,6 +54,11 @@ def clash2v2ray(share_link):
                 ss_info["mode"] = share_link['plugin-opts']['mode']
                 ss_info["host"] = share_link['plugin-opts']['host']
                 url_link = '/?plugin={plugin}%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
+            if share_link.get('plugin') == 'v2ray-plugin':
+                ss_info["obfs"] = share_link['plugin-opts']['mode']
+                ss_info["obfs-host"] = share_link['plugin-opts'].get('host','cloudfront.com')
+                v2ray_plugin = f'{{"mode": "{ss_info["obfs"]}", "host": "{ss_info["obfs-host"]}"}}'
+                url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
             link = "ss://{base_link}@{server}:{port}{url_link}#{name}".format(base_link=base_link, url_link=url_link, **ss_info)
         else:
             link = "ss://{base_link}@{server}:{port}#{name}".format(base_link=base_link, **ss_info)
