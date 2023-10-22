@@ -18,7 +18,7 @@ Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sa
 
 ## Supported Protocols
 
-|  Protocol | V2 Sub | Clash Sub | URI Format | SingBox Format |
+|  Protocol | V2 Sub | Clash Sub | Standard URI Format | SingBox Format |
 |  :----  | :----: | :----: | :----: | :----: |
 | http  | ✅ | ✅ | ✅ | ✅ |
 | socks5  | ✅ | ✅ | ✅ | ✅ |
@@ -203,7 +203,7 @@ In this file, you can add subscription links and basic settings.
 
 > SSupport setting up a sing-box subscription link
 
-> Supports setting up a local file paths (**content as URI links**)
+> Supports setting up a local file paths (**content as standard URI links**)
 
     For local files, such as txt files, each line should contain a single node sharing link, starting with `ss://` (non-subscription link).
 
