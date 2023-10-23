@@ -113,7 +113,11 @@
       "tag":"🤖 OpenAI",
       "type":"selector",
       "outbounds":[
+        "direct",
         "{all}"
+      ],
+      "filter":[
+        {"action":"exlude","keywords":["🇭🇰|HK|hk|香港|港"]}
       ]
     },
     {
@@ -182,6 +186,9 @@
       "outbounds":[
         "direct",
         "{all}"
+      ],
+      "filter":[
+        {"action":"include","keywords":["🇭🇰|HK|hk|香港|港|🇹🇼|TW|tw|台湾|臺灣|台"]}
       ]
     },
     {
