@@ -172,7 +172,7 @@ def get_parser(node):
 def get_content_from_url(url,n=6):
     UA = ''
     print('处理: \033[31m' + url + '\033[0m')
-    print('Đang tải link thuê bao: \033[31m' + url + '\033[0m')
+    print('Đang tải link đăng ký: \033[31m' + url + '\033[0m')
     prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://", "hy2://", "wg://"]
     if any(url.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(url)
@@ -192,14 +192,14 @@ def get_content_from_url(url,n=6):
         time.sleep(1)
     if not response:
         print('获取错误，跳过此订阅')
-        print('Lỗi khi tải link thuê bao, bỏ qua link thuê bao này')
+        print('Lỗi khi tải link đăng ký, bỏ qua link đăng ký này')
         print('----------------------------')
         return None
     response_text = response.text
     response_encoding = response.encoding
     if response_text.isspace():
         print('没有从订阅链接获取到任何内容')
-        print('Không nhận được nội dung từ link thuê bao')
+        print('Không nhận được proxy nào từ link đăng ký')
         return None
     if any(response_text.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(response_text)
@@ -228,7 +228,7 @@ def get_content_from_url(url,n=6):
 
 def get_content_form_file(url):
     print('处理: \033[31m' + url + '\033[0m')
-    print('Đang tải link thuê bao: \033[31m' + url + '\033[0m')
+    print('Đang tải link đăng ký: \033[31m' + url + '\033[0m')
     encoding = tool.get_encoding(url)
     data = tool.readFile(url)
     data = bytes.decode(data, encoding='utf-8')
@@ -376,7 +376,7 @@ def combin_to_config(config,data):
                         t_o.append(oo)
                 if len(t_o)==0:
                     print('发现 {} 出站下的节点数量为 0 ，会导致sing-box无法运行，请检查config模板是否正确。'.format(po['tag']))
-                    print('Không có proxy trong outbound của {}, điều này sẽ khiến sing-box không chạy được. Vui lòng kiểm tra xem mẫu cấu hình có đúng không!!'.format(po['tag']))
+                    print('Sing-Box không chạy được vì không tìm thấy bất kỳ proxy nào trong outbound của {}. Vui lòng kiểm tra xem mẫu cấu hình có đúng không!!'.format(po['tag']))
                     config_path = json.loads(temp_json_data).get("save_config_path", "config.json")
                     CONFIG_FILE_NAME = config_path
                     config_file_path = os.path.join('/tmp', CONFIG_FILE_NAME)
