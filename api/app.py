@@ -157,7 +157,6 @@ def generate_config():
             flash('Vui lòng chọn một mẫu cấu hình', 'Lỗi!!!')
             return redirect(url_for('index'))
         temp_json_data = json.dumps(os.environ['TEMP_JSON_DATA'], indent=4, ensure_ascii=False)
-        print (temp_json_data)
         # 修改这里：执行main.py并传递模板序号作为命令行参数，如果未指定，则传递空字符串
         subprocess.check_call([sys.executable, 'main.py', '--template_index', selected_template_index, '--temp_json_data', temp_json_data])
         CONFIG_FILE_NAME = json.loads(os.environ['TEMP_JSON_DATA']).get("save_config_path", "config.json")
