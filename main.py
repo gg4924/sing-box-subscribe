@@ -72,6 +72,7 @@ def action_keywords(nodes,action,keywords):
     for k in keywords:
         if k != "":
             _keywords.append(k)
+    keywords = _keywords
     '''
     _keywords_list = keywords[0].split("|")
     keywords = [k for k in _keywords_list if k]
@@ -123,9 +124,10 @@ def get_nodes(url):
             outbounds_0 = content['outbounds'][0]['outbounds']
             outbounds_tags = [item["tag"] for item in content["outbounds"][1:]]
             matching_tags = [tag for tag in outbounds_tags if tag in outbounds_0]
+            filtered_tags = [tag for tag in matching_tags if tag != "auto"]
             matching_indices = []
             for i, outbound in enumerate(content["outbounds"][1:]):
-                if outbound["tag"] in matching_tags:
+                if outbound["tag"] in filtered_tags:
                     matching_indices.append(i + 1)  # 添加1以补偿切片的偏移
             data = [content["outbounds"][i] for i in matching_indices]
             return data
