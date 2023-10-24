@@ -6,6 +6,20 @@ It is not suitable for people who are completely unfamiliar with the sing-box co
 
 Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sagernet.org/configuration/).
 
+## Feature
+
+**sing-box web parser**
+
+Use the website you built to achieve real-time configuration updates, which can serve as the remote link of sing-box
+
+For example, the website I built [https://sing-box-subscribe.vercel.app](https://sing-box-subscribe.vercel.app), add `/config/URL_LINK` after the website, here` URL_LINK` refers to the subscription link
+
+Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt
+
+### Demo video
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/a583c443-0c7b-454e-aaf2-f0a7159b276a
+
 ## Catalog
 
 [Operation video](https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md#-demonstration-video)
