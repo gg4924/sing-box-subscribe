@@ -20,7 +20,8 @@ def parse(data):
         node['flow'] = 'xtls-rprx-vision'
     if netquery.get('security', '') not in ['none', '']:
         node['tls'] = {
-            'enabled': True
+            'enabled': True,
+            'insecure': True
         }
         if netquery.get('sni'):
             node['tls']['server_name'] = netquery['sni']
@@ -42,7 +43,7 @@ def parse(data):
         if netquery['type'] == 'ws':
             node['transport'] = {
                 'type':'ws',
-                "path": netquery['path'],
+                "path": netquery.get('path', '').rsplit("?")[0],
                 "headers": {
                     "Host": netquery.get('sni', netquery.get('host', ''))
                 }
