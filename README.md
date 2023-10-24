@@ -8,6 +8,20 @@
 
 请查看：[https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration)。
 
+## 特色
+
+**sing-box网页版解析器**
+
+用自己搭建的网站实现配置热更新，可充当 sing-box 的 remote link
+
+比如我搭建的网站 [https://sing-box-subscribe.vercel.app](https://sing-box-subscribe.vercel.app), 在网站后面添加 `/config/URL_LINK`, 此处 `URL_LINK` 指订阅链接
+
+示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt
+
+### 演示视频
+
+https://github.com/Toperlock/sing-box-subscribe/assets/86833913/a583c443-0c7b-454e-aaf2-f0a7159b276a
+
 ## 导航
 
 [操作演示视频](https://github.com/Toperlock/sing-box-subscribe#-%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91)
