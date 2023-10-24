@@ -100,6 +100,8 @@ def add_emoji(nodes,subscribe):
             node['tag'] = tool.rename(node['tag'])
             
 def get_nodes(url):
+    if url.startswith('sub://'):
+        url = tool.b64Decode(url[6:]).decode('utf-8')
     urlstr = urllib.parse.urlparse(url)
     if not urlstr.scheme:
         content = get_content_form_file(url)
