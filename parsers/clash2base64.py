@@ -32,6 +32,7 @@ def clash2v2ray(share_link):
         vmess_json = json.dumps(vmess_info).encode('utf-8')
         vmess_base64 = base64.b64encode(vmess_json).decode('utf-8')
         link = f"vmess://{vmess_base64}"
+        return link
         # TODO
     elif share_link['type'] == 'ss':
         ss_info = {
@@ -62,6 +63,7 @@ def clash2v2ray(share_link):
             link = "ss://{base_link}@{server}:{port}{url_link}#{name}".format(base_link=base_link, url_link=url_link, **ss_info)
         else:
             link = "ss://{base_link}@{server}:{port}#{name}".format(base_link=base_link, **ss_info)
+        return link
         # TODO
     elif share_link['type'] == 'ssr':
         ssr_info = {
@@ -78,6 +80,7 @@ def clash2v2ray(share_link):
         }
         base_link = base64.b64encode("{server}:{port}:{protocol}:{cipher}:{obfs}:{password}/?obfsparam={obfsparam}&protoparam={protoparam}&remarks={remarks}&group={group}".format(**ssr_info).encode('utf-8')).decode('utf-8')
         link = f"ssr://{base_link}"
+        return link
         # TODO
     elif share_link['type'] == 'trojan':
         trojan_info = {
@@ -108,6 +111,7 @@ def clash2v2ray(share_link):
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
         if trojan_info['type'] == 'tcp':
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
+        return link
         # TODO
     elif share_link['type'] == 'vless':
         vless_info = {
@@ -150,6 +154,7 @@ def clash2v2ray(share_link):
                 else:
                     vless_info["security"] = 'tls'
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}#{name}".format(**vless_info)
+        return link
         # TODO
     elif share_link['type'] == 'tuic':
         link = "tuic://{uuid}:{password}@{server}:{port}?alpn={alpn}&allow_insecure={allowInsecure}&disable_sni={disable_sni}&sni={sni}&udp_relay_mode={udp_relay_mode}&congestion_control={control}#{name}".format(
@@ -165,6 +170,7 @@ def clash2v2ray(share_link):
         control = share_link.get('congestion-controller', 'bbr'),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
         )
+        return link
         # TODO
     elif share_link['type'] == 'hysteria':
         link = "hysteria://{server}:{port}?protocol={protocol}&auth={auth}&alpn={alpn}&insecure={allowInsecure}&peer={sni}&upmbps={upmbps}&downmbps={downmbps}&obfs={obfs}#{name}".format(
@@ -180,6 +186,7 @@ def clash2v2ray(share_link):
         obfs = share_link.get('obfs', ''),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
         )
+        return link
         # TODO
     elif share_link['type'] == 'hysteria2':
         link = "hysteria2://{auth}@{server}:{port}?insecure={allowInsecure}&obfs={obfs}&obfs-password={obfspassword}&pinSHA256={fingerprint}&sni={sni}&alpn={alpn}&upmbps={upmbps}&downmbps={downmbps}#{name}".format(
@@ -196,6 +203,7 @@ def clash2v2ray(share_link):
         downmbps = share_link.get('down', ''),
         name = share_link['name'].encode('utf-8', 'surrogatepass').decode('utf-8')
         )
+        return link
         # TODO
     elif share_link['type'] == 'wireguard':
         warp_info = {
@@ -213,6 +221,7 @@ def clash2v2ray(share_link):
             link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip},{ipv6}&udp=1&reserved={reserved}#{name}".format(**warp_info)
         else:
             link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip}&udp=1&reserved={reserved}#{name}".format(**warp_info)
+        return link
         # TODO
     elif share_link['type'] == 'http':
         http_info = {
@@ -224,6 +233,7 @@ def clash2v2ray(share_link):
         }
         base_link = base64.b64encode("{user}:{password}@{server}:{port}/#{name}".format(**http_info).encode('utf-8')).decode('utf-8')
         link = f"https://{base_link}"
+        return link
         # TODO
     elif share_link['type'] == 'socks5':
         socks5_info = {
@@ -234,5 +244,6 @@ def clash2v2ray(share_link):
         }
         base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**socks5_info).encode('utf-8')).decode('utf-8')
         link = f"socks5://{base_link}"
+        return link
         # TODO
     return link
