@@ -225,8 +225,8 @@ def get_content_from_url(url,n=6):
     else:
         try:
             response_text = tool.b64Decode(response_text)
-            #response_text = response_text.decode(encoding="utf-8")
-            response_text = bytes.decode(response_text,encoding=response_encoding)
+            response_text = response_text.decode(encoding="utf-8")
+            #response_text = bytes.decode(response_text,encoding=response_encoding)
         except:
             pass
             # traceback.print_exc()
