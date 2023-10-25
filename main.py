@@ -213,11 +213,13 @@ def get_content_from_url(url,n=6):
         yaml = ruamel.yaml.YAML()
         try:
             response_text = dict(yaml.load(yaml_content))
+            return response_text
         except:
             pass
     elif 'outbounds' in response_text:
         try:
             response_text = json.loads(response.text)
+            return response_text
         except:
             pass
     else:
@@ -234,10 +236,22 @@ def get_content_form_file(url):
     print('处理: \033[31m' + url + '\033[0m')
     print('Đang tải link đăng ký: \033[31m' + url + '\033[0m')
     encoding = tool.get_encoding(url)
-    data = tool.readFile(url)
-    data = bytes.decode(data, encoding='utf-8')
-    data = tool.noblankLine(data)
-    return data
+    file_extension = os.path.splitext(url)[1]  # 获取文件的后缀名
+    if file_extension.lower() == '.yaml':
+        with open(url, 'rb') as file:
+            content = file.read()
+        yaml_data = dict(yaml.safe_load(content))
+        share_links = []
+        for proxy in yaml_data['proxies']:
+            share_links.append(clash2v2ray(proxy))
+        node = '\n'.join(share_links)
+        processed_list = tool.noblankLine(node)
+        return processed_list
+    else:
+        data = tool.readFile(url)
+        data = bytes.decode(data, encoding='utf-8')
+        data = tool.noblankLine(data)
+        return data
 
 def save_config(path,nodes):
     try:
