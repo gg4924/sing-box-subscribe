@@ -89,7 +89,7 @@ def parse(data):
                 'path':item.get('path', '').rsplit("?")[0],
                 'headers': {
                     'Host': item.get('host', '')
-                },
+                }
             }
             if '?ed' in item.get('path'):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
