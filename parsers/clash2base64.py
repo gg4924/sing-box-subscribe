@@ -93,7 +93,7 @@ def clash2v2ray(share_link):
             "name": quote(share_link['name'], 'utf-8')
         }
         if trojan_info['type'] == 'grpc':
-            if share_link.get('grpc-opts').get('grpc-service-name') != '/' :
+            if share_link.get('grpc-opts').get('grpc-service-name', '') not in ['none', '', '/']:
                 trojan_info["serviceName"] = unquote(share_link.get('grpc-opts').get('grpc-service-name'))
             else:
                 trojan_info["serviceName"] = ''
