@@ -96,10 +96,14 @@ def clash2v2ray(share_link):
             "name": quote(share_link['name'], 'utf-8')
         }
         if trojan_info['type'] == 'grpc':
-            if share_link.get('grpc-opts').get('grpc-service-name', '') not in ['none', '', '/']:
+            if share_link.get('grpc-opts', {}).get('grpc-service-name', '') not in ['none', '', '/']:
                 trojan_info["serviceName"] = unquote(share_link.get('grpc-opts').get('grpc-service-name'))
             else:
-                trojan_info["serviceName"] = ''
+                server_parts = share_link['server'].split('.')
+                if len(server_parts) >= 2 and not server_parts[-2].isdigit():
+                    trojan_info["serviceName"] = server_parts[-2]
+                else:
+                    trojan_info["serviceName"] = ''
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&serviceName={serviceName}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
         if trojan_info['type'] == 'ws':
             if share_link.get('ws-opts'):
