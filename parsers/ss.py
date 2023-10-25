@@ -76,12 +76,15 @@ def parse(data):
             node['server_port'] = matcher.group(3)
         else:
             return None
-        matcher = re.match(r'(.*?):(.*)', tool.urlDecode(param).decode('utf-8'))
-        if matcher:
-            node['method'] = matcher.group(1)
-            node['password'] = matcher.group(2)
-        else:
-            return None
+        try:
+          matcher = re.match(r'(.*?):(.*)', tool.urlDecode(param).decode('utf-8'))
+          if matcher:
+              node['method'] = matcher.group(1)
+              node['password'] = matcher.group(2)
+          else:
+              return None
+        except:
+          return None
     else:
         matcher = re.match(r'(.*?):(.*)@(.*):(.*)', tool.urlDecode(param).decode('utf-8'))
         if matcher:
