@@ -217,9 +217,11 @@ In this file, you can add subscription links and basic settings.
 
 > SSupport setting up a sing-box subscription link
 
-> Supports setting up a local file paths (**content as standard URI links**)
+> Supports setting up a local file paths (**content as standard URI links or Clash field**)
 
-    For local files, such as txt files, each line should contain a single node sharing link, starting with `ss://` (non-subscription link).
+    Local files with `.txt` suffix need to add single node share links one per line in the file, e.g. `ss://` at the beginning (non-subscription links).
+
+    Local files with `.yaml` suffix, with the correct clash proxies fields filled in.
 
     Local files need to be saved on the same drive. Local path formats: `/Desktop/sing-box-subscribe/xx.txt` or relative path formats in the same folder as `main.py`: `./xx.txt`.
 
