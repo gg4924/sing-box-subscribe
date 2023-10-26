@@ -208,6 +208,7 @@ windows系统建议将命令添加到批处理程序运行。
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol": "ssr" //排除订阅链接里ssr协议节点
+    "config_template": "", //自定义正确的网页json配置模板链接
     "Only-nodes": false //开启时，只输出节点内容(不是完整sing-box配置)
 }
 ```
@@ -277,6 +278,8 @@ windows系统建议将命令添加到批处理程序运行。
 > 使用此设置中的协议的分享链接会被忽略。
 
 > sing-box release中的程序没有支持ssr（需要自己添加参数构建），所以此设置可能有用。
+
+- `config_template`：非必需。输入一个正确的网页json配置模板链接，以此模板生成sing-box配置。
 
 - `Only-nodes`：非必需。
 > 将其设置为 true 或 1 时，只输出订阅链接 sing-box 格式的节点信息
