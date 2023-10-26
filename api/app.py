@@ -108,23 +108,41 @@ def edit_temp_json():
 
 @app.route('/config/<path:url>', methods=['GET'])
 def config(url):
+    
     temp_json_data_str = os.environ['TEMP_JSON_DATA']
     temp_json_data = json.loads(temp_json_data_str)
     subscribe = temp_json_data['subscribes'][0]
+    
     query_string = request.query_string.decode('utf-8')
+    
     encoded_url = quote(url, safe=':/')  # 对 url 进行编码
-    #parsed_url = urlparse(encoded_url)  # 解析 URL
-    #path = unquote(parsed_url.path)
-    #print (query_string)
-    # 检查 query_string 中是否包含 '/&'
-    if '/&' in query_string:
-        path_params = parse_qs(query_string.split('/&')[1])  # 解析 path 中的参数
+    encoded_url = unquote(encoded_url)
+    
+    index_of_colon = encoded_url.find(":")
+    
+    parsed_url = urlparse(encoded_url)  # 解析 URL
+    path = unquote(parsed_url.path)
+
+    if query_string:
+        param = query_string
+    else:
+        param = path
+
+    # 检查 param 中是否包含 '/&'
+    if '/&' in param:
+        path_params = parse_qs(param.split('/&')[1])  # 解析 path 中的参数
         # 获取参数值
         emoji = path_params.get('emoji', [''])[0]
         tag = path_params.get('tag', [''])[0]
         prefix = path_params.get('prefix', [''])[0]
         UA = path_params.get('UA', [''])[0]
         file = path_params.get('file', [''])[0]
+        if file:
+            index_of_file = file.find(":")
+            if index_of_file != -1:
+                next_char_index = index_of_file + 2
+                if next_char_index < len(file) and file[next_char_index] != "/":
+                    file = file[:next_char_index-1] + "/" + file[next_char_index-1:]
         # 使用字典的get方法提供默认值
         subscribe['emoji'] = int(emoji) if emoji else subscribe.get('emoji', '')
         subscribe['tag'] = tag if tag else subscribe.get('tag', '')
@@ -135,8 +153,6 @@ def config(url):
         # 如果没有 '/&'，可以提供默认值或者抛出异常
         emoji = tag = prefix = UA = file = ''
 
-    index_of_colon = encoded_url.find(":")
-    encoded_url = unquote(encoded_url)
     if index_of_colon != -1:
         # 检查 ":" 后面是否只有一个 "/"，如果是，添加一个额外的 "/"
         next_char_index = index_of_colon + 2
