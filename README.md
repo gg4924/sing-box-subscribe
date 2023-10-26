@@ -16,13 +16,19 @@
 
 比如我搭建的网站 [https://sing-box-subscribe.vercel.app](https://sing-box-subscribe.vercel.app), 在网站后面添加 `/config/URL_LINK`, 此处 `URL_LINK` 指订阅链接
 
+> 在 sing-box 中输入此格式的链接，你可能需要把 `URL_LINK` 里的 `http://` 改为 `https:///`
+
+```
+https://sing-box-subscribe.vercel.app/config/https:///xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json`
+```
+
 2023.10.26更新: 支持链接后面增加 `emoji`, `tag`, `prefix`, `UA`, `file`参数用 `&` 连接多个参数, 用法与 `providers.json` 里的参数一样
 
-`emoji=1&prefix=♥&UA=v2rayng&file=https://xxxxxxxxx.json`
+`/config/URL_LINK/&emoji=1&prefix=♥&UA=v2rayng&file=https://xxxxxxxxx.json`
 
 上面例子表示：开启emoji，节点名前加♥，使用v2rayng用户代理，使用 `https://xxxxxxxxx.json` 作为生成 sing-box 配置模板
 
-示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
+示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 
 ### 演示视频
 
