@@ -14,13 +14,19 @@ Use the website you built to achieve real-time configuration updates, which can 
 
 For example, the website I built [https://sing-box-subscribe.vercel.app](https://sing-box-subscribe.vercel.app), add `/config/URL_LINK` after the website, here` URL_LINK` refers to the subscription link
 
+> Enter a link in this format in sing-box. You may need to change `http://` in `URL_LINK` to `https:///`
+
+```
+https://sing-box-subscribe.vercel.app/config/https:///xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json`
+```
+
 2023.10.26 Update: Support adding `emoji`, `tag`, `prefix`, `UA`, `file` parameters after the link. Use `&` to connect multiple parameters. The usage is the same as the parameters in `providers.json`
 
-`emoji=1&prefix=♥&UA=v2rayng&file=https://xxxxxxxxx.json`
+`/config/URL_LINK/&emoji=1&prefix=♥&UA=v2rayng&file=https://xxxxxxxxx.json`
 
 The above example shows: enable emoji, add ♥ before the node name, use v2rayng user agent, and use `https://xxxxxxxxx.json` as the generated sing-box configuration template
 
-Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
+Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 
 ### Demo video
 
