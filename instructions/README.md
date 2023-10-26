@@ -14,7 +14,13 @@ Use the website you built to achieve real-time configuration updates, which can 
 
 For example, the website I built [https://sing-box-subscribe.vercel.app](https://sing-box-subscribe.vercel.app), add `/config/URL_LINK` after the website, here` URL_LINK` refers to the subscription link
 
-Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt
+2023.10.26 Update: Support adding `emoji`, `tag`, `prefix`, `UA`, `file` parameters after the link. Use `&` to connect multiple parameters. The usage is the same as the parameters in `providers.json`
+
+`emoji=1&prefix=♥&UA=v2rayng&file=https://xxxxxxxxx.json`
+
+The above example shows: enable emoji, add ♥ before the node name, use v2rayng user agent, and use `https://xxxxxxxxx.json` as the generated sing-box configuration template
+
+Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 
 ### Demo video
 
@@ -206,6 +212,7 @@ In this file, you can add subscription links and basic settings.
     "save_config_path": "./config.json",
     "auto_backup": false,
     "exlude_protocol": "ssr", //Not parsing ssr nodes
+    "config_template": "", //Customize the correct web page json configuration template link
     "Only-nodes": false //Output the complete sing-box configuration
 }
 ```
@@ -275,6 +282,8 @@ In this file, you can add subscription links and basic settings.
 > Sharing links using protocols in this setting will be ignored.
 
 > The sing-box release program does not support ssr (needs additional parameters to build), so this setting might be useful.
+
+- `config_template`：Optional. Enter a correct webpage json configuration template link to generate sing-box configuration from this template.
 
 - `Only-nodes`: Optional.
 > When it is set to true or 1, only the node information in sing-box format of the subscription link is output.
