@@ -131,7 +131,7 @@ def clash2v2ray(share_link):
         if vless_info['type'] == 'ws':
             vless_info["security"] = 'tls'
             vless_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
-            vless_info["host"] = share_link['ws-opts']['headers'].get('Host', '')
+            vless_info["host"] = share_link['ws-opts'].get('headers', {}).get('Host', '')
             link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}#{name}".format(**vless_info)
         if vless_info['type'] == 'grpc':
             if share_link.get('grpc-opts').get('grpc-service-name') != '/' :
