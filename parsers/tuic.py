@@ -15,7 +15,7 @@ def parse(data):
         'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
         'server_port': int(_netloc[1].rsplit(":", 1)[1]),
         'uuid': _netloc[0].split(":")[0],
-        'password': _netloc[0].split(":")[1],
+        'password': _netloc[0].split(":")[1] if len(_netloc[0].split(":")) > 1 else netquery.get('password', ''),
         'congestion_control': netquery.get('congestion_control', 'bbr'),
         'udp_relay_mode': netquery.get('udp_relay_mode'),
         'zero_rtt_handshake': False,
