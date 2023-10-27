@@ -23,8 +23,8 @@ def parse(data):
             'enabled': True,
             'insecure': True
         }
-        if netquery.get('sni'):
-            node['tls']['server_name'] = netquery['sni']
+        if netquery.get('fp'):
+            node['tls']['server_name'] = netquery.get('sni', '')
             node['tls']['utls'] = {
                 'enabled': True,
                 'fingerprint': netquery.get('fp', 'chrome')
@@ -34,6 +34,11 @@ def parse(data):
                 'enabled': True,
                 'public_key': netquery.get('pbk'),
                 'short_id': netquery.get('sid', '')
+            }
+            node['tls']['server_name'] = netquery.get('sni', '')
+            node['tls']['utls'] = {
+                'enabled': True,
+                'fingerprint': netquery.get('fp', 'chrome')
             }
     if netquery.get('type'):
         if netquery['type'] == 'http':
