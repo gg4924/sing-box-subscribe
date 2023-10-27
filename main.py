@@ -126,7 +126,7 @@ def get_nodes(url):
             outbounds_0 = content['outbounds'][0]['outbounds']
             outbounds_tags = [item["tag"] for item in content["outbounds"][1:]]
             matching_tags = [tag for tag in outbounds_tags if tag in outbounds_0]
-            filtered_tags = [tag for tag in matching_tags if tag != "auto"]
+            filtered_tags = [tag for tag in matching_tags if tag not in ["auto", "direct"]]
             matching_indices = []
             for i, outbound in enumerate(content["outbounds"][1:]):
                 if outbound["tag"] in filtered_tags:
