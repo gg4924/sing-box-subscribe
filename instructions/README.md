@@ -14,10 +14,10 @@ Use the website you built to achieve real-time configuration updates, which can 
 
 For example, the website I built [https://sing-box-subscribe.vercel.app](https://sing-box-subscribe.vercel.app), add `/config/URL_LINK` after the website, here` URL_LINK` refers to the subscription link
 
-> Enter a link in this format in sing-box. You may need to change `http://` in `URL_LINK` to `https:///`
+> Enter a link in this format in sing-box, you may need to add `url=` in front of `URL_LINK`
 
 ```
-https://sing-box-subscribe.vercel.app/config/https:///xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json`
+https://sing-box-subscribe.vercel.app/config/url=https:///xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json`
 ```
 
 2023.10.26 Update: Support adding `emoji`, `tag`, `prefix`, `UA`, `file` parameters after the link. Use `&` to connect multiple parameters. The usage is the same as the parameters in `providers.json`
