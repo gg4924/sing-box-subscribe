@@ -14,7 +14,7 @@ def parse(data):
         'tag': unquote(server_info.fragment) or tool.genName()+'_trojan',
         'type': 'trojan',
         'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
-        'server_port': int(_netloc[1].rsplit(":", 1)[1]),
+        'server_port': int(_netloc[1].rsplit(":", 1)[1].split("/")[0]),
         'password': _netloc[0],
         'tls': {
             'enabled': True,
