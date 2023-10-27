@@ -53,7 +53,7 @@ def parse(data):
                     "Host": netquery.get('sni', netquery.get('host', ''))
                 }
             }
-            if '?ed' in netquery.get('path'):
+            if '?ed=' in netquery.get('path'):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
                 node['transport']['max_early_data'] = int(netquery.get('path').rsplit("?ed=")[1])
         if netquery['type'] == 'grpc':
