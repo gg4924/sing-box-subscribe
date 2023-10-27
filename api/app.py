@@ -114,44 +114,25 @@ def config(url):
     subscribe = temp_json_data['subscribes'][0]
     
     query_string = request.query_string.decode('utf-8')
-    
+    #print (f"query_string: {query_string}")
+    #print (f"url: {url}")
     encoded_url = quote(url, safe=':/')  # 对 url 进行编码
     encoded_url = unquote(encoded_url)
-    
+    #print (f"encoded_url: {encoded_url}")
     index_of_colon = encoded_url.find(":")
     
-    parsed_url = urlparse(encoded_url)  # 解析 URL
-    path = unquote(parsed_url.path)
-
-    if query_string:
-        param = query_string
-    else:
-        param = path
-
-    # 检查 param 中是否包含 '/&'
-    if '/&' in param:
-        path_params = parse_qs(param.split('/&')[1])  # 解析 path 中的参数
-        # 获取参数值
-        emoji = path_params.get('emoji', [''])[0]
-        tag = path_params.get('tag', [''])[0]
-        prefix = path_params.get('prefix', [''])[0]
-        UA = path_params.get('UA', [''])[0]
-        file = path_params.get('file', [''])[0]
-        if file:
-            index_of_file = file.find(":")
-            if index_of_file != -1:
-                next_char_index = index_of_file + 2
-                if next_char_index < len(file) and file[next_char_index] != "/":
-                    file = file[:next_char_index-1] + "/" + file[next_char_index-1:]
-        # 使用字典的get方法提供默认值
-        subscribe['emoji'] = int(emoji) if emoji else subscribe.get('emoji', '')
-        subscribe['tag'] = tag if tag else subscribe.get('tag', '')
-        subscribe['prefix'] = prefix if prefix else subscribe.get('prefix', '')
-        subscribe['User-Agent'] = UA if UA else subscribe.get('User-Agent', '')
-        temp_json_data['config_template'] = file if file else temp_json_data.get('config_template', '')
-    else:
-        # 如果没有 '/&'，可以提供默认值或者抛出异常
-        emoji = tag = prefix = UA = file = ''
+    if not query_string:
+        param = urlparse(encoded_url.split('/&')[1])
+        request.args = dict(item.split('=') for item in param.path.split('&'))
+        if request.args.get('prefix'):
+            request.args['prefix'] = unquote(request.args['prefix'])
+        if request.args.get('file'):
+            index = request.args.get('file').find(":")
+            next_index = index + 2
+            if index != -1:
+                if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
+                    request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
+    #print (f"request.args: {request.args}")
 
     if index_of_colon != -1:
         # 检查 ":" 后面是否只有一个 "/"，如果是，添加一个额外的 "/"
@@ -169,8 +150,37 @@ def config(url):
         full_url = f"{encoded_url}?{query_string.split('/&')[0]}"
     else:
         full_url = f"{encoded_url.split('/&')[0]}"
+
+    #print (f"full_url: {full_url}")
+
+    emoji_param = request.args.get('emoji', '')
+    file_param = request.args.get('file', '')
+    tag_param = request.args.get('tag', '')
+    ua_param = request.args.get('ua', '')
+    pre_param = request.args.get('prefix', '')
+
+    # 构建要删除的字符串列表
+    params_to_remove = [
+        f'&prefix={quote(pre_param)}',
+        f'ua={ua_param}',
+        f'&file={quote(file_param).replace("/", "%2F")}',
+        f'&emoji={emoji_param}',
+        f'&tag={tag_param}',
+    ]
+    # 从url中删除这些字符串
+    for param in params_to_remove:
+        if param in full_url:
+            full_url = full_url.replace(param, '')
+    if full_url.endswith("%2F"):
+        full_url = full_url[:-len("%2F")]
     print (full_url)
     subscribe['url'] = full_url
+    subscribe['emoji'] = int(emoji_param) if emoji_param else subscribe.get('emoji', '')
+    subscribe['tag'] = tag_param if tag_param else subscribe.get('tag', '')
+    subscribe['prefix'] = pre_param if pre_param else subscribe.get('prefix', '')
+    subscribe['User-Agent'] = ua_param if ua_param else subscribe.get('User-Agent', '')
+    temp_json_data['config_template'] = file_param if file_param else temp_json_data.get('config_template', '')
+    #print (f"Custom Page for {url} with link={full_url}, emoji={emoji_param}, file={file_param}, tag={tag_param}, UA={ua_param}, prefix={pre_param}")
     #page_content = f"生成的页面内容：{full_url}"
     #return page_content
     try:
