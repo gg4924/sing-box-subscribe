@@ -23,8 +23,9 @@ def parse(data):
             'enabled': True,
             'insecure': True
         }
+        if netquery.get('sni', '') not in ['none', '']:
+            node['tls']['server_name'] = netquery['sni']
         if netquery.get('fp'):
-            node['tls']['server_name'] = netquery.get('sni', '')
             node['tls']['utls'] = {
                 'enabled': True,
                 'fingerprint': netquery.get('fp', 'chrome')
@@ -35,7 +36,6 @@ def parse(data):
                 'public_key': netquery.get('pbk'),
                 'short_id': netquery.get('sid', '')
             }
-            node['tls']['server_name'] = netquery.get('sni', '')
             node['tls']['utls'] = {
                 'enabled': True,
                 'fingerprint': netquery.get('fp', 'chrome')
