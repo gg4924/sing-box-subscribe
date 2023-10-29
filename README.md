@@ -19,7 +19,7 @@
 > 在 sing-box 中输入此格式的链接，你可能需要在 `URL_LINK` 前面加 `url=`
 
 ```
-https://sing-box-subscribe.vercel.app/config/url=https:///xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json`
+https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 ```
 
 2023.10.26更新: 支持链接后面增加 `emoji`, `tag`, `prefix`, `UA`, `file`参数用 `&` 连接多个参数, 用法与 `providers.json` 里的参数一样
