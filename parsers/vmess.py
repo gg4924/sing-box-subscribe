@@ -103,4 +103,16 @@ def parse(data):
                 'type':'grpc',
                 'service_name':item.get('path', '')
             }
+    if item.get('protocol'):
+        node['multiplex'] = {
+            'enabled': True,
+            'protocol': item['protocol'],
+            'max_streams': int(item.get('max_streams', '0'))
+        }
+        if item.get('max_connections'):
+            node['multiplex']['max_connections'] = int(item['max_connections'])
+        if item.get('min_streams'):
+            node['multiplex']['min_streams'] = int(item['min_streams'])
+        if item.get('padding') == True:
+            node['multiplex']['padding'] = True
     return node
