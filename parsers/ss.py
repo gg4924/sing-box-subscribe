@@ -1,4 +1,5 @@
 import tool,json,re,urllib,sys
+from urllib.parse import parse_qs
 def parse(data):
     param = data[5:]
     if not param or param.isspace():
@@ -68,12 +69,27 @@ def parse(data):
                     'enabled': True,
                     'fingerprint': plugin.get('fp')
                 }
+    if param.find('&') > -1:
+        smux = param[param.find('&')+1:]
+        smux_dict = parse_qs(smux)
+        smux_dict = {k: v[0] for k, v in smux_dict.items() if v[0]}
+        node['multiplex'] = {
+            'enabled': True,
+            'protocol': smux_dict['protocol'],
+            'max_streams': int(smux_dict.get('max-streams', '0'))
+        }
+        if smux_dict.get('max-connections'):
+            node['multiplex']['max_connections'] = int(smux_dict['max-connections'])
+        if smux_dict.get('min-streams'):
+            node['multiplex']['min_streams'] = int(smux_dict['min-streams'])
+        if smux_dict.get('padding') == 'True':
+            node['multiplex']['padding'] = True
     if param.find('@') > -1:
         matcher = re.match(r'(.*?)@(.*):(.*)', param)
         if matcher:
             param = matcher.group(1)
             node['server'] = matcher.group(2)
-            node['server_port'] = matcher.group(3)
+            node['server_port'] = matcher.group(3).split('&')[0]
         else:
             return None
         try:
@@ -91,7 +107,7 @@ def parse(data):
             node['method'] = matcher.group(1)
             node['password'] = matcher.group(2)
             node['server'] = matcher.group(3)
-            node['server_port'] = matcher.group(4)
+            node['server_port'] = matcher.group(4).split('&')[0]
         else:
             return None
     node['server_port'] = int(node['server_port'])
