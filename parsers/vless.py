@@ -34,8 +34,9 @@ def parse(data):
             node['tls']['reality'] = {
                 'enabled': True,
                 'public_key': netquery.get('pbk'),
-                'short_id': netquery.get('sid', '')
             }
+            if netquery.get('sid'):
+                node['tls']['reality']['short_id'] = netquery['sid']
             node['tls']['utls'] = {
                 'enabled': True,
                 'fingerprint': netquery.get('fp', 'chrome')
@@ -61,4 +62,16 @@ def parse(data):
                 'type':'grpc',
                 'service_name':netquery.get('serviceName', '')
             }
+    if netquery.get('protocol'):
+        node['multiplex'] = {
+            'enabled': True,
+            'protocol': netquery['protocol'],
+            'max_streams': int(netquery.get('max_streams', '0'))
+        }
+        if netquery.get('max_connections'):
+            node['multiplex']['max_connections'] = int(netquery['max_connections'])
+        if netquery.get('min_streams'):
+            node['multiplex']['min_streams'] = int(netquery['min_streams'])
+        if netquery.get('padding') == 'True':
+            node['multiplex']['padding'] = True
     return node
