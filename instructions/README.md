@@ -17,7 +17,7 @@ For example, the website I built [https://sing-box-subscribe.vercel.app](https:/
 > Enter a link in this format in sing-box, you may need to add `url=` in front of `URL_LINK`
 
 ```
-https://sing-box-subscribe.vercel.app/config/url=https:///xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json`
+https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 ```
 
 2023.10.26 Update: Support adding `emoji`, `tag`, `prefix`, `UA`, `file` parameters after the link. Use `&` to connect multiple parameters. The usage is the same as the parameters in `providers.json`
