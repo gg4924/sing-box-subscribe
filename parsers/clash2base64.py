@@ -29,6 +29,13 @@ def clash2v2ray(share_link):
                 vmess_info["path"] = share_link.get('grpc-opts', {}).get('grpc-service-name')
             else:
                 vmess_info["path"] = ''
+        if share_link.get('smux',{}).get('enabled', '') == True:
+            vmess_info["protocol"] = share_link['smux']['protocol']
+            vmess_info["max_connections"] = share_link['smux'].get('max-connections','')
+            vmess_info["min_streams"] = share_link['smux'].get('min-streams','')
+            vmess_info["max_streams"] = share_link['smux'].get('max-streams','')
+            vmess_info["padding"] = share_link['smux'].get('padding','')
+
         vmess_json = json.dumps(vmess_info).encode('utf-8')
         vmess_base64 = base64.b64encode(vmess_json).decode('utf-8')
         link = f"vmess://{vmess_base64}"
@@ -60,9 +67,18 @@ def clash2v2ray(share_link):
                 ss_info["obfs-host"] = share_link['plugin-opts'].get('host','cloudfront.com')
                 v2ray_plugin = f'{{"mode": "{ss_info["obfs"]}", "host": "{ss_info["obfs-host"]}"}}'
                 url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
-            link = "ss://{base_link}@{server}:{port}{url_link}#{name}".format(base_link=base_link, url_link=url_link, **ss_info)
+            link = "ss://{base_link}@{server}:{port}{url_link}".format(base_link=base_link, url_link=url_link, **ss_info)
         else:
-            link = "ss://{base_link}@{server}:{port}#{name}".format(base_link=base_link, **ss_info)
+            link = "ss://{base_link}@{server}:{port}".format(base_link=base_link, **ss_info)
+        if share_link.get('smux',{}).get('enabled', '') == True:
+            ss_info["protocol"] = share_link['smux']['protocol']
+            ss_info["max_connections"] = share_link['smux'].get('max-connections','')
+            ss_info["min_streams"] = share_link['smux'].get('min-streams','')
+            ss_info["max_streams"] = share_link['smux'].get('max-streams','')
+            ss_info["padding"] = share_link['smux'].get('padding','')
+            link += "&protocol={protocol}&max-connections={max_connections}&min-streams={min_streams}&max-streams={max_streams}&padding={padding}#{name}".format(**ss_info)
+        else:
+            link += f"#{ss_info['name']}"
         return link
         # TODO
     elif share_link['type'] == 'ssr':
@@ -104,7 +120,7 @@ def clash2v2ray(share_link):
                     trojan_info["serviceName"] = server_parts[-2]
                 else:
                     trojan_info["serviceName"] = ''
-            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&serviceName={serviceName}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
+            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&serviceName={serviceName}&fp={fp}&alpn={alpn}".format(**trojan_info)
         if trojan_info['type'] == 'ws':
             if share_link.get('ws-opts'):
                 trojan_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
@@ -112,9 +128,18 @@ def clash2v2ray(share_link):
             else:
                 trojan_info["path"] = ''
                 trojan_info["host"] = trojan_info["sni"]
-            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
+            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}".format(**trojan_info)
         if trojan_info['type'] == 'tcp':
-            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}#{name}".format(**trojan_info)
+            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}".format(**trojan_info)
+        if share_link.get('smux',{}).get('enabled', '') == True:
+            trojan_info["protocol"] = share_link['smux']['protocol']
+            trojan_info["max_connections"] = share_link['smux'].get('max-connections','')
+            trojan_info["min_streams"] = share_link['smux'].get('min-streams','')
+            trojan_info["max_streams"] = share_link['smux'].get('max-streams','')
+            trojan_info["padding"] = share_link['smux'].get('padding','')
+            link += "&protocol={protocol}&max-connections={max_connections}&min-streams={min_streams}&max-streams={max_streams}&padding={padding}#{name}".format(**trojan_info)
+        else:
+            link += f"#{trojan_info['name']}"
         return link
         # TODO
     elif share_link['type'] == 'vless':
@@ -132,7 +157,7 @@ def clash2v2ray(share_link):
             vless_info["security"] = 'tls'
             vless_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
             vless_info["host"] = share_link['ws-opts'].get('headers', {}).get('Host', '')
-            link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}#{name}".format(**vless_info)
+            link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}".format(**vless_info)
         if vless_info['type'] == 'grpc':
             if share_link.get('grpc-opts').get('grpc-service-name') != '/' :
                 vless_info["serviceName"] = unquote(share_link.get('grpc-opts').get('grpc-service-name'))
@@ -142,22 +167,31 @@ def clash2v2ray(share_link):
                 vless_info["security"] = 'reality'
                 vless_info["pbk"] = share_link['reality-opts']['public-key']
                 vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
-                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}#{name}".format(**vless_info)
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}".format(**vless_info)
             else:
                 vless_info["security"] = 'tls'
-                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}#{name}".format(**vless_info)
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}".format(**vless_info)
         if vless_info['type'] == 'tcp':
             if share_link.get('reality-opts'):
                 vless_info["security"] = 'reality'
                 vless_info["pbk"] = share_link['reality-opts']['public-key']
                 vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
-                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}#{name}".format(**vless_info)
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}&pbk={pbk}&sid={sid}".format(**vless_info)
             else:
                 if share_link.get('tls') == False:
                     vless_info["security"] = 'none'
                 else:
                     vless_info["security"] = 'tls'
-                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}#{name}".format(**vless_info)
+                link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}".format(**vless_info)
+        if share_link.get('smux',{}).get('enabled', '') == True:
+            vless_info["protocol"] = share_link['smux']['protocol']
+            vless_info["max_connections"] = share_link['smux'].get('max-connections','')
+            vless_info["min_streams"] = share_link['smux'].get('min-streams','')
+            vless_info["max_streams"] = share_link['smux'].get('max-streams','')
+            vless_info["padding"] = share_link['smux'].get('padding','')
+            link += "&protocol={protocol}&max-connections={max_connections}&min-streams={min_streams}&max-streams={max_streams}&padding={padding}#{name}".format(**vless_info)
+        else:
+            link += f"#{vless_info['name']}"
         return link
         # TODO
     elif share_link['type'] == 'tuic':
