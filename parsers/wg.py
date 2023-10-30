@@ -16,15 +16,16 @@ def parse(data):
         'peer_public_key': netquery.get('publicKey')
     }
     if netquery.get('reserved'):
-        _reserved = netquery.get('reserved').split(",")
-        node['reserved'] = [int(_reserved[0]),int(_reserved[1]),int(_reserved[2])]
+        reserved_value = netquery.get('reserved')
+        node['reserved'] = [int(val) for val in reserved_value.split(",")] if ',' in reserved_value else reserved_value
     ip_value = netquery.get('ip')
     if ',' in ip_value:
-        ipv4_value = ip_value.split(",", 1)[0]+"/32"
-        ipv6_value = ip_value.split(",", 1)[1]+"/128"
-        node['local_address'] = [ipv4_value] + [ipv6_value]
+        ipv4_value, ipv6_value = ip_value.split(",", 1)
+        ipv4_value = ipv4_value + "/32" if '/' not in ipv4_value else ipv4_value
+        ipv6_value = ipv6_value + "/128" if '/' not in ipv6_value else ipv6_value
+        node['local_address'] = [ipv4_value, ipv6_value]
     else:
-        ipv4_value = ip_value+"/32"
+        ipv4_value = ip_value + "/32" if '/' not in ip_value else ip_value
         node['local_address'] = [ipv4_value]
     if netquery.get('presharedKey'):
         node['pre_shared_key'] = netquery['presharedKey']
