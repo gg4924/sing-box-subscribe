@@ -30,7 +30,9 @@ Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercon
 
 ### Demo video
 
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/a583c443-0c7b-454e-aaf2-f0a7159b276a
+|Web parsing subscription link(v2/clash/sing-box)|
+|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/a583c443-0c7b-454e-aaf2-f0a7159b276a"></video>|
 
 ## Catalog
 
@@ -106,29 +108,13 @@ Android use chrome browser to open the webpage to generate the configuration fil
 
 ## 🎬 Demonstration video
 
-<div align="center">
-      
-**Web parsing subscription link(v2/clash/sing-box)**
+|Web parsing subscription link(v2/clash/sing-box)|Web page batch parsing URI|Android Google Chrome page shrink|
+|-----------------------------|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805"></video>
 
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74
-
-**Web page batch parsing URI**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9
-
-**Android Google Chrome page shrink**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805
-
-**Locally parse subscription link(v2/clash/sing-box)**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337
-
-**Local batch parsing URI**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0
-
-</div>
+|Locally parse subscription link(v2/clash/sing-box)|Local batch parsing URI|
+|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0"></video>|
 
 # II. Local installation
 ### Install [Python](https://www.python.org/) version 3.10 or above on your PC. Make sure to add Python to your system environment variables (follow Google's installation steps).
