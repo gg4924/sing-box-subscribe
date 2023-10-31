@@ -32,7 +32,9 @@ https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file
 
 ### 演示视频
 
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/a583c443-0c7b-454e-aaf2-f0a7159b276a
+|网页解析通用订阅链接(v2/clash/sing-box)|
+|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/a583c443-0c7b-454e-aaf2-f0a7159b276a"></video>|
 
 ## 导航
 
@@ -108,29 +110,13 @@ Android使用chrome浏览器打开网页生成配置文件（请在浏览器 设
 
 ## 🎬 功能演示视频
 
-<div align="center">
-   
-**网页解析通用订阅链接(v2/clash/sing-box)**
+|网页解析通用订阅链接(v2/clash/sing-box)|网页批量解析URI|安卓谷歌浏览器页面缩小|
+|-----------------------------|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805"></video>
 
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74
-
-**网页批量解析URI**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9
-
-**安卓谷歌浏览器页面缩小**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805
-
-**本地解析通用订阅链接(v2/clash/sing-box)**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337
-
-**本地批量解析URI**
-
-https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0
-
-</div>
+|本地解析通用订阅链接(v2/clash/sing-box)|本地批量解析URI|
+|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0"></video>|
 
 # 二、本地安装
 ### PC安装3.10及以上的[python](https://www.python.org/)版本，注意安装步骤里把python添加到系统环境变量（google安装步骤）
