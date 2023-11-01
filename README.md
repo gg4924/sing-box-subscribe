@@ -352,7 +352,7 @@ windows系统建议将命令添加到批处理程序运行。
 
 ## 隐藏Windows运行sing-box弹出的cmd窗口
 
-> 使用WinSW把sing-box.exe设置成Windows服务，[WinSW教程](https://blog.xuven.xyz/post/WinSW/)
+> 使用WinSW把sing-box.exe设置成Windows服务，[WinSW教程](https://www.jianshu.com/p/fc9e4ea61e13)
 
 > XML配置文件修改
 ```xml
