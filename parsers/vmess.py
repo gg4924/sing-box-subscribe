@@ -48,7 +48,10 @@ def parse(data):
     except:
         print(info)
         return None
-    item = json.loads(proxy_str)
+    try:
+        item = json.loads(proxy_str)
+    except:
+        return None
     content = item.get('ps').strip() if item.get('ps') else tool.genName()+'_vmess'
     node = {
         'tag': content,
