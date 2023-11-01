@@ -208,6 +208,22 @@
       ]
     },
     {
+      "tag":"🌏 cn",
+      "type":"selector",
+      "outbounds":[
+        "direct",
+        "proxy"
+      ]
+    },
+    {
+      "tag":"🛑 AdBlock",
+      "type":"selector",
+      "outbounds":[
+        "block",
+        "direct"
+      ]
+    },
+    {
       "tag":"auto",
       "type":"urltest",
       "outbounds":[
@@ -253,7 +269,7 @@
       },
       {
         "geosite": "category-ads-all",
-        "outbound": "block"
+        "outbound": "🛑 AdBlock"
       },
       {
         "clash_mode": "direct",
@@ -350,11 +366,11 @@
       },
       {
         "geoip": ["private","cn"],
-        "outbound": "direct"
+        "outbound": "🌏 cn"
       },
       {
         "geosite": "cn",
-        "outbound": "direct"
+        "outbound": "🌏 cn"
       }
     ]
   },
