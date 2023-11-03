@@ -108,13 +108,13 @@ Android use chrome browser to open the webpage to generate the configuration fil
 
 ## 🎬 Demonstration video
 
-|Web parsing subscription link(v2/clash/sing-box)|Web page batch parsing URI|Android Google Chrome page shrink|
+|Web parsing sub link|Web parsing URI links|Android Chrome page shrink|
 |-----------------------------|-----------------------------|-----------------------------|
-|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9b3c006d-d554-435b-99c9-b28d4ccaad74"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/88b0fa0e-b732-4018-8003-21f1a65586a9"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f534503c-ed3f-4d67-8302-d498cc3fc805"></video>
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9f8f1a70-58b1-4117-a650-f956d9249e43"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/63e180ad-eead-433f-8ee8-73055dafbd56"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>
 
-|Locally parse subscription link(v2/clash/sing-box)|Local batch parsing URI|
+|Local parsing sub link|Local parsing URI links|
 |-----------------------------|-----------------------------|
-|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/1249bb6a-54e4-44ef-9eb2-6057108bc337"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/f88b392c-ea81-4460-b8af-00fe879affb0"></video>|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/12da95a3-aae9-4ae4-ab88-774ed54f3217"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/7e93568d-ece6-4cba-8dd0-bc5b5e64ade7"></video>|
 
 # II. Local installation
 ### Install [Python](https://www.python.org/) version 3.10 or above on your PC. Make sure to add Python to your system environment variables (follow Google's installation steps).
