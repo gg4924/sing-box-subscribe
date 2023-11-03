@@ -216,10 +216,15 @@ def is_ip(str):
     return re.search(r'^\d+\.\d+\.\d+\.\d+$',str)
 
 def get_protocol(s):
-    protocols = {'hy2': 'hysteria2', 'http2': 'https'}
     m = re.search(r'^(.+?)://', s)
-    if m and m.group(1) in protocols:
-        return protocols[m.group(1)]
+    if m:
+        if m.group(1) == 'hy2':
+            s = re.sub(r'^(.+?)://', 'hysteria2://', s)
+            m = re.search(r'^(.+?)://', s)
+        if m.group(1) == 'http2':
+            s = re.sub(r'^(.+?)://', 'https://', s)
+            m = re.search(r'^(.+?)://', s)
+        return m.group(1)
     return None
 
 def checkKeywords(keywords,str):
