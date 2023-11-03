@@ -176,7 +176,7 @@ def config(url):
         full_url = full_url[:-len("%2F")]
     print (full_url)
     subscribe['url'] = full_url.split('url=')[-1]
-    subscribe['emoji'] = int(emoji_param) if emoji_param else subscribe.get('emoji', '')
+    subscribe['emoji'] = int(emoji_param) if emoji_param.isdigit() else subscribe.get('emoji', '')
     subscribe['tag'] = tag_param if tag_param else subscribe.get('tag', '')
     subscribe['prefix'] = pre_param if pre_param else subscribe.get('prefix', '')
     subscribe['User-Agent'] = ua_param if ua_param else subscribe.get('User-Agent', '')
