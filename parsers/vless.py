@@ -3,7 +3,6 @@ from urllib.parse import urlparse, parse_qs, unquote
 def parse(data):
     info = data[:]
     server_info = urlparse(info)
-    print (server_info)
     try:
         netloc = tool.b64Decode(server_info.netloc).decode('utf-8')
     except:
