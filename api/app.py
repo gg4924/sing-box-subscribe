@@ -133,6 +133,18 @@ def config(url):
                 if index != -1:
                     if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
                         request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
+    else:
+        if '/&' in query_string:
+            param = urlparse(query_string.split('/&')[1])
+            request.args = dict(item.split('=') for item in param.path.split('&'))
+            if request.args.get('prefix'):
+                request.args['prefix'] = unquote(request.args['prefix'])
+            if request.args.get('file'):
+                index = request.args.get('file').find(":")
+                next_index = index + 2
+                if index != -1:
+                    if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
+                        request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
     #print (f"request.args: {request.args}")
 
     if index_of_colon != -1:
