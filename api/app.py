@@ -112,7 +112,7 @@ def config(url):
     temp_json_data_str = os.environ['TEMP_JSON_DATA']
     temp_json_data = json.loads(temp_json_data_str)
     subscribe = temp_json_data['subscribes'][0]
-    
+    subscribe2 = temp_json_data['subscribes'][1]
     query_string = request.query_string.decode('utf-8')
     #print (f"query_string: {query_string}")
     #print (f"url: {url}")
@@ -175,12 +175,19 @@ def config(url):
     if full_url.endswith("%2F"):
         full_url = full_url[:-len("%2F")]
     print (full_url)
-    subscribe['url'] = full_url.split('url=', 1)[-1] if full_url.startswith('url') else full_url
-    subscribe['emoji'] = int(emoji_param) if emoji_param.isdigit() else subscribe.get('emoji', '')
-    subscribe['tag'] = tag_param if tag_param else subscribe.get('tag', '')
-    subscribe['prefix'] = pre_param if pre_param else subscribe.get('prefix', '')
-    subscribe['User-Agent'] = ua_param if ua_param else subscribe.get('User-Agent', '')
-    temp_json_data['config_template'] = file_param if file_param else temp_json_data.get('config_template', '')
+    if "|" in full_url:
+        subscribe['url'] = full_url.split('url=', 1)[-1].split('|')[0] if full_url.startswith('url') else full_url.split('|')[0]
+        subscribe2['url'] = full_url.split('url=', 1)[-1].split('|')[1] if full_url.startswith('url') else full_url.split('|')[1]
+        subscribe2['emoji'] = 1
+        subscribe2['enabled'] = True
+        subscribe2['prefix'] = ''
+    else:
+        subscribe['url'] = full_url.split('url=', 1)[-1] if full_url.startswith('url') else full_url
+        subscribe['emoji'] = int(emoji_param) if emoji_param else subscribe.get('emoji', '')
+        subscribe['tag'] = tag_param if tag_param else subscribe.get('tag', '')
+        subscribe['prefix'] = pre_param if pre_param else subscribe.get('prefix', '')
+        subscribe['User-Agent'] = ua_param if ua_param else subscribe.get('User-Agent', '')
+        temp_json_data['config_template'] = file_param if file_param else temp_json_data.get('config_template', '')
     #print (f"Custom Page for {url} with link={full_url}, emoji={emoji_param}, file={file_param}, tag={tag_param}, UA={ua_param}, prefix={pre_param}")
     #page_content = f"生成的页面内容：{full_url}"
     #return page_content
