@@ -26,9 +26,11 @@ https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file
 
 `/config/URL_LINK/&emoji=1&prefix=♥&UA=v2rayng&file=https://xxxxxxxxx.json`
 
-上面例子表示：开启emoji，节点名前加♥，使用v2rayng用户代理，使用 `https://xxxxxxxxx.json` 作为生成 sing-box 配置模板
+上面例子表示：开启emoji，节点名前加♥，使用v2rayng用户代理，使用 `https://xxxxxxxxx.json` 作为生成 sing-box 配置模板（这些参数只有 `URL_LINK` 是一条链接时才有效）
 
 示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
+
+2023.11.04更新: 可以处理两条订阅，格式为：`/config/URL_LINK_1|URL_LINK_2`，不能写 `emoji`, `tag`, `prefix`, `UA`, `file` 参数
 
 ### 演示视频
 
