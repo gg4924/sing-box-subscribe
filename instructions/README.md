@@ -28,6 +28,8 @@ The above example shows: enable emoji, add ♥ before the node name, use v2rayng
 
 Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 
+2023.11.04 Update: Two sub links can be processed, the format is: `/config/URL_LINK_1|URL_LINK_2`, `emoji`, `tag`, `prefix`, `UA`, `file` parameters cannot be written
+
 ### Demo video
 
 |Web parsing subscription link(v2/clash/sing-box)|
