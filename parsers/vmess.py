@@ -94,7 +94,7 @@ def parse(data):
                     'Host': item.get('host', '')
                 }
             }
-            if '?ed' in item.get('path'):
+            if '?ed=' in item.get('path', ''):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
                 node['transport']['max_early_data'] = int(item.get('path').rsplit("?ed=")[1])
         if item['net'] == 'quic':
