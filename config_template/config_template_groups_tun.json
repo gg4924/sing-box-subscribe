@@ -118,7 +118,7 @@
         "{all}"
       ],
       "filter":[
-        {"action":"exlude","keywords":["🇭🇰|HK|hk|香港|港"]}
+        {"action":"exclude","keywords":["🇭🇰|HK|hk|香港|港"]}
       ]
     },
     {
