@@ -30,7 +30,15 @@ https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file
 
 示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 
-2023.11.04更新: 可以处理两条订阅，格式为：`/config/URL_LINK_1|URL_LINK_2`，不能写 `emoji`, `tag`, `prefix`, `UA`, `file` 参数
+2023.11.04更新: 可以处理两条订阅，格式为：`/config/URL编码`，不能写 `emoji`, `tag`, `prefix`, `UA`, `file` 参数
+
+用 `|` 连接两个订阅链接后进行 [URL编码](https://www.urlencoder.org/) 放在 `config/` 后面，如图：
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/5ed8e9de-3296-4dfc-ad65-2e181017829e" alt="how-to-use" width="50%" />
+</div>
+
+示例：https://sing-box-subscribe.vercel.app/config/https%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Fb1ca381c32820e8c79669cbbd85b68ac%2Fraw%2Fdafae92fbe48ff36dae6e5172caa1cfd7914cda4%2Fgistfile1.txt%7Chttps%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Ffa2fdc5f827ff7d288c23d568db75412%2Fraw%2F6c3b725da347f57b0021b806dfca5f51e1660746%2F1.yaml
 
 ### 演示视频
 
