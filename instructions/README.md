@@ -205,7 +205,7 @@ In this file, you can add subscription links and basic settings.
     },
     "save_config_path": "./config.json",
     "auto_backup": false,
-    "exlude_protocol": "ssr", //Not parsing ssr nodes
+    "exclude_protocol": "ssr", //Not parsing ssr nodes
     "config_template": "", //Customize the correct web page json configuration template link
     "Only-nodes": false //Output the complete sing-box configuration
 }
@@ -232,9 +232,9 @@ In this file, you can add subscription links and basic settings.
 
 <details>
       <summary>tag screenshot reference</summary>
-  
+
 <div align="left">
-  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/b8673073-7160-429f-9ced-3eae7925036e" alt="download" width="65%" />
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/781c5bb7-c5c5-467e-a6ae-05ff44a19973" alt="download" width="65%" />
 </div>
 
 </details>
@@ -270,7 +270,7 @@ In this file, you can add subscription links and basic settings.
 - `auto_backup`: Optional.
 > When set to true, the script will rename the currently used sing-box configuration file to `original_filename.current_time.bak` for backup purposes, in case an incorrect configuration file is generated and needs to be restored.
 
-- `exlude_protocol`: Optional.
+- `exclude_protocol`: Optional.
 > Set the protocols to exclude, separated by commas, e.g., ssr, vmess.
 
 > Sharing links using protocols in this setting will be ignored.
@@ -302,7 +302,7 @@ The template files are similar to sing-box configs, but with some new parameters
   ],
   "filter":[
     //This filter will remove nodes containing ˣ² in airport1_tag
-    {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+    {"action":"exclude","keywords":["ˣ²"],"for":["机场1"]}
   ]
 },
 {
@@ -316,7 +316,7 @@ The template files are similar to sing-box configs, but with some new parameters
     //If airport1_tag and airport2_tag have nodes with these names 'sg','新加坡','tw','台湾' they collectively form the netflix group
     {"action":"include","keywords":["sg|新加坡|tw|台湾"]},
     //The "for" is set to airport1_tag, which means that this rule only works on airport1_tag
-    {"action":"exlude","keywords":["ˣ²"],"for":["机场1"]}
+    {"action":"exclude","keywords":["ˣ²"],"for":["机场1"]}
     //This filter will remove nodes containing ˣ² in airport1_tag
   ]
 }
