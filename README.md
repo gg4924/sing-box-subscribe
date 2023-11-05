@@ -398,6 +398,10 @@ windows系统建议将命令添加到批处理程序运行。
 
 </details>
 
+## Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Toperlock/sing-box-subscribe&type=Date)](https://star-history.com/#Toperlock/sing-box-subscribe&Date)
+
 # 感谢
 - [一佬](https://github.com/xream)
 - [sing-box](https://github.com/SagerNet/sing-box)
