@@ -116,8 +116,8 @@ def config(url):
     query_string = request.query_string.decode('utf-8')
     #print (f"query_string: {query_string}")
     #print (f"url: {url}")
-    encoded_url = quote(url, safe=':/')  # 对 url 进行编码
-    encoded_url = unquote(encoded_url)
+    #encoded_url = quote(url, safe=':/')  # 对 url 进行编码
+    encoded_url = unquote(url)
     #print (f"encoded_url: {encoded_url}")
     index_of_colon = encoded_url.find(":")
     
