@@ -28,7 +28,15 @@ The above example shows: enable emoji, add ♥ before the node name, use v2rayng
 
 Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_tun.json
 
-2023.11.04 Update: Two sub links can be processed, the format is: `/config/URL_LINK_1|URL_LINK_2`, `emoji`, `tag`, `prefix`, `UA`, `file` parameters cannot be written
+2023.11.04 Update: Two sub links can be processed, the format is: `/config/URL encoding`, `emoji`, `tag`, `prefix`, `UA`, `file` parameters cannot be written
+
+Use `|` to connect the two sub links and then [URL encode](https://www.urlencoder.org/) and put them after `config/`, as shown in the figure:
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/5ed8e9de-3296-4dfc-ad65-2e181017829e" alt="how-to-use" width="50%" />
+</div>
+
+Example: https://sing-box-subscribe.vercel.app/config/https%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Fb1ca381c32820e8c79669cbbd85b68ac%2Fraw%2Fdafae92fbe48ff36dae6e5172caa1cfd7914cda4%2Fgistfile1.txt%7Chttps%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Ffa2fdc5f827ff7d288c23d568db75412%2Fraw%2F6c3b725da347f57b0021b806dfca5f51e1660746%2F1.yaml
 
 ### Demo video
 
