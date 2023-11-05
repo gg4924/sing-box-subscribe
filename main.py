@@ -69,7 +69,7 @@ def action_keywords(nodes, action, keywords):
     # filter将按顺序依次执行
     # "filter":[
     #         {"action":"include","keywords":[""]},
-    #         {"action":"exlude","keywords":[""]}
+    #         {"action":"exclude","keywords":[""]}
     #     ]
     temp_nodes = []
     flag = False
@@ -178,8 +178,8 @@ def parse_content(content):
 
 def get_parser(node):
     proto = tool.get_protocol(node)
-    if providers.get('exlude_protocol'):
-        eps = providers['exlude_protocol'].split(',')
+    if providers.get('exclude_protocol'):
+        eps = providers['exclude_protocol'].split(',')
         if len(eps) > 0:
             eps = [protocol.strip() for protocol in eps]
             if proto in eps:
