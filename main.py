@@ -116,6 +116,19 @@ def get_nodes(url):
     if url.startswith('sub://'):
         url = tool.b64Decode(url[6:]).decode('utf-8')
     urlstr = urllib.parse.urlparse(url)
+    if '://' not in url:
+        try:
+            content = tool.b64Decode(url).decode('utf-8')
+            data = parse_content(content)
+            processed_list = []
+            for item in data:
+                if isinstance(item, tuple):
+                    processed_list.extend([item[0], item[1]])  # 处理shadowtls
+                else:
+                    processed_list.append(item)
+            return processed_list
+        except:
+            return None
     if not urlstr.scheme:
         content = get_content_form_file(url)
     else:
