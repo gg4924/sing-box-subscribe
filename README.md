@@ -128,7 +128,7 @@ Android使用chrome浏览器打开网页生成配置文件（请在浏览器 设
 
 |谷歌浏览器页面缩小点|网页直接解析base64|
 |-----------------------------|-----------------------------|
-|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0081f055-2cd4-46bb-a4a9-7aac7d5f93a5"></video>
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0081f055-2cd4-46bb-a4a9-7aac7d5f93a5"></video>|
 
 |本地解析通用订阅链接|本地批量解析URI链接|
 |-----------------------------|-----------------------------|
