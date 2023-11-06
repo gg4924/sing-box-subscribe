@@ -25,7 +25,7 @@ regex_patterns = {
     '🇮🇩': re.compile(r'印尼|印度尼西亚|雅加达|ID|IDN|Indonesia'),
     '🇬🇧': re.compile(r'英国|英國|伦敦|UK|England|United Kingdom|Britain'),
     '🇩🇪': re.compile(r'德国|德國|法兰克福|(\s|-)?DE\d*|(\s|-)?GER\d*|German|GERMAN'),
-    '🇫🇷': re.compile(r'法国|法國|巴黎|FR|France'),
+    '🇫🇷': re.compile(r'法国|法國|巴黎|FR(?!EE)|France'),
     '🇩🇰': re.compile(r'丹麦|丹麥|DK|DNK|Denmark'),
     '🇳🇴': re.compile(r'挪威|(\s|-)?NO\d*|Norway'),
     '🇮🇹': re.compile(r'意大利|義大利|米兰|(\s|-)?IT\d*|Italy|Nachash'),
