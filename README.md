@@ -122,9 +122,13 @@ Android使用chrome浏览器打开网页生成配置文件（请在浏览器 设
 
 ## 🎬 功能演示视频
 
-|网页解析通用订阅链接|网页批量解析URI链接|谷歌浏览器页面缩小点|
-|-----------------------------|-----------------------------|-----------------------------|
-|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9f8f1a70-58b1-4117-a650-f956d9249e43"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/63e180ad-eead-433f-8ee8-73055dafbd56"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>
+|网页解析通用订阅链接|网页批量解析URI链接|
+|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9f8f1a70-58b1-4117-a650-f956d9249e43"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/63e180ad-eead-433f-8ee8-73055dafbd56"></video>|
+
+|谷歌浏览器页面缩小点|网页直接解析base64|
+|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0081f055-2cd4-46bb-a4a9-7aac7d5f93a5"></video>
 
 |本地解析通用订阅链接|本地批量解析URI链接|
 |-----------------------------|-----------------------------|
