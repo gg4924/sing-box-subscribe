@@ -6,6 +6,8 @@ It is not suitable for people who are completely unfamiliar with the sing-box co
 
 Please refer to: [http://sing-box.sagernet.org/configuration](http://sing-box.sagernet.org/configuration/).
 
+# The SSR protocol script is not parsed by default. If the subscription link contains the SSR protocol, an error will be reported.
+
 ## Feature
 
 **sing-box web parser**
@@ -118,9 +120,13 @@ Android use chrome browser to open the webpage to generate the configuration fil
 
 ## 🎬 Demonstration video
 
-|Web parsing sub link|Web parsing URI links|Android Chrome page shrink|
-|-----------------------------|-----------------------------|-----------------------------|
-|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9f8f1a70-58b1-4117-a650-f956d9249e43"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/63e180ad-eead-433f-8ee8-73055dafbd56"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>
+|Web parsing sub link|Web parsing URI links|
+|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/9f8f1a70-58b1-4117-a650-f956d9249e43"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/63e180ad-eead-433f-8ee8-73055dafbd56"></video>|
+
+|Android Chrome page shrink|Web directly parse base64|
+|-----------------------------|-----------------------------|
+|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/cb149206-307f-4de8-9968-9832dcf8268a"></video>|<video controls width="250" src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/0081f055-2cd4-46bb-a4a9-7aac7d5f93a5"></video>|
 
 |Local parsing sub link|Local parsing URI links|
 |-----------------------------|-----------------------------|
