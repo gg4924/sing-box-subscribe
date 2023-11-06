@@ -8,6 +8,8 @@
 
 请查看：[https://sing-box.sagernet.org/zh/configuration](https://sing-box.sagernet.org/zh/configuration)。
 
+# SSR协议脚本默认不解析，订阅链接里都是SSR协议会报错
+
 ## 特色
 
 **sing-box网页版解析器**
