@@ -3,7 +3,6 @@ from urllib.parse import urlparse, parse_qs, unquote
 def parse(data):
     info = data[:]
     server_info = urlparse(info)
-    print (server_info)
     try:
         remark = tool.b64Decode(server_info.netloc+server_info.path).decode().rsplit("/#", 1)
     except UnicodeDecodeError:
