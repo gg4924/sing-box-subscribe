@@ -390,6 +390,28 @@ windows系统建议将命令添加到批处理程序运行。
 
 </details>
 
+## 在非图形化客户端，不使用tun的话的操作
+
+比如在windows上用内核跑 sing-box，在入站inbounds里删掉tun字段：
+
+```json
+"inbounds": [
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 2080, //此端口要和windows代理端口一致
+      "sniff": true,
+      "set_system_proxy": true,
+      "sniff_override_destination": false,
+      "domain_strategy": "ipv4_only"
+    }
+  ]
+```
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/387f2077-b8b6-42ed-9658-361b28179db2" alt="download" width="50%" />
+</div>
+
 <details>
       <summary><b>效果参考</b></summary>
 
