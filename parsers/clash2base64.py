@@ -266,14 +266,19 @@ def clash2v2ray(share_link):
         # TODO
     elif share_link['type'] == 'http':
         http_info = {
-            "user": share_link['username'],
-            "password": share_link['password'],
             "server": share_link['server'],
             "port": share_link['port'],
-            "name": quote(share_link.get('name', ''), 'utf-8')
         }
-        base_link = base64.b64encode("{user}:{password}@{server}:{port}/#{name}".format(**http_info).encode('utf-8')).decode('utf-8')
+        if share_link.get('username'):
+            if share_link['password']:
+                http_info ["user"] = share_link['username']
+                http_info ["password"] = share_link['password']
+                base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**http_info).encode('utf-8')).decode('utf-8')
+        else:
+            base_link = base64.b64encode("{server}:{port}".format(**http_info).encode('utf-8')).decode('utf-8')
         link = f"https://{base_link}"
+        if share_link.get('name'):
+            link += f"#{share_link['name']}"
         return link
         # TODO
     elif share_link['type'] == 'socks5':
@@ -281,8 +286,11 @@ def clash2v2ray(share_link):
             "server": share_link['server'],
             "port": share_link['port'],
         }
-        if share_link.get('username') and share_link.get('password'):
-            base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**socks5_info).encode('utf-8')).decode('utf-8')
+        if share_link.get('username'):
+            if share_link['password']:
+                socks5_info ["user"] = share_link['username']
+                socks5_info ["password"] = share_link['password']
+                base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**socks5_info).encode('utf-8')).decode('utf-8')
         else:
             base_link = base64.b64encode("{server}:{port}".format(**socks5_info).encode('utf-8')).decode('utf-8')
         link = f"socks://{base_link}"
