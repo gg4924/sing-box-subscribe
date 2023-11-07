@@ -3,6 +3,8 @@ from urllib.parse import urlparse, parse_qs, unquote
 def parse(data):
     info = data[:]
     server_info = urlparse(info)
+    if server_info.path:
+        server_info = server_info._replace(netloc=server_info.netloc + server_info.path)
     _netloc = server_info.netloc.split("@")
     #_netloc = (tool.b64Decode(server_info.netloc)).decode().split("@")
     netquery = dict(
