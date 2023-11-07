@@ -222,7 +222,7 @@ def get_protocol(s):
             s = re.sub(r'^(.+?)://', 'hysteria2://', s)
             m = re.search(r'^(.+?)://', s)
         if m.group(1) == 'http2':
-            s = re.sub(r'^(.+?)://', 'https://', s)
+            s = re.sub(r'^(.+?)://', 'http://', s)
             m = re.search(r'^(.+?)://', s)
         return m.group(1)
     return None
