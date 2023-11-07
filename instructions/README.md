@@ -366,7 +366,7 @@ Multiple rules will be executed in order.
 
 ## Hide the cmd window that pops up when Windows runs sing-box
 
-> Use WinSW to set sing-box.exe as a Windows service, [WinSW tutorial](https://blog.xuven.xyz/post/WinSW/)
+> Use WinSW to set sing-box.exe as a Windows service, [WinSW tutorial](https://github.com/winsw/winsw)
 
 > XML configuration file modification
 ```xml
@@ -387,6 +387,28 @@ Multiple rules will be executed in order.
 </div>
 
 </details>
+
+## In non-graphical clients, operations without using tun
+
+For example, if you use the kernel to run sing-box on Windows, delete the tun field in the inbounds:
+
+```json
+"inbounds": [
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 2080, //This port must be consistent with the windows proxy port
+      "sniff": true,
+      "set_system_proxy": true,
+      "sniff_override_destination": false,
+      "domain_strategy": "ipv4_only"
+    }
+  ]
+```
+
+<div align="left">
+  <img src="https://github.com/Toperlock/sing-box-subscribe/assets/86833913/387f2077-b8b6-42ed-9658-361b28179db2" alt="download" width="50%" />
+</div>
 
 <details>
       <summary><b>Effect Reference</b></summary>
