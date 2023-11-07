@@ -1,7 +1,7 @@
 import json, os, tool, time, requests, sys, urllib, importlib, argparse, yaml, ruamel.yaml
 import re
 from datetime import datetime
-from urllib.parse import quote
+from urllib.parse import urlparse
 from api.app import TEMP_DIR
 from parsers.clash2base64 import clash2v2ray
 
@@ -115,7 +115,7 @@ def add_emoji(nodes, subscribe):
 def get_nodes(url):
     if url.startswith('sub://'):
         url = tool.b64Decode(url[6:]).decode('utf-8')
-    urlstr = urllib.parse.urlparse(url)
+    urlstr = urlparse(url)
     if '://' not in url:
         try:
             content = tool.b64Decode(url).decode('utf-8')
@@ -202,7 +202,7 @@ def get_content_from_url(url, n=6):
     print('处理: \033[31m' + url + '\033[0m')
     # print('Đang tải link đăng ký: \033[31m' + url + '\033[0m')
     prefixes = ["vmess://", "vless://", "ss://", "ssr://", "trojan://", "tuic://", "hysteria://", "hysteria2://",
-                "hy2://", "wg://", "http2://", "http://", "socks://"]
+                "hy2://", "wg://", "http2://", "socks://"]
     if any(url.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(url)
         return response_text
