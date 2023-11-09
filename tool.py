@@ -174,12 +174,7 @@ def urlDecode(str):
 def b64Decode(str):
     str = str.strip()
     str += (len(str)%4)*'='
-    #print(str)
-    try:
-        result = base64.b64decode(str)
-    except Exception as e:
-        result = base64.urlsafe_b64decode(str)
-    return result
+    return base64.urlsafe_b64decode(str)
 
 def readFile(path):
     file = open(path,'rb')
