@@ -208,7 +208,7 @@ def config(url):
         selected_template_index = '0'
         if file_param.isdigit():
             temp_json_data['config_template'] = ''
-            selected_template_index = file_param - 1
+            selected_template_index = str(int(file_param) - 1)
         temp_json_data = json.dumps(json.dumps(temp_json_data, indent=4, ensure_ascii=False), indent=4, ensure_ascii=False)
         subprocess.check_call([sys.executable, 'main.py', '--template_index', selected_template_index, '--temp_json_data', temp_json_data])
         CONFIG_FILE_NAME = json.loads(os.environ['TEMP_JSON_DATA']).get("save_config_path", "config.json")
