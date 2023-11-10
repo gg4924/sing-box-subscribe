@@ -40,9 +40,9 @@ Use `|` to connect the two sub links and then [URL encode](https://www.urlencode
 
 Example: https://sing-box-subscribe.vercel.app/config/https%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Fb1ca381c32820e8c79669cbbd85b68ac%2Fraw%2Fdafae92fbe48ff36dae6e5172caa1cfd7914cda4%2Fgistfile1.txt%7Chttps%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Ffa2fdc5f827ff7d288c23d568db75412%2Fraw%2F6c3b725da347f57b0021b806dfca5f51e1660746%2F1.yaml
 
-### 2023.11.10 Update: The `file` parameter can be simplified and written as a number `0`, `1` represents the use of the template serial number provided in the github repository
+### 2023.11.10 Update: The `file` parameter can be simplified and written as a number `1`, `2` represents the use of the template serial number provided in the github repository
 
-Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=1
+Example: https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=2
 
 ### Demo video
 
