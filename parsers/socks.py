@@ -4,12 +4,15 @@ def parse(data):
     info = data[:]
     server_info = urlparse(info)
     node = {
-        'tag': unquote(server_info.fragment)  or tool.genName()+'socks',
+        'tag': unquote(server_info.fragment)  or tool.genName()+'_socks',
         'type': 'socks',
         "version": "5",
         'udp_over_tcp': {}
     }
-    netloc = (tool.b64Decode(server_info.netloc)).decode()
+    try:
+        netloc = (tool.b64Decode(server_info.netloc)).decode()
+    except:
+        netloc = server_info.netloc
     if '@' in netloc:
         _netloc = netloc.split("@")
         node['server'] = re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0])
