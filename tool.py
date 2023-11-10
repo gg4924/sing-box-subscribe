@@ -219,6 +219,9 @@ def get_protocol(s):
         if m.group(1) == 'http2':
             s = re.sub(r'^(.+?)://', 'http://', s)
             m = re.search(r'^(.+?)://', s)
+        if m.group(1) == 'socks5':
+            s = re.sub(r'^(.+?)://', 'socks://', s)
+            m = re.search(r'^(.+?)://', s)
         return m.group(1)
     return None
 
