@@ -42,9 +42,9 @@ https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file
 
 示例：https://sing-box-subscribe.vercel.app/config/https%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Fb1ca381c32820e8c79669cbbd85b68ac%2Fraw%2Fdafae92fbe48ff36dae6e5172caa1cfd7914cda4%2Fgistfile1.txt%7Chttps%3A%2F%2Fgist.githubusercontent.com%2FToperlock%2Ffa2fdc5f827ff7d288c23d568db75412%2Fraw%2F6c3b725da347f57b0021b806dfca5f51e1660746%2F1.yaml
 
-### 2023.11.10更新：可以简化 `file` 参数写成数字 `0`，`1` 代表使用github仓库里提供的的模板序号
+### 2023.11.10更新：可以简化 `file` 参数写成数字 `1`，`2` 代表使用github仓库里提供的的模板序号
 
-示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=1
+示例：https://sing-box-subscribe.vercel.app/config/https://gist.githubusercontent.com/Toperlock/b1ca381c32820e8c79669cbbd85b68ac/raw/dafae92fbe48ff36dae6e5172caa1cfd7914cda4/gistfile1.txt/&file=2
 
 ### 演示视频
 
