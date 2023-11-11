@@ -228,7 +228,7 @@ def clash2v2ray(share_link):
         # TODO
     elif share_link['type'] == 'hysteria2':
         link = "hysteria2://{auth}@{server}:{port}?insecure={allowInsecure}&obfs={obfs}&obfs-password={obfspassword}&pinSHA256={fingerprint}&sni={sni}&alpn={alpn}&upmbps={upmbps}&downmbps={downmbps}#{name}".format(
-        auth = share_link['password'],
+        auth = share_link.get('password', share_link.get('auth', '')),
         server = share_link['server'],
         port = share_link['port'],
         allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
