@@ -80,6 +80,8 @@ https://xxxxxxx.vercel.app/config/url=https://xxxxxxsubscribe?token=123456/&file
 
 ~不支持转换 clash 订阅的解析~ 暂时只写了以上打勾协议的**分享链接**的解析（**v2订阅格式/clash订阅格式**），因为自己用的机场只有这几个协议。添加新的协议解析有能力可以自己写，比如 `vless.py`（文件名称必须为协议名称），写好后将其放入到 parsers 目录即可，`vless.py` 中必须包含 `parse` 函数。
 
+## Clash格式，如果文件太大vercel处理会超时（vercel服务器处理上限是10s），建议网页使用此脚本填入v2格式，或者clash文件小点
+
 **脚本为自用，本人使用 [yacd](https://yacd.metacubex.one) (ios请用http://yacd.metacubex.one) 进行节点切换管理（类型为urltest、selector的出站），配合规则像clash一样分流，非常方便。需求跟我一样的可以尝试，使用脚本过程中有新的功能需求或者出现任何错误请提出 issue，不要骚扰 sing-box。**
 
 **脚本可以用vercel服务器部署在网页运行，也可以下载项目源码在本地运行。请使用自己部署的网站生成sing-box配置。**
