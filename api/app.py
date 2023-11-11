@@ -194,12 +194,13 @@ def config(url):
         subscribe2['emoji'] = 1
         subscribe2['enabled'] = True
         subscribe2['prefix'] = ''
+        subscribe2['User-Agent'] = 'shadowrocket'
     else:
         subscribe['url'] = full_url.split('url=', 1)[-1] if full_url.startswith('url') else full_url
         subscribe['emoji'] = int(emoji_param) if emoji_param.isdigit() else subscribe.get('emoji', '')
         subscribe['tag'] = tag_param if tag_param else subscribe.get('tag', '')
         subscribe['prefix'] = pre_param if pre_param else subscribe.get('prefix', '')
-        subscribe['User-Agent'] = ua_param if ua_param else subscribe.get('User-Agent', '')
+        subscribe['User-Agent'] = ua_param if ua_param else 'shadowrocket'
         temp_json_data['config_template'] = file_param if file_param else temp_json_data.get('config_template', '')
     #print (f"Custom Page for {url} with link={full_url}, emoji={emoji_param}, file={file_param}, tag={tag_param}, UA={ua_param}, prefix={pre_param}")
     #page_content = f"生成的页面内容：{full_url}"
