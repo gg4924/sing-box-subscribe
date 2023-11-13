@@ -116,7 +116,7 @@ def get_nodes(url):
     if url.startswith('sub://'):
         url = tool.b64Decode(url[6:]).decode('utf-8')
     urlstr = urlparse(url)
-    if '://' not in url and url.startswith('http'):
+    if not urlstr.scheme:
         try:
             content = tool.b64Decode(url).decode('utf-8')
             data = parse_content(content)
@@ -128,9 +128,7 @@ def get_nodes(url):
                     processed_list.append(item)
             return processed_list
         except:
-            return None
-    if not urlstr.scheme:
-        content = get_content_form_file(url)
+            content = get_content_form_file(url)
     else:
         content = get_content_from_url(url)
     # print (content)
@@ -223,7 +221,7 @@ def get_content_from_url(url, n=6):
         print('获取错误，跳过此订阅')
         # print('Lỗi khi tải link đăng ký, bỏ qua link đăng ký này')
         print('----------------------------')
-        return None
+        pass
     response_text = response.text
     response_encoding = response.encoding
     if response_text.isspace():
