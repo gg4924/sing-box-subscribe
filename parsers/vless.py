@@ -22,12 +22,12 @@ def parse(data):
     }
     if netquery.get('flow'):
         node['flow'] = 'xtls-rprx-vision'
-    if netquery.get('security', '') not in ['none', '']:
+    if netquery.get('security', '') not in ['None', '']:
         node['tls'] = {
             'enabled': True,
             'insecure': True
         }
-        if netquery.get('sni', '') not in ['none', '']:
+        if netquery.get('sni', '') not in ['None', '']:
             node['tls']['server_name'] = netquery['sni']
         if netquery.get('fp'):
             node['tls']['utls'] = {
@@ -55,7 +55,7 @@ def parse(data):
                 'type':'ws',
                 "path": netquery.get('path', '').rsplit("?")[0],
                 "headers": {
-                    "Host": netquery.get('sni', netquery.get('host', ''))
+                    "Host": '' if netquery.get('host') is None and netquery.get('sni') == 'None' else netquery.get('host', netquery['sni'])
                 }
             }
             if '?ed=' in netquery.get('path'):
