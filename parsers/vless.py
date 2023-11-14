@@ -58,7 +58,7 @@ def parse(data):
                 'type':'ws',
                 "path": netquery.get('path', '').rsplit("?")[0],
                 "headers": {
-                    "Host": '' if netquery.get('host') is None and netquery.get('sni') == 'None' else netquery.get('host', netquery['sni'])
+                    "Host": '' if netquery.get('host') is None and netquery.get('sni') == 'None' else netquery.get('host', netquery.get('sni', ''))
                 }
             }
             if node['tls']['server_name'] == '':
