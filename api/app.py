@@ -186,7 +186,10 @@ def config(url):
             full_url = full_url.replace(param, '')
     if full_url.endswith("%2F"):
         full_url = full_url[:-len("%2F")]
-    full_url = unquote(full_url)
+    if request.args.get('url'):
+        full_url = full_url
+    else:
+        full_url = unquote(full_url)
     print (full_url)
     if "|" in full_url:
         subscribe['url'] = full_url.split('url=', 1)[-1].split('|')[0] if full_url.startswith('url') else full_url.split('|')[0]
