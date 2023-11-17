@@ -13,9 +13,10 @@ def parse(data):
         'password':None
     }
     flag = 0
-    if param.find('#') > -1 and param[param.find('#') + 1:] != '':
-        remark = urllib.parse.unquote(param[param.find('#') + 1:])
-        node['tag'] = remark
+    if param.find('#') > -1:
+        if param[param.find('#') + 1:] != '':
+            remark = urllib.parse.unquote(param[param.find('#') + 1:])
+            node['tag'] = remark
         param = param[:param.find('#')]
     if param.find('/?') > -1:
         plugin_opts={}
@@ -100,7 +101,12 @@ def parse(data):
           else:
               return None
         except:
-          return None
+          matcher = re.match(r'(.*?):(.*)', param)
+          if matcher:
+              node['method'] = matcher.group(1)
+              node['password'] = matcher.group(2)
+          else:
+              return None
     else:
         matcher = re.match(r'(.*?):(.*)@(.*):(.*)', tool.urlDecode(param).decode('utf-8'))
         if matcher:
