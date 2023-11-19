@@ -61,9 +61,10 @@ def parse(data):
                     "Host": '' if netquery.get('host') is None and netquery.get('sni') == 'None' else netquery.get('host', netquery.get('sni', ''))
                 }
             }
-            if node['tls']['server_name'] == '':
-                if node['transport']['headers']['Host']:
-                    node['tls']['server_name'] = node['transport']['headers']['Host']
+            if node.get('tls'):
+                if node['tls']['server_name'] == '':
+                    if node['transport']['headers']['Host']:
+                        node['tls']['server_name'] = node['transport']['headers']['Host']
             if '?ed=' in netquery.get('path'):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
                 node['transport']['max_early_data'] = int(netquery.get('path').rsplit("?ed=")[1])
