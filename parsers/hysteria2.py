@@ -14,8 +14,8 @@ def parse(data):
         'server': re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]),
         'server_port': int(server_info.netloc.rsplit(":", 1)[1].split(",")[0]),
         "password": server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
-        'up_mbps': int(netquery.get('upmbps', '10').split('M')[0]),
-        'down_mbps': int(netquery.get('downmbps', '50').split('M')[0]),
+        'up_mbps': int(re.search(r'\d+', netquery.get('upmbps', '10')).group()),
+        'down_mbps': int(re.search(r'\d+', netquery.get('downmbps', '100')).group()),
         'tls': {
             'enabled': True,
             'server_name': netquery.get('sni', re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]))
