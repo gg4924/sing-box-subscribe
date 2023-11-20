@@ -19,7 +19,7 @@ def parse(data):
                 'server_port': int(_path[1].split(":")[1]),
                 'uuid': _path[0].split(":")[1],
                 'security': _path[0].split(":")[0],
-                'alter_Id': int(netquery.get('alterId','99')),
+                'alter_id': int(netquery.get('alterId','99')),
                 'packet_encoding': 'xudp'
             }
             if netquery.get('tls') and netquery['tls'] != '':
@@ -60,7 +60,7 @@ def parse(data):
         'server_port': int(item.get('port')),
         'uuid': item.get('id'),
         'security': item.get('scy') if item.get('scy') else 'auto',
-        'alter_Id': int(item.get('aid','99')),
+        'alter_id': int(item.get('aid','99')),
         'packet_encoding': 'xudp'
     }
     if node['security'] == 'gun':
