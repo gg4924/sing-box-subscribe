@@ -34,7 +34,7 @@ def clash2v2ray(share_link):
             vmess_info["path"] = share_link.get('h2-opts', {}).get('path', '')
         elif vmess_info['net'] == 'http':
             vmess_info["host"] = share_link.get('http-opts', {}).get('headers', {}).get('Host', [])
-            vmess_info["path"] = share_link.get('http-opts', {}).get('path', '[]')
+            vmess_info["path"] = share_link.get('http-opts', {}).get('path', [])
         if share_link.get('smux',{}).get('enabled', '') == True:
             vmess_info["protocol"] = share_link['smux']['protocol']
             vmess_info["max_connections"] = share_link['smux'].get('max-connections','')
