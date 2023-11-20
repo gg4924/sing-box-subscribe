@@ -263,8 +263,9 @@ def clash2v2ray(share_link):
         warp_info['reserved'] = '0,0,0'
         if type(share_link.get('reserved')) == str:
             warp_info['reserved'] = share_link.get('reserved', '')
-        if type(share_link.get('reserved')) != type(None):
-            warp_info['reserved'] = ','.join(str(item) for item in share_link.get('reserved'))
+        else:
+            if type(share_link.get('reserved')) != type(None):
+                warp_info['reserved'] = ','.join(str(item) for item in share_link.get('reserved'))
         if share_link.get('ipv6'):
             warp_info['ipv6'] = share_link['ipv6']
             link = "wg://{server}:{port}?publicKey={publicKey}&privateKey={privateKey}&presharedKey={presharedKey}&ip={ip},{ipv6}&udp=1&reserved={reserved}#{name}".format(**warp_info)
