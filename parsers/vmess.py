@@ -92,12 +92,12 @@ def parse(data):
                     node['transport']['path'] = item['path'][0]
         if item['net'] == 'ws':
             node['transport'] = {
-                'type':'ws',
-                'path':str(item.get('path', '')).rsplit("?")[0],
-                'headers': {
-                    'Host': item.get('host', '')
-                }
+                'type':'ws'
             }
+            if item.get('path'):
+                node['transport']['path'] = str(item['path']).rsplit("?")[0]
+            if item.get('host'):
+                node['transport']['headers']['Host'] = item['host']
             if '?ed=' in str(item.get('path', '')):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
                 node['transport']['max_early_data'] = int(item.get('path').rsplit("?ed=")[1])
