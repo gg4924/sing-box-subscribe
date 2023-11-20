@@ -69,7 +69,7 @@ def parse(data):
         node['tls']={
             'enabled': True,
             'insecure': True,
-            'server_name': item.get('host', '') if item.get("net") != 'h2' else ''
+            'server_name': item.get('host', '') if item.get("net") not in ['h2', 'http'] else ''
         }
         if item.get('sni'):
             node['tls']['server_name'] = item['sni']
@@ -85,9 +85,10 @@ def parse(data):
             if item.get('host'):
                 node['transport']['host'] = item['host']
             if item.get('path'):
-                if type(item.get('path')) == 'str':
+                if type(item.get('path')) == str:
                     node['transport']['path'] = item['path'].rsplit("?")[0]
                 else:
+                    node['transport']['method'] = 'GET'
                     node['transport']['path'] = item['path'][0]
         if item['net'] == 'ws':
             node['transport'] = {
