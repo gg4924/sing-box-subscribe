@@ -160,8 +160,11 @@ def clash2v2ray(share_link):
             'allowInsecure': '0' if share_link.get('skip-cert-verify') == False else '1',
             "name": quote(share_link['name'], 'utf-8')
         }
-        if vless_info['type'] == 'ws':
+        if share_link.get('tls') == False:
+            vless_info["security"] = 'none'
+        else:
             vless_info["security"] = 'tls'
+        if vless_info['type'] == 'ws':
             vless_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
             vless_info["host"] = share_link['ws-opts'].get('headers', {}).get('Host', '')
             link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}&allowInsecure={allowInsecure}".format(**vless_info)
@@ -176,7 +179,6 @@ def clash2v2ray(share_link):
                 vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&allowInsecure={allowInsecure}&pbk={pbk}&sid={sid}".format(**vless_info)
             else:
-                vless_info["security"] = 'tls'
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&allowInsecure={allowInsecure}".format(**vless_info)
         if vless_info['type'] == 'tcp':
             if share_link.get('reality-opts'):
@@ -185,10 +187,6 @@ def clash2v2ray(share_link):
                 vless_info["sid"] = share_link.get('reality-opts', {}).get('short-id', '')
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}&allowInsecure={allowInsecure}&pbk={pbk}&sid={sid}".format(**vless_info)
             else:
-                if share_link.get('tls') == False:
-                    vless_info["security"] = 'none'
-                else:
-                    vless_info["security"] = 'tls'
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&serverName={sni}&type={type}&fp={fp}&flow={flow}&allowInsecure={allowInsecure}".format(**vless_info)
         if share_link.get('smux',{}).get('enabled', '') == True:
             vless_info["protocol"] = share_link['smux']['protocol']
