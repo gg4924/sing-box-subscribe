@@ -22,7 +22,7 @@ def parse(data):
     }
     if netquery.get('flow'):
         node['flow'] = 'xtls-rprx-vision'
-    if netquery.get('security', '') not in ['None', '']:
+    if netquery.get('security', '') not in ['None', 'none', '']:
         node['tls'] = {
             'enabled': True,
             'insecure': True,
