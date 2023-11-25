@@ -18,60 +18,67 @@ def parse(data):
             remark = urllib.parse.unquote(param[param.find('#') + 1:])
             node['tag'] = remark
         param = param[:param.find('#')]
-    if param.find('/?') > -1:
+    if param.find('plugin=obfs-local') > -1:
         plugin_opts={}
-        plugin = urllib.parse.unquote(param[param.find('/?') + 2:])
-        param = param[:param.find('/?')]
-        if plugin.startswith('plugin'):
-            if 'obfs' in plugin.split(';',1)[0].split('=')[1]:
-                node['plugin'] = 'obfs-local'
-            for p in plugin.split(';'):
-                key_value = p.split('=')
-                kname = key_value[0]
-                pdict = {'obfs':'mode','obfs-host':'host'}
-                if kname in pdict.keys():
-                    #kname = pdict[kname]
-                    plugin_opts[kname] = key_value[1]
-            node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
-    if param.find('?') > -1 and param[param.find('?')-1] != '/':
-        plugin_opts={}
-        plugin = urllib.parse.unquote(param[param.find('?') + 1:])
+        if param.find('&', param.find('plugin=obfs-local')) > -1:
+            plugin = urllib.parse.unquote(param[param.find('plugin=obfs-local'):param.find('&', param.find('plugin=obfs-local'))])
+        else:
+            plugin = urllib.parse.unquote(param[param.find('plugin=obfs-local'):])
         param = param[:param.find('?')]
-        if plugin.startswith('v2ray-plugin'):
-            node['plugin'] = 'v2ray-plugin'
-            plugin = str(tool.b64Decode(plugin.split('=')[1]),'utf-8')
-            plugin = eval(plugin.replace('true','1'))
-            for kname in plugin.keys():
-                pdict = {'mode':'obfs','host':'obfs-host'}
-                if kname in pdict.keys():
-                    #kname = pdict[kname]
-                    plugin_opts[kname] = plugin[kname]
-            node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';'))
-        elif plugin.startswith('shadow-tls'):
-            flag = 1
-            plugin = json.loads(tool.b64Decode(plugin.split("=", 1)[1]))
-            node['detour'] = node['tag']+'_shadowtls'
-            node_tls = {
-                'tag':node['detour'],
-                'type':'shadowtls',
-                'version':int(plugin.get('version', '1')),
-                'password':plugin.get('password', ''),
-                'tls':{
-                    'enabled': True,
-                    'server_name': plugin.get('host', '')
-                }
+        node['plugin'] = 'obfs-local'
+        for p in plugin.split(';'):
+            key_value = p.split('=')
+            kname = key_value[0]
+            pdict = {'obfs':'mode','obfs-host':'host'}
+            if kname in pdict.keys():
+                #kname = pdict[kname]
+                plugin_opts[kname] = key_value[1]
+        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
+    if param.find('v2ray-plugin') > -1:
+        plugin_opts={}
+        if param.find('&', param.find('v2ray-plugin')) > -1:
+            plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:param.find('&', param.find('v2ray-plugin'))]).decode('utf-8')
+        else:
+            plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:]).decode('utf-8')
+        param = param[:param.find('?')]
+        node['plugin'] = 'v2ray-plugin'
+        plugin = eval(plugin.replace('true','1'))
+        for kname in plugin.keys():
+            pdict = {'mode':'obfs','host':'obfs-host'}
+            if kname in pdict.keys():
+                #kname = pdict[kname]
+                plugin_opts[kname] = plugin[kname]
+        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';'))
+    param2 = data[5:]
+    if param2.find('shadow-tls') > -1:
+        flag = 1
+        if param.find('&', param.find('shadow-tls')) > -1:
+            plugin = tool.b64Decode(param2[param2.find('shadow-tls')+11:param2.find('&', param2.find('shadow-tls'))].split('#')[0]).decode('utf-8')
+        else:
+            plugin = tool.b64Decode(param2[param2.find('shadow-tls')+11:].split('#')[0]).decode('utf-8')
+        plugin = eval(plugin.replace('true','1'))
+        node['detour'] = node['tag']+'_shadowtls'
+        node_tls = {
+            'tag':node['detour'],
+            'type':'shadowtls',
+            'version':int(plugin.get('version', '1')),
+            'password':plugin.get('password', ''),
+            'tls':{
+                'enabled': True,
+                'server_name': plugin.get('host', '')
             }
-            if plugin.get('address'):
-                node_tls['server'] = plugin['address']
-            if plugin.get('port'):
-                node_tls['server_port'] = int(plugin['port'])
-            if plugin.get('fp'):
-                node_tls['tls']['utls']={
-                    'enabled': True,
-                    'fingerprint': plugin.get('fp')
-                }
-    if param.find('&') > -1:
-        smux = param[param.find('&')+1:]
+        }
+        if plugin.get('address'):
+            node_tls['server'] = plugin['address']
+        if plugin.get('port'):
+            node_tls['server_port'] = int(plugin['port'])
+        if plugin.get('fp'):
+            node_tls['tls']['utls']={
+                'enabled': True,
+                'fingerprint': plugin.get('fp')
+            }
+    if data[5:].find('protocol') > -1:
+        smux = data[5:][data[5:].find('protocol'):]
         smux_dict = parse_qs(smux)
         smux_dict = {k: v[0] for k, v in smux_dict.items() if v[0]}
         node['multiplex'] = {
