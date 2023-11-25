@@ -58,21 +58,21 @@ def clash2v2ray(share_link):
         base_link = base64.b64encode("{cipher}:{password}".format(**ss_info).encode('utf-8')).decode('utf-8')
         if share_link.get('plugin'):
             ss_info["plugin"] = share_link['plugin']
-            if share_link.get('plugin') == 'shadow-tls':
-                ss_info["shadowtls_password"] = share_link['plugin-opts']['password']
-                ss_info["version"] = share_link['plugin-opts']['version']
-                ss_info["host"] = share_link['plugin-opts']['host']
-                shadowtls = f'{{"version": "{ss_info["version"]}", "host": "{ss_info["host"]}","password": "{ss_info["shadowtls_password"]}"}}'
-                url_link = f'?shadow-tls={base64.b64encode(shadowtls.encode()).decode()}'
             if share_link.get('plugin') == 'obfs':
                 ss_info["mode"] = share_link['plugin-opts']['mode']
                 ss_info["host"] = share_link['plugin-opts']['host']
-                url_link = '/?plugin={plugin}%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
+                url_link = '?plugin=obfs-local%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
             if share_link.get('plugin') == 'v2ray-plugin':
                 ss_info["obfs"] = share_link['plugin-opts']['mode']
                 ss_info["obfs-host"] = share_link['plugin-opts'].get('host','cloudfront.com')
                 v2ray_plugin = f'{{"mode": "{ss_info["obfs"]}", "host": "{ss_info["obfs-host"]}"}}'
                 url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
+            if share_link.get('plugin') == 'shadow-tls':
+                ss_info["shadowtls_password"] = share_link['plugin-opts']['password']
+                ss_info["version"] = share_link['plugin-opts']['version']
+                ss_info["host"] = share_link['plugin-opts']['host']
+                shadowtls = f'{{"version": "{ss_info["version"]}", "host": "{ss_info["host"]}","password": "{ss_info["shadowtls_password"]}"}}'
+                url_link += f'?shadow-tls={base64.b64encode(shadowtls.encode()).decode()}'
             link = "ss://{base_link}@{server}:{port}{url_link}".format(base_link=base_link, url_link=url_link, **ss_info)
         else:
             link = "ss://{base_link}@{server}:{port}".format(base_link=base_link, **ss_info)
