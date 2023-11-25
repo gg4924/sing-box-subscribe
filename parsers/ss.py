@@ -33,7 +33,7 @@ def parse(data):
             if kname in pdict.keys():
                 #kname = pdict[kname]
                 plugin_opts[kname] = key_value[1]
-        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
+        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
     if param.find('v2ray-plugin') > -1:
         plugin_opts={}
         if param.find('&', param.find('v2ray-plugin')) > -1:
@@ -42,13 +42,13 @@ def parse(data):
             plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:]).decode('utf-8')
         param = param[:param.find('?')]
         node['plugin'] = 'v2ray-plugin'
-        plugin = eval(plugin.replace('true','1'))
+        plugin = eval(plugin.replace('true','True'))
         for kname in plugin.keys():
             pdict = {'mode':'obfs','host':'obfs-host'}
             if kname in pdict.keys():
                 #kname = pdict[kname]
                 plugin_opts[kname] = plugin[kname]
-        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\:|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';'))
+        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';'))
     param2 = data[5:]
     if param2.find('shadow-tls') > -1:
         flag = 1
@@ -56,7 +56,7 @@ def parse(data):
             plugin = tool.b64Decode(param2[param2.find('shadow-tls')+11:param2.find('&', param2.find('shadow-tls'))].split('#')[0]).decode('utf-8')
         else:
             plugin = tool.b64Decode(param2[param2.find('shadow-tls')+11:].split('#')[0]).decode('utf-8')
-        plugin = eval(plugin.replace('true','1'))
+        plugin = eval(plugin.replace('true','True'))
         node['detour'] = node['tag']+'_shadowtls'
         node_tls = {
             'tag':node['detour'],
