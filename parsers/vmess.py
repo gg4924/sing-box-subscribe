@@ -73,9 +73,10 @@ def parse(data):
         }
         if item.get('sni'):
             node['tls']['server_name'] = item['sni']
+        if item.get('fp'):
             node['tls']['utls'] = {
                 'enabled': True,
-                'fingerprint': item.get('fp', '')
+                'fingerprint': item['fp']
             }
     if item.get("net"):
         if item['net'] in ['h2', 'http']:
