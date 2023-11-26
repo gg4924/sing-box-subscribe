@@ -35,7 +35,7 @@ def parse(data):
         if netquery.get('fp'):
             node['tls']['utls'] = {
                 'enabled': True,
-                'fingerprint': netquery.get('fp', 'chrome')
+                'fingerprint': netquery['fp']
             }
         if netquery['security'] == 'reality':
             node['tls']['reality'] = {
