@@ -18,12 +18,12 @@ def parse(data):
             remark = urllib.parse.unquote(param[param.find('#') + 1:])
             node['tag'] = remark
         param = param[:param.find('#')]
-    if param.find('plugin=obfs-local') > -1:
+    if param.find('plugin=obfs-local') > -1 or param.find('plugin=simple-obfs') > -1:
         plugin_opts={}
-        if param.find('&', param.find('plugin=obfs-local')) > -1:
-            plugin = urllib.parse.unquote(param[param.find('plugin=obfs-local'):param.find('&', param.find('plugin=obfs-local'))])
+        if param.find('&', param.find('plugin')) > -1:
+            plugin = urllib.parse.unquote(param[param.find('plugin'):param.find('&', param.find('plugin'))])
         else:
-            plugin = urllib.parse.unquote(param[param.find('plugin=obfs-local'):])
+            plugin = urllib.parse.unquote(param[param.find('plugin'):])
         param = param[:param.find('?')]
         node['plugin'] = 'obfs-local'
         for p in plugin.split(';'):
@@ -123,7 +123,7 @@ def parse(data):
             node['server_port'] = matcher.group(4).split('&')[0]
         else:
             return None
-    node['server_port'] = int(node['server_port'])
+    node['server_port'] = int(re.search(r'\d+', node['server_port']).group())
     if flag:
         return node,node_tls
     else:
