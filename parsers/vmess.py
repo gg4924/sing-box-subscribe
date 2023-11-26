@@ -19,7 +19,7 @@ def parse(data):
                 'server_port': int(_path[1].split(":")[1]),
                 'uuid': _path[0].split(":")[1],
                 'security': _path[0].split(":")[0],
-                'alter_id': int(netquery.get('alterId','99')),
+                'alter_id': int(netquery.get('alterId','0')),
                 'packet_encoding': 'xudp'
             }
             if netquery.get('tls') and netquery['tls'] != '':
@@ -39,7 +39,7 @@ def parse(data):
                     'type': 'ws',
                     'path': netquery.get('path', '').rsplit("?")[0],
                     'headers': {
-                        'Host': json.loads(netquery.get('obfsParam')).get('Host', '') if netquery.get('obfsParam') else ''
+                        'Host': json.loads(netquery.get('obfsParam')).get('Host', '') if 'Host' in netquery.get('obfsParam', '') else netquery.get('obfsParam', '')
                     }
                 }
             return node
@@ -60,7 +60,7 @@ def parse(data):
         'server_port': int(item.get('port')),
         'uuid': item.get('id'),
         'security': item.get('scy') if item.get('scy') else 'auto',
-        'alter_id': int(item.get('aid','99')),
+        'alter_id': int(item.get('aid','0')),
         'packet_encoding': 'xudp'
     }
     if node['security'] == 'gun':
@@ -105,7 +105,7 @@ def parse(data):
                 node['transport']['path'] = str(item['path']).rsplit("?")[0]
             if '?ed=' in str(item.get('path', '')):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
-                node['transport']['max_early_data'] = int(item.get('path').rsplit("?ed=")[1])
+                node['transport']['max_early_data'] = int(re.search(r'\d+', item.get('path').rsplit("?ed=")[1]).group())
         if item['net'] == 'quic':
             node['transport'] = {
                 'type':'quic'
