@@ -103,7 +103,6 @@ def clash2v2ray(share_link):
             link += "&protocol={protocol}&max-connections={max_connections}&min-streams={min_streams}&max-streams={max_streams}&padding={padding}#{name}".format(**ss_info)
         else:
             link += f"#{ss_info['name']}"
-        print(link)
         return link
         # TODO
     elif share_link['type'] == 'ssr':
