@@ -18,7 +18,7 @@ def parse(data):
         'auth_str': netquery.get('auth', ''),
         'tls': {
             'enabled': True,
-            'server_name': netquery.get('peer', re.sub(r"\[|\]", "", server_info.netloc.rsplit(":", 1)[0]))
+            'server_name': netquery.get('sni', netquery.get('peer', ''))
         }
     }
     node['tls']['alpn'] = (netquery.get('alpn') or "h3").strip('{}').split(',')
