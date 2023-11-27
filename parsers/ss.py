@@ -42,13 +42,16 @@ def parse(data):
             plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:]).decode('utf-8')
         param = param[:param.find('?')]
         node['plugin'] = 'v2ray-plugin'
-        plugin = eval(plugin.replace('true','True'))
-        for kname in plugin.keys():
-            pdict = {'mode':'obfs','host':'obfs-host'}
-            if kname in pdict.keys():
-                #kname = pdict[kname]
-                plugin_opts[kname] = plugin[kname]
-        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';'))
+        plugin = eval(plugin.replace('true','1'))
+        result_str = "mode={};host={};{}{}{}{}".format(
+            plugin.get("mode", ''),
+            plugin.get("host", ''),
+            'path={};'.format(plugin["path"]) if "path" in plugin else '',
+            'mux={};'.format(plugin["mux"]) if "mux" in plugin else '',
+            'headers={};'.format(json.dumps(plugin["headers"])) if "headers" in plugin else '',
+            'fingerprint={};'.format(plugin["fingerprint"]) if "fingerprint" in plugin else ''
+        )
+        node['plugin_opts'] = result_str
     param2 = data[5:]
     if param2.find('shadow-tls') > -1:
         flag = 1
