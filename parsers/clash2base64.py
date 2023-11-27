@@ -64,8 +64,26 @@ def clash2v2ray(share_link):
                 url_link = '?plugin=obfs-local%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
             if share_link.get('plugin') == 'v2ray-plugin':
                 ss_info["obfs"] = share_link['plugin-opts']['mode']
-                ss_info["obfs-host"] = share_link['plugin-opts'].get('host','cloudfront.com')
-                v2ray_plugin = f'{{"mode": "{ss_info["obfs"]}", "host": "{ss_info["obfs-host"]}"}}'
+                ss_info["obfs-host"] = share_link['plugin-opts'].get('host','')
+                if share_link['plugin-opts'].get('fingerprint'):
+                    ss_info["fingerprint"] = share_link['plugin-opts']['fingerprint']
+                if share_link['plugin-opts'].get('path'):
+                    ss_info["path"] = share_link['plugin-opts']['path']
+                if share_link['plugin-opts'].get('headers'):
+                    ss_info["headers"] = share_link['plugin-opts']['headers']
+                if share_link['plugin-opts'].get('mux') == True:
+                    ss_info["mux"] = True
+                #if share_link['plugin-opts'].get('tls') == True:
+                #    ss_info["tls"] = True
+                v2ray_plugin = {
+                    "path": ss_info.get("path", ""),
+                    "mux": ss_info.get("mux", False),
+                    "headers": ss_info.get("headers", ""),
+                    "fingerprint": ss_info.get("fingerprint", ""),
+                    "mode": ss_info.get("obfs", ""),
+                    "host": ss_info.get("obfs-host", "")
+                }
+                v2ray_plugin = json.dumps(v2ray_plugin)
                 url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
             if share_link.get('plugin') == 'shadow-tls':
                 ss_info["shadowtls_password"] = share_link['plugin-opts']['password']
@@ -85,6 +103,7 @@ def clash2v2ray(share_link):
             link += "&protocol={protocol}&max-connections={max_connections}&min-streams={min_streams}&max-streams={max_streams}&padding={padding}#{name}".format(**ss_info)
         else:
             link += f"#{ss_info['name']}"
+        print(link)
         return link
         # TODO
     elif share_link['type'] == 'ssr':
