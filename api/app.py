@@ -170,12 +170,14 @@ def config(url):
     file_param = request.args.get('file', '')
     tag_param = request.args.get('tag', '')
     ua_param = request.args.get('ua', '')
+    UA_param = request.args.get('UA', '')
     pre_param = request.args.get('prefix', '')
 
     # 构建要删除的字符串列表
     params_to_remove = [
         f'&prefix={quote(pre_param)}',
-        f'ua={ua_param}',
+        f'&ua={ua_param}',
+        f'&UA={UA_param}',
         f'&file={quote(file_param).replace("/", "%2F")}',
         f'&emoji={emoji_param}',
         f'&tag={tag_param}',
