@@ -307,6 +307,8 @@ def clash2v2ray(share_link):
                 base_link = base64.b64encode("{user}:{password}@{server}:{port}".format(**http_info).encode('utf-8')).decode('utf-8')
         else:
             base_link = base64.b64encode("{server}:{port}".format(**http_info).encode('utf-8')).decode('utf-8')
+        if share_link.get('sni'):
+            base_link += f"&sni={share_link['sni']}"
         link = f"http://{base_link}"
         if share_link.get('name'):
             link += f"#{share_link['name']}"
