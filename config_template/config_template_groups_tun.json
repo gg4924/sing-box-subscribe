@@ -7,7 +7,7 @@
     "servers": [
       {
         "tag": "proxyDns",
-        "address": "8.8.8.8",
+        "address": "https://8.8.8.8/dns-query",
         "detour": "proxy"
       },
       {
@@ -196,7 +196,6 @@
       "tag":"🎬 MediaVideo",
       "type":"selector",
       "outbounds":[
-        "direct",
         "{all}"
       ]
     },
