@@ -228,6 +228,9 @@ def get_content_from_url(url, n=6):
         print('没有从订阅链接获取到任何内容')
         # print('Không nhận được proxy nào từ link đăng ký')
         return None
+    if not response_text:
+        response = tool.getResponse(url, custom_user_agent='clashmeta')
+        response_text = response.text
     if any(response_text.startswith(prefix) for prefix in prefixes):
         response_text = tool.noblankLine(response_text)
         return response_text
