@@ -210,7 +210,6 @@
       "tag":"🎬 MediaVideo",
       "type":"selector",
       "outbounds":[
-        "direct",
         "{all}"
       ]
     },
