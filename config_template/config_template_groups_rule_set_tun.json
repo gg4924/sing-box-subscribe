@@ -366,6 +366,10 @@
         "outbound": "🌏 !cn"
       },
       {
+        "ip_is_private": true,
+        "outbound": "🌏 cn"
+      },
+      {
         "rule_set": "geoip-cn",
         "outbound": "🌏 cn"
       },
