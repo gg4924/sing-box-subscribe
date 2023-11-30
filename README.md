@@ -1,1 +1,1 @@
-# 写这个脚本是想给自己方便使用，写的这么详细的readme也是想要让你们自己操作，建个属于自己的解析器。遇到过reademe不认真看的人说明reademe没有存在的必要了；现在还发现有人套用我的脚本拿去宣传，给别人转换sing-box配置。还嫌弃singbox没有win的gui去使用第三方客户端。本项目不再维护
+# sing-box 1.8.0 不支持geoip和geosite，配置需要修改。已上传rule_set模板，并且默认生成最新配置文件适配 sing-box 1.8.0。用旧版singbox请选择`config_template_groups_tun.json`模板
