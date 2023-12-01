@@ -306,7 +306,7 @@
         "outbound": "🌌 Google"
       },
       {
-        "rule_set": "geoip-gg",
+        "rule_set": "geoip-google",
         "outbound": "🌌 Google"
       },
       {
@@ -314,7 +314,7 @@
         "outbound": "🌌 Google"
       },
       {
-        "rule_set": "geoip-tg",
+        "rule_set": "geoip-telegram",
         "outbound": "📟 Telegram"
       },
       {
@@ -322,7 +322,7 @@
         "outbound": "📟 Telegram"
       },
       {
-        "rule_set":"geoip-tw",
+        "rule_set":"geoip-twitter",
         "outbound": "🐦 Twitter"
       },
       {
@@ -330,7 +330,7 @@
         "outbound": "🐦 Twitter"
       },
       {
-        "rule_set": "geoip-fk",
+        "rule_set": "geoip-facebook",
         "outbound": "👤 Facebook"
       },
       {
@@ -358,6 +358,10 @@
         "outbound": "📺 Bilibili"
       },
       {
+        "rule_set": "geoip-netflix",
+        "outbound": "🎬 MediaVideo"
+      },
+      {
         "rule_set": ["geosite-tiktok","geosite-netflix","geosite-hbo","geosite-disney","geosite-primevideo"],
         "outbound": "🎬 MediaVideo"
       },
@@ -380,32 +384,34 @@
     ],
     "rule_set": [
       {
-        "tag": "geoip-gg",
+        "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-gg.srs",
-        "download_detour": "auto"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs"
       },
       {
-        "tag": "geoip-tg",
+        "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-tg.srs",
-        "download_detour": "auto"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs"
       },
       {
-        "tag": "geoip-tw",
+        "tag": "geoip-twitter",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-tw.srs",
-        "download_detour": "auto"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/twitter.srs"
       },
       {
-        "tag": "geoip-fk",
+        "tag": "geoip-facebook",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-fk.srs",
-        "download_detour": "auto"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/facebook.srs"
+      },
+      {
+        "tag": "geoip-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs"
       },
       {
         "tag": "geoip-cn",
