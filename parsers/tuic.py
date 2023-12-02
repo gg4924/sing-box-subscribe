@@ -15,7 +15,7 @@ def parse(data):
         'tag': server_info.fragment or tool.genName()+'_tuic',
         'type': 'tuic',
         'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
-        'server_port': int(_netloc[1].rsplit(":", 1)[1]),
+        'server_port': int(re.search(r'\d+', _netloc[1].rsplit(":", 1)[1]).group()),
         'uuid': _netloc[0].split(":")[0],
         'password': _netloc[0].split(":")[1] if len(_netloc[0].split(":")) > 1 else netquery.get('password', ''),
         'congestion_control': netquery.get('congestion_control', 'bbr'),
@@ -30,5 +30,7 @@ def parse(data):
     if netquery.get('allow_insecure') and netquery['allow_insecure'] == '1' :
         node['tls']['insecure'] = True
     if netquery.get('disable_sni') and netquery['disable_sni'] != '1':
-        node['tls']['server_name'] = netquery.get('sni')
+        node['tls']['server_name'] = netquery.get('sni', netquery.get('peer', ''))
+    if netquery.get('sni') or netquery.get('peer'):
+        node['tls']['server_name'] = netquery.get('sni', netquery.get('peer', ''))
     return node
