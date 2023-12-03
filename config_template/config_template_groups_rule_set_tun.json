@@ -247,7 +247,7 @@
         {"action":"exclude","keywords":["网站|剩余|流量|过期|时间|期|地址"]}
       ],
       "url": "http://www.gstatic.com/generate_204",
-      "interval": "1m",
+      "interval": "30s",
       "tolerance": 50
     },
     {
