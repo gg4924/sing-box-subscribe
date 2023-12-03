@@ -85,17 +85,18 @@
             <h3 style="margin: 8px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#steps-for-page-manipulation" target="_blank" rel="noopener noreferrer">Please be sure to: Click to view operation instructions.</a></h3>
             <h3 style="margin: 8px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe#providersjson%E6%96%87%E4%BB%B6" target="_blank" rel="noopener noreferrer">请务必：点击查看参数含义</a></h3>
             <h3 style="margin: 8px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe/tree/main/instructions#providersjson-file" target="_blank" rel="noopener noreferrer">Please be sure to: Click to view parameter meanings.</a></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="3"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">填写订阅地址在引号 “” 内，注意订阅地址末尾不要有换行，这很容易被忽视！！！</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="4" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">提醒: 点击保存后请立即生成配置文件！！！</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="5"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="6" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">“订阅地址”是以 "http://" 开头的【包含】节点信息的v2/clash链接或者是以 "vmess://","hysteria2://"... 之类开头的单条URI节点链接</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="7"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">机场提供的订阅链接能直接在浏览器打开，这脚本就能使用。请你自行检查是否可以</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="8" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">需要特殊环境才能打开的订阅链接，请你在 TEMP_JSON_DATA 修改 "User-Agent" 或者先行把机场订阅链接内容复制到gist里，脚本才会解析成功。或者本地运行脚本</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="9"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">因为服务器vercel获取链接内容不稳定，失败请重新再试一次。或者本地运行脚本</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="10" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">机场订阅里有hy2新协议，请修改 "User-Agent" 为：clashmeta</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="11"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">以上不是废话，没成功生成配置请你仔细阅读以上内容</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="12" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">因为没用数据库，不会返回配置文件链接。生成配置内容后复制到gist里当作 sing-box remote 链接</span></h3>
-            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="13"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">生成配置成功后请不要用第三方输入法复制内容，会有长度限制复制不全</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="3" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">“groups_rule_set_tun.json”模板是给 sing-box 1.8.0+ 使用的。旧版sing-box请使用其他模板</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="4"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">填写订阅地址在引号 “” 内，注意订阅地址末尾不要有换行，这很容易被忽视！！！</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="5" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">提醒: 点击保存后请立即生成配置文件！！！</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="6"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">不然别人也会看到你保存的 TEMP_JSON_DATA 内容</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="7" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">“订阅地址”是以 "http://" 开头的【包含】节点信息的v2/clash链接或者是以 "vmess://","hysteria2://"... 之类开头的单条URI节点链接</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="8"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">机场提供的订阅链接能直接在浏览器打开，这脚本就能使用。请你自行检查是否可以</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="9" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">需要特殊环境才能打开的订阅链接，请你在 TEMP_JSON_DATA 修改 "User-Agent" 或者先行把机场订阅链接内容复制到gist里，脚本才会解析成功。或者本地运行脚本</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="10"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">因为服务器vercel获取链接内容不稳定，失败请重新再试一次。或者本地运行脚本</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="11" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">机场订阅里有hy2新协议，请修改 "User-Agent" 为：clashmeta</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="12"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">以上不是废话，没成功生成配置请你仔细阅读以上内容</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="13" data-color="red"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">因为没用数据库，不会返回配置文件链接。生成配置内容后复制到gist里当作 sing-box remote 链接</span></h3>
+            <h3 style="margin: 8px 0; font-size: 14px;" data-translate="14"><span style="font-weight: bold; color: black; margin: 5px 0; font-size: 14px;">生成配置成功后请不要用第三方输入法复制内容，会有长度限制复制不全</span></h3>
             <h3 style="margin: 8px 0; font-size: 14px;"><span style="font-weight: bold; color: red; margin: 5px 0; font-size: 14px;">Một số Link Tiếng Việt không hoạt động với script này, vui lòng chạy nó trên local</span></h3>
             <h3 style="margin: 8px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe/blob/main/instructions/README.md#-demonstration-video" target="_blank" rel="noopener noreferrer">Video hoạt động</a></h3>
             <h3 style="margin: 8px 0; font-size: 14px;"><a href="https://github.com/Toperlock/sing-box-subscribe/issues" target="_blank" rel="noopener noreferrer">遇到问题请开issue</a></h3>
@@ -123,18 +124,19 @@
         const languageData = {
             "1": "Please be sure to: Click to view operation instructions.",
             "2": "Please be sure to: Click to view parameter meanings.",
-            "3": "Fill in the subscription link within the quotes '', and be careful not to have line breaks at the end of the subscription link, as this can be easily overlooked!!!",
-            "4": "Reminder: After clicking save, please immediately generate the configuration file!!!",
-            "5": "Otherwise, others will be able to see the content of your saved TEMP_JSON_DATA.",
-            "6": "The 'subscription link' starts with 'http://' and includes node information for v2/clash links or is a single URI node link starting with 'vmess://', 'hysteria2://', and similar.",
-            "7": "subscription links provided by Service can be directly opened in the browser, and the script can use them. Please check if it works on your end.",
-            "8": "For subscription links that require a special environment to open, please modify 'User-Agent' in TEMP_JSON_DATA, or copy the content of the airport subscription link to gist in advance for the script to parse successfully. Alternatively, run the script locally.",
-            "9": "Failed due to vercel server instability, please try again. Or run the script locally.",
-            "10": "If there is a new hy2 protocol in the sub link, please modify 'User-Agent' to: clashmeta.",
-            "11": "The above is not nonsense; if you fail to generate the configuration successfully, please read the above content carefully.",
-            "12": "Because there is no database used, it will not return a configuration file link. After generating the configuration content, copy it to gist as a sing-box remote link.",
-            "13": "After successfully generating the configuration, please do not use third-party input methods to copy the content, as there may be length limitations and the copy may not be complete.",
-            "14": "Please open an issue on github if you encounter problems.",
+            "3": "The 'groups_rule_set_tun.json' template is for sing-box 1.8.0+. Please use other templates for the old version of sing-box",
+            "4": "Fill in the subscription link within the quotes '', and be careful not to have line breaks at the end of the subscription link, as this can be easily overlooked!!!",
+            "5": "Reminder: After clicking save, please immediately generate the configuration file!!!",
+            "6": "Otherwise, others will be able to see the content of your saved TEMP_JSON_DATA.",
+            "7": "The 'subscription link' starts with 'http://' and includes node information for v2/clash links or is a single URI node link starting with 'vmess://', 'hysteria2://', and similar.",
+            "8": "subscription links provided by Service can be directly opened in the browser, and the script can use them. Please check if it works on your end.",
+            "9": "For subscription links that require a special environment to open, please modify 'User-Agent' in TEMP_JSON_DATA, or copy the content of the airport subscription link to gist in advance for the script to parse successfully. Alternatively, run the script locally.",
+            "10": "Failed due to vercel server instability, please try again. Or run the script locally.",
+            "11": "If there is a new hy2 protocol in the sub link, please modify 'User-Agent' to: clashmeta.",
+            "12": "The above is not nonsense; if you fail to generate the configuration successfully, please read the above content carefully.",
+            "13": "Because there is no database used, it will not return a configuration file link. After generating the configuration content, copy it to gist as a sing-box remote link.",
+            "14": "After successfully generating the configuration, please do not use third-party input methods to copy the content, as there may be length limitations and the copy may not be complete.",
+            "15": "Please open an issue on github if you encounter problems.",
             // 添加其他翻译...
         };
         let isEnglish = false; // 初始状态为中文
