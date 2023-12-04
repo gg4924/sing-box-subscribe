@@ -6,8 +6,6 @@
   "experimental": {
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
-      "external_ui_download_url": "",
-      "external_ui_download_detour": "",
       "external_ui": "ui",
       "secret": "",
       "default_mode": "rule"
@@ -32,10 +30,6 @@
       {
         "tag": "block",
         "address": "rcode://success"
-      },
-      {
-        "tag": "remote",
-        "address": "fakeip"
       }
     ],
     "rules": [
@@ -71,21 +65,8 @@
       {
         "rule_set": "geosite-geolocation-!cn",
         "server": "proxyDns"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "server": "remote"
       }
     ],
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
-    "independent_cache": true,
     "strategy": "ipv4_only"
   },
   "inbounds": [
@@ -271,58 +252,73 @@
     },
     {
       "tag":"🇭🇰 香港节点",
-      "type":"selector",
+      "type":"urltest",
       "outbounds":[
         "{all}",
         "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰|HK|hk|香港|港|HongKong"]}
-      ]
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "tag":"🇹🇼 台湾节点",
-      "type":"selector",
+      "type":"urltest",
       "outbounds":[
         "{all}",
         "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]}
-      ]
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "tag":"🇸🇬 狮城节点",
-      "type":"selector",
+      "type":"urltest",
       "outbounds":[
         "{all}",
         "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇸🇬|SG|sg|新加坡|狮|Singapore"]}
-      ]
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "tag":"🇯🇵 日本节点",
-      "type":"selector",
+      "type":"urltest",
       "outbounds":[
         "{all}",
         "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]}
-      ]
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "tag":"🇺🇸 美国节点",
-      "type":"selector",
+      "type":"urltest",
       "outbounds":[
         "{all}",
         "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}
-      ]
+      ],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "tag":"✈️ 其他节点",
