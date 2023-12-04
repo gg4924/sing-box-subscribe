@@ -274,7 +274,7 @@
       "type":"selector",
       "outbounds":[
         "{all}",
-        "auto"
+        "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇭🇰|HK|hk|香港|港|HongKong"]}
@@ -285,7 +285,7 @@
       "type":"selector",
       "outbounds":[
         "{all}",
-        "auto"
+        "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]}
@@ -296,7 +296,7 @@
       "type":"selector",
       "outbounds":[
         "{all}",
-        "auto"
+        "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇸🇬|SG|sg|新加坡|狮|Singapore"]}
@@ -307,7 +307,7 @@
       "type":"selector",
       "outbounds":[
         "{all}",
-        "auto"
+        "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]}
@@ -318,7 +318,7 @@
       "type":"selector",
       "outbounds":[
         "{all}",
-        "auto"
+        "proxy"
       ],
       "filter":[
         {"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}
@@ -328,8 +328,7 @@
       "tag":"✈️ 其他节点",
       "type":"selector",
       "outbounds":[
-        "{all}",
-        "auto"
+        "{all}"
       ],
       "filter":[
         {"action":"exclude","keywords":["🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美|网站|剩余|流量|过期|时间|期|地址"]}
