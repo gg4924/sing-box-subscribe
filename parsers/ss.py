@@ -40,13 +40,15 @@ def parse(data):
         param = param[:param.find('?')]
         node['plugin'] = 'v2ray-plugin'
         plugin = eval(plugin.replace('true','1'))
-        result_str = "mode={};{}{}{}{}{}".format(
+        result_str = "mode={};{}{}{}{}{}{}{}".format(
             plugin.get("mode", ''),
             'host={};'.format(plugin["host"]) if plugin.get("host") else '',
-            'path={};'.format(plugin["path"]) if "path" in plugin else '',
-            'mux={};'.format(plugin["mux"]) if "mux" in plugin else '',
-            'headers={};'.format(json.dumps(plugin["headers"])) if "headers" in plugin else '',
-            'fingerprint={};'.format(plugin["fingerprint"]) if "fingerprint" in plugin else ''
+            'path={};'.format(plugin["path"]) if plugin.get("path") else '',
+            'mux={};'.format(plugin["mux"]) if plugin.get("mux") == 1 else '',
+            'headers={};'.format(json.dumps(plugin["headers"])) if plugin.get("headers") else '',
+            'fingerprint={};'.format(plugin["fingerprint"]) if plugin.get("fingerprint") else '',
+            'skip-cert-verify={};'.format('true') if plugin.get("skip-cert-verify") == 1 else '',
+            '{};'.format('tls') if plugin.get("tls") == 1 else '',
         )
         node['plugin_opts'] = result_str
     param2 = data[5:]
