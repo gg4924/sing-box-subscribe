@@ -60,7 +60,7 @@ def clash2v2ray(share_link):
             ss_info["plugin"] = share_link['plugin']
             if share_link.get('plugin') == 'obfs':
                 ss_info["mode"] = share_link['plugin-opts']['mode']
-                ss_info["host"] = share_link['plugin-opts']['host']
+                ss_info["host"] = share_link['plugin-opts'].get('host', '')
                 url_link = '?plugin=obfs-local%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
             if share_link.get('plugin') == 'v2ray-plugin':
                 ss_info["obfs"] = share_link['plugin-opts']['mode']
