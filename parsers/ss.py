@@ -19,23 +19,20 @@ def parse(data):
             node['tag'] = remark
         param = param[:param.find('#')]
     if param.find('plugin=obfs-local') > -1 or param.find('plugin=simple-obfs') > -1:
-        plugin_opts={}
         if param.find('&', param.find('plugin')) > -1:
             plugin = urllib.parse.unquote(param[param.find('plugin'):param.find('&', param.find('plugin'))])
         else:
             plugin = urllib.parse.unquote(param[param.find('plugin'):])
         param = param[:param.find('?')]
         node['plugin'] = 'obfs-local'
-        for p in plugin.split(';'):
-            key_value = p.split('=')
-            kname = key_value[0]
-            pdict = {'obfs':'mode','obfs-host':'host'}
-            if kname in pdict.keys():
-                #kname = pdict[kname]
-                plugin_opts[kname] = key_value[1]
-        node['plugin_opts']=re.sub(r"\{|\}|\"|\\|\&|\s+", "", json.dumps(plugin_opts).replace(':','=', 2).replace(',',';').replace('Host','').replace('group',''))
+        items = plugin.split(';')
+        plugin_dict = {item.split('=')[0]: item.split('=')[1] for item in items if '=' in item}
+        result_str = "obfs={};{}".format(
+            plugin_dict.get("obfs", ''),
+            'obfs-host={};'.format(plugin_dict["obfs-host"]) if plugin_dict.get("obfs-host") else ''
+        )
+        node['plugin_opts'] = result_str
     if param.find('v2ray-plugin') > -1:
-        plugin_opts={}
         if param.find('&', param.find('v2ray-plugin')) > -1:
             plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:param.find('&', param.find('v2ray-plugin'))]).decode('utf-8')
         else:
@@ -43,9 +40,9 @@ def parse(data):
         param = param[:param.find('?')]
         node['plugin'] = 'v2ray-plugin'
         plugin = eval(plugin.replace('true','1'))
-        result_str = "mode={};host={};{}{}{}{}".format(
+        result_str = "mode={};{}{}{}{}{}".format(
             plugin.get("mode", ''),
-            plugin.get("host", ''),
+            'host={};'.format(plugin["host"]) if plugin.get("host") else '',
             'path={};'.format(plugin["path"]) if "path" in plugin else '',
             'mux={};'.format(plugin["mux"]) if "mux" in plugin else '',
             'headers={};'.format(json.dumps(plugin["headers"])) if "headers" in plugin else '',
