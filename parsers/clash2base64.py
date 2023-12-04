@@ -65,23 +65,27 @@ def clash2v2ray(share_link):
             if share_link.get('plugin') == 'v2ray-plugin':
                 ss_info["obfs"] = share_link['plugin-opts']['mode']
                 ss_info["obfs-host"] = share_link['plugin-opts'].get('host','')
-                if share_link['plugin-opts'].get('fingerprint'):
-                    ss_info["fingerprint"] = share_link['plugin-opts']['fingerprint']
                 if share_link['plugin-opts'].get('path'):
                     ss_info["path"] = share_link['plugin-opts']['path']
                 if share_link['plugin-opts'].get('headers'):
                     ss_info["headers"] = share_link['plugin-opts']['headers']
+                if share_link['plugin-opts'].get('fingerprint'):
+                    ss_info["fingerprint"] = share_link['plugin-opts']['fingerprint']
                 if share_link['plugin-opts'].get('mux') == True:
                     ss_info["mux"] = True
-                #if share_link['plugin-opts'].get('tls') == True:
-                #    ss_info["tls"] = True
+                if share_link['plugin-opts'].get('skip-cert-verify') == True:
+                    ss_info["skip-cert-verify"] = True
+                if share_link['plugin-opts'].get('tls') == True:
+                    ss_info["tls"] = True
                 v2ray_plugin = {
+                    "mode": ss_info.get("obfs", ""),
+                    "host": ss_info.get("obfs-host", ""),
                     "path": ss_info.get("path", ""),
-                    "mux": ss_info.get("mux", False),
                     "headers": ss_info.get("headers", ""),
                     "fingerprint": ss_info.get("fingerprint", ""),
-                    "mode": ss_info.get("obfs", ""),
-                    "host": ss_info.get("obfs-host", "")
+                    "mux": ss_info.get("mux", False),
+                    "skip-cert-verify": ss_info.get("skip-cert-verify", ''),
+                    "tls": ss_info.get("tls", ''),
                 }
                 v2ray_plugin = json.dumps(v2ray_plugin)
                 url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
@@ -103,6 +107,7 @@ def clash2v2ray(share_link):
             link += "&protocol={protocol}&max-connections={max_connections}&min-streams={min_streams}&max-streams={max_streams}&padding={padding}#{name}".format(**ss_info)
         else:
             link += f"#{ss_info['name']}"
+        print(link)
         return link
         # TODO
     elif share_link['type'] == 'ssr':
