@@ -328,7 +328,8 @@
       "tag":"✈️ 其他节点",
       "type":"selector",
       "outbounds":[
-        "{all}"
+        "{all}",
+        "proxy"
       ],
       "filter":[
         {"action":"exclude","keywords":["🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美|网站|剩余|流量|过期|时间|期|地址"]}
