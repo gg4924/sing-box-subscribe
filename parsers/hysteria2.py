@@ -8,6 +8,8 @@ def parse(data):
         (k, v if len(v) > 1 else v[0])
         for k, v in parse_qs(server_info.query).items()
     )
+    if server_info.path:
+      server_info = server_info._replace(netloc=server_info.netloc + server_info.path, path="")
     node = {
         'tag': unquote(server_info.fragment) or tool.genName()+'_hysteria2',
         'type': 'hysteria2',
