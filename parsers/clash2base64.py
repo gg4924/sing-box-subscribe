@@ -94,7 +94,7 @@ def clash2v2ray(share_link):
                 ss_info["version"] = share_link['plugin-opts']['version']
                 ss_info["host"] = share_link['plugin-opts']['host']
                 shadowtls = f'{{"version": "{ss_info["version"]}", "host": "{ss_info["host"]}","password": "{ss_info["shadowtls_password"]}"}}'
-                url_link += f'?shadow-tls={base64.b64encode(shadowtls.encode()).decode()}'
+                url_link = f'?shadow-tls={base64.b64encode(shadowtls.encode()).decode()}'
             link = "ss://{base_link}@{server}:{port}{url_link}".format(base_link=base_link, url_link=url_link, **ss_info)
         else:
             link = "ss://{base_link}@{server}:{port}".format(base_link=base_link, **ss_info)
