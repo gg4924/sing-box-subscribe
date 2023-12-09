@@ -90,10 +90,11 @@ def clash2v2ray(share_link):
                 v2ray_plugin = json.dumps(v2ray_plugin)
                 url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
             if share_link.get('plugin') == 'shadow-tls':
+                ss_info["fingerprint"] = share_link.get("client-fingerprint", "")
                 ss_info["shadowtls_password"] = share_link['plugin-opts']['password']
                 ss_info["version"] = share_link['plugin-opts']['version']
                 ss_info["host"] = share_link['plugin-opts']['host']
-                shadowtls = f'{{"version": "{ss_info["version"]}", "host": "{ss_info["host"]}","password": "{ss_info["shadowtls_password"]}"}}'
+                shadowtls = f'{{"version": "{ss_info["version"]}", "host": "{ss_info["host"]}","password": "{ss_info["shadowtls_password"]}","fp": "{ss_info["fingerprint"]}"}}'
                 url_link = f'?shadow-tls={base64.b64encode(shadowtls.encode()).decode()}'
             link = "ss://{base_link}@{server}:{port}{url_link}".format(base_link=base_link, url_link=url_link, **ss_info)
         else:
