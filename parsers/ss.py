@@ -34,9 +34,19 @@ def parse(data):
         node['plugin_opts'] = result_str
     if param.find('v2ray-plugin') > -1:
         if param.find('&', param.find('v2ray-plugin')) > -1:
-            plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:param.find('&', param.find('v2ray-plugin'))]).decode('utf-8')
+            try:
+                plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:param.find('&', param.find('v2ray-plugin'))]).decode('utf-8')
+            except:
+                plugin = urllib.parse.unquote(param[param.find('v2ray-plugin')+15:param.find('&', param.find('v2ray-plugin'))])
+                pairs = [pair.split('=') for pair in plugin.split(';') if '=' in pair and pair.count('=') == 1]
+                plugin = str({key: value for key, value in pairs})
         else:
-            plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:]).decode('utf-8')
+            try:
+                plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:]).decode('utf-8')
+            except:
+                plugin = urllib.parse.unquote(param[param.find('v2ray-plugin')+15:])
+                pairs = [pair.split('=') for pair in plugin.split(';') if '=' in pair and pair.count('=') == 1]
+                plugin = str({key: value for key, value in pairs})
         param = param[:param.find('?')]
         node['plugin'] = 'v2ray-plugin'
         plugin = eval(plugin.replace('true','1'))
@@ -66,6 +76,7 @@ def parse(data):
             node['multiplex']['min_streams'] = int(smux_dict['min-streams'])
         if smux_dict.get('padding') == 'True':
             node['multiplex']['padding'] = True
+    param = param.split('/')[0]
     if param.find('@') > -1:
         matcher = re.match(r'(.*?)@(.*):(.*)', param)
         if matcher:
