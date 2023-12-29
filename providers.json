@@ -1,7 +1,7 @@
 {
     "subscribes":[
         {
-            "url": "URL LINK",
+            "url": "URL",
             "tag": "tag_1",
             "enabled": true,
             "emoji": 1,
@@ -9,7 +9,7 @@
             "User-Agent":"v2rayng"
         },
         {
-            "url": "URL LINK",
+            "url": "URL",
             "tag": "tag_2",
             "enabled": false,
             "emoji": 0,
