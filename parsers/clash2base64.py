@@ -118,7 +118,7 @@ def clash2v2ray(share_link):
             "cipher": share_link['cipher'],
             "obfs": share_link['obfs'],
             "password": base64.b64encode(share_link.get('password', '').encode('utf-8')).decode('utf-8'),
-            "obfsparam": base64.b64encode(share_link.get('obfs-param', '').encode('utf-8')).decode('utf-8'),
+            "obfsparam": base64.b64encode(share_link.get('obfs-param').encode('utf-8')).decode('utf-8') if share_link.get('obfs-param') != None else '',
             "protoparam": base64.b64encode(share_link.get('protocol-param', '').encode('utf-8')).decode('utf-8'),
             "remarks": base64.b64encode(share_link.get('name', '').encode('utf-8')).decode('utf-8'),
             "group": base64.b64encode(share_link.get('group', '').encode('utf-8')).decode('utf-8')
