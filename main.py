@@ -408,6 +408,10 @@ def combin_to_config(config, data):
                             out["outbounds"].insert(i + 1, group)
             new_outbound = {'tag': group, 'type': 'selector', 'outbounds': ['{' + group + '}']}
             config_outbounds.insert(-4, new_outbound)
+        else:
+            for out in config_outbounds:
+                if out['tag'] == 'proxy':
+                    out["outbounds"].append('{' + group + '}')
     temp_outbounds = []
     if config_outbounds:
         # 提前处理all模板
