@@ -394,8 +394,10 @@ def pro_node_template(data_nodes, config_outbound, group):
 
 def combin_to_config(config, data):
     config_outbounds = config["outbounds"] if config.get("outbounds") else None
+    i = 0
     for group in data:
         if 'tag' not in group:
+            i += 1
             for out in config_outbounds:
                 if out.get("outbounds"):
                     if out['tag'] == 'proxy':
@@ -403,7 +405,7 @@ def combin_to_config(config, data):
                             index_of_all = out["outbounds"].index('{all}')
                             out["outbounds"][index_of_all] = group
                         else:
-                            out["outbounds"].append(group)
+                            out["outbounds"].insert(i + 1, group)
             new_outbound = {'tag': group, 'type': 'selector', 'outbounds': ['{' + group + '}']}
             config_outbounds.insert(-4, new_outbound)
     temp_outbounds = []
