@@ -224,8 +224,9 @@ def get_content_from_url(url, n=6):
         # print('Lỗi khi tải link đăng ký, bỏ qua link đăng ký này')
         print('----------------------------')
         pass
-    response_text = response.text
-    response_encoding = response.encoding
+    response_content = response.content
+    response_text = response_content.decode('utf-8-sig')  # utf-8-sig 可以忽略 BOM
+    #response_encoding = response.encoding
     if response_text.isspace():
         print('没有从订阅链接获取到任何内容')
         # print('Không nhận được proxy nào từ link đăng ký')
