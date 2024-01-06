@@ -405,6 +405,7 @@ def combin_to_config(config, data):
                         if '{all}' in out["outbounds"]:
                             index_of_all = out["outbounds"].index('{all}')
                             out["outbounds"][index_of_all] = (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1]
+                            i += 1
                         else:
                             out["outbounds"].insert(i - 1, (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1])
             new_outbound = {'tag': (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1], 'type': 'selector', 'outbounds': ['{' + group + '}']}
