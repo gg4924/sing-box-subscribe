@@ -188,12 +188,14 @@ def config(url):
     for param in params_to_remove:
         if param in full_url:
             full_url = full_url.replace(param, '')
-    if full_url.endswith("%2F"):
-        full_url = full_url[:-len("%2F")]
     if request.args.get('url'):
         full_url = full_url
     else:
         full_url = unquote(full_url)
+    if full_url.endswith("%2F"):
+        full_url = full_url[:-len("%2F")]
+    if full_url.endswith("/&"):
+        full_url = full_url[:-len("/&")]
     print (full_url)
     url_parts = full_url.split('|')
     if len(url_parts) == 2 or len(url_parts) == 3:
