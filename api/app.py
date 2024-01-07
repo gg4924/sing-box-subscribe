@@ -204,6 +204,7 @@ def config(url):
         subscribe2['url'] = full_url.split('url=', 1)[-1].split('|')[1] if full_url.startswith('url') else full_url.split('|')[1]
         subscribe2['emoji'] = 1
         subscribe2['enabled'] = True
+        subscribe2['subgroup'] = ''
         subscribe2['prefix'] = ''
         subscribe2['User-Agent'] = 'v2rayng'
         if len(url_parts) == 3:
