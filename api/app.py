@@ -193,7 +193,7 @@ def config(url):
         full_url = full_url
     else:
         full_url = unquote(full_url)
-    suffixes_to_remove = ["%2F", "/&", "&"]
+    suffixes_to_remove = ["%2F", "/", "/&", "&"]
     for suffix in suffixes_to_remove:
         if full_url.endswith(suffix):
             full_url = full_url.rstrip(suffix)
