@@ -199,16 +199,16 @@ def config(url):
             full_url = full_url.rstrip(suffix)
     print (full_url)
     url_parts = full_url.split('|')
-    if len(url_parts) == 2 or len(url_parts) == 3:
+    if len(url_parts) > 1:
         subscribe['url'] = full_url.split('url=', 1)[-1].split('|')[0] if full_url.startswith('url') else full_url.split('|')[0]
         subscribe2['url'] = full_url.split('url=', 1)[-1].split('|')[1] if full_url.startswith('url') else full_url.split('|')[1]
         subscribe2['emoji'] = 1
         subscribe2['enabled'] = True
         subscribe2['prefix'] = ''
         subscribe2['User-Agent'] = 'v2rayng'
-    if len(url_parts) == 3:
-        subscribe3['url'] = full_url.split('url=', 1)[-1].split('|')[2] if full_url.startswith('url') else full_url.split('|')[2]
-        subscribe3['enabled'] = True
+        if len(url_parts) == 3:
+            subscribe3['url'] = full_url.split('url=', 1)[-1].split('|')[2] if full_url.startswith('url') else full_url.split('|')[2]
+            subscribe3['enabled'] = True
     if len(url_parts) == 1:
         subscribe['url'] = full_url.split('url=', 1)[-1] if full_url.startswith('url') else full_url
         subscribe['emoji'] = int(emoji_param) if emoji_param.isdigit() else subscribe.get('emoji', '')
