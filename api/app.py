@@ -108,7 +108,7 @@ def edit_temp_json():
 
 @app.route('/config/<path:url>', methods=['GET'])
 def config(url):
-    if 'gitlab' in url:
+    if 'gitlab.com' in url or 'sing-box-subscribe.vercel.app' in url:
         return None
     # temp_json_data_str = os.environ['TEMP_JSON_DATA']
     # temp_json_data = json.loads(temp_json_data_str)
