@@ -391,7 +391,7 @@
         "{all}"
       ],
       "url": "http://www.gstatic.com/generate_204",
-      "interval": "1m",
+      "interval": "5m",
       "tolerance": 50
     },
     {
