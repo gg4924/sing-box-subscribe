@@ -43,6 +43,7 @@
         "server": "proxyDns"
       }
     ],
+    "final": "proxyDns",
     "strategy": "ipv4_only"
   },
   "inbounds": [
@@ -88,7 +89,7 @@
         "{all}"
       ],
       "url": "http://www.gstatic.com/generate_204",
-      "interval": "1m",
+      "interval": "10m",
       "tolerance": 50
     },
     {
