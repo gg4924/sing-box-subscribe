@@ -13,9 +13,9 @@ def parse(data):
     node = {
         'tag': unquote(server_info.fragment) or tool.genName()+'_hysteria2',
         'type': 'hysteria2',
-        'server': re.sub(r"\[|\]", "", server_info.netloc.split("@")[1].rsplit(":", 1)[0]),
-        'server_port': int(re.search(r'\d+', server_info.netloc.rsplit(":", 1)[1].split(",")[0]).group()),
-        "password": server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
+        'server': re.sub(r"\[|\]", "", server_info.netloc.split("@")[-1].rsplit(":", 1)[0]),
+        'server_port': int(re.search(r'\d+', server_info.netloc.rsplit(":", 1)[-1].split(",")[0]).group()),
+        "password": netquery['auth'] if netquery.get('auth') else server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
         'up_mbps': int(re.search(r'\d+', netquery.get('upmbps', '10')).group()),
         'down_mbps': int(re.search(r'\d+', netquery.get('downmbps', '100')).group()),
         'tls': {
@@ -23,7 +23,7 @@ def parse(data):
             'server_name': netquery.get('sni', netquery.get('peer', ''))
         }
     }
-    if netquery.get('insecure') == '1' or netquery.get('allowInsecure') == '1':
+    if netquery.get('insecure') in ['1', 'true'] or netquery.get('allowInsecure') == '1':
         node['tls']['insecure'] = True
     if node['tls']['server_name'] == '':
         del node['tls']['server_name']
