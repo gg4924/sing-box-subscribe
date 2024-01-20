@@ -43,6 +43,8 @@ def process_subscribes(subscribes):
     for subscribe in subscribes:
         if 'enabled' in subscribe and not subscribe['enabled']:
             continue
+        if 'sing-box-subscribe.vercel.app' in subscribe['url']:
+            continue
         _nodes = get_nodes(subscribe['url'])
         if _nodes and len(_nodes) > 0:
             add_prefix(_nodes, subscribe)
