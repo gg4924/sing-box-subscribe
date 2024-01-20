@@ -15,7 +15,11 @@ def parse(data):
         'type': 'hysteria2',
         'server': re.sub(r"\[|\]", "", server_info.netloc.split("@")[-1].rsplit(":", 1)[0]),
         'server_port': int(re.search(r'\d+', server_info.netloc.rsplit(":", 1)[-1].split(",")[0]).group()),
-        "password": netquery['auth'] if netquery.get('auth') else server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
+<<<<<<< HEAD
+        "password":  netquery['auth'] if netquery.get('auth') else server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
+=======
+        "password":  netquery['auth'] if netquery.get('auth') else server_info.netloc.split("@")[0].rsplit(":", 1)[-1],
+>>>>>>> f875a3223e5bfbb2e1f190c47a11fa1b20442c6d
         'up_mbps': int(re.search(r'\d+', netquery.get('upmbps', '10')).group()),
         'down_mbps': int(re.search(r'\d+', netquery.get('downmbps', '100')).group()),
         'tls': {
