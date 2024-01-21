@@ -108,8 +108,10 @@ def edit_temp_json():
 
 @app.route('/config/<path:url>', methods=['GET'])
 def config(url):
-    if any(substring in url for substring in ['sing-box-subscribe.vercel.app', 'https:/https:/', 'xxxx', '%E6%9C%BA%E5%9C%BA', '%E8%AE%A2%E9%98%85']):
-        return None
+    i = 0
+    if any(substring in url for substring in ['sing-box-subscribe.vercel.app', 'https:/https:/', 'xxxx', 
+                                              '%E6%9C%BA%E5%9C%BA', '%E8%AE%A2%E9%98%85', '%E5%9C%B0%E5%9D%80']):
+        return Response(json.dumps({'status': 'error', 'message_CN': '填写参数不符合规范'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
     # temp_json_data_str = os.environ['TEMP_JSON_DATA']
     # temp_json_data = json.loads(temp_json_data_str)
     temp_json_data = json.loads('{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"},{"url":"URL","tag":"tag_3","enabled":false,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}')
@@ -184,6 +186,7 @@ def config(url):
     # 从url中删除这些字符串
     for param in params_to_remove:
         if param in full_url:
+            i = 1
             full_url = full_url.replace(param, '')
     if request.args.get('url'):
         full_url = full_url
@@ -191,7 +194,7 @@ def config(url):
         full_url = unquote(full_url)
     suffixes_to_remove = ["%2F", "/", "/&", "&"]
     for suffix in suffixes_to_remove:
-        if full_url.endswith(suffix):
+        if full_url.endswith(suffix) and i ==1:
             full_url = full_url.rstrip(suffix)
     if '/api/v4/projects/' in full_url:
         parts = full_url.split('/api/v4/projects/')
