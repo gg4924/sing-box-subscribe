@@ -189,6 +189,13 @@ def config(url):
         full_url = full_url
     else:
         full_url = unquote(full_url)
+    suffixes_to_remove = ["%2F", "/", "/&", "&"]
+    for suffix in suffixes_to_remove:
+        if full_url.endswith(suffix):
+            full_url = full_url.rstrip(suffix)
+    if '/api/v4/projects/' in full_url:
+        parts = full_url.split('/api/v4/projects/')
+        full_url = parts[0] + '/api/v4/projects/' + parts[1].replace('/', '%2F', 1)
     print (full_url)
     url_parts = full_url.split('|')
     if len(url_parts) > 1:
