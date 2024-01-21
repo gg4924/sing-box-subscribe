@@ -12,7 +12,9 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__, template_folder='../templates')  # 指定模板文件夹的路径
 app.secret_key = 'sing-box'  # 替换为实际的密钥
+data_json = {}
 os.environ['TEMP_JSON_DATA'] = '{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}'
+data_json['TEMP_JSON_DATA'] = '{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}'
 
 # 获取系统默认的临时目录路径
 TEMP_DIR = tempfile.gettempdir()
@@ -194,7 +196,7 @@ def config(url):
         full_url = unquote(full_url)
     suffixes_to_remove = ["%2F", "/", "/&", "&"]
     for suffix in suffixes_to_remove:
-        if full_url.endswith(suffix) and i ==1:
+        if full_url.endswith(suffix) and i == 1:
             full_url = full_url.rstrip(suffix)
     if '/api/v4/projects/' in full_url:
         parts = full_url.split('/api/v4/projects/')
@@ -236,7 +238,7 @@ def config(url):
         config_file_path = os.path.join('/tmp/', CONFIG_FILE_NAME) 
         if not os.path.exists(config_file_path):
             config_file_path = CONFIG_FILE_NAME  # 使用相对于当前工作目录的路径 
-        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}'), indent=4, ensure_ascii=False)
+        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads(data_json['TEMP_JSON_DATA']), indent=4, ensure_ascii=False)
         # 读取配置文件内容
         with open(config_file_path, 'r', encoding='utf-8') as config_file:
             config_content = config_file.read()
@@ -246,12 +248,12 @@ def config(url):
         config_data = json.loads(config_content)
         return Response(config_content, content_type='text/plain; charset=utf-8')
     except subprocess.CalledProcessError as e:
-        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}'), indent=4, ensure_ascii=False)
-        return Response(json.dumps({'status': 'error', 'message_CN': '执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist; 你的订阅链接可能需要使用 越南 ip才能打开，很抱歉vercel做不到，请你把订阅链接里的node内容保存到gist里再尝试解析它。或者请你在本地运行脚本;', 'message_VN': 'Có lỗi khi thực hiện tiến trình con, vượt quá thời gian để lấy nội dung liên kết, vui lòng thử chạy kịch bản cục bộ hoặc đặt nội dung liên kết đăng ký vào Github Gist; Liên kết đăng ký của bạn có thể cần sử dụng IP Việt Nam để mở, xin lỗi Vercel không thể làm điều đó, vui lòng lưu nội dung nút trong liên kết đăng ký vào Github Gist trước khi cố gắng phân tích nó. Hoặc vui lòng chạy kịch bản cục bộ;', 'message_EN': 'Fetching the link content is timing out, please try running the script locally or putting the subscription link content into Github Gist; Your subscription link may need to use Vietnam ip to open, sorry Vercel can not do that, please save the node content in the subscription link to Github Gist before trying to parse it. Or please run the script locally;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
+        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads(data_json['TEMP_JSON_DATA']), indent=4, ensure_ascii=False)
+        return Response(json.dumps({'status': 'error'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
         #return jsonify({'status': 'error', 'message': str(e)}) 
     except Exception as e:
         #flash(f'Error occurred while generating the configuration file: {str(e)}', 'error')
-        return Response(json.dumps({'status': 'error', 'message_CN': '订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次; 请不要修改 tag 值，除非你明白它是干什么的;', 'message_VN': 'Quá thời gian phân tích đăng ký: Vui lòng kiểm tra xem liên kết đăng ký có chính xác không hoặc vui lòng chuyển sang "nogroupstemplate" và thử lại; Vui lòng không chỉnh sửa giá trị "tag", trừ khi bạn hiểu nó làm gì;', 'message_EN': 'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again; Please do not modify the "tag" value unless you understand what it does;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
+        return Response(json.dumps({'status': 'error', 'message_CN': '认真看刚刚的网页说明、github写的reademe文件;', 'message_VN': 'Quá thời gian phân tích đăng ký: Vui lòng kiểm tra xem liên kết đăng ký có chính xác không hoặc vui lòng chuyển sang "nogroupstemplate" và thử lại; Vui lòng không chỉnh sửa giá trị "tag", trừ khi bạn hiểu nó làm gì;', 'message_EN': 'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again; Please do not modify the "tag" value unless you understand what it does;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
 
 @app.route('/generate_config', methods=['POST'])
 def generate_config():
@@ -271,7 +273,7 @@ def generate_config():
         config_file_path = os.path.join('/tmp/', CONFIG_FILE_NAME) 
         if not os.path.exists(config_file_path):
             config_file_path = CONFIG_FILE_NAME  # 使用相对于当前工作目录的路径 
-        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}'), indent=4, ensure_ascii=False)
+        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads(data_json['TEMP_JSON_DATA']), indent=4, ensure_ascii=False)
         # 读取配置文件内容
         with open(config_file_path, 'r', encoding='utf-8') as config_file:
             config_content = config_file.read()
@@ -281,11 +283,11 @@ def generate_config():
         config_data = json.loads(config_content)
         return Response(config_content, content_type='text/plain; charset=utf-8')
     except subprocess.CalledProcessError as e:
-        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads('{"subscribes":[{"url":"URL","tag":"tag_1","enabled":true,"emoji":1,"subgroup":"","prefix":"","User-Agent":"v2rayng"},{"url":"URL","tag":"tag_2","enabled":false,"emoji":0,"subgroup":"命名/named","prefix":"❤️","User-Agent":"clashmeta"}],"auto_set_outbounds_dns":{"proxy":"","direct":""},"save_config_path":"./config.json","auto_backup":false,"exclude_protocol":"ssr","config_template":"","Only-nodes":false}'), indent=4, ensure_ascii=False)
-        return Response(json.dumps({'status': 'error', 'message_CN': '执行子进程时出错，获取链接内容超时，请尝试本地运行脚本或者把订阅链接内容放到gist; 你的订阅链接可能需要使用 越南 ip才能打开，很抱歉vercel做不到，请你把订阅链接里的node内容保存到gist里再尝试解析它。或者请你在本地运行脚本;', 'message_VN': 'Có lỗi khi thực hiện tiến trình con, vượt quá thời gian để lấy nội dung liên kết, vui lòng thử chạy kịch bản cục bộ hoặc đặt nội dung liên kết đăng ký vào Github Gist; Liên kết đăng ký của bạn có thể cần sử dụng IP Việt Nam để mở, xin lỗi Vercel không thể làm điều đó, vui lòng lưu nội dung nút trong liên kết đăng ký vào Github Gist trước khi cố gắng phân tích nó. Hoặc vui lòng chạy kịch bản cục bộ;', 'message_EN': 'Fetching the link content is timing out, please try running the script locally or putting the subscription link content into Github Gist; Your subscription link may need to use Vietnam ip to open, sorry Vercel can not do that, please save the node content in the subscription link to Github Gist before trying to parse it. Or please run the script locally;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
+        os.environ['TEMP_JSON_DATA'] = json.dumps(json.loads(data_json['TEMP_JSON_DATA']), indent=4, ensure_ascii=False)
+        return Response(json.dumps({'status': 'error'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
     except Exception as e:
         #flash(f'Error occurred while generating the configuration file: {str(e)}', 'error')
-        return Response(json.dumps({'status': 'error', 'message_CN': '订阅解析超时: 请检查订阅链接是否正确 or 请更换为no_groups模板 再尝试一次; 请不要修改 tag 值，除非你明白它是干什么的;', 'message_VN': 'Quá thời gian phân tích đăng ký: Vui lòng kiểm tra xem liên kết đăng ký có chính xác không hoặc vui lòng chuyển sang "nogroupstemplate" và thử lại; Vui lòng không chỉnh sửa giá trị "tag", trừ khi bạn hiểu nó làm gì;', 'message_EN': 'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again; Please do not modify the "tag" value unless you understand what it does;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
+        return Response(json.dumps({'status': 'error', 'message_CN': '认真看刚刚的网页说明、github写的reademe文件;', 'message_VN': 'Quá thời gian phân tích đăng ký: Vui lòng kiểm tra xem liên kết đăng ký có chính xác không hoặc vui lòng chuyển sang "nogroupstemplate" và thử lại; Vui lòng không chỉnh sửa giá trị "tag", trừ khi bạn hiểu nó làm gì;', 'message_EN': 'Subscription parsing timeout: Please check if the subscription link is correct or please change to "no_groups_template" and try again; Please do not modify the "tag" value unless you understand what it does;'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
     #return redirect(url_for('index'))
 
 @app.route('/clear_temp_json_data', methods=['POST'])
