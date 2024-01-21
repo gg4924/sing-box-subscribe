@@ -126,7 +126,7 @@ def config(url):
     
     if not query_string:
         if '&' in encoded_url:
-            param = urlparse(encoded_url.split('&', 1)[1])
+            param = urlparse(encoded_url.split('&', 1)[-1])
             request.args = dict(item.split('=') for item in param.path.split('&'))
             if request.args.get('prefix'):
                 request.args['prefix'] = unquote(request.args['prefix'])
@@ -137,7 +137,7 @@ def config(url):
                     if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
                         request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
     else:
-        param = urlparse(query_string.split('&', 1)[1])
+        param = urlparse(query_string.split('&', 1)[-1])
         request.args = dict(item.split('=') for item in param.path.split('&'))
         if request.args.get('prefix'):
             request.args['prefix'] = unquote(request.args['prefix'])
@@ -147,6 +147,9 @@ def config(url):
             if index != -1:
                 if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
                     request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
+        elif 'file=' in query_string:
+            index = query_string.find("file=")
+            request.args['file'] = query_string.split('file=')[-1].split('&', 1)[0]
     #print (f"request.args: {request.args}")
 
     if index_of_colon != -1:
@@ -174,6 +177,7 @@ def config(url):
         f'&ua={ua_param}',
         f'&UA={UA_param}',
         f'&file={file_param}',
+        f'file={file_param}',
         f'&emoji={emoji_param}',
         f'&tag={tag_param}',
     ]
