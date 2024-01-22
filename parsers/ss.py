@@ -54,7 +54,8 @@ def parse(data):
                 plugin = str({key: value for key, value in pairs})
         param = param[:param.find('?')]
         node['plugin'] = 'v2ray-plugin'
-        plugin = eval(plugin.replace('true','1'))
+        plugin = plugin.replace('true', '1').replace('false', '0')
+        plugin = eval(plugin)
         result_str = "mode={};{}{}{}{}{}{}{}".format(
             plugin.get("mode", ''),
             'host={};'.format(plugin["host"]) if plugin.get("host") else '',
