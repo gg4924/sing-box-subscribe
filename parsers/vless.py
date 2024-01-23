@@ -18,8 +18,12 @@ def parse(data):
         (k, v if len(v) > 1 else v[0])
         for k, v in parse_qs(server_info.query).items()
     )
+    if netquery.get('remarks'):
+        remarks = netquery['remarks']
+    else:
+        remarks = server_info.fragment
     node = {
-        'tag': unquote(server_info.fragment) or tool.genName()+'_vless',
+        'tag': unquote(remarks) or tool.genName()+'_vless',
         'type': 'vless',
         'server': server,
         'server_port': server_port,
@@ -28,7 +32,7 @@ def parse(data):
     }
     if netquery.get('flow'):
         node['flow'] = 'xtls-rprx-vision'
-    if netquery.get('security', '') not in ['None', 'none', '']:
+    if netquery.get('security', '') not in ['None', 'none', ''] or netquery.get('tls') == '1':
         node['tls'] = {
             'enabled': True,
             'insecure': True,
@@ -44,7 +48,7 @@ def parse(data):
                 'enabled': True,
                 'fingerprint': netquery['fp']
             }
-        if netquery['security'] == 'reality':
+        if netquery.get('security') == 'reality':
             node['tls']['reality'] = {
                 'enabled': True,
                 'public_key': netquery.get('pbk'),
@@ -80,6 +84,22 @@ def parse(data):
                 'type':'grpc',
                 'service_name':netquery.get('serviceName', '')
             }
+    elif netquery.get('obfs'):  #shadowrocket
+        if netquery['obfs'] == 'websocket':
+            node['transport'] = {
+                'type':'ws',
+                "path": netquery.get('path', '').rsplit("?")[0],
+                "headers": {
+                    "Host": '' if netquery.get('obfsParam') is None and netquery.get('sni') == 'None' else netquery.get('obfsParam', netquery.get('sni', ''))
+                }
+            }
+            if node.get('tls'):
+                if node['tls']['server_name'] == '':
+                    if node['transport']['headers']['Host']:
+                        node['tls']['server_name'] = node['transport']['headers']['Host']
+            if '?ed=' in netquery.get('path', ''):
+                node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
+                node['transport']['max_early_data'] = int(re.search(r'\d+', netquery.get('path').rsplit("?ed=")[1]).group())
     if netquery.get('protocol'):
         node['multiplex'] = {
             'enabled': True,
