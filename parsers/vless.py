@@ -8,6 +8,12 @@ def parse(data):
     except:
         netloc = server_info.netloc
     _netloc = netloc.split("@")
+    _netloc_parts = _netloc[1].rsplit(":", 1)
+    if _netloc_parts[1].isdigit(): #fuck
+        server = re.sub(r"\[|\]", "", _netloc_parts[0])
+        server_port = int(_netloc_parts[1])
+    else:
+        return None
     netquery = dict(
         (k, v if len(v) > 1 else v[0])
         for k, v in parse_qs(server_info.query).items()
@@ -15,8 +21,8 @@ def parse(data):
     node = {
         'tag': unquote(server_info.fragment) or tool.genName()+'_vless',
         'type': 'vless',
-        'server': re.sub(r"\[|\]", "", _netloc[1].rsplit(":", 1)[0]),
-        'server_port': int(_netloc[1].rsplit(":", 1)[1]),
+        'server': server,
+        'server_port': server_port,
         'uuid': _netloc[0].split(':', 1)[-1],
         'packet_encoding': netquery.get('packetEncoding', 'xudp')
     }
