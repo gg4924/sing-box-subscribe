@@ -108,6 +108,8 @@ def add_prefix(nodes, subscribe):
     if subscribe.get('prefix'):
         for node in nodes:
             node['tag'] = subscribe['prefix'] + node['tag']
+            if node.get('detour'):
+                node['detour'] = subscribe['prefix'] + node['detour']
 
 
 def add_emoji(nodes, subscribe):
