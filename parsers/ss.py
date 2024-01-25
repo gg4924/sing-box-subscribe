@@ -69,7 +69,7 @@ def parse(data):
         node['plugin_opts'] = result_str
     if data[5:].find('protocol') > -1:
         smux = data[5:][data[5:].find('protocol'):]
-        smux_dict = parse_qs(smux)
+        smux_dict = parse_qs(smux.split('#')[0])
         smux_dict = {k: v[0] for k, v in smux_dict.items() if v[0]}
         node['multiplex'] = {
             'enabled': True,
