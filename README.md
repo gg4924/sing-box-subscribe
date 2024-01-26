@@ -3,7 +3,9 @@
 # 请使用自己搭建的vercel服务器转换，当我的vecel Function Execution 达到 90% 时，我会停止网站的转换功能
 ![image](https://github.com/Toperlock/sing-box-subscribe/assets/86833913/15c28b1a-6062-4e6d-b2a4-5c53fc271a92)
 
-### 使用 `/config/URL` 添加参数符号已修改，从原来的 `/&` 改为 `&`，加上 `/` 可能不会出错，但是不加 `/` 最好。有问题请提issue，不要打扰 `sing-box`
+### 使用 `/config/URL` 添加参数符号已修改，从原来的 `/&` 改为 `&`。有问题请提issue，不要打扰 `sing-box`
+
+### 请使用 `/config/URL` 时添加任何参数不要在第一个`&`，加上 `/`，我已经取消适配这种错误的写法
 
 ### sing-box 1.8.0+ 已发布，配置需要修改。已上传rule_set模板，并且默认生成最新配置文件适配 sing-box 1.8.0。~~用旧版singbox请选择`config_template_groups_tun.json`模板~~(已删除旧版配置模板)
 
