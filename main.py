@@ -412,7 +412,7 @@ def combin_to_config(config, data):
                             out["outbounds"][index_of_all] = (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1]
                             i += 1
                         else:
-                            out["outbounds"].insert(i - 1, (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1])
+                            out["outbounds"].insert(i, (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1])
             new_outbound = {'tag': (group.rsplit("-", 1)[0]).rsplit("-", 1)[-1], 'type': 'selector', 'outbounds': ['{' + group + '}']}
             config_outbounds.insert(-4, new_outbound)
         else:
