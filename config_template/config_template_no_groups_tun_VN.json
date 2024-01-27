@@ -136,7 +136,7 @@
         "outbound": "block"
       },
       {
-        "geosite": "category-ads-all",
+        "rule_set": "geosite-category-ads-all",
         "outbound": "block"
       },
       {
