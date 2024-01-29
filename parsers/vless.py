@@ -48,7 +48,7 @@ def parse(data):
                 'enabled': True,
                 'fingerprint': netquery['fp']
             }
-        if netquery.get('security') == 'reality':
+        if netquery.get('security') == 'reality' or netquery.get('pbk'): #shadowrocket
             node['tls']['reality'] = {
                 'enabled': True,
                 'public_key': netquery.get('pbk'),
