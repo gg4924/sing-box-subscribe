@@ -116,6 +116,8 @@ def add_emoji(nodes, subscribe):
     if subscribe.get('emoji'):
         for node in nodes:
             node['tag'] = tool.rename(node['tag'])
+            if node.get('detour'):
+                node['detour'] = tool.rename(node['detour'])
 
 
 def get_nodes(url):
