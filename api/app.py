@@ -110,7 +110,10 @@ def edit_temp_json():
 
 @app.route('/config/<path:url>', methods=['GET'])
 def config(url):
-    i = 0
+    user_agent = request.headers.get('User-Agent')
+    if 'TelegramBot (like TwitterBot)' in user_agent:
+        return Response(json.dumps({'status': 'error', 'message': 'block'}, indent=4, ensure_ascii=False),
+                        content_type='application/json; charset=utf-8', status=403)
     if any(substring in url for substring in ['sing-box-subscribe.vercel.app', 'https:/https:/', 'xxxx', 
                                               '%E6%9C%BA%E5%9C%BA', '%E8%AE%A2%E9%98%85', '%E5%9C%B0%E5%9D%80']):
         return Response(json.dumps({'status': 'error', 'message_CN': '填写参数不符合规范'}, indent=4,ensure_ascii=False), content_type='application/json; charset=utf-8', status=500)
@@ -133,10 +136,8 @@ def config(url):
             param = urlparse(encoded_url.split('&', 1)[-1])
             request.args = dict(item.split('=') for item in param.path.split('&'))
             if request.args.get('prefix'):
-                i = 1
                 request.args['prefix'] = unquote(request.args['prefix'])
             if request.args.get('file'):
-                i = 1
                 index = request.args.get('file').find(":")
                 next_index = index + 2
                 if index != -1:
@@ -147,17 +148,14 @@ def config(url):
             param = urlparse(query_string.split('&', 1)[-1])
             request.args = dict(item.split('=') for item in param.path.split('&'))
             if request.args.get('prefix'):
-                i = 1
                 request.args['prefix'] = unquote(request.args['prefix'])
             if request.args.get('file'):
-                i = 1
                 index = request.args.get('file').find(":")
                 next_index = index + 2
                 if index != -1:
                     if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
                         request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
             elif 'file=' in query_string:
-                i = 1
                 index = query_string.find("file=")
                 request.args['file'] = query_string.split('file=')[-1].split('&', 1)[0]
     #print (f"request.args: {request.args}")
@@ -199,12 +197,6 @@ def config(url):
         full_url = full_url
     else:
         full_url = unquote(full_url)
-    """
-    suffixes_to_remove = ["%2F", "/", "/&", "&"]
-    for suffix in suffixes_to_remove:
-        if full_url.endswith(suffix) and i == 1:
-            full_url = full_url.rstrip(suffix)
-    """
     if '/api/v4/projects/' in full_url:
         parts = full_url.split('/api/v4/projects/')
         full_url = parts[0] + '/api/v4/projects/' + parts[1].replace('/', '%2F', 1)
