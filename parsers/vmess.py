@@ -71,7 +71,7 @@ def parse(data):
         'server_port': int(item.get('port')),
         'uuid': item.get('id'),
         'security': item.get('scy') if item.get('scy') not in ['http', None] else 'auto',
-        'alter_id': int(item["aid"] if item["aid"] else '0'),
+        'alter_id': int(item["aid"] if item.get("aid") else '0'),
         'packet_encoding': 'xudp'
     }
     if node['security'] == 'gun':
