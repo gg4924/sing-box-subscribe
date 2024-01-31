@@ -1,0 +1,19 @@
+name: 错误反馈/改进
+description: "使用sing-box-subscrib遇到问题/需求"
+body:
+  - type: textarea
+    attributes:
+      label: 描述
+      description: 请提供错误/需求的详细描述。
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: 完整性要求
+      description: |-
+        请勾选以下所有选项以证明您已经阅读并理解了以下要求，否则该 issue 将被关闭。
+      options:
+        - label: 我保证阅读了reademe文档，了解所有sing-box-subscrib使用参数的含义与工作流程。
+          required: true
+        - label: 我保证转换的订阅链接可以在浏览器打开，并且有内容。
+          required: true
