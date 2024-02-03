@@ -171,7 +171,10 @@ def config(url):
     if query_string:
         full_url = f"{encoded_url}?{query_string}"
     else:
-        full_url = f"{encoded_url}"
+        if any(substring in encoded_url for substring in ['&emoji=', '&file=']):
+            full_url = f"{encoded_url.split('&')[0]}"
+        else:
+            full_url = f"{encoded_url}"
 
     #print (f"full_url: {full_url}")
 
