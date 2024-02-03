@@ -130,9 +130,9 @@ def config(url):
     encoded_url = unquote(url)
     #print (f"encoded_url: {encoded_url}")
     index_of_colon = encoded_url.find(":")
-    items = ["emoji=", "file="]
+
     if not query_string:
-        if any(encoded_url.find(item) for item in items):
+        if any(substring in encoded_url for substring in ['&emoji=', '&file=']):
             if '|' in encoded_url:
                 param = urlparse(encoded_url.rsplit('&', 1)[-1])
             else:
@@ -147,7 +147,7 @@ def config(url):
                     if next_index < len(request.args['file']) and request.args['file'][next_index] != "/":
                         request.args['file'] = request.args['file'][:next_index-1] + "/" + request.args['file'][next_index-1:]
     else:
-        if any(query_string.find(item) for item in items):
+        if any(substring in query_string for substring in ['&emoji=', '&file=']):
             param = urlparse(query_string.split('&', 1)[-1])
             request.args = dict(item.split('=') for item in param.path.split('&'))
             if request.args.get('prefix'):
