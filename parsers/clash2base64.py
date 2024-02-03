@@ -62,7 +62,7 @@ def clash2v2ray(share_link):
                 ss_info["mode"] = share_link['plugin-opts']['mode']
                 ss_info["host"] = share_link['plugin-opts'].get('host', '')
                 url_link = '?plugin=obfs-local%3Bobfs%3D{mode}%3Bobfs-host%3D{host}'.format(**ss_info)
-            if share_link.get('plugin') == 'v2ray-plugin':
+            elif share_link.get('plugin') == 'v2ray-plugin':
                 ss_info["obfs"] = share_link['plugin-opts']['mode']
                 ss_info["obfs-host"] = share_link['plugin-opts'].get('host','')
                 if share_link['plugin-opts'].get('path'):
@@ -89,7 +89,7 @@ def clash2v2ray(share_link):
                 }
                 v2ray_plugin = json.dumps(v2ray_plugin)
                 url_link = f'?v2ray-plugin={base64.b64encode(v2ray_plugin.encode()).decode()}'
-            if share_link.get('plugin') == 'shadow-tls':
+            elif share_link.get('plugin') == 'shadow-tls':
                 ss_info["fingerprint"] = share_link.get("client-fingerprint", "")
                 ss_info["shadowtls_password"] = share_link['plugin-opts']['password']
                 ss_info["version"] = share_link['plugin-opts']['version']
@@ -150,7 +150,7 @@ def clash2v2ray(share_link):
                 else:
                     trojan_info["serviceName"] = ''
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&serviceName={serviceName}&fp={fp}&alpn={alpn}".format(**trojan_info)
-        if trojan_info['type'] == 'ws':
+        elif trojan_info['type'] == 'ws':
             if share_link.get('ws-opts'):
                 trojan_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8')
                 trojan_info["host"] = share_link.get('ws-opts', {}).get('headers', {}).get('Host', '')
@@ -158,7 +158,7 @@ def clash2v2ray(share_link):
                 trojan_info["path"] = ''
                 trojan_info["host"] = trojan_info["sni"]
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}".format(**trojan_info)
-        if trojan_info['type'] == 'tcp':
+        elif trojan_info['type'] == 'tcp':
             link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}".format(**trojan_info)
         if share_link.get('smux',{}).get('enabled', '') == True:
             trojan_info["protocol"] = share_link['smux']['protocol']
@@ -191,7 +191,7 @@ def clash2v2ray(share_link):
             vless_info["path"] = quote(share_link['ws-opts'].get('path', ''), 'utf-8') if share_link.get('ws-opts') else share_link.get('ws-path', '')
             vless_info["host"] = share_link['ws-opts'].get('headers', {}).get('Host', '') if share_link.get('ws-opts') else share_link.get('ws-headers', {}).get('Host', '')
             link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&fp={fp}&type={type}&host={host}&path={path}&flow={flow}&allowInsecure={allowInsecure}".format(**vless_info)
-        if vless_info['type'] == 'grpc':
+        elif vless_info['type'] == 'grpc':
             if share_link.get('grpc-opts', {}).get('grpc-service-name', '') not in ['/', ''] :
                 vless_info["serviceName"] = unquote(share_link.get('grpc-opts').get('grpc-service-name'))
             else:
@@ -203,7 +203,7 @@ def clash2v2ray(share_link):
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&allowInsecure={allowInsecure}&pbk={pbk}&sid={sid}".format(**vless_info)
             else:
                 link = "vless://{uuid}@{server}:{port}?encryption=none&security={security}&sni={sni}&type={type}&serviceName={serviceName}&fp={fp}&flow={flow}&allowInsecure={allowInsecure}".format(**vless_info)
-        if vless_info['type'] == 'tcp':
+        elif vless_info['type'] == 'tcp':
             if share_link.get('reality-opts'):
                 vless_info["security"] = 'reality'
                 vless_info["pbk"] = share_link['reality-opts']['public-key']

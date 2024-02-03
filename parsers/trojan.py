@@ -24,7 +24,7 @@ def parse(data):
             'insecure': True
         }
     }
-    if netquery.get('allowInsecure') and netquery['allowInsecure'] == '0' :
+    if netquery.get('allowInsecure') == '0' :
         node['tls']['insecure'] = False
     if netquery.get('alpn'):
         node['tls']['alpn'] = netquery.get('alpn').strip('{}').split(',')
@@ -51,7 +51,7 @@ def parse(data):
                          'Host': netquery.get('host')
                     }
                 }
-        if netquery['type'] == 'grpc':
+        elif netquery['type'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
                 'service_name':netquery.get('serviceName', '')

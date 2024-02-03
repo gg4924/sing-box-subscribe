@@ -64,7 +64,7 @@ def parse(data):
             node['transport'] = {
                 'type':'http'
             }
-        if netquery['type'] == 'ws':
+        elif netquery['type'] == 'ws':
             node['transport'] = {
                 'type':'ws',
                 "path": netquery.get('path', '').rsplit("?")[0],
@@ -79,7 +79,7 @@ def parse(data):
             if '?ed=' in netquery.get('path', ''):
                 node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
                 node['transport']['max_early_data'] = int(re.search(r'\d+', netquery.get('path').rsplit("?ed=")[1]).group())
-        if netquery['type'] == 'grpc':
+        elif netquery['type'] == 'grpc':
             node['transport'] = {
                 'type':'grpc',
                 'service_name':netquery.get('serviceName', '')

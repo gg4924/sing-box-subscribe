@@ -18,7 +18,7 @@ def parse(data):
             remark = urllib.parse.unquote(param[param.find('#') + 1:])
             node['tag'] = remark
         param = param[:param.find('#')]
-    if param.find('?remarks=') > -1:
+    elif param.find('?remarks=') > -1:
         if param[param.find('?remarks=') + 9:] != '':
             remark = urllib.parse.unquote(param[param.find('?remarks=') + 9:])
             node['tag'] = remark
@@ -37,7 +37,7 @@ def parse(data):
             'obfs-host={};'.format(plugin_dict["obfs-host"]) if plugin_dict.get("obfs-host") else ''
         )
         node['plugin_opts'] = result_str
-    if param.find('v2ray-plugin') > -1:
+    elif param.find('v2ray-plugin') > -1:
         if param.find('&', param.find('v2ray-plugin')) > -1:
             try:
                 plugin = tool.b64Decode(param[param.find('v2ray-plugin')+13:param.find('&', param.find('v2ray-plugin'))]).decode('utf-8')
