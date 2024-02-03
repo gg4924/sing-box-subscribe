@@ -242,7 +242,7 @@ def clash2v2ray(share_link):
         link = "hysteria://{server}:{port}?protocol={protocol}&auth={auth}&alpn={alpn}&insecure={allowInsecure}&peer={sni}&upmbps={upmbps}&downmbps={downmbps}&obfs={obfs}#{name}".format(
         server = share_link['server'],
         port = share_link['port'],
-        protocol = share_link.get('port', 'udp'),
+        protocol = share_link.get('protocol', 'udp'),
         auth = share_link.get('auth_str', share_link.get('auth-str')),
         alpn = quote(','.join(share_link.get('alpn', '')), 'utf-8'),
         allowInsecure = '0' if share_link.get('skip-cert-verify', '') == False else '1',
