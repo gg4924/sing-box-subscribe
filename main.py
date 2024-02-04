@@ -245,9 +245,10 @@ def get_content_from_url(url, n=6):
         return response_text
     elif 'proxies' in response_text:
         yaml_content = response.content.decode('utf-8')
+        response_text_no_tabs = yaml_content.replace('\t', ' ') #fuckU
         yaml = ruamel.yaml.YAML()
         try:
-            response_text = dict(yaml.load(yaml_content))
+            response_text = dict(yaml.load(response_text_no_tabs))
             return response_text
         except:
             pass
