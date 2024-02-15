@@ -261,7 +261,7 @@ def proDuplicateNodeName(nodes):
             index = 2
             s = node['tag']
             while node['tag'] in names:
-                node['tag'] = s+str(index)
+                node['tag'] = s + ' ' + str(index)
                 index += 1
             names.append(node['tag'])
 
