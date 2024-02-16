@@ -196,6 +196,9 @@ def get_parser(node):
         eps = providers['exclude_protocol'].split(',')
         if len(eps) > 0:
             eps = [protocol.strip() for protocol in eps]
+            if 'hy2' in eps:
+                index = eps.index('hy2')
+                eps[index] = 'hysteria2'
             if proto in eps:
                 return None
     if not proto or proto not in parsers_mod.keys():
