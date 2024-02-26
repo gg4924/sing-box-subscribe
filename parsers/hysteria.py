@@ -22,7 +22,8 @@ def parse(data):
             'insecure': False
         }
     }
-    node['tls']['alpn'] = (netquery.get('alpn') or "h3").strip('{}').split(',')
+    if netquery.get('alpn'):
+        node['tls']['alpn'] = netquery['alpn'].strip('{}').split(',')
     if netquery.get('insecure') == '1' or netquery.get('allowInsecure') == '1':
         node['tls']['insecure'] = True
     if netquery.get('obfs') and netquery['obfs'] != 'none':
