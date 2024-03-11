@@ -112,7 +112,7 @@ def edit_temp_json():
 def config(url):
     user_agent = request.headers.get('User-Agent')
     rua_values = os.getenv('RUA').split(',')
-    substrings = os.getenv('SRT').split(',')
+    substrings = os.getenv('STR').split(',')
     if any(rua_value in user_agent for rua_value in rua_values):
         return Response(json.dumps({'status': 'error', 'message': 'block'}, indent=4, ensure_ascii=False),
                         content_type='application/json; charset=utf-8', status=403)
