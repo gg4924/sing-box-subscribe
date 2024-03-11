@@ -111,12 +111,12 @@ def edit_temp_json():
 @app.route('/config/<path:url>', methods=['GET'])
 def config(url):
     user_agent = request.headers.get('User-Agent')
-    rua_values = os.getenv('RUA').split(',')
-    if any(rua_value in user_agent for rua_value in rua_values):
+    rua_values = os.getenv('RUA')
+    if rua_values and any(rua_value in user_agent for rua_value in rua_values.split(',')):
         return Response(json.dumps({'status': 'error', 'message': 'block'}, indent=4, ensure_ascii=False),
                         content_type='application/json; charset=utf-8', status=403)
-    substrings = os.getenv('STR').split(',')
-    if any(substring in url for substring in substrings):
+    substrings = os.getenv('STR')
+    if substrings and any(substring in url for substring in substrings.split(',')):
         return Response(json.dumps({'status': 'error', 'message_CN': '填写参数不符合规范'}, indent=4, ensure_ascii=False),
                         content_type='application/json; charset=utf-8', status=403)
     # temp_json_data_str = os.environ['TEMP_JSON_DATA']
