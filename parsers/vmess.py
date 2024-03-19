@@ -38,9 +38,10 @@ def parse(data):
                         'fingerprint': netquery.get('fp', 'chrome')
                     }
             if (netquery.get('obfs') == 'websocket') or (netquery.get('type') == 'ws'):
+                matches = re.search(r'\d+', netquery.get('path', '/'))
                 node['transport'] = {
                     'type': 'ws',
-                    'path': netquery.get('path', '').rsplit("?")[0],
+                    'path': '/' if matches else netquery.get('path', '/'),
                     'headers': {
                         'Host': netquery.get('host', '')  # 如果 'obfsParam' 不存在或解析失败，使用 'host' 字段
                     }
@@ -116,10 +117,11 @@ def parse(data):
                 }
             }
             if item.get('path'):
-                node['transport']['path'] = str(item['path']).rsplit("?")[0]
-            if '?ed=' in str(item.get('path', '')):
-                node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
-                node['transport']['max_early_data'] = int(re.search(r'\d+', item.get('path').rsplit("?ed=")[1]).group())
+                matches = re.search(r'\d+', item['path'])
+                node['transport']['path'] = '/' if matches else item['path']
+                if matches:
+                    node['transport']['early_data_header_name'] = 'Sec-WebSocket-Protocol'
+                    node['transport']['max_early_data'] = int(matches.group())
         elif item['net'] == 'quic':
             node['transport'] = {
                 'type':'quic'
