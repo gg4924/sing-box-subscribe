@@ -43,11 +43,11 @@ def parse(data):
                 'path':netquery.get('path', '/')
             }
         if netquery['type'] == 'ws':
-            matches = re.search(r'\d+', netquery.get('path', '/'))
+            matches = re.search(r'\?ed=(\d+)', netquery.get('path', '/'))
             if netquery.get('host'):
                 node['transport'] = {
                      'type':'ws',
-                     'path':'/' if matches else netquery.get('path', '/'),
+                     'path':netquery.get('path', '/').rsplit("?ed=", 1)[0] if matches else netquery.get('path', '/'),
                      'headers': {
                          'Host': netquery.get('host')
                     }
