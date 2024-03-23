@@ -21,11 +21,11 @@ def parse(data):
         'password': _netloc[0],
         'tls': {
             'enabled': True,
-            'insecure': True
+            'insecure': False
         }
     }
-    if netquery.get('allowInsecure') == '0' :
-        node['tls']['insecure'] = False
+    if netquery.get('allowInsecure') == '1':
+        node['tls']['insecure'] = True
     if netquery.get('alpn'):
         node['tls']['alpn'] = netquery.get('alpn').strip('{}').split(',')
     if netquery.get('sni'):
