@@ -43,7 +43,7 @@ def parse(data):
                 'path':netquery.get('path', '/')
             }
         if netquery['type'] == 'ws':
-            matches = re.search(r'\?ed=(\d+)', netquery.get('path', '/'))
+            matches = re.search(r'\?ed=(\d+)$', netquery.get('path', '/'))
             if netquery.get('host'):
                 node['transport'] = {
                      'type':'ws',
@@ -57,7 +57,7 @@ def parse(data):
                 'type':'grpc',
                 'service_name':netquery.get('serviceName', '')
             }
-    if netquery.get('protocol'):
+    if netquery.get('protocol') in ['smux', 'yamux', 'h2mux']:
         node['multiplex'] = {
             'enabled': True,
             'protocol': netquery['protocol']
