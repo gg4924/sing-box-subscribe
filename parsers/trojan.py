@@ -6,7 +6,7 @@ def parse(data):
     if server_info.path:
       server_info = server_info._replace(netloc=server_info.netloc + server_info.path, path="")
     if '@' in server_info.netloc:
-        _netloc = server_info.netloc.split("@")
+        _netloc = server_info.netloc.rsplit("@", 1)
     else:
         return None
     netquery = dict(
