@@ -160,9 +160,9 @@ def clash2v2ray(share_link):
             else:
                 trojan_info["path"] = ''
                 trojan_info["host"] = trojan_info["sni"]
-            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}".format(**trojan_info)
+            link = "trojan://{password}@{server}:{port}?sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&host={host}&path={path}&fp={fp}&alpn={alpn}".format(**trojan_info)
         elif trojan_info['type'] == 'tcp':
-            link = "trojan://{password}@{server}:{port}?allowInsecure={allowInsecure}&sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}".format(**trojan_info)
+            link = "trojan://{password}@{server}:{port}?sni={sni}&skip_cert_verify={skip_cert_verify}&type={type}&fp={fp}&alpn={alpn}".format(**trojan_info)
         if share_link.get('smux',{}).get('enabled', '') == True:
             trojan_info["protocol"] = share_link['smux']['protocol']
             trojan_info["max_connections"] = share_link['smux'].get('max-connections','')
