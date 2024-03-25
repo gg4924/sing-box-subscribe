@@ -24,7 +24,7 @@ def parse(data):
             'insecure': False
         }
     }
-    if netquery.get('allowInsecure') == '1':
+    if netquery.get('skip_cert_verify') == True:
         node['tls']['insecure'] = True
     if netquery.get('alpn'):
         node['tls']['alpn'] = netquery.get('alpn').strip('{}').split(',')
