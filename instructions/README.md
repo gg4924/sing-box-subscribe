@@ -210,6 +210,7 @@ In this file, you can add subscription links and basic settings.
             "emoji": 1, //Add flag emoji
             "subgroup": "",
             "prefix": "", //Do not add node name prefix
+            "ex-node-name": "网站|流量|过期", //Filter nodes containing keywords
             "User-Agent":"clashmeta" //Set browser UA
         },
         {
@@ -269,6 +270,8 @@ In this file, you can add subscription links and basic settings.
 - `subgroup`: Optional. Name the subscription link and generate an outbound.
 
 - `prefix`: Optional. Set a custom prefix that will be added to the beginning of the node names. If not set, no prefix will be added.
+
+- `ex-node-name`: Optional. Filter nodes containing keywords. Multiple keywords are separated by "|"
 
 - `User-Agent`: Optional. You can customize UA, such as setting UA to "clash.meta" or "sing-box"
 
