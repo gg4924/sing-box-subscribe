@@ -123,7 +123,7 @@ def add_emoji(nodes, subscribe):
 
 def nodefilter(nodes, subscribe):
     if subscribe.get('ex-node-name'):
-        ex_nodename = subscribe['ex-node-name'].split('|')
+        ex_nodename = re.split(r'[,\|]', subscribe['ex-node-name'])
         for exns in ex_nodename:
             for node in nodes[:]:  # 遍历 nodes 的副本，以便安全地删除元素
                 if exns in node['tag']:

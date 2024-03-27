@@ -22,9 +22,9 @@ For example, the website I built [https://sing-box-subscribe.vercel.app](https:/
 https://xxxxxxx.vercel.app/config/https://xxxxxxsubscribe?token=123456&file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json
 ```
 
-### 2024.2.16 Update: Support adding `emoji`, `tag`, `prefix`, `ua`, `file`, `eps` parameters after the link. Use `&` to connect multiple parameters. The usage is the same as the parameters in `providers.json`
+### 2024.2.16 Update: Support adding `emoji`, `tag`, `prefix`, `ua`, `file`, `eps` , `enn` parameters after the link. Use `&` to connect multiple parameters. The usage is the same as the parameters in `providers.json`
 
-`/config/URL_LINK&emoji=1&prefix=♥&ua=v2rayng&eps=vmess,hy2&file=https://xxxxxxxxx.json`
+`/config/URL_LINK&emoji=1&prefix=♥&ua=v2rayng&eps=vmess,hy2&enn=网站,剩余流量&file=https://xxxxxxxxx.json`
 
 The above example shows: enable emoji, add ♥ before the node name, use v2rayng user agent, and use `https://xxxxxxxxx.json` as the generated sing-box configuration template
 
